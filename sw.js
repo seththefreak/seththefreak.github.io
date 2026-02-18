@@ -1,9 +1,15 @@
 // ============================================================
-// VERLOREN RPG SHEETS — Service Worker v1.2.0
+// VERLOREN RPG SHEETS — Service Worker v1.4.0
 // Estratégia: Cache First para assets, Network First para HTML
+// Changelog v1.4.0:
+//   - Dados raciais atualizados: Dairo, Flügel, Ex Machina, Faehrie
+//   - Faerie renomeada para Faehrie com sistema Dualidade Morfológica
+//   - Dairo: VON +1, caminhos Brutal / Colosso
+//   - Flügel: atributos corretos, Intelecto Arcano / Arquiteto Arcano
+//   - Ex Machina: VON +3, FOR 0, CAR -1 conforme design
 // ============================================================
 
-const CACHE_VERSION = 'verloren-v1.2.2';
+const CACHE_VERSION = 'verloren-v1.4.0';
 const STATIC_CACHE  = `${CACHE_VERSION}-static`;
 const FONT_CACHE    = `${CACHE_VERSION}-fonts`;
 
@@ -11,7 +17,8 @@ const FONT_CACHE    = `${CACHE_VERSION}-fonts`;
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/manifest.json'
+  '/manifest.json',
+  '/sw.js'
 ];
 
 // URLs de fontes que terão cache separado
@@ -19,7 +26,7 @@ const FONT_ORIGINS = ['fonts.googleapis.com', 'fonts.gstatic.com'];
 
 // ── INSTALL: pré-cacheia assets estáticos ──────────────────
 self.addEventListener('install', event => {
-  console.log('[SW] Instalando v1.2.2...');
+  console.log('[SW] Instalando v1.4.0...');
   event.waitUntil(
     caches.open(STATIC_CACHE)
       .then(cache => {
@@ -27,7 +34,7 @@ self.addEventListener('install', event => {
           console.warn('[SW] Erro ao adicionar alguns assets ao cache:', err);
           // Tenta adicionar individualmente
           return Promise.all(
-            STATIC_ASSETS.map(url => 
+            STATIC_ASSETS.map(url =>
               cache.add(url).catch(e => console.warn(`[SW] Falha ao cachear ${url}:`, e))
             )
           );
@@ -43,7 +50,7 @@ self.addEventListener('install', event => {
 
 // ── ACTIVATE: remove caches antigos ───────────────────────
 self.addEventListener('activate', event => {
-  console.log('[SW] Ativando v1.2.2...');
+  console.log('[SW] Ativando v1.4.0...');
   const validCaches = [STATIC_CACHE, FONT_CACHE];
   event.waitUntil(
     caches.keys()
@@ -95,8 +102,8 @@ self.addEventListener('fetch', event => {
   }
 
   // HTML principal → Network First (sempre tenta versão mais nova)
-  if (event.request.mode === 'navigate' || 
-      url.pathname === '/' || 
+  if (event.request.mode === 'navigate' ||
+      url.pathname === '/' ||
       url.pathname === '/index.html' ||
       url.pathname.endsWith('.html')) {
     event.respondWith(
@@ -126,10 +133,10 @@ self.addEventListener('fetch', event => {
         console.log('[SW] Asset em cache:', url.pathname);
         return cached;
       }
-      
+
       return fetch(event.request).then(response => {
         if (!response || !response.ok) return response;
-        
+
         // Só cacheia respostas OK
         const clone = response.clone();
         caches.open(STATIC_CACHE).then(c => {
@@ -157,4 +164,4 @@ self.addEventListener('message', event => {
   }
 });
 
-console.log('[SW] Service Worker carregado.');
+console.log('[SW] Service Worker v1.4.0 carregado.');

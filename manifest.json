@@ -2,9 +2,9 @@
   "name": "Verloren RPG Sheets",
   "short_name": "Verloren",
   "description": "App pessoal para criação e organização de fichas raciais do sistema Verloren.",
-  "id": "vrpgs",
-  "start_url": "vrpgs",
-  "scope": "vrpgs",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#f8f4ff",
@@ -41,8 +41,14 @@
     {
       "name": "Nova Ficha",
       "short_name": "Nova",
-      "description": "Criar uma nova ficha racial",
+      "description": "Criar uma nova ficha de personagem",
       "url": "/#new"
+    },
+    {
+      "name": "Sistema",
+      "short_name": "Sistema",
+      "description": "Consultar as regras do sistema Verloren",
+      "url": "/#sistema"
     }
   ]
 }
