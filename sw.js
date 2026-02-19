@@ -1,9 +1,9 @@
 // ============================================================
-// VERLOREN RPG SHEETS — Service Worker v1.3.0
+// VERLOREN RPG SHEETS — Service Worker v1.3.1
 // Estratégia: Cache First para assets, Network First para HTML
 // ============================================================
 
-const CACHE_VERSION = 'verloren-v1.3.0';
+const CACHE_VERSION = 'verloren-v1.3.1';
 const STATIC_CACHE  = `${CACHE_VERSION}-static`;
 const FONT_CACHE    = `${CACHE_VERSION}-fonts`;
 
@@ -11,7 +11,11 @@ const FONT_CACHE    = `${CACHE_VERSION}-fonts`;
 const STATIC_ASSETS = [
   './',
   './index.html',
-  './manifest.json'
+  './manifest.json',
+  './splash_vertical.png',
+  './splash_vertical_2.png',
+  './splash_horizontal.png',
+  './splash_horizontal_2.png'
 ];
 
 // URLs de fontes que terão cache separado
@@ -19,7 +23,7 @@ const FONT_ORIGINS = ['fonts.googleapis.com', 'fonts.gstatic.com'];
 
 // ── INSTALL: pré-cacheia assets estáticos ──────────────────
 self.addEventListener('install', event => {
-  console.log('[SW] Instalando v1.3.0...');
+  console.log('[SW] Instalando v1.3.1...');
   event.waitUntil(
     caches.open(STATIC_CACHE)
       .then(cache => {
@@ -40,7 +44,7 @@ self.addEventListener('install', event => {
 
 // ── ACTIVATE: remove caches antigos ───────────────────────
 self.addEventListener('activate', event => {
-  console.log('[SW] Ativando v1.3.0...');
+  console.log('[SW] Ativando v1.3.1...');
   const validCaches = [STATIC_CACHE, FONT_CACHE];
   event.waitUntil(
     caches.keys()
@@ -111,7 +115,7 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Demais assets → Cache First
+  // Demais assets (incluindo splashes) → Cache First
   event.respondWith(
     caches.match(request).then(cached => {
       if (cached) return cached;
@@ -139,4 +143,4 @@ self.addEventListener('message', event => {
   }
 });
 
-console.log('[SW] Service Worker v1.3.0 carregado.');
+console.log('[SW] Service Worker v1.3.1 carregado.');
