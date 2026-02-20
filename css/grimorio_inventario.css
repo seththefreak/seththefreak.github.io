@@ -1,0 +1,337 @@
+/* ─────────────────────────────────────────────────────
+       GRIMÓRIO — CSS
+    ───────────────────────────────────────────────────── */
+    .grimorio-school-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .grim-tab {
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--tab-cor, var(--border));
+      background: transparent;
+      color: var(--tab-cor, var(--text-secondary));
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: 'Nunito', sans-serif;
+    }
+    .grim-tab:hover, .grim-tab.active {
+      background: var(--tab-cor, var(--lavanda));
+      color: #fff;
+      box-shadow: 0 2px 8px color-mix(in srgb, var(--tab-cor) 35%, transparent);
+    }
+    .grim-school-content { display: none; }
+    .grim-school-content.active { display: block; }
+    .grim-capitulo { margin-bottom: 24px; }
+    .grim-cap-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+    }
+    .grim-spells-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 10px;
+    }
+    .grim-spells-grid.mundanas {
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+    .grim-spell-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      transition: all var(--transition);
+    }
+    .grim-spell-card:hover {
+      border-color: var(--lavanda);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-1px);
+    }
+    .grim-spell-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .grim-spell-nome {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .grim-spell-pm {
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 20px;
+      border: 1px solid;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .grim-spell-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .grim-spell-meta span {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      background: var(--bg-secondary);
+      padding: 1px 7px;
+      border-radius: 10px;
+    }
+    .grim-spell-nivel {
+      font-weight: 800;
+      color: var(--text-accent) !important;
+      background: var(--lavanda-light) !important;
+    }
+    .grim-spell-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .grim-spell-obs {
+      margin-top: 6px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-style: italic;
+      border-left: 2px solid var(--lavanda);
+      padding-left: 8px;
+    }
+    .grimorio-search-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .grimorio-search-row .search-input {
+      flex: 1;
+      max-width: 320px;
+    }
+
+    /* Inventário */
+    .inventario-section { margin-top: 24px; }
+
+    .inventario-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .inventario-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-accent);
+    }
+
+    .inventario-lista { display: flex; flex-direction: column; gap: 8px; }
+
+    .inventario-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+      animation: slideIn 0.2s ease;
+    }
+    .inventario-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+
+    .item-info { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+    .item-info .item-nome { font-weight: 600; font-size: 0.9rem; color: var(--text-primary); }
+    .item-detalhes { font-size: 0.72rem; color: var(--text-muted); }
+
+    .item-acoes {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .item-quantidade {
+      min-width: 28px;
+      text-align: center;
+      font-weight: 700;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--text-accent);
+    }
+
+    .btn-qty {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: all var(--transition);
+      line-height: 1;
+    }
+    .btn-qty:hover { background: var(--lavanda-light); color: var(--text-accent); border-color: var(--lavanda); }
+    .btn-qty.danger:hover { background: var(--attr-neg-bg); color: var(--attr-neg); border-color: var(--attr-neg); }
+
+    .inventario-vazio {
+      text-align: center;
+      padding: 28px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-style: italic;
+      border: 1.5px dashed var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    /* Recompensas */
+    .recompensas-section { margin-top: 24px; }
+
+    .recompensas-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .recompensas-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-accent);
+    }
+
+    .recompensas-timeline { display: flex; flex-direction: column; gap: 10px; }
+
+    .recompensa-item {
+      display: grid;
+      grid-template-columns: 90px 1fr auto auto;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 14px;
+      background: var(--bg-secondary);
+      border-left: 4px solid var(--attr-pos);
+      border-radius: var(--radius-sm);
+      animation: slideIn 0.2s ease;
+    }
+
+    .recompensa-data { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; }
+    .recompensa-desc { font-size: 0.88rem; color: var(--text-primary); }
+    .recompensa-valor { font-size: 1rem; font-weight: 700; color: var(--attr-pos); font-family: 'Cormorant Garamond', serif; white-space: nowrap; }
+
+    .recompensa-remover {
+      padding: 4px 8px;
+      background: transparent;
+      color: var(--text-muted);
+      border: none;
+      cursor: pointer;
+      transition: color var(--transition);
+      font-size: 0.85rem;
+    }
+    .recompensa-remover:hover { color: var(--attr-neg); }
+
+    .recompensas-vazio {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-style: italic;
+      border: 1.5px dashed var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    /* Modal de seleção de equipamento */
+    .modal-large {
+      max-width: 720px;
+      width: 95vw;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .equipamento-filtros {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .equipamento-filtros input {
+      flex: 1;
+      min-width: 160px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      color: var(--text-primary);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.875rem;
+    }
+    .equipamento-filtros input:focus { outline: none; border-color: var(--lavanda); }
+
+    .equipamento-filtros select {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      color: var(--text-primary);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+
+    .equipamento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .equipamento-card {
+      background: var(--bg-secondary);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      cursor: pointer;
+      transition: all var(--transition);
+      position: relative;
+    }
+    .equipamento-card:hover {
+      border-color: var(--lavanda);
+      background: var(--lavanda-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .equip-card-nome { font-weight: 700; font-size: 0.9rem; color: var(--text-primary); margin-bottom: 4px; }
+    .equip-card-tipo {
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em; padding: 2px 7px; border-radius: 10px;
+      margin-bottom: 8px; display: inline-block;
+    }
+    .equip-tipo-arma    { background: var(--rose-light); color: var(--rose-dark); }
+    .equip-tipo-armadura{ background: var(--celeste-light); color: var(--celeste-dark); }
+    .equip-tipo-escudo  { background: var(--menta-light); color: var(--menta-dark); }
+
+    .equip-card-stats { font-size: 0.75rem; color: var(--text-muted); line-height: 1.6; }
+    .equip-card-preco { 
+      font-size: 0.78rem; font-weight: 700; color: var(--text-accent);
+      margin-top: 6px;
+    }
