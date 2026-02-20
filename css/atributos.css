@@ -1,0 +1,131 @@
+/* ============================================================
+       ATRIBUTOS — GRID + CONTROLES
+    ============================================================ */
+    .attrs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 12px;
+    }
+
+    .attr-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 8px;
+      transition: all var(--transition);
+      position: relative;
+    }
+    .attr-item.pos { border-color: var(--attr-pos); background: var(--attr-pos-bg); }
+    .attr-item.neg { border-color: var(--attr-neg); background: var(--attr-neg-bg); }
+    .attr-item.warn { border-color: var(--attr-warn); }
+    .attr-item.blocked {
+      border-color: var(--border);
+      background: repeating-linear-gradient(
+        45deg,
+        var(--bg-secondary),
+        var(--bg-secondary) 10px,
+        var(--bg-primary) 10px,
+        var(--bg-primary) 20px
+      );
+      opacity: 0.6;
+    }
+
+    .attr-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .attr-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1;
+      margin: 4px 0;
+      transition: color var(--transition);
+    }
+    .attr-item.pos .attr-value { color: var(--attr-pos); }
+    .attr-item.neg .attr-value { color: var(--attr-neg); }
+    .attr-item:not(.pos):not(.neg) .attr-value { color: var(--text-secondary); }
+    .attr-item.blocked .attr-value { color: var(--text-muted); font-size: 1.5rem; }
+
+    .attr-controls {
+      display: flex;
+      gap: 4px;
+      margin-top: 8px;
+    }
+
+    .attr-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: all var(--transition);
+      line-height: 1;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .attr-btn:hover { background: var(--lavanda-light); color: var(--text-accent); border-color: var(--lavanda); }
+    .attr-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .attr-limit {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    .attr-warn-badge {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      font-size: 0.6rem;
+      color: var(--attr-warn);
+      pointer-events: none;
+    }
+    
+    .attr-mod-badge {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: var(--lavanda-light);
+      color: var(--text-accent);
+      border: 1px solid var(--lavanda);
+      pointer-events: none;
+      line-height: 1.4;
+    }
+    
+    .attr-mod-badge.blocked {
+      background: var(--attr-neg-bg);
+      color: var(--attr-neg);
+      border-color: var(--attr-neg);
+    }
+    
+    .attr-mod-badge.boost {
+      background: var(--attr-pos-bg);
+      color: var(--attr-pos);
+      border-color: var(--attr-pos);
+    }

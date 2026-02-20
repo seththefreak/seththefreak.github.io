@@ -1,0 +1,137 @@
+/* ============================================================
+       SISTEMA — SUBTABS
+    ============================================================ */
+    /* ============================================================
+       SISTEMA — NAVEGAÇÃO AGRUPADA
+    ============================================================ */
+    .sistema-nav {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      padding: 0 0 18px;
+      position: sticky;
+      top: 64px;
+      background: var(--bg-primary);
+      z-index: 10;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    /* Cada grupo */
+    .sgrp {
+      position: relative;
+    }
+
+    /* Botão de grupo (cabeçalho) */
+    .sgrp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-input);
+      color: var(--text-secondary);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all var(--transition);
+      letter-spacing: 0.02em;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      white-space: nowrap;
+    }
+    .sgrp-btn:hover {
+      border-color: var(--lavanda);
+      background: var(--lavanda-light);
+      color: var(--text-accent);
+    }
+    .sgrp-icon { font-size: 0.95rem; }
+    .sgrp-arrow {
+      font-size: 0.65rem;
+      opacity: 0.6;
+      transition: transform 0.2s;
+      margin-left: 2px;
+    }
+    .sgrp-btn.open .sgrp-arrow { transform: rotate(180deg); }
+
+    /* Painel de itens do grupo */
+    .sgrp-items {
+      display: none;
+      position: absolute;
+      top: calc(100% + 5px);
+      left: 0;
+      min-width: 180px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      padding: 6px;
+      z-index: 50;
+      flex-direction: column;
+      gap: 2px;
+      animation: fadeIn 0.15s ease;
+    }
+    .sgrp-items.open { display: flex; }
+
+    /* Subtabs dentro do painel */
+    .sistema-subtab {
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition);
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .sistema-subtab:hover {
+      background: var(--lavanda-light);
+      color: var(--text-accent);
+    }
+    .sistema-subtab.active {
+      background: var(--lavanda-light);
+      color: var(--text-accent);
+      font-weight: 800;
+    }
+
+    /* Indicador de qual grupo tem tab ativa — destaque no sgrp-btn */
+    .sgrp-btn.has-active {
+      background: var(--lavanda-light);
+      color: var(--text-accent);
+      border-color: var(--lavanda-dark);
+    }
+
+    .sistema-subsec { display: none; }
+    .sistema-subsec.active { display: block; animation: fadeIn 0.3s ease; }
+
+    /* Mobile: nav horizontal com scroll */
+    @media (max-width: 640px) {
+      .sistema-nav {
+        padding: 0 0 12px;
+        top: 52px;
+        gap: 4px;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .sistema-nav::-webkit-scrollbar { display: none; }
+      .sgrp-btn { padding: 6px 10px; font-size: 0.76rem; }
+      .sgrp-items {
+        min-width: 160px;
+        left: auto;
+      }
+      /* Garante que o último grupo não saia da tela pela direita */
+      .sgrp:last-child .sgrp-items { left: auto; right: 0; }
+    }

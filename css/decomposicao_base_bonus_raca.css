@@ -1,0 +1,44 @@
+/* Decomposição base · bônus racial */
+    .attr-decomp {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 3px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .attr-decomp-base {
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 5px;
+    }
+    .attr-decomp-sep {
+      color: var(--text-muted);
+      font-size: 0.55rem;
+    }
+    .attr-decomp-bonus {
+      color: var(--lavanda-dark);
+      background: var(--lavanda-light);
+      border: 1px solid var(--lavanda);
+      border-radius: 4px;
+      padding: 1px 5px;
+    }
+    [data-theme="dark"] .attr-decomp-bonus {
+      color: var(--text-accent);
+      background: rgba(100,80,180,0.3);
+      border-color: var(--lavanda);
+    }
+    [data-theme="dark"] .attr-mod-badge { background: rgba(100,80,180,0.3); }
+    .preset-edit-attrs { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin: 12px 0; }
+    .preset-edit-attr { display: flex; flex-direction: column; align-items: center; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 4px; gap: 4px; }
+    .preset-edit-attr label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+    .preset-edit-attr input { width: 100%; text-align: center; border: 1px solid var(--border); border-radius: 4px; background: var(--bg-input); color: var(--text-primary); font-family: "Cormorant Garamond", serif; font-size: 1.1rem; font-weight: 700; padding: 2px 0; }
+    .preset-edit-attr input:focus { outline: none; border-color: var(--lavanda); }
+    .preset-edit-modos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 10px 0; }
+    .preset-edit-modo { display: flex; flex-direction: column; align-items: center; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 6px; gap: 6px; }
+    .preset-edit-modo label { font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); }
+    .preset-edit-modo input { width: 56px; text-align: center; border: 1px solid var(--border); border-radius: 4px; background: var(--bg-input); color: var(--text-accent); font-family: "Cormorant Garamond", serif; font-size: 1.3rem; font-weight: 700; padding: 2px 0; }
+    .preset-edit-modo input:focus { outline: none; border-color: var(--lavanda); }
