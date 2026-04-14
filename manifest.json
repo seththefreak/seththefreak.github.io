@@ -2,8 +2,8 @@
   "name": "UnheaveN: ERA Companion",
   "short_name": "UnheaveN",
   "description": "Companion app para UnheaveN: ERA — Palimpsest v2.9.0",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": ".",
+  "scope": ".",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#09090f",
@@ -32,4 +32,3 @@
   "screenshots": [],
   "prefer_related_applications": false
 }
-
