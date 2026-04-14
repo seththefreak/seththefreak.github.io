@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#09090f"/>
+  <!-- Hex border -->
+  <polygon points="256,28 460,141 460,371 256,484 52,371 52,141"
+           fill="none" stroke="#c9a227" stroke-width="6"/>
+  <!-- Inner hex -->
+  <polygon points="256,72 422,165 422,347 256,440 90,347 90,165"
+           fill="none" stroke="#c9a227" stroke-width="2" opacity="0.3"/>
+  <!-- ERA letters -->
+  <text x="256" y="218" text-anchor="middle"
+        font-family="Georgia,serif" font-size="96" font-weight="700"
+        fill="#c9a227" letter-spacing="8">ERA</text>
+  <!-- Divider -->
+  <line x1="130" y1="240" x2="382" y2="240" stroke="#c9a227" stroke-width="2" opacity="0.5"/>
+  <!-- Subtitle -->
+  <text x="256" y="310" text-anchor="middle"
+        font-family="Georgia,serif" font-size="36"
+        fill="#9090a8" letter-spacing="14">NÉVOA</text>
+  <!-- Bottom tagline -->
+  <text x="256" y="380" text-anchor="middle"
+        font-family="Arial,sans-serif" font-size="22"
+        fill="#5a5a70" letter-spacing="6">PALIMPSEST</text>
+</svg>
