@@ -280,7 +280,7 @@ function renderSuba(s, pilarId, cor) {
   const isMax    = d.tier >= 4;
   return `
   <div class="suba-row">
-    <div class="suba-info" onclick="toast(`${s.nome}: ${s.desc.slice(0,90)}…`)">
+    <div class="suba-info" onclick="toast('${s.nome}; ${s.desc.slice(0,90)}…')">
       <div class="suba-nome">${s.nome}</div>
       <div class="suba-meta">${tierNome} · Auto: ${autoStr} · +${d.prog}</div>
     </div>
