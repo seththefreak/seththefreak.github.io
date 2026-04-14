@@ -1,0 +1,42 @@
+/* UnheaveN: ERA — Companion · style.css */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #0F1115;
+  color: #E5E7EB;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+/* Loading state antes do React montar */
+#root:empty::after {
+  content: "UnheaveN: ERA";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #FDE68A;
+  text-transform: uppercase;
+}
+
+/* Scrollbar global */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3A4150; border-radius: 2px; }
+
+/* Prevent text selection on buttons */
+button { -webkit-user-select: none; user-select: none; }
+
+/* Safe area insets (notch / home indicator) */
+.app-shell {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
