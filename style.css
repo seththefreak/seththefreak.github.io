@@ -1,0 +1,132 @@
+/* UnheaveN: ERA — Companion · style.css */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #0F1115;
+  color: #E5E7EB;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+  min-height: 100%;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+/* Loading state antes do React montar */
+#root:empty::after {
+  content: "UnheaveN: ERA";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #FDE68A;
+  text-transform: uppercase;
+}
+
+/* Scrollbar global */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3A4150; border-radius: 2px; }
+
+/* Prevent text selection on buttons */
+button { -webkit-user-select: none; user-select: none; }
+
+/* Safe area insets (notch / home indicator) */
+.app-shell {
+  width: min(100%, 1320px);
+  margin: 0 auto;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.app-frame {
+  background:
+    radial-gradient(circle at top right, rgba(167, 139, 250, 0.08), transparent 28%),
+    linear-gradient(180deg, rgba(26, 29, 36, 0.98), rgba(15, 17, 21, 0.98));
+  border: 1px solid #2A2F3A;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(14px);
+}
+
+.app-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  background: #1A1D24;
+  border-bottom: 1px solid #3A4150;
+}
+
+.app-content {
+  padding: 16px 16px 96px;
+}
+
+.responsive-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.desktop-split {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.section-span-2 {
+  grid-column: span 1;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(34, 211, 238, 0.08), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(167, 139, 250, 0.08), transparent 26%),
+    #0F1115;
+  padding: 18px;
+}
+
+@media (min-width: 960px) {
+  .app-content {
+    padding: 20px 20px 112px;
+  }
+
+  .desktop-split {
+    grid-template-columns: minmax(0, 1.15fr) minmax(360px, 0.85fr);
+  }
+
+  .section-span-2 {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    padding: 0;
+  }
+
+  .app-shell {
+    width: 100%;
+  }
+
+  .app-frame {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .app-content {
+    padding: 10px 10px 88px;
+  }
+}
