@@ -1,7 +1,7 @@
 // UnheaveN: ERA â€” Companion Â· sw.js
 // Service Worker â€” cache-first com fallback de rede.
 
-const CACHE_NAME = "era-companion-v4";
+const CACHE_NAME = "era-companion-v5";
 
 const LOCAL_ASSETS = [
   "/",
@@ -52,7 +52,12 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  if (url.hostname.includes("unpkg.com") || url.hostname.includes("cdnjs.com")) {
+  if (
+    url.hostname.includes("unpkg.com")
+    || url.hostname.includes("cdnjs.com")
+    || url.hostname.includes("fonts.googleapis.com")
+    || url.hostname.includes("fonts.gstatic.com")
+  ) {
     event.respondWith(
       fetch(event.request)
         .then((response) => {

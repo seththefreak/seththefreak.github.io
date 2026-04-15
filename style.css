@@ -6,7 +6,7 @@ body {
   padding: 0;
   background: #0F1115;
   color: #E5E7EB;
-  font-family: "Segoe UI", system-ui, sans-serif;
+  font-family: "Merriweather", "Lora", Georgia, serif;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior: none;
   min-height: 100%;
@@ -32,7 +32,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100dvh;
-  font-family: Georgia, serif;
+  font-family: "Playfair Display", "Noto Serif Display", Georgia, serif;
   font-size: 13px;
   letter-spacing: 4px;
   color: #FFF7CC;

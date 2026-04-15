@@ -1,5 +1,6 @@
 function TabFicha({ char, upd }) {
   const [fichaTab, setFichaTab] = useState("base");
+  const portraitInputRef = useRef(null);
   const levelData = getCurrentLevelData(char.level);
 
   function setResource(resourceKey, nextValue) {
@@ -105,6 +106,42 @@ function TabFicha({ char, upd }) {
     }));
   }
 
+  function addEffectPreset(preset) {
+    upd((currentChar) => ({
+      ...currentChar,
+      effects: [
+        ...currentChar.effects,
+        normalizeEffect({ ...preset, id: createId("fx") }),
+      ],
+    }));
+  }
+
+  function addManifestationExample(example) {
+    const line = `${example.name}: ${example.summary} | ${example.keywords} keywords | KW ${example.kw} | amp +${example.amp}`;
+    upd((currentChar) => ({
+      ...currentChar,
+      manifestacoesDef: currentChar.manifestacoesDef ? `${currentChar.manifestacoesDef}\n${line}` : line,
+    }));
+  }
+
+  function triggerPortraitPicker() {
+    if (portraitInputRef.current) {
+      portraitInputRef.current.click();
+    }
+  }
+
+  function handlePortraitChange(event) {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      upd({ avatar: String(reader.result || "") });
+    };
+    reader.readAsDataURL(file);
+    event.target.value = "";
+  }
+
   const fichaTabs = [
     { id: "base", label: "Base" },
     { id: "pericias", label: "Pericias" },
@@ -128,7 +165,7 @@ function TabFicha({ char, upd }) {
                 border: `1px solid ${active ? C.gold : C.border}`,
                 color: active ? C.gold : C.muted,
                 fontSize: 11,
-                fontFamily: "Georgia,serif",
+                fontFamily: FONT_DISPLAY,
                 letterSpacing: 1,
                 transition: "all 0.15s",
               }}
@@ -142,30 +179,69 @@ function TabFicha({ char, upd }) {
       {fichaTab === "base" ? (
         <ResponsiveGrid>
           <Sect title="Identidade">
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 88px", gap: 8, marginBottom: 8 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) minmax(140px, 180px)", gap: 12, alignItems: "start" }}>
               <div>
-                <Lbl>Nome</Lbl>
-                <input value={char.name} onChange={(event) => upd({ name: event.target.value })} />
-              </div>
-              <div>
-                <Lbl>Nivel</Lbl>
-                <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 2 }}>
-                  <SmBtn onClick={() => setLevel(clampNumber(char.level - 1, 1, LEVELS.length))}>-</SmBtn>
-                  <span style={{ fontFamily: "Georgia,serif", fontSize: 20, fontWeight: 700, color: C.gold, width: 28, textAlign: "center" }}>
-                    {char.level}
-                  </span>
-                  <SmBtn onClick={() => setLevel(clampNumber(char.level + 1, 1, LEVELS.length))}>+</SmBtn>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 88px", gap: 8, marginBottom: 8 }}>
+                  <div>
+                    <Lbl>Nome</Lbl>
+                    <input value={char.name} onChange={(event) => upd({ name: event.target.value })} />
+                  </div>
+                  <div>
+                    <Lbl>Nivel</Lbl>
+                    <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 2 }}>
+                      <SmBtn onClick={() => setLevel(clampNumber(char.level - 1, 1, LEVELS.length))}>-</SmBtn>
+                      <span style={{ fontFamily: FONT_DISPLAY, fontSize: 20, fontWeight: 700, color: C.gold, width: 28, textAlign: "center" }}>
+                        {char.level}
+                      </span>
+                      <SmBtn onClick={() => setLevel(clampNumber(char.level + 1, 1, LEVELS.length))}>+</SmBtn>
+                    </div>
+                  </div>
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 8 }}>
+                  <div>
+                    <Lbl>Conceito</Lbl>
+                    <input value={char.concept} onChange={(event) => upd({ concept: event.target.value })} placeholder="Ex: Detetive paranormal" />
+                  </div>
+                  <div>
+                    <Lbl>Marca</Lbl>
+                    <input value={char.marca} onChange={(event) => upd({ marca: event.target.value })} placeholder="Ex: Veia pulsante" />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 8 }}>
-              <div>
-                <Lbl>Conceito</Lbl>
-                <input value={char.concept} onChange={(event) => upd({ concept: event.target.value })} placeholder="Ex: Detetive paranormal" />
-              </div>
-              <div>
-                <Lbl>Marca</Lbl>
-                <input value={char.marca} onChange={(event) => upd({ marca: event.target.value })} placeholder="Ex: Veia pulsante" />
+
+              <div style={{ ...card, padding: 10, background: `${C.alma}0D`, borderColor: `${C.alma}33`, textAlign: "center" }}>
+                <Lbl>Retrato</Lbl>
+                <div
+                  style={{
+                    width: 112,
+                    height: 112,
+                    borderRadius: 18,
+                    margin: "4px auto 10px",
+                    overflow: "hidden",
+                    border: `1px solid ${C.border}`,
+                    background: char.avatar ? C.bg2 : `radial-gradient(circle at 30% 30%, ${C.alma}33, transparent 70%), ${C.bg3}`,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  {char.avatar ? (
+                    <img src={char.avatar} alt="Retrato do personagem" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  ) : (
+                    <div style={{ fontFamily: FONT_DISPLAY, fontSize: 28, color: C.almaLight }}>{(char.name || "?").slice(0, 1).toUpperCase()}</div>
+                  )}
+                </div>
+                <input ref={portraitInputRef} type="file" accept="image/*" onChange={handlePortraitChange} style={{ display: "none" }} />
+                <div className="chip-row" style={{ justifyContent: "center" }}>
+                  <button onClick={triggerPortraitPicker} style={{ padding: "6px 10px", borderRadius: 999, background: `${C.mente}18`, border: `1px solid ${C.mente}`, color: C.mente, fontSize: 11 }}>
+                    Enviar imagem
+                  </button>
+                  {char.avatar ? (
+                    <button onClick={() => upd({ avatar: "" })} style={{ padding: "6px 10px", borderRadius: 999, background: `${C.corpo}16`, border: `1px solid ${C.corpo}`, color: C.corpo, fontSize: 11 }}>
+                      Remover
+                    </button>
+                  ) : null}
+                </div>
               </div>
             </div>
           </Sect>
@@ -182,7 +258,7 @@ function TabFicha({ char, upd }) {
               return (
                 <div key={key} style={{ marginBottom: 12 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, marginBottom: 4 }}>
-                    <span style={{ fontFamily: "Georgia,serif", fontSize: 11, color, letterSpacing: 1 }}>{label}</span>
+                    <span style={{ fontFamily: FONT_DISPLAY, fontSize: 11, color, letterSpacing: 1 }}>{label}</span>
                     <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
                       <SmBtn onClick={() => setResource(key, currentValue - 5)} color={color}>-5</SmBtn>
                       <SmBtn onClick={() => setResource(key, currentValue - 1)} color={color}>-</SmBtn>
@@ -242,10 +318,10 @@ function TabFicha({ char, upd }) {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: 8 }}>
               {Object.entries(PILARS).map(([pillarId, pillar]) => (
                 <div key={pillarId} style={{ ...card, borderColor: `${pillar.color}44`, textAlign: "center", padding: 10 }}>
-                  <div style={{ fontFamily: "Georgia,serif", fontSize: 9, color: pillar.color, letterSpacing: 2, marginBottom: 4 }}>{pillar.label}</div>
+                  <div style={{ fontFamily: FONT_DISPLAY, fontSize: 9, color: pillar.color, letterSpacing: 2, marginBottom: 4 }}>{pillar.label}</div>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}>
                     <SmBtn onClick={() => setPilar(pillarId, char.pilares[pillarId] - 1)}>-</SmBtn>
-                    <span style={{ fontFamily: "Georgia,serif", fontSize: 26, fontWeight: 700, color: pillar.color, lineHeight: 1 }}>
+                    <span style={{ fontFamily: FONT_DISPLAY, fontSize: 26, fontWeight: 700, color: pillar.color, lineHeight: 1 }}>
                       {char.pilares[pillarId]}
                     </span>
                     <SmBtn onClick={() => setPilar(pillarId, char.pilares[pillarId] + 1)}>+</SmBtn>
@@ -283,7 +359,7 @@ function TabFicha({ char, upd }) {
           <Sect title="Subatributos" className="section-span-2">
             {Object.entries(PILARS).map(([pillarId, pillar]) => (
               <div key={pillarId} style={{ marginBottom: 12 }}>
-                <div style={{ fontFamily: "Georgia,serif", fontSize: 10, color: pillar.color, letterSpacing: 2, marginBottom: 6, paddingBottom: 4, borderBottom: `1px solid ${pillar.color}33` }}>
+                <div style={{ fontFamily: FONT_DISPLAY, fontSize: 10, color: pillar.color, letterSpacing: 2, marginBottom: 6, paddingBottom: 4, borderBottom: `1px solid ${pillar.color}33` }}>
                   {pillar.label}
                 </div>
                 {pillar.subs.map((subId) => {
@@ -371,7 +447,7 @@ function TabFicha({ char, upd }) {
           <Sect title="Habilidades e Manifestacoes">
             {[
               { key: "habilidades", label: "Habilidades", placeholder: "Resistente, Atirador, Sensitivo, Exorcista..." },
-              { key: "manifestacoesDef", label: "Manifestacoes definidas", placeholder: "Centelha: Pyro+Bola 2PE | Escudo: Cryo+Cupula 6PE..." },
+              { key: "manifestacoesDef", label: "Manifestacoes definidas", placeholder: "Centelha: Lux+Bola | 2 keywords | KW 2 | amp +0" },
               { key: "notas", label: "Notas livres", placeholder: "Anotacoes, ancoras e declaracoes importantes..." },
             ].map((field) => (
               <div key={field.key} style={{ marginBottom: 8 }}>
@@ -384,6 +460,56 @@ function TabFicha({ char, upd }) {
                 />
               </div>
             ))}
+          </Sect>
+
+          <Sect title="Presets e Exemplos">
+            <div style={{ fontSize: 11, color: C.muted, marginBottom: 10 }}>
+              Adicione habilidades pre-definidas como Progresso Efetivo ou injete exemplos de manifestacao na ficha atual.
+            </div>
+
+            <div style={{ marginBottom: 12 }}>
+              <Lbl>Habilidades pre-definidas</Lbl>
+              <div className="chip-row" style={{ marginTop: 4 }}>
+                {EFFECT_PRESETS.map((preset) => (
+                  <button
+                    key={preset.name}
+                    onClick={() => addEffectPreset(preset)}
+                    style={{
+                      padding: "6px 10px",
+                      borderRadius: 999,
+                      background: `${C.gold}18`,
+                      border: `1px solid ${C.gold}55`,
+                      color: C.goldGlow,
+                      fontSize: 11,
+                    }}
+                  >
+                    + {preset.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <Lbl>Exemplos de manifestacao</Lbl>
+              <div className="chip-row" style={{ marginTop: 4 }}>
+                {MANIFESTATION_EXAMPLES.map((example) => (
+                  <button
+                    key={example.name}
+                    onClick={() => addManifestationExample(example)}
+                    style={{
+                      padding: "6px 10px",
+                      borderRadius: 999,
+                      background: `${C.alma}18`,
+                      border: `1px solid ${C.alma}55`,
+                      color: C.almaLight,
+                      fontSize: 11,
+                    }}
+                  >
+                    + {example.name}
+                  </button>
+                ))}
+              </div>
+            </div>
           </Sect>
 
           <Sect title="Habilidades com Efeito" className="section-span-2">
@@ -440,7 +566,7 @@ function TabFicha({ char, upd }) {
                 background: `${C.gold}22`,
                 border: `1px solid ${C.gold}`,
                 color: C.gold,
-                fontFamily: "Georgia,serif",
+                fontFamily: FONT_DISPLAY,
                 fontWeight: 700,
               }}
             >

@@ -1,4 +1,4 @@
-const { useState, useEffect, useCallback } = React;
+const { useState, useEffect, useCallback, useRef } = React;
 
 const SOURCE_DATA = window.ERA_DATA;
 const C = {
@@ -30,6 +30,10 @@ const C = {
   warning: "#FCD34D",
   danger: "#EF4444",
 };
+const APP_VERSION = "3.1.0";
+const FONT_TEXT = '"Merriweather","Lora",Georgia,serif';
+const FONT_DISPLAY = '"Playfair Display","Noto Serif Display",Georgia,serif';
+const FONT_SYSTEM = '"IBM Plex Mono","Inconsolata","Courier Prime",monospace';
 const TIERS = SOURCE_DATA.TIERS;
 const TIER_DT = SOURCE_DATA.TIER_DT;
 const PILARS = {
@@ -46,7 +50,18 @@ const ARMORS = SOURCE_DATA.ARMORS;
 const ELEMENTOS = SOURCE_DATA.ELEMENTOS;
 const FORMAS = SOURCE_DATA.FORMAS;
 const PROPS = SOURCE_DATA.PROPS;
-const ACOES = SOURCE_DATA.ACOES;
+const ACOES = SOURCE_DATA.ACOES.map((action) => {
+  if (action.sym === "m") {
+    return { ...action, desc: "Manifestacao Simples (<=3 KW), sacar arma, usar item, primeiros socorros" };
+  }
+  if (action.sym === "M") {
+    return { ...action, desc: "Ataque medio/pesado, Manifestacao Avancada ou Completa (<=7 KW), interacoes complexas" };
+  }
+  if (action.sym === "C") {
+    return { ...action, desc: "Consome o turno inteiro. Manifestacoes Extremas (8+ KW) entram em encadeamento." };
+  }
+  return action;
+});
 const DT_TABLE = SOURCE_DATA.DT_TABLE;
 
 const LEVEL_HP_VALUES = [24, 31, 38, 46, 53, 60, 67, 74, 82, 89, 96];
@@ -58,10 +73,10 @@ const LEVELS = SOURCE_DATA.LEVELS.map((level, index) => ({
 const AMP_THRESHOLDS = [0, 1, 3, 6, 10, 15];
 const AMP_LABELS = ["+0", "+1-2", "+3-5", "+6-9", "+10-14", "+15+"];
 const MANIFESTATION_ACTIONS = [
-  { maxPe: 3, rangeLabel: "1-3 PE", short: "m", tierLabel: "Simples", label: "m - Simples", detail: "Acao Menor", color: C.menteLight },
-  { maxPe: 7, rangeLabel: "4-7 PE", short: "Mv", tierLabel: "Avancada", label: "Mv - Avancada", detail: "Movimento", color: C.mente },
-  { maxPe: 14, rangeLabel: "8-14 PE", short: "M", tierLabel: "Complexa", label: "M - Complexa", detail: "Acao Maior", color: C.gold },
-  { maxPe: Infinity, rangeLabel: "15+ PE", short: "C", tierLabel: "Extrema", label: "C - Extrema", detail: "Acao Completa", color: C.corpoAccent },
+  { maxKw: 3, rangeLabel: "<=3 KW", short: "m", tierLabel: "Simples", label: "m - Simples", detail: "Acao Menor", color: C.menteLight },
+  { maxKw: 5, rangeLabel: "<=5 KW", short: "M", tierLabel: "Avancada", label: "M - Avancada", detail: "Acao Maior", color: C.mente },
+  { maxKw: 7, rangeLabel: "<=7 KW", short: "M", tierLabel: "Completa", label: "M - Completa", detail: "Acao Maior", color: C.gold },
+  { maxKw: Infinity, rangeLabel: "8+ KW", short: "C", tierLabel: "Extrema", label: "C - Extrema", detail: "Encadeamento", color: C.corpoAccent },
 ];
 const GRIP_LABELS = {
   "1M": "Uma mao",
@@ -116,6 +131,7 @@ const DEFAULT_CHAR = {
   level: 1,
   concept: "",
   marca: "",
+  avatar: "",
   pilares: { corpo: 1, mente: 1, alma: 0 },
   subs: { ...DEFAULT_SUBS },
   pericias: { ...DEFAULT_PERICIAS },
@@ -131,6 +147,47 @@ const DEFAULT_CHAR = {
   effects: [],
 };
 
+const EFFECT_PRESETS = [
+  { name: "Foco Tatico", roll: 1, damage: 0, initiative: 1, notes: "Leitura de combate e sincronia com o turno." },
+  { name: "Golpe Preciso", roll: 0, damage: 2, initiative: 0, notes: "Especialidade ofensiva aplicada em combate." },
+  { name: "Postura de Guarda", roll: 1, damage: 0, initiative: 0, notes: "Concentracao defensiva e estabilidade." },
+  { name: "Surto Paranormal", roll: 2, damage: 1, initiative: 0, notes: "Manifestacao mais intensa por um curto periodo." },
+];
+
+const CHARACTER_EXAMPLES = [
+  {
+    id: "detetive-estigmatizado",
+    name: "Iori",
+    concept: "Detetive marcado pela Malha",
+    marca: "Sinal trino na palma da mao",
+    habilidades: "Olhar treinado, leitura de cena, resistencia mental.",
+    manifestacoesDef: "Nebula + Nuvem | Lux + Bola | Umbra + Fio",
+    notas: "Opera bem em investigacao urbana e ancoras sobrenaturais.",
+    effects: [
+      { name: "Raciocinio Frio", roll: 1, damage: 0, initiative: 0, notes: "Aplica em leitura de pistas ou tomada de decisao." },
+      { name: "Disparo Calculado", roll: 0, damage: 1, initiative: 1, notes: "Combate a distancia com preparo." },
+    ],
+  },
+  {
+    id: "vigilante-do-vazio",
+    name: "Ka'ai",
+    concept: "Executor de campo com afinidade extrema",
+    marca: "Halo fragmentado no peito",
+    habilidades: "Avanco agressivo, dominio da pressao, intuicao de combate.",
+    manifestacoesDef: "Pyro + Lamina + Afiado | Electro + Bola | Inanis + Parede",
+    notas: "Mistura confronto direto com bloqueio de area.",
+    effects: [
+      { name: "Ritmo de Caca", roll: 1, damage: 1, initiative: 1, notes: "Ativa ao iniciar uma ofensiva." },
+    ],
+  },
+];
+
+const MANIFESTATION_EXAMPLES = [
+  { name: "Centelha Lux", keywords: 2, kw: 2, amp: 0, summary: "Lux + Bola. Manifestacao simples de luz concentrada." },
+  { name: "Viga de Umbra", keywords: 3, kw: 5, amp: 1, summary: "Umbra + Fio + Afiado. Corte sombrio focado." },
+  { name: "Armadura Cryo", keywords: 3, kw: 7, amp: 2, summary: "Cryo + Arm. Parcial + Dureza. Defesa corporal intensificada." },
+];
+
 const card = {
   background: C.bg2,
   border: `1px solid ${C.border}`,
@@ -139,7 +196,7 @@ const card = {
 };
 
 const Lbl = ({ children }) => (
-  <div style={{ fontSize: 10, color: C.muted, letterSpacing: 1, marginBottom: 3, fontFamily: "Georgia,serif", textTransform: "uppercase" }}>
+  <div style={{ fontSize: 10, color: C.muted, letterSpacing: 1, marginBottom: 3, fontFamily: FONT_DISPLAY, textTransform: "uppercase" }}>
     {children}
   </div>
 );
@@ -156,6 +213,7 @@ const SmBtn = ({ onClick, children, color, wide }) => (
       color: color || C.text,
       fontWeight: 700,
       fontSize: 12,
+      fontFamily: FONT_SYSTEM,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -171,7 +229,7 @@ const Sect = ({ title, color, children, className, style }) => (
   <div className={className} style={{ ...card, marginBottom: 10, ...style }}>
     <div
       style={{
-        fontFamily: "Georgia,serif",
+        fontFamily: FONT_DISPLAY,
         fontSize: 10,
         color: color || C.gold,
         letterSpacing: 3,
@@ -220,6 +278,10 @@ function getMeterPercent(current, max) {
 
 function getManifestationPeTotal(kw, amp = 0) {
   return Math.max(0, Number(kw) || 0) + Math.max(0, Number(amp) || 0);
+}
+
+function getKeywordCount(...groups) {
+  return groups.flat().filter(Boolean).length;
 }
 
 function rollN(n, s) {
@@ -276,9 +338,9 @@ function manifDmgFormula(tierName, scaleValue) {
   return damageTrack[Math.min(scaleBand.index, damageTrack.length - 1)];
 }
 
-function getActionMeta(peTotal) {
-  const total = Math.max(0, Number(peTotal) || 0);
-  return MANIFESTATION_ACTIONS.find((action) => total <= action.maxPe) || MANIFESTATION_ACTIONS[MANIFESTATION_ACTIONS.length - 1];
+function getActionMeta(kwTotal) {
+  const totalKw = Math.max(0, Number(kwTotal) || 0);
+  return MANIFESTATION_ACTIONS.find((action) => totalKw <= action.maxKw) || MANIFESTATION_ACTIONS[MANIFESTATION_ACTIONS.length - 1];
 }
 
 function getAmpBand(amp) {

@@ -62,7 +62,7 @@ function TabArsenal() {
                     </div>
                   </div>
                   <div style={{ textAlign: "right", flexShrink: 0 }}>
-                    <div style={{ fontFamily: "Georgia,serif", fontSize: 19, fontWeight: 700, color: C.corpo }}>{weapon.dmg}</div>
+                    <div style={{ fontFamily: FONT_DISPLAY, fontSize: 19, fontWeight: 700, color: C.corpo }}>{weapon.dmg}</div>
                     <div style={{ fontSize: 10, color: C.muted }}>{weapon.act}</div>
                   </div>
                 </div>
@@ -146,7 +146,7 @@ function TabSistema() {
 
       {sec === "manif" ? (
         <ResponsiveGrid>
-          <Sect title="Tipos por PE Total">
+          <Sect title="Tipos por KW">
             {MANIFESTATION_ACTIONS.map((item) => (
               <div key={item.label} style={{ display: "flex", justifyContent: "space-between", padding: "7px 0", borderBottom: `1px solid ${C.border}`, fontSize: 13 }}>
                 <span style={{ fontWeight: 600, color: item.color }}>{item.tierLabel}</span>
@@ -181,7 +181,7 @@ function TabSistema() {
                 </tbody>
               </table>
             </div>
-            <div style={{ fontSize: 10, color: C.muted, marginTop: 8 }}>A escala usa o PE total da manifestacao: KW base + amplificacao extra. Progresso efetivo soma ao resultado final.</div>
+            <div style={{ fontSize: 10, color: C.muted, marginTop: 8 }}>KW define a complexidade da manifestacao. A intensidade e a escala de dano usam apenas a amplificacao extra em PE alem do KW.</div>
           </Sect>
 
           <Sect title="Vetor Indireto">
@@ -196,7 +196,7 @@ function TabSistema() {
         <Sect title="Acoes de Turno">
           {ACOES.map((action) => (
             <div key={action.sym} style={{ display: "flex", gap: 10, padding: "8px 0", borderBottom: `1px solid ${C.border}` }}>
-              <div style={{ fontFamily: "Georgia,serif", width: 30, height: 30, background: `${C.gold}22`, border: `1px solid ${C.gold}44`, borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: C.gold, flexShrink: 0 }}>
+              <div style={{ fontFamily: FONT_DISPLAY, width: 30, height: 30, background: `${C.gold}22`, border: `1px solid ${C.gold}44`, borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: C.gold, flexShrink: 0 }}>
                 {action.sym}
               </div>
               <div>
@@ -227,9 +227,10 @@ function ManifBuilder() {
   }
 
   const kw = [...selectedElements, ...selectedForms, ...selectedProps].reduce((total, item) => total + item.pe, 0);
+  const keywordCount = getKeywordCount(selectedElements, selectedForms, selectedProps);
   const peTotal = getManifestationPeTotal(kw, amp);
-  const actionMeta = getActionMeta(peTotal);
-  const scaleBand = getScaleBand(peTotal);
+  const actionMeta = getActionMeta(kw);
+  const scaleBand = getScaleBand(amp);
   const previewTrack = getDamageTrackByTier("Esp.");
   const selectedSummary = [...selectedElements, ...selectedForms, ...selectedProps];
 
@@ -258,7 +259,7 @@ function ManifBuilder() {
                     color: active ? group.color : C.text,
                   }}
                 >
-                  {item.name} <span style={{ color: C.gold }}>{item.pe} PE</span>
+                  {item.name} <span style={{ color: C.gold }}>{item.pe} KW</span>
                 </button>
               );
             })}
@@ -278,23 +279,27 @@ function ManifBuilder() {
       <div style={{ ...card, borderColor: actionMeta.color, background: `${actionMeta.color}0D`, padding: 14 }}>
         <div style={{ display: "flex", gap: 14, marginBottom: 10, flexWrap: "wrap" }}>
           <div style={{ textAlign: "center" }}>
+            <div style={{ fontSize: 10, color: C.muted, marginBottom: 2 }}>Keywords</div>
+            <div style={{ fontFamily: FONT_DISPLAY, fontSize: 26, fontWeight: 700, color: C.mente, lineHeight: 1 }}>{keywordCount}</div>
+          </div>
+          <div style={{ textAlign: "center" }}>
             <div style={{ fontSize: 10, color: C.muted, marginBottom: 2 }}>KW</div>
-            <div style={{ fontFamily: "Georgia,serif", fontSize: 26, fontWeight: 700, color: C.alma, lineHeight: 1 }}>{kw}</div>
+            <div style={{ fontFamily: FONT_DISPLAY, fontSize: 26, fontWeight: 700, color: C.alma, lineHeight: 1 }}>{kw}</div>
           </div>
           <div style={{ textAlign: "center" }}>
             <div style={{ fontSize: 10, color: C.muted, marginBottom: 2 }}>PE Total</div>
-            <div style={{ fontFamily: "Georgia,serif", fontSize: 26, fontWeight: 700, color: C.gold, lineHeight: 1 }}>{peTotal}</div>
+            <div style={{ fontFamily: FONT_DISPLAY, fontSize: 26, fontWeight: 700, color: C.gold, lineHeight: 1 }}>{peTotal}</div>
           </div>
           <div style={{ flex: 1, textAlign: "right", paddingTop: 4 }}>
             <div style={{ fontSize: 10, color: C.muted, marginBottom: 2 }}>Tipo de Acao</div>
-            <div style={{ fontFamily: "Georgia,serif", fontSize: 13, fontWeight: 700, color: actionMeta.color }}>{actionMeta.label}</div>
-            <div style={{ fontSize: 10, color: C.muted, marginTop: 4 }}>Faixa de escala: {scaleBand.label}</div>
+            <div style={{ fontFamily: FONT_DISPLAY, fontSize: 13, fontWeight: 700, color: actionMeta.color }}>{actionMeta.label}</div>
+            <div style={{ fontSize: 10, color: C.muted, marginTop: 4 }}>Faixa de intensidade: {scaleBand.label}</div>
           </div>
         </div>
 
         {selectedSummary.length ? (
           <div style={{ fontSize: 11, color: C.muted, borderTop: `1px solid ${C.border}`, paddingTop: 8, lineHeight: 1.7 }}>
-            {selectedSummary.map((item) => `${item.name} (${item.pe} PE)`).join(" + ")}
+            {selectedSummary.map((item) => `${item.name} (${item.pe} KW)`).join(" + ")}
             {amp > 0 ? ` + ${amp} Amplif.` : ""}
           </div>
         ) : (
@@ -307,7 +312,7 @@ function ManifBuilder() {
       </div>
 
       <div style={{ marginTop: 12 }}>
-        <Lbl>Escala rapida por KW / PE total</Lbl>
+        <Lbl>Escala rapida por amplificacao</Lbl>
         <div className="chip-row" style={{ marginTop: 4 }}>
           {previewTrack.map((formula, index) => (
             <div
@@ -326,7 +331,22 @@ function ManifBuilder() {
             </div>
           ))}
         </div>
+        <div style={{ fontSize: 10, color: C.muted, marginTop: 6 }}>Keywords e KW definem a forma e a complexidade. Amplificacao define a intensidade.</div>
       </div>
+
+      <Sect title="Exemplos de Manifestacao" className="section-span-2" color={C.alma}>
+        <ResponsiveGrid minWidth={220}>
+          {MANIFESTATION_EXAMPLES.map((example) => (
+            <div key={example.name} style={{ ...card, background: `${C.alma}0D`, borderColor: `${C.alma}33` }}>
+              <div style={{ fontWeight: 700, color: C.alma, marginBottom: 4 }}>{example.name}</div>
+              <div style={{ fontSize: 11, color: C.text, marginBottom: 6 }}>{example.summary}</div>
+              <div style={{ fontSize: 10, color: C.muted }}>
+                {example.keywords} keywords - KW {example.kw} - amp +{example.amp}
+              </div>
+            </div>
+          ))}
+        </ResponsiveGrid>
+      </Sect>
     </Sect>
   );
 }

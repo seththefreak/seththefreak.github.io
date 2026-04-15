@@ -185,7 +185,7 @@ function TabDados({ char }) {
                       background: active ? `${pillar.color}22` : C.bg3,
                       border: `1px solid ${active ? pillar.color : C.border}`,
                       color: active ? pillar.color : C.muted,
-                      fontFamily: "Georgia,serif",
+                      fontFamily: FONT_DISPLAY,
                       fontSize: 11,
                       letterSpacing: 1,
                     }}
@@ -298,7 +298,7 @@ function TabDados({ char }) {
             <Lbl>DT Alvo</Lbl>
             <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 4 }}>
               <SmBtn onClick={() => setDt((value) => clampNumber(value - 1, 1, 9))}>-</SmBtn>
-              <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 16, color: C.mente, width: 20, textAlign: "center" }}>{dt}</span>
+              <span style={{ fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 16, color: C.mente, width: 20, textAlign: "center" }}>{dt}</span>
               <SmBtn onClick={() => setDt((value) => clampNumber(value + 1, 1, 9))}>+</SmBtn>
             </div>
           </div>
@@ -356,7 +356,7 @@ function TabDados({ char }) {
             background: rolling ? C.bg3 : `${C.gold}22`,
             border: `2px solid ${rolling ? C.border : C.gold}`,
             color: rolling ? C.muted : C.gold,
-            fontFamily: "Georgia,serif",
+            fontFamily: FONT_DISPLAY,
             fontSize: 16,
             fontWeight: 700,
             letterSpacing: 2,
@@ -371,10 +371,10 @@ function TabDados({ char }) {
           {res ? (
             <div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
-                <div style={{ fontFamily: "Georgia,serif", fontSize: 15, color: res.auto ? C.goldGlow : res.threat ? C.gold : res.success ? C.green : C.danger, fontWeight: 700, letterSpacing: 1 }}>
+                <div style={{ fontFamily: FONT_DISPLAY, fontSize: 15, color: res.auto ? C.goldGlow : res.threat ? C.gold : res.success ? C.green : C.danger, fontWeight: 700, letterSpacing: 1 }}>
                   {res.auto ? "AUTO-SUCESSO" : res.threat ? "AMEACA" : res.success ? "SUCESSO" : res.critfail ? "FALHA CRITICA" : "FALHA"}
                 </div>
-                <div style={{ fontFamily: "Georgia,serif", fontSize: 30, fontWeight: 700, color: res.success ? C.green : C.danger, lineHeight: 1 }}>
+                <div style={{ fontFamily: FONT_DISPLAY, fontSize: 30, fontWeight: 700, color: res.success ? C.green : C.danger, lineHeight: 1 }}>
                   {res.total}
                 </div>
               </div>
@@ -395,7 +395,7 @@ function TabDados({ char }) {
                       fontWeight: 700,
                       color: die === res.highestDie ? C.gold : C.muted,
                       fontSize: 15,
-                      fontFamily: "Georgia,serif",
+                      fontFamily: FONT_DISPLAY,
                     }}
                   >
                     {die}
@@ -515,6 +515,12 @@ function TabCombate({ char }) {
   const [active, setActive] = useState(0);
   const [newName, setNewName] = useState("");
   const [selectedEffects, setSelectedEffects] = useState([]);
+  const [turnFlow, setTurnFlow] = useState({
+    major: true,
+    minor: true,
+    movement: true,
+    reaction: true,
+  });
 
   const initiativeBonus = sumSelectedEffectValue(char.effects, selectedEffects, "initiative");
   const damageBonus = sumSelectedEffectValue(char.effects, selectedEffects, "damage");
@@ -557,6 +563,12 @@ function TabCombate({ char }) {
     const nextIndex = (active + 1) % fighters.length;
     if (nextIndex === 0) setRound((value) => value + 1);
     setActive(nextIndex);
+    setTurnFlow({
+      major: true,
+      minor: true,
+      movement: true,
+      reaction: true,
+    });
   }
 
   function changeHp(id, amount) {
@@ -591,6 +603,12 @@ function TabCombate({ char }) {
     { id: "armas", label: "Armas" },
     { id: "manif", label: "Manif." },
   ];
+  const turnFlowItems = [
+    { id: "major", label: "Maior", color: C.corpo },
+    { id: "minor", label: "Menor", color: C.gold },
+    { id: "movement", label: "Mov.", color: C.mente },
+    { id: "reaction", label: "Reacao", color: C.alma },
+  ];
 
   return (
     <div>
@@ -609,7 +627,7 @@ function TabCombate({ char }) {
                 border: `1px solid ${activeTab ? C.corpo : C.border}`,
                 color: activeTab ? C.corpo : C.muted,
                 fontSize: 11,
-                fontFamily: "Georgia,serif",
+                          fontFamily: FONT_DISPLAY,
                 letterSpacing: 1,
               }}
             >
@@ -630,16 +648,49 @@ function TabCombate({ char }) {
 
       {combatTab === "tracker" ? (
         <div>
+          <Sect title="Estrutura do Turno" color={C.gold}>
+            <div style={{ fontSize: 11, color: C.muted, marginBottom: 8 }}>
+              Marque o que ja foi gasto no turno atual do combatente ativo.
+            </div>
+            <div className="chip-row">
+              {turnFlowItems.map((item) => {
+                const available = turnFlow[item.id];
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setTurnFlow((current) => ({ ...current, [item.id]: !current[item.id] }))}
+                    style={{
+                      padding: "6px 10px",
+                      borderRadius: 999,
+                      background: available ? `${item.color}18` : C.bg3,
+                      border: `1px solid ${available ? item.color : C.border}`,
+                      color: available ? item.color : C.muted,
+                      fontSize: 11,
+                    }}
+                  >
+                    {item.label} {available ? "disponivel" : "gasta"}
+                  </button>
+                );
+              })}
+              <button
+                onClick={() => setTurnFlow({ major: true, minor: true, movement: true, reaction: true })}
+                style={{ padding: "6px 10px", borderRadius: 999, background: C.bg3, border: `1px solid ${C.border}`, color: C.muted, fontSize: 11 }}
+              >
+                Resetar turno
+              </button>
+            </div>
+          </Sect>
+
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10, gap: 8, flexWrap: "wrap" }}>
             <div style={{ fontFamily: "Georgia,serif" }}>
-              <span style={{ fontSize: 10, color: C.gold, letterSpacing: 2 }}>RODADA </span>
-              <span style={{ fontSize: 26, fontWeight: 700, color: C.gold }}>{round}</span>
+              <span style={{ fontSize: 10, color: C.gold, letterSpacing: 2, fontFamily: FONT_SYSTEM }}>RODADA </span>
+              <span style={{ fontSize: 26, fontWeight: 700, color: C.gold, fontFamily: FONT_DISPLAY }}>{round}</span>
             </div>
             <div className="chip-row">
               <button onClick={rollAllInit} style={{ padding: "6px 10px", borderRadius: 6, background: C.bg3, border: `1px solid ${C.border}`, color: C.text, fontSize: 12 }}>
                 Iniciativa
               </button>
-              <button onClick={nextTurn} style={{ padding: "6px 14px", borderRadius: 6, background: `${C.gold}22`, border: `1px solid ${C.gold}`, color: C.gold, fontFamily: "Georgia,serif", fontSize: 12, fontWeight: 700, letterSpacing: 1 }}>
+              <button onClick={nextTurn} style={{ padding: "6px 14px", borderRadius: 6, background: `${C.gold}22`, border: `1px solid ${C.gold}`, color: C.gold, fontFamily: FONT_DISPLAY, fontSize: 12, fontWeight: 700, letterSpacing: 1 }}>
                 Prox turno
               </button>
             </div>
@@ -1039,7 +1090,7 @@ function ArmasDmgTab({ char, damageBonus }) {
           background: getFormula() ? `${C.corpo}22` : C.bg3,
           border: `2px solid ${getFormula() ? C.corpo : C.border}`,
           color: getFormula() ? C.corpo : C.muted,
-          fontFamily: "Georgia,serif",
+                        fontFamily: FONT_DISPLAY,
           fontSize: 16,
           fontWeight: 700,
           letterSpacing: 2,
@@ -1116,15 +1167,16 @@ function ManifDmgTab({ char, damageBonus }) {
     : "Leigo";
   const manifestTiers = ["Leigo", "Treinado", "Esp.", "Mestre", "Maestria"];
   const [selTier, setSelTier] = useState(tierAlma);
+  const [keywordCount, setKeywordCount] = useState(2);
   const [kw, setKw] = useState(0);
   const [amp, setAmp] = useState(0);
   const [progEf, setProgEf] = useState(0);
   const [manifRes, setManifRes] = useState(null);
 
   const peTotal = getManifestationPeTotal(kw, amp);
-  const formula = manifDmgFormula(selTier, peTotal);
-  const actionMeta = getActionMeta(peTotal);
-  const scaleBand = getScaleBand(peTotal);
+  const formula = manifDmgFormula(selTier, amp);
+  const actionMeta = getActionMeta(kw);
+  const scaleBand = getScaleBand(amp);
   const damageTrack = getDamageTrackByTier(selTier);
 
   function rollManif() {
@@ -1143,6 +1195,7 @@ function ManifDmgTab({ char, damageBonus }) {
       bestRolls: bestRoll.rolls,
       formula,
       tierUsed: selTier,
+      keywordCount,
       kwUsed: kw,
       ampUsed: amp,
       peTotal,
@@ -1177,6 +1230,14 @@ function ManifDmgTab({ char, damageBonus }) {
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))", gap: 12, marginBottom: 12 }}>
         <div>
+          <Lbl>Keywords</Lbl>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4 }}>
+            <SmBtn onClick={() => setKeywordCount((value) => Math.max(1, value - 1))}>-</SmBtn>
+            <span style={{ fontWeight: 700, fontSize: 18, color: C.mente, width: 32, textAlign: "center" }}>{keywordCount}</span>
+            <SmBtn onClick={() => setKeywordCount((value) => value + 1)}>+</SmBtn>
+          </div>
+        </div>
+        <div>
           <Lbl>KW base</Lbl>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4 }}>
             <SmBtn onClick={() => setKw((value) => Math.max(0, value - 1))}>-</SmBtn>
@@ -1196,7 +1257,7 @@ function ManifDmgTab({ char, damageBonus }) {
         </div>
         <div style={{ textAlign: "right", alignSelf: "end" }}>
           <div style={{ fontSize: 10, color: C.muted, marginBottom: 2 }}>PE total: {peTotal}</div>
-          <div style={{ fontSize: 10, color: C.muted, marginBottom: 2 }}>Faixa: {scaleBand.label}</div>
+          <div style={{ fontSize: 10, color: C.muted, marginBottom: 2 }}>Intensidade: {scaleBand.label}</div>
           <div style={{ fontSize: 12, fontWeight: 700, color: actionMeta.color }}>{actionMeta.label}</div>
         </div>
       </div>
@@ -1216,15 +1277,15 @@ function ManifDmgTab({ char, damageBonus }) {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
           <div>
             <div style={{ fontSize: 10, color: C.muted }}>Dado base</div>
-            <div style={{ fontFamily: "Georgia,serif", fontSize: 22, fontWeight: 700, color: C.alma }}>{formula}</div>
+            <div style={{ fontFamily: FONT_DISPLAY, fontSize: 22, fontWeight: 700, color: C.alma }}>{formula}</div>
           </div>
           <div style={{ textAlign: "center" }}>
             <div style={{ fontSize: 10, color: C.muted }}>Tier</div>
             <div style={{ fontSize: 14, fontWeight: 700, color: C.alma }}>{selTier}</div>
           </div>
           <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: 10, color: C.muted }}>KW + Amp</div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: C.gold }}>{kw} + {amp}</div>
+            <div style={{ fontSize: 10, color: C.muted }}>Keywords / KW</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: C.gold }}>{keywordCount} / {kw}</div>
           </div>
           <div style={{ textAlign: "right" }}>
             <div style={{ fontSize: 10, color: C.muted }}>Acao</div>
@@ -1243,7 +1304,7 @@ function ManifDmgTab({ char, damageBonus }) {
           background: `${C.alma}22`,
           border: `2px solid ${C.alma}`,
           color: C.alma,
-          fontFamily: "Georgia,serif",
+          fontFamily: FONT_DISPLAY,
           fontSize: 16,
           fontWeight: 700,
           letterSpacing: 2,
@@ -1257,12 +1318,12 @@ function ManifDmgTab({ char, damageBonus }) {
           <div style={{ display: "flex", gap: 10, marginBottom: 10, alignItems: "center" }}>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 10, color: C.muted, marginBottom: 2 }}>1a rolagem</div>
-              <div style={{ fontFamily: "Georgia,serif", fontSize: 20, fontWeight: 700, color: manifRes.firstRoll >= manifRes.secondRoll ? C.alma : C.muted }}>{manifRes.firstRoll}</div>
+              <div style={{ fontFamily: FONT_DISPLAY, fontSize: 20, fontWeight: 700, color: manifRes.firstRoll >= manifRes.secondRoll ? C.alma : C.muted }}>{manifRes.firstRoll}</div>
             </div>
             <div style={{ color: C.muted }}>vs</div>
             <div style={{ flex: 1, textAlign: "right" }}>
               <div style={{ fontSize: 10, color: C.muted, marginBottom: 2 }}>2a rolagem</div>
-              <div style={{ fontFamily: "Georgia,serif", fontSize: 20, fontWeight: 700, color: manifRes.secondRoll > manifRes.firstRoll ? C.alma : C.muted }}>{manifRes.secondRoll}</div>
+              <div style={{ fontFamily: FONT_DISPLAY, fontSize: 20, fontWeight: 700, color: manifRes.secondRoll > manifRes.firstRoll ? C.alma : C.muted }}>{manifRes.secondRoll}</div>
             </div>
           </div>
 
@@ -1277,13 +1338,13 @@ function ManifDmgTab({ char, damageBonus }) {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", borderTop: `1px solid ${C.border}`, paddingTop: 8, gap: 12, flexWrap: "wrap" }}>
             <div>
               <div style={{ fontSize: 10, color: C.muted }}>Dano base</div>
-              <div style={{ fontFamily: "Georgia,serif", fontSize: 30, fontWeight: 700, color: C.alma, lineHeight: 1 }}>{manifRes.baseBest}</div>
-              <div style={{ fontSize: 10, color: C.muted }}>{manifRes.tierUsed} - {manifRes.formula} - KW {manifRes.kwUsed} - amp +{manifRes.ampUsed}</div>
+              <div style={{ fontFamily: FONT_DISPLAY, fontSize: 30, fontWeight: 700, color: C.alma, lineHeight: 1 }}>{manifRes.baseBest}</div>
+              <div style={{ fontSize: 10, color: C.muted }}>{manifRes.tierUsed} - {manifRes.formula} - {manifRes.keywordCount} keywords - KW {manifRes.kwUsed} - amp +{manifRes.ampUsed}</div>
             </div>
             {(progEf !== 0 || damageBonus !== 0) ? (
               <div style={{ textAlign: "right" }}>
                 <div style={{ fontSize: 10, color: C.muted }}>Com modificadores</div>
-                <div style={{ fontFamily: "Georgia,serif", fontSize: 30, fontWeight: 700, color: C.gold, lineHeight: 1 }}>{manifRes.withMods}</div>
+                <div style={{ fontFamily: FONT_DISPLAY, fontSize: 30, fontWeight: 700, color: C.gold, lineHeight: 1 }}>{manifRes.withMods}</div>
                 <div style={{ fontSize: 10, color: C.gold }}>
                   {progEf !== 0 ? `Prog ${formatSigned(progEf)} ` : ""}
                   {damageBonus !== 0 ? `Dano ${formatSigned(damageBonus)}` : ""}
@@ -1291,19 +1352,18 @@ function ManifDmgTab({ char, damageBonus }) {
               </div>
             ) : null}
           </div>
-          <div style={{ fontSize: 10, color: C.muted, marginTop: 8 }}>PE total usado: {manifRes.peTotal} - acao {getActionMeta(manifRes.peTotal).label}</div>
+          <div style={{ fontSize: 10, color: C.muted, marginTop: 8 }}>PE total usado: {manifRes.peTotal} - acao {getActionMeta(manifRes.kwUsed).label} - intensidade {getScaleBand(manifRes.ampUsed).label}</div>
         </div>
       ) : null}
 
       <div style={{ marginTop: 14 }}>
-        <div style={{ fontFamily: "Georgia,serif", fontSize: 10, color: C.muted, letterSpacing: 2, marginBottom: 6 }}>Escala rapida por PE total - {selTier.toUpperCase()}</div>
+        <div style={{ fontFamily: FONT_DISPLAY, fontSize: 10, color: C.muted, letterSpacing: 2, marginBottom: 6 }}>Escala rapida por amplificacao - {selTier.toUpperCase()}</div>
         <div className="chip-row">
           {damageTrack.map((value, index) => (
             <div
               key={index}
               onClick={() => {
-                setKw(AMP_THRESHOLDS[index]);
-                setAmp(0);
+                setAmp(AMP_THRESHOLDS[index]);
               }}
               style={{
                 flex: 1,
@@ -1321,7 +1381,7 @@ function ManifDmgTab({ char, damageBonus }) {
             </div>
           ))}
         </div>
-        <div style={{ fontSize: 10, color: C.muted, marginTop: 6 }}>Toque nas colunas para aplicar o KW base da faixa. A amplificacao extra continua separada.</div>
+        <div style={{ fontSize: 10, color: C.muted, marginTop: 6 }}>Toque nas colunas para aplicar a faixa de amplificacao. KW e keywords definem a complexidade; PE extra define a intensidade.</div>
       </div>
     </Sect>
   );
