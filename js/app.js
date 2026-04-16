@@ -3232,49 +3232,419 @@ function previewSheet() {
 function closeReadMode() {
   document.getElementById('readModeOverlay').classList.remove('open');
 }
+/* ============================================================
+   EXPORTAR PDF  —  reescrito
+   Substitui: exportSheetPDF() (linha ~3284) e
+              buildReadModeHTML() (linha ~3236)
+   buildReadModeHTML permanece intacta para o preview overlay.
+   buildPrintHTML é a versão self-contained para impressão.
+============================================================ */
 
-function buildReadModeHTML(s) {
-  const attrs = s.atributos || {};
-  const allAttrs = ATTRS_GROUPS.flat();
-  const attrsHTML = allAttrs.map(a => {
-    const v = attrs[a] ?? 0;
-    const cls = v > 0 ? 'pos' : v < 0 ? 'neg' : 'zero';
-    return `<div class="read-attr"><div class="read-attr-label">${a}</div><div class="read-attr-val ${cls}">${v>0?'+'+v:v}</div></div>`;
+function buildPrintHTML(s, isDark) {
+
+  /* ── PALETA FIXA (sem CSS variables) ──────────────────── */
+  const C = isDark ? {
+    bg       : '#18111f',
+    bgCard   : '#221a30',
+    bgCard2  : '#2c2040',
+    text     : '#e8e0f8',
+    muted    : '#9080b0',
+    accent   : '#c0a0f0',
+    border   : '#3a2a4a',
+    pos      : '#5fc88a',
+    neg      : '#e06070',
+    zero     : '#7060a0',
+    posBg    : '#1a2e22',
+    negBg    : '#2e1a20',
+    badgeBg  : '#2a1e3a',
+    ornament : 'rgba(180,140,255,0.25)',
+    resHP    : '#e05070', resMPbg: '#5040a0', resSP: '#40a870', resSAN: '#5090d0',
+  } : {
+    bg       : '#f8f4ff',
+    bgCard   : '#f2ecfc',
+    bgCard2  : '#ede5fa',
+    text     : '#3d3452',
+    muted    : '#9080b0',
+    accent   : '#8060b8',
+    border   : '#ddd4f0',
+    pos      : '#5fa87a',
+    neg      : '#c05060',
+    zero     : '#a89ec2',
+    posBg    : '#d8f4e8',
+    negBg    : '#fce8ec',
+    badgeBg  : '#e8dff8',
+    ornament : 'rgba(160,120,220,0.25)',
+    resHP    : '#e05070', resMPbg: '#8060c8', resSP: '#40a870', resSAN: '#5090d0',
+  };
+
+  /* ── HELPERS ───────────────────────────────────────────── */
+  const esc = str => str
+    ? String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+    : '';
+
+  const section = (title, icon, body) => `
+    <div style="background:${C.bgCard};border:1px solid ${C.border};border-radius:10px;
+                padding:20px 22px;margin-bottom:18px;page-break-inside:avoid;">
+      <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;
+                  color:${C.accent};margin-bottom:14px;padding-bottom:8px;
+                  border-bottom:1px solid ${C.border};display:flex;align-items:center;gap:8px;">
+        <span>${icon}</span> ${title}
+      </div>
+      ${body}
+    </div>`;
+
+  const pill = (label, bg, color) =>
+    `<span style="display:inline-block;padding:2px 11px;border-radius:20px;font-size:0.68rem;
+                  font-weight:700;text-transform:uppercase;letter-spacing:0.05em;
+                  background:${bg};color:${color};">${esc(label)}</span>`;
+
+  const listBlock = (arr, fallback = '') => {
+    const items = (arr || []).filter(x => x);
+    if (!items.length) return fallback;
+    return `<ul style="list-style:none;padding:0;margin:0;">${
+      items.map(x => `<li style="padding:4px 0 4px 16px;position:relative;font-size:0.85rem;
+                                  color:${C.muted};line-height:1.6;">
+        <span style="position:absolute;left:0;top:8px;color:${C.border};font-size:0.5rem;">◆</span>
+        ${esc(x)}</li>`).join('')
+    }</ul>`;
+  };
+
+  /* ── DADOS DO SHEET ────────────────────────────────────── */
+  const attrs   = s.atributos || {};
+  const modos   = s.modos || {};
+  const rec     = s._recAtual || { HP: '—', MP: '—', SP: '—', SAN: '—' };
+  const cart    = s.carteira  || { cobre: 0, prata: 0, ouro: 0, platina: 0 };
+  const equip   = s.equipamento || {};
+  const inv     = (s.inventario || []).filter(x => x);
+  const pericias = s.pericias || {};
+  const habs    = (s.progressaoAtiva || []).filter(x => x);
+  const bg      = {
+    origem    : s.bgOrigem     || '',
+    memoria   : s.bgMemoria    || '',
+    objetivo  : s.bgObjetivo   || '',
+    motivacao : s.bgMotivacao  || '',
+    valores   : s.bgValores    || '',
+  };
+
+  /* ── BADGES DE CABEÇALHO ───────────────────────────────── */
+  const classColors = {
+    base       : { bg: C.badgeBg,   color: C.accent },
+    celestial  : { bg: '#daeeff',   color: '#5a90c8' },
+    excentrica : { bg: '#fce8f0',   color: '#c07898' },
+    eccentrica : { bg: '#fce8f0',   color: '#c07898' },
+    default    : { bg: C.badgeBg,   color: C.accent },
+  };
+  const classKey = (s.classificacao || 'base').toLowerCase();
+  const classCfg = classColors[classKey] || classColors.default;
+
+  const tipoMap = { preset: 'Preset Racial', npc: 'NPC', jogador: 'Jogador' };
+  const tipoLabel = tipoMap[s.tipo] || 'Jogador';
+  const tipoColors = {
+    preset : { bg: '#e8dff8', color: '#8060b8' },
+    npc    : { bg: '#f0deb0', color: '#987040' },
+    jogador: { bg: '#d8f4ec', color: '#5f9e80' },
+  };
+  const tipoCfg = tipoColors[s.tipo] || tipoColors.jogador;
+
+  /* ── RECURSOS ──────────────────────────────────────────── */
+  let recMaxes = { HP: '?', MP: '?', SP: '?', SAN: '?' };
+  try { recMaxes = calcRecursos(s); } catch(e) {}
+
+  const resMeta = [
+    { key: 'HP',  icon: '❤',  label: 'HP',  sub: 'Vida',     cor: '#e05070' },
+    { key: 'MP',  icon: '💜', label: 'MP',  sub: 'Mana',     cor: '#8060c8' },
+    { key: 'SP',  icon: '💚', label: 'SP',  sub: 'Estamina', cor: '#40a870' },
+    { key: 'SAN', icon: '🔵', label: 'SAN', sub: 'Sanidade', cor: '#5090d0' },
+  ];
+  const recursosHTML = `
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+      ${resMeta.map(m => `
+        <div style="background:${C.bgCard2};border:1px solid ${C.border};border-radius:8px;
+                    padding:10px 8px;text-align:center;">
+          <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;
+                      color:${m.cor};margin-bottom:4px;">${m.icon} ${m.sub}</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:${m.cor};">
+            ${rec[m.key] ?? '—'}
+          </div>
+          <div style="font-size:0.65rem;color:${C.muted};margin-top:2px;">/ ${recMaxes[m.key] ?? '—'} max</div>
+        </div>`).join('')}
+    </div>`;
+
+  /* ── ATRIBUTOS ─────────────────────────────────────────── */
+  const ATTRS_GROUPS_LOCAL = [
+    ['FOR','CON','AGI','DES','VIDA','DEF'],
+    ['INT','SAB','VON','CAR','PER'],
+    ['MAG','RESM','ATQ']
+  ];
+  const ATTR_LABELS_LOCAL = {
+    FOR:'Força', CON:'Constituição', AGI:'Agilidade', DES:'Destreza',
+    VIDA:'Vida', DEF:'Defesa', INT:'Inteligência', SAB:'Sabedoria',
+    VON:'Vontade', CAR:'Carisma', PER:'Percepção',
+    MAG:'Magia', RESM:'Res.Mág', ATQ:'Ataque'
+  };
+  const attrCard = (key) => {
+    const v   = attrs[key] ?? 0;
+    const col = v > 0 ? C.pos : v < 0 ? C.neg : C.zero;
+    const disp = v > 0 ? `+${v}` : String(v);
+    return `
+      <div style="text-align:center;background:${C.bgCard2};border-radius:8px;padding:8px 4px;">
+        <div style="font-size:0.58rem;font-weight:700;text-transform:uppercase;
+                    letter-spacing:0.07em;color:${C.muted};margin-bottom:3px;">${ATTR_LABELS_LOCAL[key]||key}</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.25rem;
+                    font-weight:700;color:${col};">${disp}</div>
+      </div>`;
+  };
+
+  const atributosHTML = ATTRS_GROUPS_LOCAL.map((group, gi) => {
+    const groupLabels = [
+      'Físicos', 'Mentais', 'Combate'
+    ];
+    return `
+      <div style="margin-bottom:12px;">
+        <div style="font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;
+                    color:${C.muted};margin-bottom:6px;">${groupLabels[gi]}</div>
+        <div style="display:grid;grid-template-columns:repeat(${group.length},1fr);gap:6px;">
+          ${group.map(attrCard).join('')}
+        </div>
+      </div>`;
   }).join('');
 
-  const modos = s.modos || {};
-  const modesValues = Object.values(modos);
-  const maxM = modesValues.length ? Math.max(...modesValues) : 0;
-  const modosHTML = Object.entries(modos).map(([k,v]) =>
-    `<div class="read-modo ${v===maxM&&v>1?'dominant':''}">${k}: <strong>${v}</strong></div>`).join('');
+  const picoFraqueza = (s.picoPrincipal || s.fraquezaEstrutural) ? `
+    <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
+      ${s.picoPrincipal ? `
+        <div style="background:${C.posBg};border-radius:6px;padding:8px 14px;font-size:0.82rem;">
+          <span style="color:${C.pos};font-weight:700;">▲ Pico:</span> ${esc(s.picoPrincipal)}
+        </div>` : ''}
+      ${s.fraquezaEstrutural ? `
+        <div style="background:${C.negBg};border-radius:6px;padding:8px 14px;font-size:0.82rem;">
+          <span style="color:${C.neg};font-weight:700;">▼ Fraqueza:</span> ${esc(s.fraquezaEstrutural)}
+        </div>` : ''}
+    </div>` : '';
 
-  const listHTML = (arr, label) => arr && arr.filter(x=>x).length
-    ? `<h3 class="read-section-title">◆ ${label}</h3><ul class="read-list">${arr.filter(x=>x).map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul>` : '';
+  /* ── MODOS ─────────────────────────────────────────────── */
+  const modesVals = Object.values(modos);
+  const maxM = modesVals.length ? Math.max(...modesVals) : 0;
+  const modosHTML = Object.entries(modos).map(([k, v]) => {
+    const isDom = v === maxM && v > 1;
+    return `<div style="padding:6px 14px;border-radius:6px;font-size:0.82rem;
+                         background:${isDom ? C.accent : C.bgCard2};
+                         color:${isDom ? (isDark ? '#18111f' : '#fff') : C.text};
+                         font-weight:${isDom ? '700' : '400'};">
+      ${esc(k)}: <strong>${v}</strong>
+    </div>`;
+  }).join('');
 
+  /* ── PERÍCIAS ──────────────────────────────────────────── */
+  const periciasFiltradas = Object.entries(pericias).filter(([, v]) => v !== 0);
+  const periciasHTML = periciasFiltradas.length
+    ? `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">
+        ${periciasFiltradas.map(([k, v]) => `
+          <div style="display:flex;justify-content:space-between;align-items:center;
+                      background:${C.bgCard2};border-radius:6px;padding:6px 10px;">
+            <span style="font-size:0.78rem;color:${C.muted};">${esc(k)}</span>
+            <span style="font-size:0.88rem;font-weight:700;
+                         color:${v > 0 ? C.pos : C.neg};">${v > 0 ? '+' : ''}${v}</span>
+          </div>`).join('')}
+       </div>`
+    : `<p style="font-size:0.82rem;color:${C.muted};font-style:italic;">Nenhuma perícia treinada.</p>`;
+
+  /* ── HABILIDADES ───────────────────────────────────────── */
+  const habsHTML = habs.length
+    ? `<div style="display:flex;flex-wrap:wrap;gap:8px;">
+        ${habs.map(id => `
+          <span style="padding:5px 12px;border-radius:20px;font-size:0.78rem;font-family:'IBM Plex Mono',monospace;
+                        background:${C.bgCard2};border:1px solid ${C.border};color:${C.text};">${esc(id)}</span>`
+        ).join('')}
+       </div>`
+    : `<p style="font-size:0.82rem;color:${C.muted};font-style:italic;">Nenhuma habilidade adquirida.</p>`;
+
+  /* ── EQUIPAMENTOS ──────────────────────────────────────── */
+  const slotName = (obj) => obj
+    ? `<span style="font-weight:700;color:${C.text};">${esc(obj.nome || obj.id || '?')}</span>`
+    : `<span style="color:${C.muted};font-style:italic;">— vazio —</span>`;
+
+  const equipHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+      <div style="background:${C.bgCard2};border-radius:8px;padding:10px 12px;">
+        <div style="font-size:0.62rem;font-weight:700;text-transform:uppercase;color:${C.muted};margin-bottom:6px;">🗡 Mão Esq.</div>
+        ${slotName(equip.maoEsquerda)}
+      </div>
+      <div style="background:${C.bgCard2};border-radius:8px;padding:10px 12px;">
+        <div style="font-size:0.62rem;font-weight:700;text-transform:uppercase;color:${C.muted};margin-bottom:6px;">⚔ Mão Dir.</div>
+        ${slotName(equip.maoDireita)}
+      </div>
+      <div style="background:${C.bgCard2};border-radius:8px;padding:10px 12px;">
+        <div style="font-size:0.62rem;font-weight:700;text-transform:uppercase;color:${C.muted};margin-bottom:6px;">🛡 Armadura</div>
+        ${slotName(equip.armadura)}
+      </div>
+    </div>`;
+
+  /* ── INVENTÁRIO ─────────────────────────────────────────── */
+  const invHTML = inv.length
+    ? `<table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+        <thead>
+          <tr style="border-bottom:1px solid ${C.border};">
+            <th style="text-align:left;padding:4px 8px;color:${C.muted};font-weight:700;font-size:0.65rem;text-transform:uppercase;">Item</th>
+            <th style="text-align:center;padding:4px 8px;color:${C.muted};font-weight:700;font-size:0.65rem;text-transform:uppercase;">Qtd</th>
+            <th style="text-align:center;padding:4px 8px;color:${C.muted};font-weight:700;font-size:0.65rem;text-transform:uppercase;">Peso</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${inv.map((item, i) => `
+            <tr style="background:${i % 2 === 0 ? 'transparent' : C.bgCard2};">
+              <td style="padding:5px 8px;color:${C.text};">${esc(item.nome || item.id || '?')}</td>
+              <td style="padding:5px 8px;text-align:center;color:${C.muted};">${item.quantidade ?? 1}</td>
+              <td style="padding:5px 8px;text-align:center;color:${C.muted};">${item.peso ?? '—'}</td>
+            </tr>`).join('')}
+        </tbody>
+      </table>`
+    : `<p style="font-size:0.82rem;color:${C.muted};font-style:italic;">Inventário vazio.</p>`;
+
+  /* ── CARTEIRA ───────────────────────────────────────────── */
+  const moedaChip = (label, valor, cor) =>
+    `<div style="text-align:center;background:${C.bgCard2};border-radius:8px;padding:8px 12px;min-width:60px;">
+      <div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;color:${cor};margin-bottom:3px;">${label}</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:${C.text};">${valor}</div>
+    </div>`;
+
+  const carteiraHTML = `
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      ${moedaChip('Cobre',   cart.cobre   || 0, '#b87040')}
+      ${moedaChip('Prata',   cart.prata   || 0, '#9090b0')}
+      ${moedaChip('Ouro',    cart.ouro    || 0, '#c0a020')}
+      ${moedaChip('Platina', cart.platina || 0, '#80c0d0')}
+    </div>`;
+
+  /* ── BACKGROUND ─────────────────────────────────────────── */
+  const bgRow = (label, val) => val
+    ? `<div style="margin-bottom:10px;">
+        <div style="font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;
+                    color:${C.accent};margin-bottom:4px;">${label}</div>
+        <div style="font-size:0.85rem;color:${C.muted};line-height:1.6;padding:8px 12px;
+                    background:${C.bgCard2};border-radius:6px;border-left:3px solid ${C.accent};">
+          ${esc(val)}
+        </div>
+       </div>`
+    : '';
+
+  const backgroundHTML = [
+    bgRow('Origem',    bg.origem),
+    bgRow('Memória',   bg.memoria),
+    bgRow('Objetivo',  bg.objetivo),
+    bgRow('Motivação', bg.motivacao),
+    bgRow('Valores',   bg.valores),
+    s.impeto ? `<div style="margin-top:8px;display:flex;align-items:center;gap:8px;">
+      <span style="font-size:0.62rem;font-weight:700;text-transform:uppercase;color:${C.accent};">Ímpeto</span>
+      <span style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:${C.pos};">${s.impeto}</span>
+    </div>` : '',
+  ].join('');
+
+  const hasBg = Object.values(bg).some(v => v) || s.impeto;
+
+  /* ── BADGE RAÇA ─────────────────────────────────────────── */
+  const raceBadges = [
+    s.raceSelecionada     ? pill(s.raceSelecionada,     '#e0d4f8', C.accent)   : '',
+    s.subraçaSelecionada  ? pill(s.subraçaSelecionada,  '#d4eef8', '#5a90c8')  : '',
+    s.modificador         ? pill(s.modificador === 'Aika' ? '💠 Aika' : '🔶 Ukya', '#ffe8cc', '#987040') : '',
+  ].filter(Boolean).join(' ');
+
+  /* ── MONTAGEM FINAL ─────────────────────────────────────── */
   return `
-    <div style="text-align:center;margin-bottom:8px;color:var(--ornament-color);letter-spacing:0.4em;font-size:1rem;">✦ ❧ ✦</div>
-    <h1 class="read-title">${escapeHtml(s.name || 'Ficha sem nome')}</h1>
-    <div style="display:flex;gap:10px;margin:10px 0 20px;flex-wrap:wrap;">
-      <span class="badge badge-${(s.classificacao||'base').toLowerCase()}">${s.classificacao||'Base'}</span>
-      <span class="badge ${s.tipo==='preset'?'badge-preset':s.tipo==='npc'?'badge-npc':'badge-player'}">${s.tipo==='preset'?'Preset Racial':s.tipo==='npc'?'NPC':'Jogador'}</span>
+    <!-- ORNAMENTO ────────────────────────── -->
+    <div style="text-align:center;letter-spacing:0.4em;color:${C.ornament};font-size:1.1rem;margin-bottom:10px;">✦ ❧ ✦</div>
+
+    <!-- CABEÇALHO ───────────────────────── -->
+    <div style="margin-bottom:20px;">
+      <h1 style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;
+                  color:${C.accent};margin:0 0 8px;">
+        ${esc(s.name || 'Ficha sem nome')}
+      </h1>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+        ${pill(s.classificacao || 'Base', classCfg.bg, classCfg.color)}
+        ${pill(`Nível ${s.nivel || 1}`, C.badgeBg, C.accent)}
+        ${pill(tipoLabel, tipoCfg.bg, tipoCfg.color)}
+      </div>
+      ${raceBadges ? `<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">${raceBadges}</div>` : ''}
+      ${s.conceitoNarrativo
+        ? `<p style="font-style:italic;color:${C.muted};font-size:0.9rem;line-height:1.7;
+                     margin:10px 0 0;padding:10px 14px;background:${C.bgCard};border-radius:8px;
+                     border-left:3px solid ${C.accent};">${esc(s.conceitoNarrativo)}</p>`
+        : ''}
     </div>
-    ${s.conceitoNarrativo ? `<p style="font-style:italic;color:var(--text-secondary);margin-bottom:20px;line-height:1.7;">${escapeHtml(s.conceitoNarrativo)}</p>` : ''}
-    <div class="ornament-divider">· · ·</div>
-    <h3 class="read-section-title">⚔ Atributos Base</h3>
-    <div class="read-attrs-grid">${attrsHTML}</div>
-    ${s.picoPrincipal||s.fraquezaEstrutural ? `
-    <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;">
-      ${s.picoPrincipal ? `<div style="background:var(--attr-pos-bg);border-radius:var(--radius-sm);padding:8px 14px;font-size:0.85rem;"><span style="color:var(--attr-pos);font-weight:700;">▲ Pico:</span> ${escapeHtml(s.picoPrincipal)}</div>` : ''}
-      ${s.fraquezaEstrutural ? `<div style="background:var(--attr-neg-bg);border-radius:var(--radius-sm);padding:8px 14px;font-size:0.85rem;"><span style="color:var(--attr-neg);font-weight:700;">▼ Fraqueza:</span> ${escapeHtml(s.fraquezaEstrutural)}</div>` : ''}
-    </div>` : ''}
-    <h3 class="read-section-title">🎭 Modos Narrativos</h3>
-    <div class="read-modos-row">${modosHTML}</div>
-    ${listHTML(s.tracos, 'Traços Fixos')}
-    ${listHTML(s.vantagens, 'Vantagens Situacionais')}
-    ${listHTML(s.vulnerabilidades, 'Vulnerabilidades Naturais')}
-    ${s.arquetipo ? `<h3 class="read-section-title">🧬 Arquétipo Natural</h3><p style="color:var(--text-secondary);">${escapeHtml(s.arquetipo)}</p>` : ''}
-    ${s.custoNarrativo ? `<h3 class="read-section-title">⚖ Custo Narrativo</h3><p style="color:var(--text-secondary);">${escapeHtml(s.custoNarrativo)}</p>` : ''}
-    <div class="ornament-divider" style="margin-top:24px;">✦ ❧ ✦</div>
+
+    <div style="border-top:1px solid ${C.border};margin-bottom:18px;
+                text-align:center;padding-top:10px;color:${C.ornament};letter-spacing:0.3em;">· · ·</div>
+
+    <!-- RECURSOS ────────────────────────── -->
+    ${section('Recursos', '⚡', recursosHTML)}
+
+    <!-- ATRIBUTOS ───────────────────────── -->
+    ${section('Atributos Base', '⚔', atributosHTML + picoFraqueza)}
+
+    <!-- MODOS ───────────────────────────── -->
+    ${section('Modos Narrativos', '🎭',
+      `<div style="display:flex;gap:8px;flex-wrap:wrap;">${modosHTML}</div>`)}
+
+    <!-- PERÍCIAS ────────────────────────── -->
+    ${section('Perícias', '📖', periciasHTML)}
+
+    <!-- HABILIDADES ─────────────────────── -->
+    ${section('Habilidades Adquiridas', '✨', habsHTML)}
+
+    <!-- TRAÇOS / VANTAGENS / VULNERAB. ──── -->
+    ${(s.tracos?.some(x=>x) || s.vantagens?.some(x=>x) || s.vulnerabilidades?.some(x=>x))
+      ? section('Características', '🧬', `
+          ${s.tracos?.some(x=>x) ? `
+            <div style="margin-bottom:12px;">
+              <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;
+                          color:${C.accent};margin-bottom:6px;">Traços Fixos</div>
+              ${listBlock(s.tracos)}
+            </div>` : ''}
+          ${s.vantagens?.some(x=>x) ? `
+            <div style="margin-bottom:12px;">
+              <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;
+                          color:${C.pos};margin-bottom:6px;">▲ Vantagens Situacionais</div>
+              ${listBlock(s.vantagens)}
+            </div>` : ''}
+          ${s.vulnerabilidades?.some(x=>x) ? `
+            <div>
+              <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;
+                          color:${C.neg};margin-bottom:6px;">▼ Vulnerabilidades Naturais</div>
+              ${listBlock(s.vulnerabilidades)}
+            </div>` : ''}`)
+      : ''}
+
+    <!-- ARQUÉTIPO / CUSTO ───────────────── -->
+    ${(s.arquetipo || s.custoNarrativo) ? section('Perfil Narrativo', '📜', `
+      ${s.arquetipo ? `
+        <div style="margin-bottom:10px;">
+          <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;color:${C.muted};margin-bottom:4px;">Arquétipo Natural</div>
+          <div style="font-size:0.85rem;color:${C.muted};">${esc(s.arquetipo)}</div>
+        </div>` : ''}
+      ${s.custoNarrativo ? `
+        <div>
+          <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;color:${C.muted};margin-bottom:4px;">Custo Narrativo</div>
+          <div style="font-size:0.85rem;color:${C.muted};">${esc(s.custoNarrativo)}</div>
+        </div>` : ''}
+    `) : ''}
+
+    <!-- EQUIPAMENTOS ────────────────────── -->
+    ${section('Equipamentos', '⚔', equipHTML)}
+
+    <!-- INVENTÁRIO ──────────────────────── -->
+    ${section('Inventário', '🎒', invHTML)}
+
+    <!-- CARTEIRA ────────────────────────── -->
+    ${section('Carteira', '💰', carteiraHTML)}
+
+    <!-- BACKGROUND ──────────────────────── -->
+    ${hasBg ? section('Background do Personagem', '📖', backgroundHTML) : ''}
+
+    <!-- RODAPÉ ──────────────────────────── -->
+    <div style="text-align:center;letter-spacing:0.4em;color:${C.ornament};font-size:1.1rem;margin-top:10px;">✦ ❧ ✦</div>
+    <div style="text-align:center;font-size:0.62rem;color:${C.ornament};margin-top:6px;font-family:'IBM Plex Mono',monospace;">
+      Verloren RPG Sheets · ${esc(s.name || '')} · Nível ${s.nivel || 1}
+    </div>
   `;
 }
 
@@ -3286,47 +3656,40 @@ function exportSheetPDF() {
   const sheet = getSheet(currentSheetId);
   if (!sheet) return;
 
-  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const isDark = getDarkModeState();
+  const bg     = isDark ? '#18111f' : '#f8f4ff';
+  const text   = isDark ? '#e8e0f8' : '#3d3452';
+
   const html = `<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8"/>
-<title>${sheet.name || 'Ficha'} — Verloren RPG Sheets</title>
+<title>${(sheet.name || 'Ficha').replace(/</g,'&lt;')} — Verloren RPG Sheets</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Merriweather:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
 <style>
-  body{font-family:'Merriweather',serif;background:#f8f4ff;color:#3d3452;padding:40px;max-width:720px;margin:0 auto;}
-  h1{font-family:'Playfair Display',serif;font-size:2.4rem;color:#8060b8;margin:0 0 8px;}
-  h2{font-family:'Playfair Display',serif;font-size:1.1rem;color:#8060b8;border-bottom:1px solid #ddd4f0;padding-bottom:6px;margin:20px 0 10px;}
-  .badges{display:flex;gap:8px;margin-bottom:16px;}
-  .badge{padding:2px 12px;border-radius:20px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;}
-  .badge-base{background:#e8dff8;color:#a090cc;}
-  .badge-celestial{background:#daeeff;color:#7ab4e0;}
-  .badge-eccentrica{background:#fce8f0;color:#d898b8;}
-  .badge-preset{background:#e8dff8;color:#8060b8;}
-  .badge-player{background:#d8f4ec;color:#7fc4a8;}
-  .badge-npc{background:#f0deb0;color:#987040;}
-  .concept{font-style:italic;color:#7a6e8e;margin-bottom:16px;line-height:1.7;}
-  .attrs-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:12px;}
-  .attr{text-align:center;background:#f2ecfc;border-radius:6px;padding:8px 4px;}
-  .attr-l{font-size:0.6rem;font-weight:700;text-transform:uppercase;color:#a89ec2;letter-spacing:0.08em;}
-  .attr-v{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;}
-  .pos{color:#5fa87a;} .neg{color:#c05060;} .zero{color:#a89ec2;}
-  .picos{display:flex;gap:10px;margin:8px 0;flex-wrap:wrap;}
-  .pico-b{padding:6px 12px;border-radius:6px;font-size:0.82rem;}
-  .pico{background:#d8f4e8;} .vale{background:#fce8ec;}
-  .modos{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;}
-  .modo{padding:6px 14px;background:#f2ecfc;border-radius:6px;font-size:0.85rem;}
-  .modo.dominant{background:#e8dff8;font-weight:700;color:#8060b8;}
-  ul{list-style:none;padding:0;margin:0;}
-  li{padding:4px 0 4px 16px;position:relative;font-size:0.88rem;color:#7a6e8e;line-height:1.5;}
-  li::before{content:'◆';position:absolute;left:0;color:#c9b8e8;font-size:0.5rem;top:8px;}
-  .ornament{text-align:center;color:rgba(160,120,220,0.3);letter-spacing:0.4em;margin:10px 0;font-size:1rem;}
-  @media print{body{padding:20px;}}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Merriweather',serif;
+    background:${bg};
+    color:${text};
+    padding:32px 40px;
+    max-width:780px;
+    margin:0 auto;
+    font-size:14px;
+    line-height:1.5;
+  }
+  @media print{
+    body{padding:16px 24px;}
+    @page{margin:12mm 14mm;}
+  }
 </style>
 </head>
 <body>
-${buildReadModeHTML(sheet).replace(/class="read-/g, 'class="')}
-<script>window.onload=()=>{window.print()}<\/script>
+${buildPrintHTML(sheet, isDark)}
+<script>
+  // Aguarda fontes carregarem antes de imprimir
+  document.fonts.ready.then(() => { window.print(); });
+<\/script>
 </body>
 </html>`;
 
