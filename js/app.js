@@ -3233,9 +3233,12 @@ function closeReadMode() {
   document.getElementById('readModeOverlay').classList.remove('open');
 }
 /* ============================================================
-   EXPORTAR PDF  —  reescrito
-   Substitui: exportSheetPDF() (linha ~3284) e
-              buildReadModeHTML() (linha ~3236)
+   EXPORTAR PDF — corrigido
+   Correções:
+     1. slotName() agora resolve o equipamento pelo EQUIPAMENTOS_INDEX
+        e exibe todos os atributos relevantes (dado, tipoDano, etc.)
+     2. A janela de impressão recebe color-scheme correto e a regra
+        @media print não sobrescreve mais as cores do tema escolhido
    buildReadModeHTML permanece intacta para o preview overlay.
    buildPrintHTML é a versão self-contained para impressão.
 ============================================================ */
@@ -3396,9 +3399,7 @@ function buildPrintHTML(s, isDark) {
   };
 
   const atributosHTML = ATTRS_GROUPS_LOCAL.map((group, gi) => {
-    const groupLabels = [
-      'Físicos', 'Mentais', 'Combate'
-    ];
+    const groupLabels = ['Físicos', 'Mentais', 'Combate'];
     return `
       <div style="margin-bottom:12px;">
         <div style="font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;
@@ -3459,24 +3460,118 @@ function buildPrintHTML(s, isDark) {
     : `<p style="font-size:0.82rem;color:${C.muted};font-style:italic;">Nenhuma habilidade adquirida.</p>`;
 
   /* ── EQUIPAMENTOS ──────────────────────────────────────── */
-  const slotName = (obj) => obj
-    ? `<span style="font-weight:700;color:${C.text};">${esc(obj.nome || obj.id || '?')}</span>`
-    : `<span style="color:${C.muted};font-style:italic;">— vazio —</span>`;
+
+  /*
+   * CORREÇÃO 1: Resolver o objeto do equipamento a partir do slot.
+   *
+   * O slot pode conter:
+   *   a) null / undefined  → vazio
+   *   b) uma string (id)   → resolver via EQUIPAMENTOS_INDEX
+   *   c) um objeto { id, nome, ... } → usar diretamente (mas ainda
+   *      completar com o DB para garantir que todos os campos existam)
+   *
+   * Sem essa resolução, obj.nome era undefined quando o slot guardava
+   * apenas o id como string, e campos como dado/tipoDano/critico
+   * nunca apareciam porque slotName() só lia .nome.
+   */
+  const resolveEquip = (slot) => {
+    if (!slot) return null;
+    // Slot é só um ID string
+    if (typeof slot === 'string') {
+      return (typeof EQUIPAMENTOS_INDEX !== 'undefined' && EQUIPAMENTOS_INDEX.get(slot)) || { nome: slot };
+    }
+    // Slot é objeto — enriquecer com dados do DB se possível
+    if (slot.id && typeof EQUIPAMENTOS_INDEX !== 'undefined') {
+      const fromDB = EQUIPAMENTOS_INDEX.get(slot.id);
+      return fromDB ? { ...fromDB, ...slot } : slot;
+    }
+    return slot;
+  };
+
+  /*
+   * Render de um slot de arma com todos os atributos relevantes.
+   * Para armadura/escudo os campos exibidos são diferentes.
+   */
+  const slotCard = (obj, label, icon) => {
+    if (!obj) {
+      return `
+        <div style="background:${C.bgCard2};border-radius:8px;padding:10px 12px;">
+          <div style="font-size:0.62rem;font-weight:700;text-transform:uppercase;
+                      color:${C.muted};margin-bottom:6px;">${icon} ${label}</div>
+          <span style="color:${C.muted};font-style:italic;font-size:0.82rem;">— vazio —</span>
+        </div>`;
+    }
+
+    const nome = esc(obj.nome || obj.id || '?');
+
+    // Linhas de detalhe — mostradas apenas se o campo existir
+    const detailRow = (lbl, val) => val != null && val !== ''
+      ? `<div style="display:flex;gap:4px;align-items:baseline;font-size:0.73rem;margin-top:3px;">
+           <span style="color:${C.muted};min-width:72px;">${lbl}</span>
+           <span style="color:${C.text};font-weight:600;">${esc(String(val))}</span>
+         </div>`
+      : '';
+
+    // Campos exibidos variam por tipo
+    let details = '';
+    const tipo = obj.tipo || '';
+
+    if (tipo === 'arma') {
+      details = [
+        detailRow('Dano',        obj.dado),
+        detailRow('Tipo',        obj.tipoDano),
+        detailRow('Empunhadura', obj.empunhadura),
+        detailRow('Alcance',     obj.alcance),
+        detailRow('Ação',        obj.acao),
+        obj.penalidade  ? detailRow('Penalidade',  obj.penalidade)  : '',
+        obj.bonus       ? detailRow('Bônus',       obj.bonus)       : '',
+        obj.critico     ? detailRow('Crítico',     obj.critico)     : '',
+        obj.aspectos    ? detailRow('Aspectos',    obj.aspectos)    : '',
+        obj.requisitos  ? detailRow('Requisitos',  Object.entries(obj.requisitos).map(([k,v])=>`${k} ${v>=0?'+':''}${v}`).join(', ')) : '',
+      ].join('');
+    } else if (tipo === 'armadura') {
+      details = [
+        detailRow('RD',          obj.rd),
+        detailRow('CA',          obj.ca),
+        detailRow('Res. Mágica', obj.rm  || null),
+        obj.penalidade  ? detailRow('Penalidade',  obj.penalidade)  : '',
+        detailRow('Peso',        obj.peso != null ? `${obj.peso} kg` : null),
+      ].join('');
+    } else if (tipo === 'escudo') {
+      details = [
+        detailRow('Defesa',       obj.defesa),
+        detailRow('Durabilidade', obj.durabilidade),
+        obj.penalidade  ? detailRow('Penalidade', obj.penalidade)  : '',
+        detailRow('Peso',         obj.peso != null ? `${obj.peso} kg` : null),
+      ].join('');
+    } else {
+      // Tipo desconhecido — exibir campos genéricos que existirem
+      details = [
+        detailRow('Tipo', obj.categoria || obj.subtipo || null),
+        detailRow('Peso', obj.peso != null ? `${obj.peso} kg` : null),
+      ].join('');
+    }
+
+    return `
+      <div style="background:${C.bgCard2};border-radius:8px;padding:10px 12px;">
+        <div style="font-size:0.62rem;font-weight:700;text-transform:uppercase;
+                    color:${C.muted};margin-bottom:6px;">${icon} ${label}</div>
+        <div style="font-weight:700;color:${C.text};font-size:0.88rem;margin-bottom:4px;">${nome}</div>
+        ${details
+          ? `<div style="border-top:1px solid ${C.border};margin-top:6px;padding-top:6px;">${details}</div>`
+          : ''}
+      </div>`;
+  };
+
+  const maoEsq  = resolveEquip(equip.maoEsquerda);
+  const maoDir  = resolveEquip(equip.maoDireita);
+  const armadura = resolveEquip(equip.armadura);
 
   const equipHTML = `
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
-      <div style="background:${C.bgCard2};border-radius:8px;padding:10px 12px;">
-        <div style="font-size:0.62rem;font-weight:700;text-transform:uppercase;color:${C.muted};margin-bottom:6px;">🗡 Mão Esq.</div>
-        ${slotName(equip.maoEsquerda)}
-      </div>
-      <div style="background:${C.bgCard2};border-radius:8px;padding:10px 12px;">
-        <div style="font-size:0.62rem;font-weight:700;text-transform:uppercase;color:${C.muted};margin-bottom:6px;">⚔ Mão Dir.</div>
-        ${slotName(equip.maoDireita)}
-      </div>
-      <div style="background:${C.bgCard2};border-radius:8px;padding:10px 12px;">
-        <div style="font-size:0.62rem;font-weight:700;text-transform:uppercase;color:${C.muted};margin-bottom:6px;">🛡 Armadura</div>
-        ${slotName(equip.armadura)}
-      </div>
+      ${slotCard(maoEsq,  'Mão Esq.',  '🗡')}
+      ${slotCard(maoDir,  'Mão Dir.',  '⚔')}
+      ${slotCard(armadura,'Armadura',  '🛡')}
     </div>`;
 
   /* ── INVENTÁRIO ─────────────────────────────────────────── */
@@ -3660,31 +3755,68 @@ function exportSheetPDF() {
   const bg     = isDark ? '#18111f' : '#f8f4ff';
   const text   = isDark ? '#e8e0f8' : '#3d3452';
 
+  /*
+   * CORREÇÃO 2: Tema escuro na impressão.
+   *
+   * Problemas anteriores:
+   *   a) A nova aba não herdava o data-theme do documento pai.
+   *   b) A regra `@media print` do browser por padrão força
+   *      fundo branco e texto preto, ignorando os inline styles.
+   *   c) Sem `color-scheme: dark` o browser tratava a página
+   *      como light mesmo com fundo escuro declarado.
+   *
+   * Soluções aplicadas:
+   *   1. <meta name="color-scheme"> sinaliza ao browser o tema.
+   *   2. `color-scheme` no :root CSS confirma a preferência.
+   *   3. `@media print` explicita background e color com
+   *      !important e define -webkit-print-color-adjust / 
+   *      print-color-adjust: exact para forçar cores no papel.
+   *   4. O <body> recebe data-theme para compatibilidade com
+   *      qualquer folha extra que possa ser injetada.
+   */
+  const colorSchemeMeta = isDark ? 'dark' : 'light';
+  const colorSchemeCSS  = isDark ? 'dark'  : 'light';
+
   const html = `<!DOCTYPE html>
-<html>
+<html data-theme="${isDark ? 'dark' : 'light'}">
 <head>
 <meta charset="UTF-8"/>
+<meta name="color-scheme" content="${colorSchemeMeta}"/>
 <title>${(sheet.name || 'Ficha').replace(/</g,'&lt;')} — Verloren RPG Sheets</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Merriweather:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{
-    font-family:'Merriweather',serif;
-    background:${bg};
-    color:${text};
-    padding:32px 40px;
-    max-width:780px;
-    margin:0 auto;
-    font-size:14px;
-    line-height:1.5;
+  :root {
+    color-scheme: ${colorSchemeCSS};
   }
-  @media print{
-    body{padding:16px 24px;}
-    @page{margin:12mm 14mm;}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Merriweather', serif;
+    background: ${bg} !important;
+    color: ${text} !important;
+    padding: 32px 40px;
+    max-width: 780px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  @media print {
+    /*
+     * Forçar o browser a imprimir as cores exatamente como
+     * definidas nos inline styles e no body, sem "corrigir"
+     * para fundos brancos ou textos pretos.
+     */
+    html, body {
+      -webkit-print-color-adjust: exact !important;
+              print-color-adjust: exact !important;
+      background: ${bg} !important;
+      color: ${text} !important;
+    }
+    body { padding: 16px 24px; }
+    @page { margin: 12mm 14mm; }
   }
 </style>
 </head>
-<body>
+<body data-theme="${isDark ? 'dark' : 'light'}">
 ${buildPrintHTML(sheet, isDark)}
 <script>
   // Aguarda fontes carregarem antes de imprimir
