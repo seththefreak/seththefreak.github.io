@@ -552,87 +552,97 @@ function TabFicha({ char, upd }) {
             </div>
           </Sect>
 
-          <Sect title="Subatributos" className="section-span-2">
-            {Object.entries(PILARS).map(([pillarId, pillar]) => (
-              <div key={pillarId} style={{ marginBottom: 12 }}>
-                <div style={{ fontFamily: FONT_DISPLAY, fontSize: 10, color: pillar.color, letterSpacing: 2, marginBottom: 6, paddingBottom: 4, borderBottom: `1px solid ${pillar.color}33` }}>
-                  {pillar.label}
-                </div>
-                {pillar.subs.map((subId) => {
-                  const subData = char.subs[subId] || { tier: 0, prog: 0 };
-                  const autoDt = TIER_DT[subData.tier];
-                  return (
-                    <div key={subId} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5, padding: "6px 8px", background: C.bg3, borderRadius: 6 }}>
-                      <div style={{ width: 120, flexShrink: 0 }}>
-                        <div style={{ fontSize: 12, fontWeight: 600 }}>{SUBS[subId].label}</div>
-                        <div style={{ fontSize: 9, color: pillar.color, letterSpacing: 1 }}>
-                          {TIERS[subData.tier]}
-                          {autoDt ? ` - auto DT${autoDt}` : ""}
+          <div className="desktop-split section-span-2">
+            <Sect title="Subatributos">
+              {Object.entries(PILARS).map(([pillarId, pillar]) => (
+                <div key={pillarId} style={{ marginBottom: 12 }}>
+                  <div style={{ fontFamily: FONT_DISPLAY, fontSize: 10, color: pillar.color, letterSpacing: 2, marginBottom: 6, paddingBottom: 4, borderBottom: `1px solid ${pillar.color}33` }}>
+                    {pillar.label}
+                  </div>
+                  {pillar.subs.map((subId) => {
+                    const subData = char.subs[subId] || { tier: 0, prog: 0 };
+                    const autoDt = TIER_DT[subData.tier];
+                    return (
+                      <div key={subId} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5, padding: "6px 8px", background: C.bg3, borderRadius: 6 }}>
+                        <div style={{ width: 120, flexShrink: 0 }}>
+                          <div style={{ fontSize: 12, fontWeight: 600 }}>{SUBS[subId].label}</div>
+                          <div style={{ fontSize: 9, color: pillar.color, letterSpacing: 1 }}>
+                            {TIERS[subData.tier]}
+                            {autoDt ? ` - auto DT${autoDt}` : ""}
+                          </div>
+                        </div>
+                        <div style={{ display: "flex", gap: 3 }}>
+                          {TIERS.map((_, index) => (
+                            <button
+                              key={index}
+                              onClick={() => setSub(subId, "tier", index)}
+                              title={TIERS[index]}
+                              style={{
+                                width: 13,
+                                height: 13,
+                                borderRadius: 2,
+                                background: subData.tier >= index ? pillar.color : C.border,
+                                border: "none",
+                                cursor: "pointer",
+                                flexShrink: 0,
+                              }}
+                            />
+                          ))}
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", gap: 3, marginLeft: "auto" }}>
+                          <SmBtn onClick={() => setSub(subId, "prog", Math.max(0, subData.prog - 1))}>-</SmBtn>
+                          <span style={{ fontSize: 14, fontWeight: 700, color: pillar.color, width: 24, textAlign: "center" }}>+{subData.prog}</span>
+                          <SmBtn onClick={() => setSub(subId, "prog", Math.min(3, subData.prog + 1))}>+</SmBtn>
                         </div>
                       </div>
-                      <div style={{ display: "flex", gap: 3 }}>
-                        {TIERS.map((_, index) => (
-                          <button
-                            key={index}
-                            onClick={() => setSub(subId, "tier", index)}
-                            title={TIERS[index]}
-                            style={{
-                              width: 13,
-                              height: 13,
-                              borderRadius: 2,
-                              background: subData.tier >= index ? pillar.color : C.border,
-                              border: "none",
-                              cursor: "pointer",
-                              flexShrink: 0,
-                            }}
-                          />
-                        ))}
-                      </div>
-                      <div style={{ display: "flex", alignItems: "center", gap: 3, marginLeft: "auto" }}>
-                        <SmBtn onClick={() => setSub(subId, "prog", Math.max(0, subData.prog - 1))}>-</SmBtn>
-                        <span style={{ fontSize: 14, fontWeight: 700, color: pillar.color, width: 24, textAlign: "center" }}>+{subData.prog}</span>
-                        <SmBtn onClick={() => setSub(subId, "prog", Math.min(3, subData.prog + 1))}>+</SmBtn>
-                      </div>
-                    </div>
+                    );
+                  })}
+                </div>
+              ))}
+            </Sect>
+
+            <Sect title="Condicoes Ativas">
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(110px, 1fr))", gap: 4, marginBottom: char.condicoes.length ? 8 : 0 }}>
+                {CONDS.map((condition) => {
+                  const active = char.condicoes.includes(condition.id);
+                  return (
+                    <button
+                      key={condition.id}
+                      onClick={() => toggleCondition(condition.id)}
+                      style={{
+                        padding: "3px 6px",
+                        borderRadius: 6,
+                        fontSize: 10,
+                        fontWeight: 600,
+                        background: active ? `${condition.color}22` : C.bg3,
+                        color: active ? condition.color : C.muted,
+                        border: `1px solid ${active ? condition.color : C.border}`,
+                        transition: "all 0.15s",
+                        textAlign: "left",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {condition.label}
+                    </button>
                   );
                 })}
               </div>
-            ))}
-          </Sect>
-
-          <Sect title="Condicoes Ativas" className="section-span-2">
-            <div className="chip-row" style={{ marginBottom: char.condicoes.length ? 8 : 0 }}>
-              {CONDS.map((condition) => {
-                const active = char.condicoes.includes(condition.id);
-                return (
-                  <button
-                    key={condition.id}
-                    onClick={() => toggleCondition(condition.id)}
-                    style={{
-                      padding: "3px 10px",
-                      borderRadius: 20,
-                      fontSize: 11,
-                      fontWeight: 600,
-                      background: active ? `${condition.color}22` : C.bg3,
-                      color: active ? condition.color : C.muted,
-                      border: `1px solid ${active ? condition.color : C.border}`,
-                      transition: "all 0.15s",
-                    }}
-                  >
-                    {condition.label}
-                  </button>
-                );
-              })}
-            </div>
-            {char.condicoes.map((conditionId) => {
-              const condition = getConditionById(conditionId);
-              return condition ? (
-                <div key={conditionId} style={{ fontSize: 11, color: condition.color, padding: "4px 8px", background: `${condition.color}11`, borderRadius: 4, borderLeft: `2px solid ${condition.color}`, marginBottom: 4 }}>
-                  <strong>{condition.label}:</strong> {condition.desc}
+              {char.condicoes.length > 0 && (
+                <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                  {char.condicoes.map((conditionId) => {
+                    const condition = getConditionById(conditionId);
+                    return condition ? (
+                      <div key={conditionId} style={{ fontSize: 10, color: condition.color, padding: "3px 8px", background: `${condition.color}11`, borderRadius: 4, borderLeft: `2px solid ${condition.color}` }}>
+                        <strong>{condition.label}:</strong> {condition.desc}
+                      </div>
+                    ) : null;
+                  })}
                 </div>
-              ) : null;
-            })}
-          </Sect>
+              )}
+            </Sect>
+          </div>
         </ResponsiveGrid>
       ) : null}
 
