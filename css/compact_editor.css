@@ -142,3 +142,31 @@
 [data-theme="cherry-blossom"] .equip-tab.active { border-bottom-color: var(--lavanda); }
 [data-theme="dragon-jade"]    .equip-tab.active { border-bottom-color: var(--menta); }
 [data-theme="neon-nebula"]    .equip-tab.active { border-bottom-color: var(--lavanda); }
+/* Grid flat de derivados — todos em uma linha no desktop */
+.derivados-flat-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 5px;
+}
+@media (max-width: 700px) {
+  .derivados-flat-grid { grid-template-columns: repeat(5, 1fr); }
+}
+@media (max-width: 420px) {
+  .derivados-flat-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Carteira compacta — horizontal em vez de 4 blocos grandes */
+.carteira-grid {
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 6px !important;
+}
+.moeda-bloco {
+  padding: 7px 5px !important;
+  gap: 2px !important;
+}
+.moeda-icone { font-size: 14px !important; }
+.moeda-nome { font-size: 0.62rem !important; }
+.moeda-bloco input { font-size: 0.9rem !important; padding: 4px 2px !important; }
+
+/* Carga mais fina */
+.carga-barra { height: 12px !important; }
