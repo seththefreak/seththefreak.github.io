@@ -1,0 +1,144 @@
+/* ============================================================
+   COMPACT EDITOR — patch para Verloren RPG Sheets
+   Inclui:
+     1. Derivados de combate compactos
+     2. Subtabs de equipamentos
+   ============================================================ */
+
+/* ============================================================
+   1. DERIVADOS COMPACTOS
+   Os !important são necessários porque _injetarCSSBarras()
+   injeta um <style> no <head> em runtime, depois do carregamento
+   dos arquivos externos. Isso garante que nossas regras prevaleçam.
+   ============================================================ */
+
+/* Cards menores — sem fórmula nem descrição (movidas para title/tooltip) */
+.subattr-card {
+  padding: 5px 7px !important;
+  min-height: 0 !important;
+  gap: 0 !important;
+  cursor: help !important;
+  border-radius: var(--radius-sm) !important;
+  transition: box-shadow var(--transition), background var(--transition) !important;
+}
+
+.subattr-card:hover {
+  box-shadow: var(--shadow-md) !important;
+  background: var(--bg-card-hover) !important;
+}
+
+/* Fórmula e desc escondidas — disponíveis via tooltip nativo (title) */
+.subattr-formula,
+.subattr-desc {
+  display: none !important;
+}
+
+/* Sigla menor, mais densa */
+.subattr-sigla {
+  font-size: 0.58rem !important;
+  letter-spacing: 0.02em !important;
+  text-transform: uppercase !important;
+  opacity: 0.85 !important;
+}
+
+/* Valor principal — destaque */
+.subattr-valor {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  transition: transform 0.15s ease !important;
+}
+
+/* Animação de mudança de valor */
+.subattr-valor.changed {
+  animation: _subattr-pop 0.25s ease !important;
+}
+
+@keyframes _subattr-pop {
+  0%   { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* Grid mais denso */
+.derivados-grupo-items {
+  grid-template-columns: repeat(auto-fill, minmax(68px, 1fr)) !important;
+  gap: 5px !important;
+  margin-bottom: 4px !important;
+}
+
+/* Label de grupo menor */
+.derivados-grupo-lbl {
+  font-size: 0.6rem !important;
+  margin: 10px 0 4px 1px !important;
+  letter-spacing: 0.09em !important;
+}
+
+
+/* ============================================================
+   2. SUBTABS DE EQUIPAMENTOS
+   ============================================================ */
+
+/* Barra de tabs — underline style, consistente com o tema */
+.equip-tab-bar {
+  display: flex;
+  gap: 2px;
+  margin: 14px 0 18px;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0;
+}
+
+/* Botão individual */
+.equip-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 16px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;       /* solapa a border-bottom do container */
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  transition: color var(--transition), border-color var(--transition),
+              background var(--transition);
+  white-space: nowrap;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.equip-tab:hover:not(.active) {
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+}
+
+/* Tab ativa — sublinhado com cor de destaque */
+.equip-tab.active {
+  color: var(--text-accent);
+  border-bottom-color: var(--lavanda);
+  background: transparent;
+}
+
+[data-theme="dark"] .equip-tab.active {
+  color: var(--lavanda);
+  border-bottom-color: var(--lavanda);
+}
+
+/* Painel invisível — oculto pelo JS via display:none em [data-equip-panel] */
+/* Animação de entrada quando o painel é exibido */
+[data-equip-panel] {
+  animation: _panel-fade 0.18s ease;
+}
+
+@keyframes _panel-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Tema com outros esquemas de cor (mantém lavanda como accent) */
+[data-theme="cherry-blossom"] .equip-tab.active { border-bottom-color: var(--lavanda); }
+[data-theme="dragon-jade"]    .equip-tab.active { border-bottom-color: var(--menta); }
+[data-theme="neon-nebula"]    .equip-tab.active { border-bottom-color: var(--lavanda); }
