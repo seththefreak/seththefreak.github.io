@@ -373,7 +373,7 @@ function TabFicha({ char, upd }) {
       </div>
 
       {fichaTab === "base" ? (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}>
           <Sect title="Identidade">
             <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 10, alignItems: "start", minWidth: 0 }}>
               <div style={{ minWidth: 0 }}>
@@ -513,47 +513,49 @@ function TabFicha({ char, upd }) {
             </div>
           </Sect>
 
-          <Sect title="Pilares">
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(110px, 1fr))", gap: 8 }}>
-              {Object.entries(PILARS).map(([pillarId, pillar]) => (
-                <div key={pillarId} style={{ ...card, borderColor: `${pillar.color}44`, textAlign: "center", padding: 8 }}>
-                  <div style={{ fontFamily: FONT_DISPLAY, fontSize: 9, color: pillar.color, letterSpacing: 2, marginBottom: 4 }}>{pillar.label}</div>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}>
-                    <SmBtn onClick={() => setPilar(pillarId, char.pilares[pillarId] - 1)}>-</SmBtn>
-                    <span style={{ fontFamily: FONT_DISPLAY, fontSize: 22, fontWeight: 700, color: pillar.color, lineHeight: 1 }}>
-                      {char.pilares[pillarId]}
-                    </span>
-                    <SmBtn onClick={() => setPilar(pillarId, char.pilares[pillarId] + 1)}>+</SmBtn>
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <Sect title="Pilares">
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
+                {Object.entries(PILARS).map(([pillarId, pillar]) => (
+                  <div key={pillarId} style={{ ...card, borderColor: `${pillar.color}44`, textAlign: "center", padding: 8 }}>
+                    <div style={{ fontFamily: FONT_DISPLAY, fontSize: 9, color: pillar.color, letterSpacing: 2, marginBottom: 4 }}>{pillar.label}</div>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}>
+                      <SmBtn onClick={() => setPilar(pillarId, char.pilares[pillarId] - 1)}>-</SmBtn>
+                      <span style={{ fontFamily: FONT_DISPLAY, fontSize: 22, fontWeight: 700, color: pillar.color, lineHeight: 1 }}>
+                        {char.pilares[pillarId]}
+                      </span>
+                      <SmBtn onClick={() => setPilar(pillarId, char.pilares[pillarId] + 1)}>+</SmBtn>
+                    </div>
+                    <div style={{ fontSize: 10, color: C.muted, marginTop: 2 }}>{char.pilares[pillarId]}d6</div>
                   </div>
-                  <div style={{ fontSize: 10, color: C.muted, marginTop: 2 }}>{char.pilares[pillarId]}d6</div>
-                </div>
-              ))}
-            </div>
-          </Sect>
-
-          <Sect title="Determinacao">
-            <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
-              <SmBtn onClick={() => upd({ determinacao: Math.max(0, char.determinacao - 1) })}>-</SmBtn>
-              <div className="chip-row">
-                {Array.from({ length: Math.max(5, char.determinacao + 1) }).map((_, index) => (
-                  <div
-                    key={index}
-                    style={{
-                      width: 18,
-                      height: 18,
-                      borderRadius: 3,
-                      background: index < char.determinacao ? C.gold : C.bg3,
-                      border: `1px solid ${index < char.determinacao ? C.gold : C.border}`,
-                    }}
-                  />
                 ))}
               </div>
-              <SmBtn onClick={() => upd({ determinacao: char.determinacao + 1 })}>+</SmBtn>
-            </div>
-            <div style={{ fontSize: 11, color: C.muted }}>
-              Cicatriz que virou recurso. Use para marcar impacto narrativo ou superacao em cena.
-            </div>
-          </Sect>
+            </Sect>
+
+            <Sect title="Determinacao">
+              <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
+                <SmBtn onClick={() => upd({ determinacao: Math.max(0, char.determinacao - 1) })}>-</SmBtn>
+                <div className="chip-row">
+                  {Array.from({ length: Math.max(5, char.determinacao + 1) }).map((_, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        width: 18,
+                        height: 18,
+                        borderRadius: 3,
+                        background: index < char.determinacao ? C.gold : C.bg3,
+                        border: `1px solid ${index < char.determinacao ? C.gold : C.border}`,
+                      }}
+                    />
+                  ))}
+                </div>
+                <SmBtn onClick={() => upd({ determinacao: char.determinacao + 1 })}>+</SmBtn>
+              </div>
+              <div style={{ fontSize: 11, color: C.muted }}>
+                Cicatriz que virou recurso. Use para marcar impacto narrativo ou superacao em cena.
+              </div>
+            </Sect>
+          </div>
 
           <div className="desktop-split section-span-2" style={{ gridColumn: "1 / -1", marginTop: 2 }}>
             <Sect title="Subatributos">
