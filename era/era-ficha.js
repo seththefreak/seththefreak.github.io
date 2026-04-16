@@ -345,7 +345,7 @@ function TabFicha({ char, upd }) {
   ];
 
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <div className="chip-row" style={{ marginBottom: 10 }}>
         {fichaTabs.map((tabItem) => {
           const active = fichaTab === tabItem.id;
@@ -373,7 +373,7 @@ function TabFicha({ char, upd }) {
       </div>
 
       {fichaTab === "base" ? (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))", gap: 10 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
           <Sect title="Identidade">
             <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 10, alignItems: "start", minWidth: 0 }}>
               <div style={{ minWidth: 0 }}>
@@ -393,7 +393,7 @@ function TabFicha({ char, upd }) {
                     </div>
                   </div>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))", gap: 8 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: 8 }}>
                   <div>
                     <Lbl>Conceito</Lbl>
                     <input value={char.concept} onChange={(event) => upd({ concept: event.target.value })} placeholder="Ex: Detetive paranormal" />
@@ -514,7 +514,7 @@ function TabFicha({ char, upd }) {
           </Sect>
 
           <Sect title="Pilares">
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(90px, 1fr))", gap: 6 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(110px, 1fr))", gap: 8 }}>
               {Object.entries(PILARS).map(([pillarId, pillar]) => (
                 <div key={pillarId} style={{ ...card, borderColor: `${pillar.color}44`, textAlign: "center", padding: 8 }}>
                   <div style={{ fontFamily: FONT_DISPLAY, fontSize: 9, color: pillar.color, letterSpacing: 2, marginBottom: 4 }}>{pillar.label}</div>
@@ -555,7 +555,7 @@ function TabFicha({ char, upd }) {
             </div>
           </Sect>
 
-          <div className="desktop-split section-span-2" style={{ gridColumn: "1 / -1" }}>
+          <div className="desktop-split section-span-2" style={{ gridColumn: "1 / -1", marginTop: 2 }}>
             <Sect title="Subatributos">
               {Object.entries(PILARS).map(([pillarId, pillar]) => (
                 <div key={pillarId} style={{ marginBottom: 10 }}>
