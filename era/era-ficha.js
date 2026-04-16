@@ -375,9 +375,9 @@ function TabFicha({ char, upd }) {
       {fichaTab === "base" ? (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))", gap: 10 }}>
           <Sect title="Identidade">
-            <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 12, alignItems: "start", minWidth: 0 }}>
-              <div style={{ minWidth: 0, overflow: "hidden" }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 88px", gap: 8, marginBottom: 8 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 10, alignItems: "start", minWidth: 0 }}>
+              <div style={{ minWidth: 0 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 80px", gap: 8, marginBottom: 8 }}>
                   <div>
                     <Lbl>Nome</Lbl>
                     <input value={char.name} onChange={(event) => upd({ name: event.target.value })} />
@@ -393,7 +393,7 @@ function TabFicha({ char, upd }) {
                     </div>
                   </div>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 8 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))", gap: 8 }}>
                   <div>
                     <Lbl>Conceito</Lbl>
                     <input value={char.concept} onChange={(event) => upd({ concept: event.target.value })} placeholder="Ex: Detetive paranormal" />
@@ -444,30 +444,33 @@ function TabFicha({ char, upd }) {
 
           <Sect title="Recursos">
             {[
-              { key: "hp", label: "HP - Pontos de Vida", color: C.corpo },
-              { key: "sp", label: "SP - Sanidade", color: C.mente },
-              { key: "pe", label: "PE - Essencia", color: C.alma },
-            ].map(({ key, label, color }) => {
+              { key: "hp", abbr: "HP", sublabel: "Pontos de Vida", color: C.corpo },
+              { key: "sp", abbr: "SP", sublabel: "Sanidade",       color: C.mente },
+              { key: "pe", abbr: "PE", sublabel: "Essencia",       color: C.alma  },
+            ].map(({ key, abbr, sublabel, color }) => {
               const maxValue = key === "sp" ? 100 : levelData[key];
               const currentValue = char[key].cur;
               const percent = getMeterPercent(currentValue, maxValue);
               return (
-                <div key={key} style={{ marginBottom: 8 }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, marginBottom: 4 }}>
-                    <span style={{ fontFamily: FONT_DISPLAY, fontSize: 11, color, letterSpacing: 1 }}>{label}</span>
-                    <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                <div key={key} style={{ marginBottom: 10 }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: 8, marginBottom: 3 }}>
+                    <div style={{ minWidth: 36 }}>
+                      <div style={{ fontFamily: FONT_DISPLAY, fontSize: 13, fontWeight: 700, color, letterSpacing: 1, lineHeight: 1 }}>{abbr}</div>
+                      <div style={{ fontSize: 9, color: C.muted, letterSpacing: 0.5, whiteSpace: "nowrap" }}>{sublabel}</div>
+                    </div>
+                    <div />
+                    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                       <SmBtn onClick={() => setResource(key, currentValue - 5)} color={color}>-5</SmBtn>
                       <SmBtn onClick={() => setResource(key, currentValue - 1)} color={color}>-</SmBtn>
-                      <span style={{ fontWeight: 700, fontSize: 15, color: percent < 25 ? C.danger : color, minWidth: 48, textAlign: "center" }}>
-                        {currentValue}
-                        <span style={{ color: C.muted, fontSize: 11, fontWeight: 400 }}>/ {maxValue}</span>
+                      <span style={{ fontWeight: 700, fontSize: 15, color: percent < 25 ? C.danger : color, minWidth: 52, textAlign: "center" }}>
+                        {currentValue}<span style={{ color: C.muted, fontSize: 10, fontWeight: 400 }}>/{maxValue}</span>
                       </span>
                       <SmBtn onClick={() => setResource(key, currentValue + 1)} color={color}>+</SmBtn>
                       <SmBtn onClick={() => setResource(key, currentValue + 5)} color={color}>+5</SmBtn>
                     </div>
                   </div>
-                  <div style={{ height: 6, background: C.bg3, borderRadius: 3 }}>
-                    <div style={{ height: 6, width: `${percent}%`, background: color, borderRadius: 3, transition: "width 0.3s" }} />
+                  <div style={{ height: 5, background: C.bg3, borderRadius: 3 }}>
+                    <div style={{ height: 5, width: `${percent}%`, background: color, borderRadius: 3, transition: "width 0.3s" }} />
                   </div>
                   {percent < 25 ? (
                     <div style={{ fontSize: 10, color, marginTop: 2 }}>
@@ -555,16 +558,17 @@ function TabFicha({ char, upd }) {
           <div className="desktop-split section-span-2" style={{ gridColumn: "1 / -1" }}>
             <Sect title="Subatributos">
               {Object.entries(PILARS).map(([pillarId, pillar]) => (
-                <div key={pillarId} style={{ marginBottom: 12 }}>
-                  <div style={{ fontFamily: FONT_DISPLAY, fontSize: 10, color: pillar.color, letterSpacing: 2, marginBottom: 6, paddingBottom: 4, borderBottom: `1px solid ${pillar.color}33` }}>
+                <div key={pillarId} style={{ marginBottom: 10 }}>
+                  <div style={{ fontFamily: FONT_DISPLAY, fontSize: 10, color: pillar.color, letterSpacing: 2, marginBottom: 5, paddingBottom: 3, borderBottom: `1px solid ${pillar.color}33` }}>
                     {pillar.label}
                   </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 4 }}>
                   {pillar.subs.map((subId) => {
                     const subData = char.subs[subId] || { tier: 0, prog: 0 };
                     const autoDt = TIER_DT[subData.tier];
                     return (
-                      <div key={subId} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, padding: "4px 6px", background: C.bg3, borderRadius: 6 }}>
-                        <div style={{ width: 120, flexShrink: 0 }}>
+                      <div key={subId} style={{ display: "flex", alignItems: "center", gap: 8, padding: "4px 6px", background: C.bg3, borderRadius: 6 }}>
+                        <div style={{ width: 110, flexShrink: 0 }}>
                           <div style={{ fontSize: 12, fontWeight: 600 }}>{SUBS[subId].label}</div>
                           <div style={{ fontSize: 9, color: pillar.color, letterSpacing: 1 }}>
                             {TIERS[subData.tier]}
@@ -597,12 +601,13 @@ function TabFicha({ char, upd }) {
                       </div>
                     );
                   })}
+                  </div>
                 </div>
               ))}
             </Sect>
 
             <Sect title="Condicoes Ativas">
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(110px, 1fr))", gap: 4, marginBottom: char.condicoes.length ? 8 : 0 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))", gap: 5, marginBottom: char.condicoes.length ? 8 : 0 }}>
                 {CONDS.map((condition) => {
                   const active = char.condicoes.includes(condition.id);
                   return (
@@ -610,9 +615,9 @@ function TabFicha({ char, upd }) {
                       key={condition.id}
                       onClick={() => toggleCondition(condition.id)}
                       style={{
-                        padding: "3px 6px",
+                        padding: "5px 8px",
                         borderRadius: 6,
-                        fontSize: 10,
+                        fontSize: 11,
                         fontWeight: 600,
                         background: active ? `${condition.color}22` : C.bg3,
                         color: active ? condition.color : C.muted,
@@ -803,11 +808,12 @@ function PericiasTab({ char, setPericia }) {
           const pericias = PERICIAS_LIST.filter((pericia) => pericia.groupPilar === pillarId);
           return (
             <Sect key={pillarId} title={pillarLabels[pillarId]} color={pillarColor}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 4 }}>
               {pericias.map((pericia) => {
                 const data = char.pericias[pericia.id] || { tier: 0, prog: 0 };
                 const autoDt = TIER_DT[data.tier];
                 return (
-                  <div key={pericia.id} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, padding: "4px 6px", background: C.bg3, borderRadius: 6 }}>
+                  <div key={pericia.id} style={{ display: "flex", alignItems: "center", gap: 8, padding: "4px 6px", background: C.bg3, borderRadius: 6 }}>
                     <div style={{ width: 132, flexShrink: 0 }}>
                       <div style={{ fontSize: 12, fontWeight: 600 }}>{pericia.label}</div>
                       <div style={{ fontSize: 9, color: pillarColor, letterSpacing: 1 }}>
@@ -843,6 +849,7 @@ function PericiasTab({ char, setPericia }) {
                   </div>
                 );
               })}
+              </div>
             </Sect>
           );
         })}
