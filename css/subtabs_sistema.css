@@ -13,7 +13,7 @@
       position: sticky;
       top: 64px;
       background: var(--bg-primary);
-      z-index: 10;
+      z-index: 90; /* FIX: era 10 — elevado abaixo da topbar (100) mas acima de qualquer conteúdo */
       border-bottom: 1px solid var(--border);
       margin-bottom: 24px;
     }
@@ -119,19 +119,48 @@
     @media (max-width: 640px) {
       .sistema-nav {
         padding: 0 0 12px;
-        top: 52px;
+        top: 64px; /* FIX: era 52px — deve corresponder à altura real da topbar */
+        gap: 4px;
+        /* FIX: overflow-x: auto clipava o dropdown absoluto.
+           Solução: envolvemos em overflow visível e controlamos o scroll
+           via wrapper interno criado abaixo com a classe .sistema-nav-scroll */
+        overflow: visible;
+        flex-wrap: nowrap;
+      }
+
+      /* FIX: wrapper interno que recebe o scroll horizontal sem clicar o dropdown */
+      .sistema-nav-scroll {
+        display: flex;
         gap: 4px;
         overflow-x: auto;
         flex-wrap: nowrap;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
+        padding-bottom: 12px;
       }
-      .sistema-nav::-webkit-scrollbar { display: none; }
+      .sistema-nav-scroll::-webkit-scrollbar { display: none; }
+
+      /* Fallback: se não houver wrapper, aplica scroll direto mas aceita o clipping */
+      .sistema-nav:not(:has(.sistema-nav-scroll)) {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .sistema-nav:not(:has(.sistema-nav-scroll))::-webkit-scrollbar { display: none; }
+
       .sgrp-btn { padding: 6px 10px; font-size: 0.76rem; }
+
+      /* FIX: dropdown no mobile via position: fixed para escapar do overflow */
       .sgrp-items {
-        min-width: 160px;
-        left: auto;
+        position: fixed;
+        top: calc(64px + 52px); /* topbar + altura aproximada da nav no mobile */
+        left: 16px;
+        right: 16px;
+        min-width: 0;
+        max-width: calc(100vw - 32px);
       }
-      /* Garante que o último grupo não saia da tela pela direita */
-      .sgrp:last-child .sgrp-items { left: auto; right: 0; }
+      .sgrp:last-child .sgrp-items {
+        left: 16px;
+        right: 16px;
+      }
     }
