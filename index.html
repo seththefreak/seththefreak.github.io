@@ -6,7 +6,14 @@
   <script>
     (function () {
       var params = new URLSearchParams(window.location.search);
-      if (params.get('app') === 'verloren' || window.location.hash === '#new') return;
+      if (
+        params.get('app') === 'verloren' ||
+        window.location.hash === '#new' ||
+        sessionStorage.getItem('verloren_active') === '1'
+      ) {
+        sessionStorage.setItem('verloren_active', '1');
+        return;
+      }
       window.location.replace('launcher.html');
     })();
   </script>
@@ -119,7 +126,7 @@
     </nav>
 
     <div class="topbar-actions">
-      <button class="btn-icon" onclick="window.location.href='launcher.html'" title="Hub de sistemas">SYS</button>
+      <button class="btn-icon" onclick="sessionStorage.removeItem('verloren_active'); window.location.href='launcher.html'" title="Hub de sistemas">SYS</button>
       <button class="btn-icon" onclick="openImportModal()" title="Importar JSON">IN</button>
       <button class="btn-icon" onclick="exportBackup()" title="Exportar backup">OUT</button>
       <button class="btn-icon overflow-menu-btn" id="overflowMenuBtn" onclick="openSettingsSidebar()" title="Configuracoes" aria-label="Abrir configuracoes" aria-haspopup="true">SET</button>
