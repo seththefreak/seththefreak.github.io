@@ -3243,6 +3243,10 @@ function closeReadMode() {
    buildPrintHTML é a versão self-contained para impressão.
 ============================================================ */
 
+/* ============================================================
+   EXPORTAR PDF — v2 (habilidades corrigidas + suporte a retrato)
+============================================================ */
+
 function buildPrintHTML(s, isDark) {
 
   /* ── PALETA FIXA (sem CSS variables) ──────────────────── */
@@ -3312,6 +3316,38 @@ function buildPrintHTML(s, isDark) {
     }</ul>`;
   };
 
+  /* ── INDEX DE HABILIDADES ──────────────────────────────── */
+  /*
+   * Varre todo o RACES_DB e monta um Map<id → objeto> cobrindo:
+   *   - race.habilidades[]            (habilidades base da raça)
+   *   - race.progressao.nucleo[]      (habilidades de núcleo)
+   *   - race.progressao.caminhos[].habilidades[]  (caminhos)
+   *
+   * Isso resolve o bug em que progressaoAtiva continha apenas IDs
+   * (ex: "hum_n1") e a impressão mostrava o ID bruto em vez do
+   * nome/tipo/descrição reais da habilidade.
+   */
+  const buildHabIndex = () => {
+    const map = new Map();
+    if (typeof RACES_DB === 'undefined') return map;
+    for (const race of RACES_DB) {
+      for (const h of (race.habilidades || [])) {
+        map.set(h.id, h);
+      }
+      const prog = race.progressao || {};
+      for (const h of (prog.nucleo || [])) {
+        map.set(h.id, h);
+      }
+      for (const cam of (prog.caminhos || [])) {
+        for (const h of (cam.habilidades || [])) {
+          map.set(h.id, h);
+        }
+      }
+    }
+    return map;
+  };
+  const HAB_INDEX = buildHabIndex();
+
   /* ── DADOS DO SHEET ────────────────────────────────────── */
   const attrs   = s.atributos || {};
   const modos   = s.modos || {};
@@ -3321,6 +3357,7 @@ function buildPrintHTML(s, isDark) {
   const inv     = (s.inventario || []).filter(x => x);
   const pericias = s.pericias || {};
   const habs    = (s.progressaoAtiva || []).filter(x => x);
+  const portrait = s.portrait || s.portraitData || s.avatarUrl || null;
   const bg      = {
     origem    : s.bgOrigem     || '',
     memoria   : s.bgMemoria    || '',
@@ -3449,38 +3486,65 @@ function buildPrintHTML(s, isDark) {
        </div>`
     : `<p style="font-size:0.82rem;color:${C.muted};font-style:italic;">Nenhuma perícia treinada.</p>`;
 
-  /* ── HABILIDADES ───────────────────────────────────────── */
+  /* ── HABILIDADES (CORRIGIDO) ───────────────────────────── */
+  /*
+   * Agora resolve cada ID via HAB_INDEX para exibir nome, tipo e
+   * descrição reais. IDs não encontrados no DB (ex: habilidades
+   * customizadas) caem num fallback de pílula com o ID cru.
+   */
+  const HAB_TIPO_COLOR = {
+    passiva    : isDark ? '#9070d0' : '#8060b8',
+    ativa      : isDark ? '#5090d0' : '#4070c0',
+    progressao : isDark ? '#40a870' : '#2e8a5a',
+    negativa   : isDark ? '#e06070' : '#c05060',
+  };
+
   const habsHTML = habs.length
-    ? `<div style="display:flex;flex-wrap:wrap;gap:8px;">
-        ${habs.map(id => `
-          <span style="padding:5px 12px;border-radius:20px;font-size:0.78rem;font-family:'IBM Plex Mono',monospace;
-                        background:${C.bgCard2};border:1px solid ${C.border};color:${C.text};">${esc(id)}</span>`
-        ).join('')}
+    ? `<div style="display:flex;flex-direction:column;gap:8px;">
+        ${habs.map(id => {
+          const h = HAB_INDEX.get(id);
+
+          /* ID não encontrado → pílula de fallback */
+          if (!h) {
+            return `<span style="display:inline-block;padding:5px 12px;border-radius:20px;
+                                 font-size:0.78rem;font-family:'IBM Plex Mono',monospace;
+                                 background:${C.bgCard2};border:1px solid ${C.border};
+                                 color:${C.muted};font-style:italic;">${esc(id)}</span>`;
+          }
+
+          const tipoCor = HAB_TIPO_COLOR[h.tipo] || C.muted;
+
+          return `
+            <div style="background:${C.bgCard2};border:1px solid ${C.border};border-radius:8px;
+                        padding:10px 14px;position:relative;overflow:hidden;">
+              <div style="position:absolute;left:0;top:0;bottom:0;width:3px;
+                          background:${tipoCor};border-radius:2px 0 0 2px;"></div>
+              <div style="padding-left:12px;">
+                <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;flex-wrap:wrap;">
+                  <span style="font-weight:700;font-size:0.88rem;color:${C.text};">${esc(h.nome)}</span>
+                  ${h.tipo ? `<span style="font-size:0.6rem;font-weight:700;text-transform:uppercase;
+                                           letter-spacing:0.06em;padding:1px 7px;border-radius:10px;
+                                           background:${tipoCor}22;color:${tipoCor};">${esc(h.tipo)}</span>` : ''}
+                </div>
+                ${h.req ? `<div style="font-size:0.7rem;color:${C.accent};font-style:italic;margin-bottom:5px;">
+                              Req: ${esc(h.req)}</div>` : ''}
+                <div style="font-size:0.8rem;color:${C.muted};line-height:1.55;">${esc(h.desc || '')}</div>
+                ${h.efeito && h.efeito.condicional ? `
+                  <div style="margin-top:5px;font-size:0.7rem;color:${tipoCor};font-style:italic;">
+                    ⚡ ${esc(h.efeito.condicional)}
+                  </div>` : ''}
+              </div>
+            </div>`;
+        }).join('')}
        </div>`
     : `<p style="font-size:0.82rem;color:${C.muted};font-style:italic;">Nenhuma habilidade adquirida.</p>`;
 
   /* ── EQUIPAMENTOS ──────────────────────────────────────── */
-
-  /*
-   * CORREÇÃO 1: Resolver o objeto do equipamento a partir do slot.
-   *
-   * O slot pode conter:
-   *   a) null / undefined  → vazio
-   *   b) uma string (id)   → resolver via EQUIPAMENTOS_INDEX
-   *   c) um objeto { id, nome, ... } → usar diretamente (mas ainda
-   *      completar com o DB para garantir que todos os campos existam)
-   *
-   * Sem essa resolução, obj.nome era undefined quando o slot guardava
-   * apenas o id como string, e campos como dado/tipoDano/critico
-   * nunca apareciam porque slotName() só lia .nome.
-   */
   const resolveEquip = (slot) => {
     if (!slot) return null;
-    // Slot é só um ID string
     if (typeof slot === 'string') {
       return (typeof EQUIPAMENTOS_INDEX !== 'undefined' && EQUIPAMENTOS_INDEX.get(slot)) || { nome: slot };
     }
-    // Slot é objeto — enriquecer com dados do DB se possível
     if (slot.id && typeof EQUIPAMENTOS_INDEX !== 'undefined') {
       const fromDB = EQUIPAMENTOS_INDEX.get(slot.id);
       return fromDB ? { ...fromDB, ...slot } : slot;
@@ -3488,10 +3552,6 @@ function buildPrintHTML(s, isDark) {
     return slot;
   };
 
-  /*
-   * Render de um slot de arma com todos os atributos relevantes.
-   * Para armadura/escudo os campos exibidos são diferentes.
-   */
   const slotCard = (obj, label, icon) => {
     if (!obj) {
       return `
@@ -3503,8 +3563,6 @@ function buildPrintHTML(s, isDark) {
     }
 
     const nome = esc(obj.nome || obj.id || '?');
-
-    // Linhas de detalhe — mostradas apenas se o campo existir
     const detailRow = (lbl, val) => val != null && val !== ''
       ? `<div style="display:flex;gap:4px;align-items:baseline;font-size:0.73rem;margin-top:3px;">
            <span style="color:${C.muted};min-width:72px;">${lbl}</span>
@@ -3512,7 +3570,6 @@ function buildPrintHTML(s, isDark) {
          </div>`
       : '';
 
-    // Campos exibidos variam por tipo
     let details = '';
     const tipo = obj.tipo || '';
 
@@ -3545,7 +3602,6 @@ function buildPrintHTML(s, isDark) {
         detailRow('Peso',         obj.peso != null ? `${obj.peso} kg` : null),
       ].join('');
     } else {
-      // Tipo desconhecido — exibir campos genéricos que existirem
       details = [
         detailRow('Tipo', obj.categoria || obj.subtipo || null),
         detailRow('Peso', obj.peso != null ? `${obj.peso} kg` : null),
@@ -3645,11 +3701,22 @@ function buildPrintHTML(s, isDark) {
 
   /* ── MONTAGEM FINAL ─────────────────────────────────────── */
   return `
-    <!-- ORNAMENTO ────────────────────────── -->
+    <!-- ORNAMENTO -->
     <div style="text-align:center;letter-spacing:0.4em;color:${C.ornament};font-size:1.1rem;margin-bottom:10px;">✦ ❧ ✦</div>
 
-    <!-- CABEÇALHO ───────────────────────── -->
+    <!-- CABEÇALHO (com retrato opcional) -->
     <div style="margin-bottom:20px;">
+
+      ${portrait ? `
+        <div style="float:right;margin:0 0 16px 20px;">
+          <div style="width:110px;height:147px;border-radius:8px;overflow:hidden;
+                      border:2px solid ${C.border};box-shadow:0 4px 16px rgba(0,0,0,0.25);">
+            <img src="${portrait}"
+                 style="width:100%;height:100%;object-fit:cover;display:block;"
+                 alt="Retrato de ${esc(s.name || '')}"/>
+          </div>
+        </div>` : ''}
+
       <h1 style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;
                   color:${C.accent};margin:0 0 8px;">
         ${esc(s.name || 'Ficha sem nome')}
@@ -3665,28 +3732,30 @@ function buildPrintHTML(s, isDark) {
                      margin:10px 0 0;padding:10px 14px;background:${C.bgCard};border-radius:8px;
                      border-left:3px solid ${C.accent};">${esc(s.conceitoNarrativo)}</p>`
         : ''}
+
+      ${portrait ? '<div style="clear:both;"></div>' : ''}
     </div>
 
     <div style="border-top:1px solid ${C.border};margin-bottom:18px;
                 text-align:center;padding-top:10px;color:${C.ornament};letter-spacing:0.3em;">· · ·</div>
 
-    <!-- RECURSOS ────────────────────────── -->
+    <!-- RECURSOS -->
     ${section('Recursos', '⚡', recursosHTML)}
 
-    <!-- ATRIBUTOS ───────────────────────── -->
+    <!-- ATRIBUTOS -->
     ${section('Atributos Base', '⚔', atributosHTML + picoFraqueza)}
 
-    <!-- MODOS ───────────────────────────── -->
+    <!-- MODOS -->
     ${section('Modos Narrativos', '🎭',
       `<div style="display:flex;gap:8px;flex-wrap:wrap;">${modosHTML}</div>`)}
 
-    <!-- PERÍCIAS ────────────────────────── -->
+    <!-- PERÍCIAS -->
     ${section('Perícias', '📖', periciasHTML)}
 
-    <!-- HABILIDADES ─────────────────────── -->
+    <!-- HABILIDADES -->
     ${section('Habilidades Adquiridas', '✨', habsHTML)}
 
-    <!-- TRAÇOS / VANTAGENS / VULNERAB. ──── -->
+    <!-- TRAÇOS / VANTAGENS / VULNERAB. -->
     ${(s.tracos?.some(x=>x) || s.vantagens?.some(x=>x) || s.vulnerabilidades?.some(x=>x))
       ? section('Características', '🧬', `
           ${s.tracos?.some(x=>x) ? `
@@ -3709,7 +3778,7 @@ function buildPrintHTML(s, isDark) {
             </div>` : ''}`)
       : ''}
 
-    <!-- ARQUÉTIPO / CUSTO ───────────────── -->
+    <!-- ARQUÉTIPO / CUSTO -->
     ${(s.arquetipo || s.custoNarrativo) ? section('Perfil Narrativo', '📜', `
       ${s.arquetipo ? `
         <div style="margin-bottom:10px;">
@@ -3723,19 +3792,19 @@ function buildPrintHTML(s, isDark) {
         </div>` : ''}
     `) : ''}
 
-    <!-- EQUIPAMENTOS ────────────────────── -->
+    <!-- EQUIPAMENTOS -->
     ${section('Equipamentos', '⚔', equipHTML)}
 
-    <!-- INVENTÁRIO ──────────────────────── -->
+    <!-- INVENTÁRIO -->
     ${section('Inventário', '🎒', invHTML)}
 
-    <!-- CARTEIRA ────────────────────────── -->
+    <!-- CARTEIRA -->
     ${section('Carteira', '💰', carteiraHTML)}
 
-    <!-- BACKGROUND ──────────────────────── -->
+    <!-- BACKGROUND -->
     ${hasBg ? section('Background do Personagem', '📖', backgroundHTML) : ''}
 
-    <!-- RODAPÉ ──────────────────────────── -->
+    <!-- RODAPÉ -->
     <div style="text-align:center;letter-spacing:0.4em;color:${C.ornament};font-size:1.1rem;margin-top:10px;">✦ ❧ ✦</div>
     <div style="text-align:center;font-size:0.62rem;color:${C.ornament};margin-top:6px;font-family:'IBM Plex Mono',monospace;">
       Verloren RPG Sheets · ${esc(s.name || '')} · Nível ${s.nivel || 1}
@@ -3755,25 +3824,6 @@ function exportSheetPDF() {
   const bg     = isDark ? '#18111f' : '#f8f4ff';
   const text   = isDark ? '#e8e0f8' : '#3d3452';
 
-  /*
-   * CORREÇÃO 2: Tema escuro na impressão.
-   *
-   * Problemas anteriores:
-   *   a) A nova aba não herdava o data-theme do documento pai.
-   *   b) A regra `@media print` do browser por padrão força
-   *      fundo branco e texto preto, ignorando os inline styles.
-   *   c) Sem `color-scheme: dark` o browser tratava a página
-   *      como light mesmo com fundo escuro declarado.
-   *
-   * Soluções aplicadas:
-   *   1. <meta name="color-scheme"> sinaliza ao browser o tema.
-   *   2. `color-scheme` no :root CSS confirma a preferência.
-   *   3. `@media print` explicita background e color com
-   *      !important e define -webkit-print-color-adjust / 
-   *      print-color-adjust: exact para forçar cores no papel.
-   *   4. O <body> recebe data-theme para compatibilidade com
-   *      qualquer folha extra que possa ser injetada.
-   */
   const colorSchemeMeta = isDark ? 'dark' : 'light';
   const colorSchemeCSS  = isDark ? 'dark'  : 'light';
 
@@ -3785,9 +3835,7 @@ function exportSheetPDF() {
 <title>${(sheet.name || 'Ficha').replace(/</g,'&lt;')} — Verloren RPG Sheets</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Merriweather:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    color-scheme: ${colorSchemeCSS};
-  }
+  :root { color-scheme: ${colorSchemeCSS}; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Merriweather', serif;
@@ -3800,11 +3848,6 @@ function exportSheetPDF() {
     line-height: 1.5;
   }
   @media print {
-    /*
-     * Forçar o browser a imprimir as cores exatamente como
-     * definidas nos inline styles e no body, sem "corrigir"
-     * para fundos brancos ou textos pretos.
-     */
     html, body {
       -webkit-print-color-adjust: exact !important;
               print-color-adjust: exact !important;
@@ -3819,7 +3862,6 @@ function exportSheetPDF() {
 <body data-theme="${isDark ? 'dark' : 'light'}">
 ${buildPrintHTML(sheet, isDark)}
 <script>
-  // Aguarda fontes carregarem antes de imprimir
   document.fonts.ready.then(() => { window.print(); });
 <\/script>
 </body>
