@@ -3819,11 +3819,11 @@ function exportSheetPDF() {
   saveCurrentSheet(true);
   const sheet = getSheet(currentSheetId);
   if (!sheet) return;
-
-   // Injeta o retrato salvo separadamente no objeto da ficha antes de gerar o PDF
+  
+// Injeta o retrato salvo separadamente no objeto da ficha antes de gerar o PDF
   const _pKey = 'portrait_' + currentSheetId;
   sheet.portraitData = localStorage.getItem(_pKey) || '';
-   
+
   const isDark = getDarkModeState();
   const bg     = isDark ? '#18111f' : '#f8f4ff';
   const text   = isDark ? '#e8e0f8' : '#3d3452';
@@ -4528,22 +4528,27 @@ function renderInventario(sheet) {
   const lista = document.getElementById('inventarioLista');
   if (!lista) return;
   const items = sheet.inventario || [];
-  
+
   if (!items.length) {
     lista.innerHTML = '<div class="inventario-vazio">Inventário vazio. Adicione itens clicando em "+ Adicionar Item".</div>';
     return;
   }
-  
+
   lista.innerHTML = items.map(item => {
-    const total = ((item.peso || 0) * (item.quantidade || 1)).toFixed(2);
+    // FIX: fallback para campos legacy (name, id) e valor padrão legível
+    const nome  = item.nome || item.name || item.id || 'Item sem nome';
+    const peso  = item.peso    || 0;
+    const qtd   = item.quantidade || 1;
+    const total = (peso * qtd).toFixed(2);
+
     return `<div class="inventario-item">
       <div class="item-info">
-        <span class="item-nome">${escapeHtml(item.nome)}</span>
-        <span class="item-detalhes">${item.peso}kg × ${item.quantidade} = ${total}kg total</span>
+        <span class="item-nome">${escapeHtml(nome)}</span>
+        <span class="item-detalhes">${peso}kg × ${qtd} = ${total}kg total</span>
       </div>
       <div class="item-acoes">
         <button class="btn-qty" onclick="ajustarQuantidade('${item.id}',-1)" title="Diminuir">−</button>
-        <span class="item-quantidade">${item.quantidade}</span>
+        <span class="item-quantidade">${qtd}</span>
         <button class="btn-qty" onclick="ajustarQuantidade('${item.id}',1)" title="Aumentar">+</button>
         <button class="btn-qty danger" onclick="removerItem('${item.id}')" title="Remover">🗑️</button>
       </div>
@@ -4620,6 +4625,108 @@ function renderRecompensas(sheet) {
   }).join('');
 }
 
+/** Tab ativa no momento (persiste entre fichas) */
+let _equipTabActive = 'equipado';
+
+function _equipSectionBlock(parentEl, childEl) {
+  if (!childEl || !parentEl) return null;
+  let node = childEl;
+  while (node && node.parentElement !== parentEl) {
+    node = node.parentElement;
+    if (!node || node === document.body) return null;
+  }
+  return node !== parentEl ? node : null;
+}
+
+function _getEquipEditorSection() {
+  const anchors = ['lojaGrid', 'inventarioLista', 'slot-maoEsquerda'];
+  for (const id of anchors) {
+    let el = document.getElementById(id);
+    if (!el) continue;
+    while (el && !el.classList.contains('editor-section')) el = el.parentElement;
+    if (el) return el;
+  }
+  return null;
+}
+
+function _setupEquipTabs() {
+  if (document.getElementById('equip-tab-bar')) {
+    switchEquipTab(_equipTabActive);
+    return;
+  }
+
+  const section = _getEquipEditorSection();
+  if (!section) return;
+
+  const title = section.querySelector('.section-title');
+  if (!title) return;
+
+  const blk = (id) => _equipSectionBlock(section, document.getElementById(id));
+
+  const equipIds  = ['slot-maoEsquerda', 'slot-maoDireita', 'slot-armadura',
+                     'cargaFill', 'carteiraCobre', 'carteiraPrata',
+                     'carteiraOuro', 'carteiraPlatina', 'moedasInput', 'moedasInicial'];
+  const invIds    = ['inventarioLista', 'recompensasLista'];
+  const lojaIds   = ['lojaGrid', 'lojaSearch'];
+
+  const resolve = (ids) => [...new Set(ids.map(blk).filter(Boolean))];
+  const equipBlocks = resolve(equipIds);
+  const invBlocks   = resolve(invIds);
+  const lojaBlocks  = resolve(lojaIds);
+
+  const allBlocks = new Set([...equipBlocks, ...invBlocks, ...lojaBlocks]);
+  if (allBlocks.size < 2) {
+    console.warn('[Verloren] _setupEquipTabs: não foi possível identificar seções separadas.');
+    return;
+  }
+
+  const tagged = new Set();
+  const tag = (blocks, panel) => {
+    blocks.forEach(b => {
+      if (!b || tagged.has(b)) return;
+      b.dataset.equipPanel = panel;
+      tagged.add(b);
+    });
+  };
+  tag(equipBlocks, 'equipado');
+  tag(invBlocks,   'inventario');
+  tag(lojaBlocks,  'loja');
+
+  const bar = document.createElement('div');
+  bar.id = 'equip-tab-bar';
+  bar.className = 'equip-tab-bar';
+  bar.innerHTML = `
+    <button class="equip-tab" data-equip-tab="equipado"   onclick="switchEquipTab('equipado')">⚔️ Equipado</button>
+    <button class="equip-tab" data-equip-tab="inventario" onclick="switchEquipTab('inventario')">🎒 Inventário</button>
+    <button class="equip-tab" data-equip-tab="loja"       onclick="switchEquipTab('loja')">🛒 Loja</button>
+  `;
+  title.insertAdjacentElement('afterend', bar);
+
+  switchEquipTab(_equipTabActive);
+}
+
+function switchEquipTab(tab) {
+  _equipTabActive = tab;
+
+  document.querySelectorAll('#equip-tab-bar .equip-tab').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.equipTab === tab);
+  });
+
+  const section = _getEquipEditorSection();
+  if (!section) return;
+  section.querySelectorAll('[data-equip-panel]').forEach(panel => {
+    const visible = panel.dataset.equipPanel === tab;
+    if (visible && panel.style.display === 'none') {
+      panel.style.display = '';
+      panel.style.animation = 'none';
+      void panel.offsetWidth;
+      panel.style.animation = '';
+    } else if (!visible) {
+      panel.style.display = 'none';
+    }
+  });
+}
+
 function renderEconomia(sheet) {
   // Initialize carteira if not exists (migrate from moedas)
   if (!sheet.carteira) {
@@ -4648,6 +4755,9 @@ function renderEconomia(sheet) {
 
   // Loja
   renderLoja();
+
+  // Injeta subtabs (idempotente — safe chamar toda vez)
+  _setupEquipTabs();
 }
 
 
@@ -5062,11 +5172,11 @@ function renderSubatributos(sheet) {
       if (!meta) return;
       const val  = d[key] ?? 0;
       const sign = (val >= 0 && !['MV','LK'].includes(key)) ? '+' : '';
-      html += `<div class="subattr-card" title="${meta.desc}">
+      // Fórmula e descrição agora ficam no tooltip (title) — cards compactos
+      const tooltip = `${meta.formula} — ${meta.desc}`;
+      html += `<div class="subattr-card" title="${escapeHtml(tooltip)}">
         <div class="subattr-sigla" style="color:${meta.cor}">${meta.label}</div>
         <div class="subattr-valor" id="sub-${key.toLowerCase()}" style="color:${meta.cor}">${sign}${val}</div>
-        <div class="subattr-formula">${meta.formula}</div>
-        <div class="subattr-desc">${meta.desc}</div>
       </div>`;
     });
     html += '</div>';
