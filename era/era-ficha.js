@@ -194,8 +194,21 @@ function HabilidadesAcervo({ char, upd }) {
   );
 }
 
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < breakpoint : false
+  );
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 function TabFicha({ char, upd }) {
   const [fichaTab, setFichaTab] = useState("base");
+  const isMobile = useIsMobile();
   const portraitInputRef = useRef(null);
   const levelData = getCurrentLevelData(char.level);
 
@@ -373,9 +386,9 @@ function TabFicha({ char, upd }) {
       </div>
 
       {fichaTab === "base" ? (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 14 }}>
           <Sect title="Identidade">
-            <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 10, alignItems: "start", minWidth: 0 }}>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr auto", gap: 10, alignItems: "start", minWidth: 0 }}>
               <div style={{ minWidth: 0 }}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 80px", gap: 8, marginBottom: 8 }}>
                   <div>
@@ -405,7 +418,7 @@ function TabFicha({ char, upd }) {
                 </div>
               </div>
 
-              <div style={{ ...card, padding: 8, background: `${C.alma}0D`, borderColor: `${C.alma}33`, textAlign: "center", width: 128, flexShrink: 0 }}>
+              <div style={{ ...card, padding: 8, background: `${C.alma}0D`, borderColor: `${C.alma}33`, textAlign: "center", width: isMobile ? "100%" : 128, flexShrink: 0 }}>
                 <Lbl>Retrato</Lbl>
                 <div
                   style={{
@@ -515,7 +528,7 @@ function TabFicha({ char, upd }) {
 
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             <Sect title="Pilares">
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(3, 1fr)" : "repeat(3, 1fr)", gap: 8 }}>
                 {Object.entries(PILARS).map(([pillarId, pillar]) => (
                   <div key={pillarId} style={{ ...card, borderColor: `${pillar.color}44`, textAlign: "center", padding: 8 }}>
                     <div style={{ fontFamily: FONT_DISPLAY, fontSize: 9, color: pillar.color, letterSpacing: 2, marginBottom: 4 }}>{pillar.label}</div>
