@@ -3820,6 +3820,10 @@ function exportSheetPDF() {
   const sheet = getSheet(currentSheetId);
   if (!sheet) return;
 
+   // Injeta o retrato salvo separadamente no objeto da ficha antes de gerar o PDF
+  const _pKey = 'portrait_' + currentSheetId;
+  sheet.portraitData = localStorage.getItem(_pKey) || '';
+   
   const isDark = getDarkModeState();
   const bg     = isDark ? '#18111f' : '#f8f4ff';
   const text   = isDark ? '#e8e0f8' : '#3d3452';
