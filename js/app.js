@@ -4714,6 +4714,8 @@ function switchEquipTab(tab) {
 
   const section = _getEquipEditorSection();
   if (!section) return;
+
+  // Mostra/oculta painéis taggeados
   section.querySelectorAll('[data-equip-panel]').forEach(panel => {
     const visible = panel.dataset.equipPanel === tab;
     if (visible && panel.style.display === 'none') {
@@ -4725,6 +4727,29 @@ function switchEquipTab(tab) {
       panel.style.display = 'none';
     }
   });
+
+  // Fallback: garante que lojaGrid e seu bloco-pai ficam visíveis/ocultos
+  // mesmo quando o tag não foi aplicado corretamente pelo _setupEquipTabs
+  const lojaEl = document.getElementById('lojaGrid');
+  const lojaSearchEl = document.getElementById('lojaSearch');
+  if (lojaEl) {
+    // Sobe até o bloco-pai dentro da section
+    let lojaBlock = lojaEl;
+    while (lojaBlock && lojaBlock.parentElement !== section) {
+      lojaBlock = lojaBlock.parentElement;
+      if (!lojaBlock || lojaBlock === document.body) { lojaBlock = null; break; }
+    }
+    if (lojaBlock && !lojaBlock.dataset.equipPanel) {
+      // Bloco não foi taggeado — taga agora e aplica visibilidade
+      lojaBlock.dataset.equipPanel = 'loja';
+      lojaBlock.style.display = tab === 'loja' ? '' : 'none';
+    }
+    // Se o lojaGrid está dentro de um painel já taggeado, só garante display correto
+    if (!lojaBlock) {
+      lojaEl.style.display = tab === 'loja' ? '' : 'none';
+      if (lojaSearchEl) lojaSearchEl.style.display = tab === 'loja' ? '' : 'none';
+    }
+  }
 }
 
 function renderEconomia(sheet) {
@@ -5245,8 +5270,14 @@ function atualizarSubatributos(sheet) {
 .res-btn-max{flex:.7;font-size:.58rem;}
 /* ─── DERIVADOS GRUPOS ───────────────────────────── */
 .derivados-grupo-lbl{font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin:14px 0 6px 2px;}
-.derivados-grupo-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:7px;margin-bottom:2px;}
-`;
+.derivados-grupo-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:5px;margin-bottom:2px;}
+.subattr-card{padding:5px 7px;min-height:0;gap:0;cursor:help;border-radius:var(--radius-sm);transition:box-shadow var(--transition),background var(--transition);}
+.subattr-card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover);}
+.subattr-sigla{font-size:.58rem;letter-spacing:.02em;text-transform:uppercase;opacity:.85;}
+.subattr-valor{font-size:1.05rem;font-weight:700;line-height:1.1;transition:transform .15s ease;}
+.subattr-formula,.subattr-desc{display:none;}
+@keyframes _subattr-pop{0%{transform:scale(1.25);}100%{transform:scale(1);}}
+.subattr-valor.changed{animation:_subattr-pop .25s ease;}`;
   document.head.appendChild(s);
 })();
 
