@@ -1,19 +1,44 @@
 (() => {
+  /* ── Configuração ─────────────────────────────────── */
+  const SPLASH_DURATION = 4000;  // ms até iniciar o fade-out automático
+  const FADE_IN_MS      = 420;   // ms do fade-in
+  const FADE_OUT_MS     = 500;   // ms do fade-out
+  const SKIP_AFTER      = 1400;  // ms após os quais o toque/clique pula
+
+  /* ── Assets ───────────────────────────────────────── */
+  const BASE = 'assets/splash/';
+  const IMAGES = {
+    landscape: [
+      BASE + 'splash_horizontal.png',
+      BASE + 'splash_horizontal_2.png',
+    ],
+    portrait: [
+      BASE + 'splash_vertical.png',
+      BASE + 'splash_vertical_2.png',
+    ],
+  };
+
+  function pickImage() {
+    const pool = window.innerWidth >= window.innerHeight
+      ? IMAGES.landscape
+      : IMAGES.portrait;
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  /* ── Estilos ──────────────────────────────────────── */
   const styles = `
     #startupSplash {
       position: fixed;
       inset: 0;
       z-index: 3000;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle at 18% 18%, rgba(120, 92, 255, 0.28), transparent 34%),
-        radial-gradient(circle at 82% 24%, rgba(82, 214, 201, 0.16), transparent 28%),
-        linear-gradient(160deg, #171d2d 0%, #111726 48%, #090c14 100%);
-      color: #f2ebff;
+      background: #0b0c10;
       opacity: 0;
       transform: scale(1.02);
-      transition: opacity 260ms ease, transform 420ms ease;
+      transition: opacity ${FADE_IN_MS}ms ease, transform ${FADE_IN_MS}ms ease;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
     }
     #startupSplash.ready {
       opacity: 1;
@@ -21,87 +46,67 @@
     }
     #startupSplash.hide {
       opacity: 0;
-      transform: scale(1.01);
+      transform: scale(1.015);
       pointer-events: none;
+      transition: opacity ${FADE_OUT_MS}ms ease, transform ${FADE_OUT_MS}ms ease;
     }
-    .startup-sigil {
-      width: min(26vw, 136px);
-      aspect-ratio: 1;
-      border-radius: 28%;
-      background: linear-gradient(145deg, #e1d0ff, #8f6cff 52%, #5ad8d0);
-      padding: 4px;
-      box-shadow: 0 28px 80px rgba(44, 25, 92, 0.42);
-    }
-    .startup-sigil-core {
+    #startupSplash img {
       width: 100%;
       height: 100%;
-      border-radius: 25%;
-      background:
-        linear-gradient(145deg, rgba(13, 18, 31, 0.98), rgba(20, 28, 43, 0.98)),
-        #0f1320;
-      display: grid;
-      place-items: center;
-      position: relative;
-      overflow: hidden;
+      object-fit: cover;
+      object-position: center;
+      display: block;
     }
-    .startup-sigil-core::before,
-    .startup-sigil-core::after {
-      content: "";
+    #splash-skip-hint {
       position: absolute;
-      inset: 19%;
-      border: 2px solid rgba(244, 238, 255, 0.28);
-      transform: rotate(45deg);
-    }
-    .startup-sigil-core::after {
-      inset: 30%;
-      border-color: rgba(90, 216, 208, 0.28);
-      transform: rotate(0deg);
-    }
-    .startup-glyph {
-      font: 700 min(12vw, 64px) "Playfair Display", Georgia, serif;
-      letter-spacing: 0.08em;
-      color: #f7f2ff;
-      text-shadow: 0 0 22px rgba(214, 197, 255, 0.3);
-      position: relative;
-      z-index: 1;
-    }
-    .startup-copy {
-      margin-top: 22px;
-      text-align: center;
-      padding: 0 28px;
-    }
-    .startup-title {
-      font: 700 clamp(2rem, 5vw, 3.8rem) "Playfair Display", Georgia, serif;
-      letter-spacing: 0.08em;
-    }
-    .startup-subtitle {
-      margin-top: 6px;
-      color: rgba(221, 214, 240, 0.74);
-      font: 600 clamp(0.84rem, 2vw, 1rem) "Merriweather", Georgia, serif;
-      letter-spacing: 0.24em;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.45);
+      font: 500 11px 'IBM Plex Mono', monospace, sans-serif;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      white-space: nowrap;
+    }
+    #splash-skip-hint.visible {
+      opacity: 1;
     }
   `;
 
+  /* ── Elemento ─────────────────────────────────────── */
   const splash = document.createElement('div');
   splash.id = 'startupSplash';
-  splash.innerHTML = `
-    <div>
-      <div class="startup-sigil">
-        <div class="startup-sigil-core">
-          <div class="startup-glyph">V</div>
-        </div>
-      </div>
-      <div class="startup-copy">
-        <div class="startup-title">Verloren</div>
-        <div class="startup-subtitle">RPG Sheets</div>
-      </div>
-    </div>
-  `;
+  splash.setAttribute('role', 'img');
+  splash.setAttribute('aria-label', 'Unheaven: Verloren — carregando…');
+
+  const img = document.createElement('img');
+  img.src = pickImage();
+  img.alt = '';
+  img.draggable = false;
+
+  const hint = document.createElement('div');
+  hint.id = 'splash-skip-hint';
+  hint.textContent = 'toque para continuar';
+
+  splash.appendChild(img);
+  splash.appendChild(hint);
 
   const styleTag = document.createElement('style');
   styleTag.textContent = styles;
   document.head.appendChild(styleTag);
+
+  /* ── Lógica ───────────────────────────────────────── */
+  let removed = false;
+
+  function removeSplash() {
+    if (removed) return;
+    removed = true;
+    splash.classList.add('hide');
+    setTimeout(() => splash.remove(), FADE_OUT_MS + 50);
+  }
 
   document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(splash);
@@ -109,9 +114,26 @@
   }, { once: true });
 
   window.addEventListener('load', () => {
-    setTimeout(() => {
-      splash.classList.add('hide');
-      setTimeout(() => splash.remove(), 420);
-    }, 220);
+    // Hint de skip
+    const hintTimer = setTimeout(() => hint.classList.add('visible'), SKIP_AFTER);
+
+    // Auto-remove
+    const autoTimer = setTimeout(removeSplash, SPLASH_DURATION);
+
+    // Skip por toque/clique
+    let canSkip = false;
+    setTimeout(() => { canSkip = true; }, SKIP_AFTER);
+
+    splash.addEventListener('click', () => {
+      if (!canSkip) return;
+      clearTimeout(autoTimer);
+      clearTimeout(hintTimer);
+      removeSplash();
+    });
   }, { once: true });
+
+  // Troca imagem se girar o device antes de fechar
+  window.addEventListener('orientationchange', () => {
+    if (!removed) img.src = pickImage();
+  });
 })();
