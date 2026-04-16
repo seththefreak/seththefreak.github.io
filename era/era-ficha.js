@@ -179,7 +179,7 @@ function TabFicha({ char, upd }) {
       {fichaTab === "base" ? (
         <ResponsiveGrid>
           <Sect title="Identidade">
-            <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) minmax(140px, 180px)", gap: 12, alignItems: "start", minWidth: 0 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 12, alignItems: "start", minWidth: 0 }}>
               <div style={{ minWidth: 0, overflow: "hidden" }}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 88px", gap: 8, marginBottom: 8 }}>
                   <div>
@@ -209,7 +209,7 @@ function TabFicha({ char, upd }) {
                 </div>
               </div>
 
-              <div style={{ ...card, padding: 10, background: `${C.alma}0D`, borderColor: `${C.alma}33`, textAlign: "center" }}>
+              <div style={{ ...card, padding: 10, background: `${C.alma}0D`, borderColor: `${C.alma}33`, textAlign: "center", width: 160, flexShrink: 0 }}>
                 <Lbl>Retrato</Lbl>
                 <div
                   style={{
