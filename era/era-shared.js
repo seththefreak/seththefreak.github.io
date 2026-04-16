@@ -144,6 +144,7 @@ const DEFAULT_CHAR = {
   exaustao: 0,
   condicoes: [],
   habilidades: "",
+  habilidadesAprendidas: [],
   manifestacoesDef: "",
   determinacao: 0,
   notas: "",
