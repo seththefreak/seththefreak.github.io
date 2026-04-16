@@ -373,7 +373,7 @@ function TabFicha({ char, upd }) {
       </div>
 
       {fichaTab === "base" ? (
-        <ResponsiveGrid>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))", gap: 10 }}>
           <Sect title="Identidade">
             <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 12, alignItems: "start", minWidth: 0 }}>
               <div style={{ minWidth: 0, overflow: "hidden" }}>
@@ -405,14 +405,14 @@ function TabFicha({ char, upd }) {
                 </div>
               </div>
 
-              <div style={{ ...card, padding: 10, background: `${C.alma}0D`, borderColor: `${C.alma}33`, textAlign: "center", width: 160, flexShrink: 0 }}>
+              <div style={{ ...card, padding: 8, background: `${C.alma}0D`, borderColor: `${C.alma}33`, textAlign: "center", width: 128, flexShrink: 0 }}>
                 <Lbl>Retrato</Lbl>
                 <div
                   style={{
-                    width: 112,
-                    height: 112,
-                    borderRadius: 18,
-                    margin: "4px auto 10px",
+                    width: 88,
+                    height: 88,
+                    borderRadius: 14,
+                    margin: "4px auto 8px",
                     overflow: "hidden",
                     border: `1px solid ${C.border}`,
                     background: char.avatar ? C.bg2 : `radial-gradient(circle at 30% 30%, ${C.alma}33, transparent 70%), ${C.bg3}`,
@@ -452,7 +452,7 @@ function TabFicha({ char, upd }) {
               const currentValue = char[key].cur;
               const percent = getMeterPercent(currentValue, maxValue);
               return (
-                <div key={key} style={{ marginBottom: 12 }}>
+                <div key={key} style={{ marginBottom: 8 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, marginBottom: 4 }}>
                     <span style={{ fontFamily: FONT_DISPLAY, fontSize: 11, color, letterSpacing: 1 }}>{label}</span>
                     <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
@@ -511,13 +511,13 @@ function TabFicha({ char, upd }) {
           </Sect>
 
           <Sect title="Pilares">
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: 8 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(90px, 1fr))", gap: 6 }}>
               {Object.entries(PILARS).map(([pillarId, pillar]) => (
-                <div key={pillarId} style={{ ...card, borderColor: `${pillar.color}44`, textAlign: "center", padding: 10 }}>
+                <div key={pillarId} style={{ ...card, borderColor: `${pillar.color}44`, textAlign: "center", padding: 8 }}>
                   <div style={{ fontFamily: FONT_DISPLAY, fontSize: 9, color: pillar.color, letterSpacing: 2, marginBottom: 4 }}>{pillar.label}</div>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}>
                     <SmBtn onClick={() => setPilar(pillarId, char.pilares[pillarId] - 1)}>-</SmBtn>
-                    <span style={{ fontFamily: FONT_DISPLAY, fontSize: 26, fontWeight: 700, color: pillar.color, lineHeight: 1 }}>
+                    <span style={{ fontFamily: FONT_DISPLAY, fontSize: 22, fontWeight: 700, color: pillar.color, lineHeight: 1 }}>
                       {char.pilares[pillarId]}
                     </span>
                     <SmBtn onClick={() => setPilar(pillarId, char.pilares[pillarId] + 1)}>+</SmBtn>
@@ -529,7 +529,7 @@ function TabFicha({ char, upd }) {
           </Sect>
 
           <Sect title="Determinacao">
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
               <SmBtn onClick={() => upd({ determinacao: Math.max(0, char.determinacao - 1) })}>-</SmBtn>
               <div className="chip-row">
                 {Array.from({ length: Math.max(5, char.determinacao + 1) }).map((_, index) => (
@@ -552,7 +552,7 @@ function TabFicha({ char, upd }) {
             </div>
           </Sect>
 
-          <div className="desktop-split section-span-2">
+          <div className="desktop-split section-span-2" style={{ gridColumn: "1 / -1" }}>
             <Sect title="Subatributos">
               {Object.entries(PILARS).map(([pillarId, pillar]) => (
                 <div key={pillarId} style={{ marginBottom: 12 }}>
@@ -563,7 +563,7 @@ function TabFicha({ char, upd }) {
                     const subData = char.subs[subId] || { tier: 0, prog: 0 };
                     const autoDt = TIER_DT[subData.tier];
                     return (
-                      <div key={subId} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5, padding: "6px 8px", background: C.bg3, borderRadius: 6 }}>
+                      <div key={subId} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, padding: "4px 6px", background: C.bg3, borderRadius: 6 }}>
                         <div style={{ width: 120, flexShrink: 0 }}>
                           <div style={{ fontSize: 12, fontWeight: 600 }}>{SUBS[subId].label}</div>
                           <div style={{ fontSize: 9, color: pillar.color, letterSpacing: 1 }}>
@@ -643,7 +643,7 @@ function TabFicha({ char, upd }) {
               )}
             </Sect>
           </div>
-        </ResponsiveGrid>
+        </div>
       ) : null}
 
       {fichaTab === "pericias" ? <PericiasTab char={char} setPericia={setPericia} /> : null}
@@ -807,7 +807,7 @@ function PericiasTab({ char, setPericia }) {
                 const data = char.pericias[pericia.id] || { tier: 0, prog: 0 };
                 const autoDt = TIER_DT[data.tier];
                 return (
-                  <div key={pericia.id} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6, padding: "6px 8px", background: C.bg3, borderRadius: 6 }}>
+                  <div key={pericia.id} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, padding: "4px 6px", background: C.bg3, borderRadius: 6 }}>
                     <div style={{ width: 132, flexShrink: 0 }}>
                       <div style={{ fontSize: 12, fontWeight: 600 }}>{pericia.label}</div>
                       <div style={{ fontSize: 9, color: pillarColor, letterSpacing: 1 }}>
