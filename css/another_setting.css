@@ -1,0 +1,35 @@
+/* ============================================================
+   DARK MODE OVERLAY (when only toggling light/dark on Default)
+============================================================ */
+:root[data-mode="dark"]:not([data-theme]),
+:root[data-mode="dark"][data-theme="default"] {
+  /* mirrors existing [data-theme="dark"] — no-op since applyTheme handles it */
+}
+
+/* ============================================================
+   HIGH CONTRAST MODE
+============================================================ */
+[data-high-contrast="true"] {
+  --text-primary:   #000000 !important;
+  --text-secondary: #1a1a1a !important;
+  --text-muted:     #333333 !important;
+  --border:         #555555 !important;
+}
+[data-high-contrast="true"][data-mode="dark"],
+[data-high-contrast="true"][data-theme="deep-dark"][data-mode="dark"],
+[data-high-contrast="true"][data-theme="neon-nebula"][data-mode="dark"] {
+  --text-primary:   #ffffff !important;
+  --text-secondary: #f0f0f0 !important;
+  --text-muted:     #cccccc !important;
+  --border:         #aaaaaa !important;
+}
+
+/* ============================================================
+   REDUCE MOTION
+============================================================ */
+[data-reduce-motion="true"] *,
+[data-reduce-motion="true"] *::before,
+[data-reduce-motion="true"] *::after {
+  transition: none !important;
+  animation: none !important;
+}

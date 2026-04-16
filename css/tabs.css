@@ -1,0 +1,31 @@
+/* ============================================================
+       NAVEGAÇÃO (tabs)
+    ============================================================ */
+    .nav-tabs {
+      display: flex;
+      gap: 2px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      padding: 3px;
+    }
+
+    .nav-tab {
+      padding: 6px 14px;
+      border-radius: calc(var(--radius-sm) + 2px);
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-text);
+      font-size: 0.83rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+    .nav-tab:hover { color: var(--text-accent); background: var(--bg-card); }
+    .nav-tab.active {
+      background: var(--bg-card);
+      color: var(--text-accent);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    }

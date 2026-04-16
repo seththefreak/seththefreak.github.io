@@ -1,0 +1,2778 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('app') === 'verloren' || window.location.hash === '#new') return;
+      window.location.replace('launcher.html');
+    })();
+  </script>
+  <title>Verloren RPG Sheets</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="assets/icons/verloren-mark.svg" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <meta name="theme-color" content="#111726" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Verloren Sheets" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Merriweather:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/typography.css" />
+  <link rel="stylesheet" href="css/themes.css" />
+  <link rel="stylesheet" href="css/reset_base.css" />
+  <link rel="stylesheet" href="css/layout_main.css" />
+  <link rel="stylesheet" href="css/tabs.css" />
+  <link rel="stylesheet" href="css/main_content.css" />
+  <link rel="stylesheet" href="css/views.css" />
+  <link rel="stylesheet" href="css/biblioteca.css" />
+  <link rel="stylesheet" href="css/editor.css" />
+  <link rel="stylesheet" href="css/atributos.css" />
+  <link rel="stylesheet" href="css/modos.css" />
+  <link rel="stylesheet" href="css/listas_dinamicas.css" />
+  <link rel="stylesheet" href="css/sidebar_editor.css" />
+  <link rel="stylesheet" href="css/modal.css" />
+  <link rel="stylesheet" href="css/presets_racas.css" />
+  <link rel="stylesheet" href="css/toast.css" />
+  <link rel="stylesheet" href="css/divisor_ornamentado.css" />
+  <link rel="stylesheet" href="css/toggle_theme.css" />
+  <link rel="stylesheet" href="css/abas_racas.css" />
+  <link rel="stylesheet" href="css/tipo_toggle.css" />
+  <link rel="stylesheet" href="css/import_export.css" />
+  <link rel="stylesheet" href="css/responsividade.css" />
+  <link rel="stylesheet" href="css/scrollbar_custom.css" />
+  <link rel="stylesheet" href="css/modo_leitura.css" />
+  <link rel="stylesheet" href="css/import_preset.css" />
+  <link rel="stylesheet" href="css/subtitulo_biblioteca.css" />
+  <link rel="stylesheet" href="css/badge.css" />
+  <link rel="stylesheet" href="css/botao_save.css" />
+  <link rel="stylesheet" href="css/select_raca_editor.css" />
+  <link rel="stylesheet" href="css/habilidades_raca_editor.css" />
+  <link rel="stylesheet" href="css/niveis.css" />
+  <link rel="stylesheet" href="css/economia.css" />
+  <link rel="stylesheet" href="css/grimorio_inventario.css" />
+  <link rel="stylesheet" href="css/subatributos.css" />
+  <link rel="stylesheet" href="css/grafico_radial.css" />
+  <link rel="stylesheet" href="css/sistema.css" />
+  <link rel="stylesheet" href="css/mundo.css" />
+  <link rel="stylesheet" href="css/bestiario.css" />
+  <link rel="stylesheet" href="css/metaflora.css" />
+  <link rel="stylesheet" href="css/subsec_mundo.css" />
+  <link rel="stylesheet" href="css/subtabs_sistema.css" />
+  <link rel="stylesheet" href="css/compacto_expandido.css" />
+  <link rel="stylesheet" href="css/settings.css" />
+  <link rel="stylesheet" href="css/theme_data.css" />
+  <link rel="stylesheet" href="css/another_setting.css" />
+  <link rel="stylesheet" href="css/retrato.css" />
+  <link rel="stylesheet" href="css/system_workbench.css" />
+
+</head>
+<body>
+
+<!-- ===================== SPLASH SCREEN ===================== -->
+<div id="splash-screen" style="
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #0a0d14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+">
+  <img
+    id="splash-img"
+    src=""
+    alt="Unheaven – Verloren"
+    style="
+      max-width: 100%;
+      max-height: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    "
+  />
+</div>
+
+<script src="js/splash.js"></script>
+
+<div id="app">
+  <!-- =========================================================
+       TOPBAR
+  ========================================================= -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <div class="brand-icon"><img src="assets/icons/verloren-mark.svg" alt="Verloren" /></div>
+      <div class="brand-name">Verloren <span>RPG Sheets</span></div>
+    </div>
+
+    <nav class="nav-tabs">
+      <button class="nav-tab active" onclick="showPage('library')" id="tab-library">📚 Biblioteca</button>
+      <button class="nav-tab" onclick="showPage('presets')" id="tab-presets">✨ Presets</button>
+      <button class="nav-tab" onclick="showPage('sistema')" id="tab-sistema">📖 Sistema</button>
+      <button class="nav-tab" onclick="showPage('mundo')" id="tab-mundo">🌍 Mundo</button>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="btn-icon" onclick="window.location.href='launcher.html'" title="Hub de sistemas">SYS</button>
+      <button class="btn-icon" onclick="openImportModal()" title="Importar JSON">IN</button>
+      <button class="btn-icon" onclick="exportBackup()" title="Exportar backup">OUT</button>
+      <button class="btn-icon overflow-menu-btn" id="overflowMenuBtn" onclick="openSettingsSidebar()" title="Configuracoes" aria-label="Abrir configuracoes" aria-haspopup="true">SET</button>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       SETTINGS SIDEBAR (overflow menu)
+  ========================================================= -->
+  <div class="settings-overlay" id="settingsOverlay" onclick="closeSettingsSidebar()" aria-hidden="true"></div>
+
+  <aside class="settings-sidebar" id="settingsSidebar" role="dialog" aria-label="Configurações" aria-modal="true">
+    <div class="settings-sidebar-inner">
+
+      <div class="settings-header">
+        <span class="settings-title">⚙ Configurações</span>
+        <button class="settings-close-btn" onclick="closeSettingsSidebar()" aria-label="Fechar">✕</button>
+      </div>
+
+      <div class="settings-body">
+
+        <section class="settings-section">
+          <h3 class="settings-section-title">🎨 Aparência</h3>
+
+          <div class="settings-subsection">
+            <div class="settings-row">
+              <div>
+                <div class="settings-subsection-label">Modo</div>
+                <div class="settings-hint">Claro ou Escuro</div>
+              </div>
+              <button class="mode-switch-btn" id="modeSwitchBtn" onclick="toggleDarkMode()" aria-label="Alternar modo">
+                <span id="modeSwitchLabel">☀️ Claro</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="settings-subsection">
+            <div class="settings-subsection-label">Tema de cores</div>
+            <ul class="theme-list" id="themeList" role="listbox" aria-label="Seletor de tema"></ul>
+          </div>
+
+          <div class="settings-subsection">
+            <div class="settings-subsection-label">Tamanho da fonte</div>
+            <div class="font-size-buttons" role="group" aria-label="Tamanho da fonte">
+              <button class="font-size-btn" data-size="small" onclick="setFontSize('small')">P</button>
+              <button class="font-size-btn" data-size="normal" onclick="setFontSize('normal')">M</button>
+              <button class="font-size-btn" data-size="large" onclick="setFontSize('large')">G</button>
+              <button class="font-size-btn" data-size="xlarge" onclick="setFontSize('xlarge')">XG</button>
+            </div>
+          </div>
+
+          <div class="settings-subsection">
+            <div class="settings-row">
+              <div>
+                <div class="settings-subsection-label">Alto Contraste</div>
+                <div class="settings-hint">Melhora legibilidade (WCAG AA+)</div>
+              </div>
+              <button class="settings-toggle" id="contrastToggle" role="switch" onclick="toggleHighContrast()" aria-label="Alto contraste"></button>
+            </div>
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <h3 class="settings-section-title">♿ Acessibilidade</h3>
+          <div class="settings-subsection">
+            <div class="settings-row">
+              <div>
+                <div class="settings-subsection-label">Reduzir movimento</div>
+                <div class="settings-hint">Desativa animações e transições</div>
+              </div>
+              <button class="settings-toggle" id="motionToggle" role="switch" onclick="toggleReduceMotion()" aria-label="Reduzir movimento"></button>
+            </div>
+          </div>
+        </section>
+        <section class="settings-section">
+          <h3 class="settings-section-title">App</h3>
+          <div class="settings-subsection">
+            <div class="settings-row settings-install-row">
+              <div>
+                <div class="settings-subsection-label">Hub de sistemas</div>
+                <div class="settings-hint">Volte ao seletor unificado do companion app.</div>
+              </div>
+              <button class="mode-switch-btn" onclick="window.location.href='launcher.html'">Abrir hub</button>
+            </div>
+          </div>
+          <div class="settings-subsection">
+            <div class="settings-row settings-install-row">
+              <div>
+                <div class="settings-subsection-label">Instalacao</div>
+                <div class="settings-hint" id="installStatusText">Abra no navegador compativel para instalar o app.</div>
+              </div>
+              <button class="mode-switch-btn" id="installAppBtn" onclick="promptInstallApp()" disabled>Instalar</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <h3 class="settings-section-title">Sobre</h3>
+          <div class="settings-subsection app-info">
+            <div class="settings-row">
+              <span class="settings-subsection-label">Versão</span>
+              <span class="settings-value">3.2.0</span>
+            </div>
+            <div class="settings-row">
+              <span class="settings-subsection-label">Créditos</span>
+              <span class="settings-value">Verloren RPG</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </aside>
+
+  <canvas id="portraitCanvas"></canvas>
+  <input type="file" id="portraitFileInput" accept="image/*" onchange="handlePortraitFile(event)" />
+
+  <!-- Indicador de autosave -->
+  <div class="autosave-indicator" id="autosaveIndicator">✓ Salvo automaticamente</div>
+
+  <!-- =========================================================
+       PÁGINA 1 — BIBLIOTECA
+  ========================================================= -->
+  <div class="main-content">
+    <div class="page active" id="page-library">
+      <div class="library-header">
+        <h1 class="library-title">Fichas</h1>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-secondary btn-sm" onclick="openPreloadModal()">🌟 Pré-carregar Raças</button>
+          <button class="btn btn-secondary btn-sm" onclick="carregarPersonagensPreset()">👤 Personagens Prontos</button>
+          <button class="btn btn-primary" onclick="newSheet()">+ Nova Ficha</button>
+        </div>
+      </div>
+
+      <div class="library-controls">
+        <div class="search-wrap">
+          <input class="search-input" type="text" id="searchInput" placeholder="Buscar fichas..." oninput="renderLibrary()" />
+        </div>
+        <select class="filter-select" id="filterClass" onchange="renderLibrary()">
+          <option value="">Todas as classificações</option>
+          <option value="Base">Base</option>
+          <option value="Celestial">Celestial</option>
+          <option value="Excêntrica">Excêntrica</option>
+        </select>
+        <select class="filter-select" id="filterType" onchange="renderLibrary()">
+          <option value="">Todos os tipos</option>
+          <option value="jogador">Jogador</option>
+          <option value="npc">NPC</option>
+          <option value="preset">Preset Racial</option>
+        </select>
+      </div>
+
+      <!-- Fichas normais -->
+      <div id="cardsGrid" class="cards-grid"></div>
+
+      <!-- Separador de presets -->
+      <div class="section-separator" id="presetSeparator" style="display:none;">
+        <h2>Presets Raciais</h2>
+      </div>
+      <div id="presetCardsGrid" class="cards-grid"></div>
+    </div>
+
+    <!-- =========================================================
+         PÁGINA 2 — EDITOR
+    ========================================================= -->
+    <div class="page" id="page-editor">
+      <div class="editor-header">
+        <button class="btn btn-ghost btn-sm" onclick="showPage('library')">← Voltar</button>
+        <input class="editor-title-input" id="sheetName" type="text" placeholder="Nome..." oninput="debounceSave()" />
+        <button class="btn btn-secondary btn-sm" onclick="previewSheet()">👁 Pré-visualizar</button>
+        <button class="btn btn-ghost btn-sm" onclick="exportSheetJSON()">⬇️ JSON</button>
+      </div>
+
+      <!-- View tabs -->
+      <div class="ficha-view-tabs">
+        <button class="ficha-view-tab active" onclick="showFichaView('editar')">✏️ Editar</button>
+        <button class="ficha-view-tab" onclick="showFichaView('compacto')">👁 Compacto</button>
+        <button class="ficha-view-tab" onclick="showFichaView('expandido')">📜 Expandido</button>
+      </div>
+
+      <!-- PAINEL: EDITOR -->
+      <div class="ficha-view-panel active" id="fichaview-editar">
+      <div class="editor-layout">
+        <!-- Coluna principal -->
+        <div>
+          <!-- DADOS GERAIS -->
+          <div class="editor-section">
+            <h2 class="section-title">Dados Gerais</h2>
+            <div class="form-row" style="margin-bottom:14px;">
+              <div class="form-group" style="margin:0;">
+                <label class="form-label">Classificação</label>
+                <div class="classificacao-tab" id="classTab">
+                  <button class="class-btn active-base" onclick="setClassificacao('Base')" id="cls-base">Base</button>
+                  <button class="class-btn" onclick="setClassificacao('Celestial')" id="cls-celestial">Celestial</button>
+                  <button class="class-btn" onclick="setClassificacao('Excêntrica')" id="cls-eccentrica">Excêntrica</button>
+                </div>
+              </div>
+              <div class="form-group" style="margin:0;">
+                <label class="form-label">Tipo da Ficha</label>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                  <div class="tipo-toggle" id="tipoToggle">
+                    <button class="tipo-btn active" onclick="setTipo('jogador')" id="tipo-jogador">Jogador</button>
+                    <button class="tipo-btn" onclick="setTipo('npc')" id="tipo-npc">NPC</button>
+                    <button class="tipo-btn" onclick="setTipo('preset')" id="tipo-preset">Preset Racial</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- SELETOR DE RAÇA — filtrado pela classificação selecionada -->
+            <div class="race-selector-wrap">
+              <label class="race-selector-label">Raça Base <span style="font-weight:400;text-transform:none;letter-spacing:0;">(opcional — aplica modificadores automaticamente)</span></label>
+              <div class="race-chips" id="raceChips"></div>
+              <div id="subraceWrap" style="display:none;"></div>
+              <div id="raceAppliedBanner" style="display:none;"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Conceito Narrativo</label>
+              <textarea class="form-textarea" id="conceitoNarrativo" placeholder="Descreva o conceito narrativo desta raça..." oninput="debounceSave()"></textarea>
+            </div>
+          </div>
+
+          <!-- === NOVO: SISTEMA DE NÍVEIS === -->
+          <div class="editor-section">
+            <h2 class="section-title">⚔️ Nível & Progressão</h2>
+            <div class="nivel-sistema">
+              <div class="nivel-contador-wrap">
+                <label class="form-label">Nível do Personagem</label>
+                <div class="nivel-contador">
+                  <button class="nivel-btn" onclick="ajustarNivel(-1)" title="Diminuir nível">−</button>
+                  <input type="number" id="nivelInput" class="nivel-display" value="1" min="1" max="20" oninput="setNivelManual(this.value)" />
+                  <button class="nivel-btn" onclick="ajustarNivel(1)" title="Aumentar nível">+</button>
+                </div>
+                <div class="nivel-info">Mínimo: 1 | Máximo: 20</div>
+              </div>
+
+              <!-- Ímpeto -->
+              <div class="nivel-contador-wrap">
+                <label class="form-label">⚡ Ímpeto Acumulado</label>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <input type="number" id="impetoInput" class="form-input" min="0" value="0" oninput="salvarImpeto(this.value)" style="width:100px;text-align:center;font-size:1.1rem;font-weight:700;" />
+                  <div id="impetoMeta" style="font-size:0.8rem;color:var(--text-muted);line-height:1.4;"></div>
+                </div>
+                <div class="nivel-info" id="impetoNivelHint">Próximo nível: — Ímpeto</div>
+              </div>
+
+              <div class="pontos-sistema">
+                <div class="pontos-card">
+                  <div class="pontos-header">
+                    <span class="pontos-icone">📊</span>
+                    <div>
+                      <div class="pontos-titulo">Pontos de Atributo</div>
+                      <div class="pontos-valor"><span id="pontosAttrUsados">0</span> / <span id="pontosAttrTotal">4</span></div>
+                    </div>
+                  </div>
+                  <div class="pontos-desc">
+                    3 + nível pontos. Atributos negativos (-1) devolvem 1 ponto cada (máx. 3).
+                  </div>
+                  <button class="reset-pontos-btn" onclick="resetAtributos()" title="Zera todos os atributos base do jogador">↺ Resetar atributos</button>
+                </div>
+
+                <div class="pontos-card">
+                  <div class="pontos-header">
+                    <span class="pontos-icone">🎭</span>
+                    <div>
+                      <div class="pontos-titulo">Pontos de Modo</div>
+                      <div class="pontos-valor"><span id="pontosModoUsados">0</span> / <span id="pontosModoTotal">2</span></div>
+                    </div>
+                  </div>
+                  <div class="pontos-desc">
+                    2 pontos no nível 1, +1 a cada 6 níveis. Base racial gratuita.
+                  </div>
+                  <button class="reset-pontos-btn" onclick="resetModos()" title="Retorna modos ao valor base racial">↺ Resetar modos</button>
+                </div>
+
+                <div class="pontos-card">
+                  <div class="pontos-header">
+                    <span class="pontos-icone">✨</span>
+                    <div>
+                      <div class="pontos-titulo">Habilidades Disponíveis</div>
+                      <div class="pontos-valor"><span id="habAprendidas">0</span> / <span id="habDisponiveis">1</span></div>
+                    </div>
+                  </div>
+                  <div class="pontos-desc">
+                    1 habilidade no nível 1, +1 a cada 2 níveis. Use "Aprender" nas habilidades raciais.
+                  </div>
+                  <button class="reset-pontos-btn" onclick="resetHabilidades()" title="Desaprende todas as habilidades">↺ Resetar habilidades</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- === NOVO: MODIFICADORES Aika/Ukya === -->
+          <div class="editor-section">
+            <h2 class="section-title">💫 Modificadores Raciais</h2>
+            <div class="modificador-wrap">
+              <label class="form-label">Escolha um modificador (opcional)</label>
+              <div class="modificador-grid">
+                <button class="modificador-btn" id="mod-normal" onclick="setModificador(null)" data-active="true">
+                  <div class="mod-icone">⬡</div>
+                  <div class="mod-nome">Normal</div>
+                  <div class="mod-desc">Sem modificadores</div>
+                </button>
+                
+                <button class="modificador-btn" id="mod-Aika" onclick="setModificador('Aika')">
+                  <div class="mod-icone">💠
+                  </div>
+                  <div class="mod-nome">Aika</div>
+                  <div class="mod-desc">FOR = -∞ · MAG +2<br>+Intuitivo +Preciso<br>CON→RESM · −1 VIDA</div>
+                </button>
+                
+                <button class="modificador-btn" id="mod-Ukya" onclick="setModificador('Ukya')">
+                  <div class="mod-icone">🔶</div>
+                  <div class="mod-nome">Ukya</div>
+                  <div class="mod-desc">MAG = -∞ · FOR +2<br>+Bruto +Ágil</div>
+                </button>
+              </div>
+              <div class="modificador-aviso" id="modificadorAviso" style="display:none;"></div>
+            </div>
+          </div>
+
+          <!-- ATRIBUTOS BASE -->
+          <div class="editor-section">
+            <h2 class="section-title">Atributos Base</h2>
+            <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:16px;">Base: 0 a +max. Até 3 atributos podem ir a -1 (devolvem 1 ponto cada). Total com racial mínimo -3.</p>
+            <div class="attrs-grid" id="attrsGrid"></div>
+          </div>
+
+          <!-- MODOS NARRATIVOS -->
+          <div class="editor-section">
+            <h2 class="section-title">Modos Narrativos</h2>
+            <div id="modosRaceInfo" style="margin-bottom:14px;"></div>
+            <div class="modos-grid" id="modosGrid"></div>
+          </div>
+
+          <!-- TRAÇOS FIXOS -->
+          <div class="editor-section">
+            <h2 class="section-title">Traços Fixos</h2>
+            <div class="dynamic-list" id="tracosList"></div>
+            <div class="list-footer">
+              <span id="tracosCount">0 traços</span>
+              <button class="btn btn-ghost btn-sm" onclick="addItem('tracos')">+ Adicionar Traço</button>
+            </div>
+          </div>
+
+          <!-- VANTAGENS SITUACIONAIS -->
+          <div class="editor-section">
+            <h2 class="section-title">Vantagens Situacionais</h2>
+            <div class="dynamic-list" id="vantagensList"></div>
+            <div class="list-footer">
+              <span></span>
+              <button class="btn btn-ghost btn-sm" onclick="addItem('vantagens')">+ Adicionar Vantagem</button>
+            </div>
+          </div>
+
+          <!-- VULNERABILIDADES NATURAIS -->
+          <div class="editor-section">
+            <h2 class="section-title">Vulnerabilidades Naturais</h2>
+            <div class="dynamic-list" id="vulnerabilidadesList"></div>
+            <div class="list-footer">
+              <span></span>
+              <button class="btn btn-ghost btn-sm" onclick="addItem('vulnerabilidades')">+ Adicionar Vulnerabilidade</button>
+            </div>
+          </div>
+
+          <!-- HABILIDADES RACIAIS -->
+          <div class="editor-section" id="habSection" style="display:none;">
+            <h2 class="section-title">Habilidades Raciais</h2>
+            <div id="habContent"></div>
+          </div>
+
+          <!-- ========== FASE 4: SUBATRIBUTOS CALCULADOS ========== -->
+          <!-- ========== BACKGROUND DO PERSONAGEM ========== -->
+          <div class="editor-section">
+            <h2 class="section-title">📜 Background do Personagem</h2>
+            <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:16px;">Apenas para Fichas de Jogador. Não concede bônus mecânicos — define a base narrativa.</p>
+            <div class="form-group">
+              <label class="form-label">Origem & História</label>
+              <textarea class="form-textarea" id="bgOrigem" rows="4" placeholder="Local de origem, memórias, experiências anteriores, o que trouxe este personagem até aqui..." oninput="debounceSave()" style="min-height:90px;"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Memória Marcante da Infância</label>
+              <textarea class="form-textarea" id="bgMemoria" rows="3" placeholder="Uma memória afetiva ou marcante que moldou este personagem..." oninput="debounceSave()" style="min-height:72px;"></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group" style="margin:0;">
+                <label class="form-label">Objetivo Principal</label>
+                <input class="form-input" id="bgObjetivo" type="text" placeholder="O que este personagem busca?" oninput="debounceSave()" />
+              </div>
+              <div class="form-group" style="margin:0;">
+                <label class="form-label">Motivação / Determinação</label>
+                <input class="form-input" id="bgMotivacao" type="text" placeholder="Por que é determinado a seguir este caminho?" oninput="debounceSave()" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Prioridades & Valores</label>
+              <textarea class="form-textarea" id="bgValores" rows="2" placeholder="O que este personagem valoriza acima de tudo? Quais suas prioridades centrais?" oninput="debounceSave()" style="min-height:60px;"></textarea>
+            </div>
+          </div>
+
+          <!-- ========== PERÍCIAS ========== -->
+          <div class="editor-section">
+            <h2 class="section-title">🎓 Perícias</h2>
+            <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:14px;">Todas iniciam em 0. Na criação, distribua +1 em até 3 perícias diferentes (máximo +1 por perícia na criação). Total disponível: <strong id="periciasPontosInfo">3</strong> ponto(s).</p>
+            <div id="periciasGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;"></div>
+          </div>
+
+          <!-- ════ RECURSOS (HP / SP / MP / SAN) ════ -->
+          <div class="editor-section">
+            <h2 class="section-title">💚 Recursos Vitais</h2>
+            <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:14px;">Ajuste os valores atuais com os botões. Fórmulas aplicadas automaticamente ao mudar atributos ou nível.</p>
+            <div id="recursosBarrasWrap">
+              <!-- Renderizado via renderBarrasRecursos() -->
+            </div>
+          </div>
+
+          <div class="editor-section">
+            <h2 class="section-title">📊 Derivados & Combate</h2>
+            <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:16px;">Calculados automaticamente a partir dos atributos, nível e equipamento.</p>
+            <div class="subatributos-grid" id="subatributosGrid">
+              <!-- Renderizado via JS -->
+            </div>
+          </div>
+
+          <!-- ========== FASE 5: GRÁFICO RADIAL ========== -->
+          <div class="editor-section">
+            <h2 class="section-title">📈 Perfil de Combate</h2>
+            <div class="grafico-wrapper">
+              <canvas id="radarChart" style="max-width:100%;"></canvas>
+            </div>
+            <div class="grafico-legenda">
+              <div class="legenda-item"><span class="legenda-cor" style="background:#5fa87a;"></span><span>Resistência</span></div>
+              <div class="legenda-item"><span class="legenda-cor" style="background:#c05060;"></span><span>Agressividade</span></div>
+              <div class="legenda-item"><span class="legenda-cor" style="background:#c8a8f8;"></span><span>Magia</span></div>
+              <div class="legenda-item"><span class="legenda-cor" style="background:#7ab4e0;"></span><span>Estratégia</span></div>
+              <div class="legenda-item"><span class="legenda-cor" style="background:#f0deb0;"></span><span>Versatilidade</span></div>
+            </div>
+          </div>
+
+          <!-- ========== FASE 3: ECONOMIA & EQUIPAMENTOS ========== -->
+          <div class="editor-section">
+            <h2 class="section-title">💰 Economia & Equipamentos</h2>
+
+            <div class="economia-painel">
+              <!-- Moedas Multi-Currency -->
+              <div>
+                <label class="form-label">💰 Carteira de Moedas</label>
+                <div class="carteira-grid">
+                  <div class="moeda-bloco cobre">
+                    <div class="moeda-icone">🟤</div>
+                    <input type="number" id="carteiraCobre" min="0" value="0" oninput="salvarMoedaEspecifica('cobre', this.value)" />
+                    <div class="moeda-nome">Cobre</div>
+                  </div>
+                  <div class="moeda-bloco prata">
+                    <div class="moeda-icone">⚪</div>
+                    <input type="number" id="carteiraPrata" min="0" value="0" oninput="salvarMoedaEspecifica('prata', this.value)" />
+                    <div class="moeda-nome">Prata</div>
+                  </div>
+                  <div class="moeda-bloco ouro">
+                    <div class="moeda-icone">🟡</div>
+                    <input type="number" id="carteiraOuro" min="0" value="0" oninput="salvarMoedaEspecifica('ouro', this.value)" />
+                    <div class="moeda-nome">Ouro</div>
+                  </div>
+                  <div class="moeda-bloco platina">
+                    <div class="moeda-icone">🔵</div>
+                    <input type="number" id="carteiraPlatina" min="0" value="0" oninput="salvarMoedaEspecifica('platina', this.value)" />
+                    <div class="moeda-nome">Platina</div>
+                  </div>
+                </div>
+                <div class="carteira-info-row">
+                  <span class="carteira-conversao">100 Cu = 1 P · 10 P = 1 O · 10 O = 1 Pt</span>
+                  <button class="btn btn-secondary btn-sm" onclick="converterMoedas()" title="Converte automaticamente para moedas maiores">⇅ Converter</button>
+                </div>
+                <div class="moedas-info" style="margin-top:4px;">Prata inicial: 50 + (50 × nível) = <span id="moedasInicial">100</span>P</div>
+                <!-- Legacy hidden input for compatibility -->
+                <input type="hidden" id="moedasInput" value="100" />
+                <div style="display:flex;gap:6px;margin-top:8px;">
+                  <button class="btn btn-primary btn-sm" onclick="abrirTransacao('ganhar')" title="Ganhar moedas">+ Ganhar P</button>
+                  <button class="btn btn-secondary btn-sm" onclick="abrirTransacao('gastar')" title="Gastar moedas">− Gastar P</button>
+                </div>
+              </div>
+
+              <!-- Barra de Carga -->
+              <div class="carga-section">
+                <div class="carga-label-row">
+                  <span class="carga-label">⚖️ Capacidade de Carga</span>
+                  <span class="carga-texto"><span id="cargaAtual">0</span> kg / <span id="cargaMaxima">10</span> kg</span>
+                </div>
+                <div class="carga-barra">
+                  <div class="carga-barra-fill" id="cargaFill" style="width:0%;"></div>
+                </div>
+                <div style="font-size:0.72rem;color:var(--text-muted);margin-top:6px;">
+                  Fórmula: FOR≥0 → FOR³+FOR²+FOR+10 | FOR&lt;0 → FOR×2+10
+                </div>
+              </div>
+
+              <!-- Slots de Equipamento -->
+              <div>
+                <label class="form-label">Slots de Combate</label>
+                <div class="slots-combate">
+                  <div class="slot-equipamento" data-slot="maoEsquerda">
+                    <div class="slot-icone">🗡️</div>
+                    <div class="slot-label">Mão Esquerda</div>
+                    <div class="slot-item" id="slot-maoEsquerda"><span class="slot-vazio">Vazio</span></div>
+                    <button class="slot-adicionar" onclick="abrirSeletorEquipamento('maoEsquerda')">+ Equipar</button>
+                  </div>
+                  <div class="slot-equipamento" data-slot="armadura">
+                    <div class="slot-icone">🛡️</div>
+                    <div class="slot-label">Armadura</div>
+                    <div class="slot-item" id="slot-armadura"><span class="slot-vazio">Vazio</span></div>
+                    <button class="slot-adicionar" onclick="abrirSeletorEquipamento('armadura')">+ Equipar</button>
+                  </div>
+                  <div class="slot-equipamento" data-slot="maoDireita">
+                    <div class="slot-icone">🗡️</div>
+                    <div class="slot-label">Mão Direita</div>
+                    <div class="slot-item" id="slot-maoDireita"><span class="slot-vazio">Vazio</span></div>
+                    <button class="slot-adicionar" onclick="abrirSeletorEquipamento('maoDireita')">+ Equipar</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Loja de Itens -->
+              <div class="inventario-section">
+                <div class="inventario-header">
+                  <h3>🏪 Catálogo de Compras</h3>
+                  <div style="display:flex;gap:6px;align-items:center;">
+                    <input class="search-input" id="lojaSearch" type="text" placeholder="Buscar itens..." oninput="filtrarLoja()" style="width:150px;font-size:0.78rem;padding:5px 10px;" />
+                  </div>
+                </div>
+                <div class="loja-tabs" id="lojaTabs">
+                  <button class="loja-tab active" onclick="setLojaTab('todos')">Todos</button>
+                  <button class="loja-tab" onclick="setLojaTab('arma')">⚔️ Armas</button>
+                  <button class="loja-tab" onclick="setLojaTab('armadura')">🛡️ Armaduras</button>
+                  <button class="loja-tab" onclick="setLojaTab('escudo')">🔰 Escudos</button>
+                  <button class="loja-tab" onclick="setLojaTab('pocao')">🧪 Poções</button>
+                  <button class="loja-tab" onclick="setLojaTab('elixir')">⚗️ Elixires</button>
+                  <button class="loja-tab" onclick="setLojaTab('util')">🎒 Utilidade</button>
+                  <button class="loja-tab" onclick="setLojaTab('material')">💎 Materiais</button>
+                  <button class="loja-tab" onclick="setLojaTab('comida')">🍖 Comida</button>
+                </div>
+                <div class="loja-grid" id="lojaGrid">
+                  <!-- Renderizado via JS -->
+                </div>
+              </div>
+
+              <!-- Inventário -->
+              <div class="inventario-section">
+                <div class="inventario-header">
+                  <h3>📦 Inventário</h3>
+                  <button class="btn btn-primary btn-sm" onclick="abrirAdicionarItem()">+ Item Manual</button>
+                </div>
+                <div class="inventario-lista" id="inventarioLista">
+                  <div class="inventario-vazio">Inventário vazio. Compre itens na loja ou adicione manualmente.</div>
+                </div>
+              </div>
+
+              <!-- Histórico de Transações -->
+              <div class="recompensas-section">
+                <div class="recompensas-header">
+                  <h3>📜 Histórico de Transações</h3>
+                  <div style="display:flex;gap:6px;">
+                    <button class="btn btn-secondary btn-sm" onclick="abrirAdicionarRecompensa()">+ Recompensa</button>
+                    <button class="btn btn-secondary btn-sm" onclick="limparHistoricoTransacoes()" style="color:var(--attr-neg);">Limpar</button>
+                  </div>
+                </div>
+                <div class="recompensas-timeline" id="recompensasLista">
+                  <div class="recompensas-vazio">Nenhuma transação registrada.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ARQUÉTIPO + CUSTO NARRATIVO -->
+          <div class="editor-section">
+            <h2 class="section-title">Arquétipo & Custo</h2>
+            <div class="form-row">
+              <div class="form-group" style="margin:0;">
+                <label class="form-label">Arquétipo Natural</label>
+                <input class="form-input" id="arquetipo" type="text" placeholder="Ex: Guerreiro Primordial" oninput="debounceSave()" />
+              </div>
+              <div class="form-group" style="margin:0;">
+                <label class="form-label">Custo Narrativo</label>
+                <input class="form-input" id="custoNarrativo" type="text" placeholder="Ex: Selvageria instintiva" oninput="debounceSave()" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar direita -->
+        <aside class="editor-sidebar">
+          <!-- Retrato do personagem -->
+          <div class="portrait-card">
+            <h3 class="sidebar-title">🖼 Retrato</h3>
+            <div class="portrait-frame" id="portraitFrame" onclick="document.getElementById('portraitFileInput').click()" title="Clique para enviar imagem">
+              <div class="portrait-frame-corners"></div>
+              <div class="portrait-placeholder" id="portraitPlaceholder">
+                <span class="portrait-placeholder-icon">🎨</span>
+                <span class="portrait-placeholder-text">Clique para<br>adicionar retrato</span>
+              </div>
+              <img id="portraitImg" src="" alt="Retrato do personagem" style="display:none;" />
+              <button class="portrait-remove-btn" id="portraitRemoveBtn" onclick="removePortrait(event)" title="Remover retrato" aria-label="Remover retrato">✕</button>
+            </div>
+            <button class="portrait-upload-btn" onclick="document.getElementById('portraitFileInput').click()">
+              📂 Enviar imagem
+            </button>
+          </div>
+
+          <!-- Picos e Vales -->
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">⬆ Picos & Vales</h3>
+            <p style="font-size:0.72rem;color:var(--text-muted);margin-bottom:12px;">Calculado automaticamente · campo manual opcional</p>
+            <div class="pico-vale-item">
+              <div class="pico-vale-label pico">🔺 Pico Principal</div>
+            <div id="picosAuto" style="font-size:0.82rem;color:var(--attr-pos);margin-bottom:6px;min-height:20px;font-weight:700;font-family:var(--font-title);letter-spacing:0.04em;"></div>
+              <input class="form-input" id="picoPrincipal" type="text" placeholder="Anotação manual..." oninput="debounceSave()" style="font-size:0.8rem;" />
+            </div>
+            <div class="pico-vale-item">
+              <div class="pico-vale-label vale">🔻 Fraqueza Estrutural</div>
+            <div id="valesAuto" style="font-size:0.82rem;color:var(--attr-neg);margin-bottom:6px;min-height:20px;font-weight:700;font-family:var(--font-title);letter-spacing:0.04em;"></div>
+              <input class="form-input" id="fraquezaEstrutural" type="text" placeholder="Anotação manual..." oninput="debounceSave()" style="font-size:0.8rem;" />
+            </div>
+          </div>
+
+          <!-- Ações de preset -->
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">✨ Ações de Preset</h3>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <button class="btn btn-secondary btn-sm" onclick="saveAsPreset()" style="justify-content:center;">Salvar como Preset</button>
+              <button class="btn btn-secondary btn-sm" onclick="duplicateSheet()" style="justify-content:center;">Duplicar Ficha</button>
+              <button class="btn btn-secondary btn-sm" onclick="exportSheetPDF()" style="justify-content:center;">📄 Exportar PDF</button>
+              <button class="btn btn-secondary btn-sm" onclick="exportSheetPNG()" style="justify-content:center;">🖼 Exportar PNG</button>
+            </div>
+          </div>
+
+          <!-- Estatísticas rápidas -->
+          <div class="sidebar-card" id="statsCard">
+            <h3 class="sidebar-title">📊 Resumo</h3>
+            <div id="statsContent" style="font-size:0.82rem;color:var(--text-secondary);line-height:2;"></div>
+          </div>
+        </aside>
+      </div>
+      </div><!-- /fichaview-editar -->
+
+      <!-- PAINEL: COMPACTO (read-only, limpo) -->
+      <div class="ficha-view-panel" id="fichaview-compacto">
+        <div class="compact-sheet" id="compactSheetContent">
+          <!-- Preenchido via JS ao mudar para esta tab -->
+          <div class="empty-state" style="padding:60px 20px;color:var(--text-muted);">
+            <div class="empty-state-icon">👁</div>
+            <h3>Modo Compacto</h3>
+            <p>Selecione ou abra uma ficha para visualizar aqui.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAINEL: EXPANDIDO (read-only, detalhado) -->
+      <div class="ficha-view-panel" id="fichaview-expandido">
+        <div class="expanded-sheet" id="expandedSheetContent">
+          <div class="empty-state" style="padding:60px 20px;color:var(--text-muted);">
+            <div class="empty-state-icon">📜</div>
+            <h3>Modo Expandido</h3>
+            <p>Selecione ou abra uma ficha para visualizar aqui.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         PÁGINA 3 — PRESETS
+    ========================================================= -->
+    <div class="page" id="page-presets">
+      <div class="library-header">
+        <h1 class="library-title">Presets Raciais</h1>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-secondary btn-sm" onclick="openImportPresetModal()">⬇️ Importar JSON</button>
+          <button class="btn btn-primary btn-sm" onclick="openPreloadModal()">🌟 Pré-carregar Raças</button>
+        </div>
+      </div>
+      <div class="presets-grid" id="presetsGrid"></div>
+      <div id="presetsEmptyState" class="empty-state" style="display:none;">
+        <div class="empty-state-icon">✨</div>
+        <h3>Nenhum preset ainda</h3>
+        <p>Salve uma ficha como Preset ou pré-carregue as raças padrão.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       PÁGINA 4 — SISTEMA (Referência de Regras)
+  ========================================================= -->
+  <div class="page" id="page-sistema">
+    <div class="library-header">
+      <h1 class="library-title">📖 Sistema Verloren</h1>
+      <p style="color:var(--text-secondary);font-size:0.9rem;">Compêndio de regras — referência rápida</p>
+    </div>
+
+    <!-- Navegação agrupada do Sistema -->
+    <div class="sistema-nav" id="sistemaNav">
+
+      <!-- GRUPO: PERSONAGEM -->
+      <div class="sgrp" id="sgrp-personagem">
+        <button class="sgrp-btn has-active" onclick="toggleSGrp('personagem')" id="sgrpbtn-personagem">
+          <span class="sgrp-icon">🧬</span>
+          <span class="sgrp-label">Personagem</span>
+          <span class="sgrp-arrow" id="sgrparrow-personagem">▾</span>
+        </button>
+        <div class="sgrp-items open" id="sgrpitems-personagem">
+          <button class="sistema-subtab active" onclick="showSistemaSubsec('atributos')" data-grp="personagem">⚡ Atributos</button>
+          <button class="sistema-subtab" onclick="showSistemaSubsec('niveis')" data-grp="personagem">📈 Níveis</button>
+          <button class="sistema-subtab" onclick="showSistemaSubsec('subatributos')" data-grp="personagem">🧮 Subatributos</button>
+          <button class="sistema-subtab" onclick="showSistemaSubsec('Aika-Ukya')" data-grp="personagem">☯ Aika/Ukya</button>
+          <button class="sistema-subtab" onclick="showSistemaSubsec('background')" data-grp="personagem">📖 Background</button>
+          <button class="sistema-subtab" onclick="showSistemaSubsec('habilidades-raciais')" data-grp="personagem">🧬 Habilidades Raciais</button>
+          <button class="sistema-subtab" onclick="showSistemaSubsec('equipamentos')" data-grp="personagem">⚔️ Equipamentos</button>
+        </div>
+      </div>
+
+      <!-- GRUPO: AÇÃO -->
+      <div class="sgrp" id="sgrp-acao">
+        <button class="sgrp-btn" onclick="toggleSGrp('acao')" id="sgrpbtn-acao">
+          <span class="sgrp-icon">⚔️</span>
+          <span class="sgrp-label">Ação</span>
+          <span class="sgrp-arrow" id="sgrparrow-acao">▾</span>
+        </button>
+        <div class="sgrp-items" id="sgrpitems-acao">
+          <button class="sistema-subtab" onclick="showSistemaSubsec('modos')" data-grp="acao">🎭 Modos</button>
+          <button class="sistema-subtab" onclick="showSistemaSubsec('combate')" data-grp="acao">⚔️ Combate</button>
+          <button class="sistema-subtab" onclick="showSistemaSubsec('tracos-rolagem')" data-grp="acao">🎲 Traços de Rolagem</button>
+          <button class="sistema-subtab" onclick="showSistemaSubsec('condicoes')" data-grp="acao">💢 Condições</button>
+        </div>
+      </div>
+
+      <!-- GRUPO: PROGRESSÃO -->
+      <div class="sgrp" id="sgrp-progressao">
+        <button class="sgrp-btn" onclick="toggleSGrp('progressao')" id="sgrpbtn-progressao">
+          <span class="sgrp-icon">✦</span>
+          <span class="sgrp-label">Progressão</span>
+          <span class="sgrp-arrow" id="sgrparrow-progressao">▾</span>
+        </button>
+        <div class="sgrp-items" id="sgrpitems-progressao">
+          <button class="sistema-subtab" onclick="showSistemaSubsec('bencaos-pecados')" data-grp="progressao">✨ Bênçãos & Pecados</button>
+          <button class="sistema-subtab" onclick="showSistemaSubsec('economia')" data-grp="progressao">💰 Economia</button>
+        </div>
+      </div>
+
+      <!-- GRUPO: MAGIA -->
+      <div class="sgrp" id="sgrp-magia">
+        <button class="sgrp-btn" onclick="toggleSGrp('magia')" id="sgrpbtn-magia">
+          <span class="sgrp-icon">🔮</span>
+          <span class="sgrp-label">Magia</span>
+          <span class="sgrp-arrow" id="sgrparrow-magia">▾</span>
+        </button>
+        <div class="sgrp-items" id="sgrpitems-magia">
+          <button class="sistema-subtab" onclick="showSistemaSubsec('magia')" data-grp="magia">✨ Regras</button>
+          <button class="sistema-subtab" onclick="showSistemaSubsec('grimorio')" data-grp="magia">📖 Grimório</button>
+          <button class="sistema-subtab" onclick="showSistemaSubsec('grimorio-mundanas')" data-grp="magia">🌿 Mundanas</button>
+        </div>
+      </div>
+
+    </div><!-- /sistema-nav -->
+
+    <div class="sistema-content">
+
+      <!-- 1. ATRIBUTOS BASE -->
+      <div class="sistema-subsec active" id="ssec-atributos">
+      <section class="sistema-section" id="s-atributos">
+        <h2 class="sistema-section-title">1. Atributos Base</h2>
+        <p class="sistema-desc">O jogador distribui pontos entre os 10 atributos base. Atributos derivados (VIDA, DEF, ATQ, RESM) são calculados automaticamente.</p>
+        <div class="sistema-table-wrap">
+          <table class="sistema-table">
+            <thead><tr><th>Sigla</th><th>Nome</th><th>Descrição</th></tr></thead>
+            <tbody>
+              <tr><td><b>FOR</b></td><td>Força</td><td>Potência física, carregamento e ataques corpo a corpo</td></tr>
+              <tr><td><b>CON</b></td><td>Constituição</td><td>Resistência física, vitalidade e recuperação</td></tr>
+              <tr><td><b>AGI</b></td><td>Agilidade</td><td>Velocidade, reflexos e mobilidade</td></tr>
+              <tr><td><b>DES</b></td><td>Destreza</td><td>Precisão motora, coordenação e furtividade</td></tr>
+              <tr><td><b>VON</b></td><td>Vontade</td><td>Força de vontade, resistência mental e mágica</td></tr>
+              <tr><td><b>INT</b></td><td>Inteligência</td><td>Raciocínio lógico, memória e aprendizado técnico</td></tr>
+              <tr><td><b>SAB</b></td><td>Sabedoria</td><td>Conhecimento empírico, intuição e julgamento</td></tr>
+              <tr><td><b>PER</b></td><td>Percepção</td><td>Atenção ao ambiente, detecção passiva de ameaças</td></tr>
+              <tr><td><b>CAR</b></td><td>Carisma</td><td>Presença social, influência e persuasão</td></tr>
+              <tr><td><b>MAG</b></td><td>Magia</td><td>Potência e controle de habilidades mágicas</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      </div><!-- /ssec-atributos -->
+
+      <!-- 2. SISTEMA DE NÍVEIS -->
+      <div class="sistema-subsec" id="ssec-niveis">
+      <section class="sistema-section" id="s-niveis">
+        <h2 class="sistema-section-title">2. Sistema de Níveis & Ímpeto</h2>
+        <p class="sistema-desc">O personagem evolui acumulando Ímpeto. Ao atingir o limiar de cada nível, desbloqueia pontos adicionais de atributo, modo e habilidades.</p>
+        <div class="sistema-table-wrap">
+          <table class="sistema-table">
+            <thead><tr><th>Recurso</th><th>Fórmula</th></tr></thead>
+            <tbody>
+              <tr><td>Pontos de Atributo</td><td>3 + Nível</td></tr>
+              <tr><td>Pontos de Modo</td><td>2 + ⌊Nível ÷ 6⌋</td></tr>
+              <tr><td>Máximo por Atributo</td><td>4 + ⌊Nível ÷ 5⌋</td></tr>
+              <tr><td>Habilidades Disponíveis</td><td>1 inicial + 1 a cada 2 níveis</td></tr>
+              <tr><td>Moedas Iniciais</td><td>50 + (50 × Nível)</td></tr>
+              <tr><td>Traços</td><td>Até 3 pts/nível | Máx. 30 pts no mesmo traço</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sistema-table-wrap" style="margin-top:16px;">
+          <table class="sistema-table">
+            <thead><tr><th>Nível</th><th>Ímpeto</th><th>Marco</th><th>Descrição</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>0</td><td>—</td><td>—</td></tr>
+              <tr><td>2</td><td>10</td><td>—</td><td>—</td></tr>
+              <tr><td>3</td><td>25</td><td>—</td><td>—</td></tr>
+              <tr><td>4</td><td>45</td><td>—</td><td>—</td></tr>
+              <tr class="marco-row"><td>5</td><td>70</td><td>⚔️ Desafio</td><td>Missão longa/complexa ou Boss Mediano</td></tr>
+              <tr><td>6</td><td>100</td><td>—</td><td>—</td></tr>
+              <tr><td>7</td><td>140</td><td>—</td><td>—</td></tr>
+              <tr><td>8</td><td>190</td><td>—</td><td>—</td></tr>
+              <tr class="marco-row"><td>9</td><td>250</td><td>🌟 Grande Feito</td><td>Destaque crucial em missão ou Boss relevante</td></tr>
+              <tr><td>10</td><td>320</td><td>—</td><td>—</td></tr>
+              <tr><td>11</td><td>400</td><td>—</td><td>—</td></tr>
+              <tr><td>12</td><td>490</td><td>—</td><td>—</td></tr>
+              <tr class="marco-row"><td>13</td><td>590</td><td>💥 Determinação</td><td>Experiência de alta adrenalina / iminência de morte</td></tr>
+              <tr><td>14</td><td>700</td><td>—</td><td>—</td></tr>
+              <tr class="marco-row"><td>15</td><td>820</td><td>✨ Proeza Épica</td><td>Feito que te torna conhecido em uma região</td></tr>
+              <tr><td>16</td><td>950</td><td>—</td><td>—</td></tr>
+              <tr class="marco-row"><td>17</td><td>1090</td><td>👑 Ascensão Lendária</td><td>Reconhecido por um reino ou título de herói</td></tr>
+              <tr><td>18</td><td>1240</td><td>—</td><td>—</td></tr>
+              <tr class="marco-row"><td>19</td><td>1400</td><td>⚖️ Julgamento</td><td>Reconhecido por uma divindade ou equivalente</td></tr>
+              <tr class="marco-row"><td>20</td><td>1600</td><td>🔥 Lenda Viva</td><td>Missão de nível máximo / Boss global</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      </div><!-- /ssec-niveis -->
+
+      <!-- 3. SUBATRIBUTOS DERIVADOS -->
+      <div class="sistema-subsec" id="ssec-subatributos">
+      <section class="sistema-section" id="s-subatributos">
+        <h2 class="sistema-section-title">3. Subatributos Derivados</h2>
+        <p class="sistema-desc">Calculados automaticamente a partir dos atributos base + bônus racial + modificadores Aika/Ukya.</p>
+        <div class="sistema-table-wrap">
+          <table class="sistema-table">
+            <thead><tr><th>Subatributo</th><th>Fórmula</th><th>Descrição</th></tr></thead>
+            <tbody>
+              <tr><td><b>VIDA</b></td><td>⌊(CON + VON) ÷ 2⌋ + Nível</td><td>Pontos de vida máximos</td></tr>
+              <tr><td><b>DEF</b></td><td>⌊AGI ÷ 2⌋</td><td>Redução de acertos</td></tr>
+              <tr><td><b>ATQ</b></td><td>⌊(FOR + DES) ÷ 2⌋</td><td>Bônus de ataque</td></tr>
+              <tr><td><b>RESM</b></td><td>⌊VON ÷ 2⌋</td><td>Resistência a efeitos mágicos</td></tr>
+              <tr><td><b>INIC</b></td><td>PER + AGI</td><td>Ordem de ação no combate</td></tr>
+              <tr><td><b>MOV</b></td><td>6 + ⌊AGI ÷ 2⌋</td><td>Metros por turno</td></tr>
+              <tr><td><b>CONC</b></td><td>⌊(INT + VON) ÷ 2⌋</td><td>Foco mental em situações críticas</td></tr>
+              <tr><td><b>PERCEP</b></td><td>PER + ⌊SAB ÷ 2⌋</td><td>Detecção passiva de detalhes</td></tr>
+              <tr><td><b>FURT</b></td><td>⌊(AGI + DES) ÷ 2⌋</td><td>Agir sem ser notado</td></tr>
+              <tr><td><b>SOCIAL</b></td><td>⌊(CAR + INT) ÷ 2⌋</td><td>Influência e persuasão</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      </div><!-- /ssec-subatributos -->
+
+      <!-- 4. Aika / Ukya -->
+      <div class="sistema-subsec" id="ssec-Aika-Ukya">
+      <section class="sistema-section" id="s-Aika-Ukya">
+        <h2 class="sistema-section-title">4. Modificadores Aika / Ukya</h2>
+        <p class="sistema-desc">Modificadores de caráter que alteram atributos permanentemente enquanto ativos. Apenas um pode estar ativo por vez.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div class="sistema-card" style="border-left:4px solid #e8e0f8;">
+            <div style="font-weight:700;font-size:1rem;margin-bottom:10px;">💠 Aika (Yang)</div>
+            <ul class="sistema-list">
+              <li>FOR = −∞ (inutilizável)</li>
+              <li>MAG +2 (ignora limite máximo)</li>
+              <li>CON efetivo = 0 → pontos vão para RESM</li>
+              <li>RESM recebe +CON base</li>
+              <li>VIDA −1 (penalidade fixa)</li>
+            </ul>
+          </div>
+          <div class="sistema-card" style="border-left:4px solid #3a3060;">
+            <div style="font-weight:700;font-size:1rem;margin-bottom:10px;">🔶 Ukya (Yin)</div>
+            <ul class="sistema-list">
+              <li>MAG = −∞ (inutilizável)</li>
+              <li>FOR +2 (ignora limite máximo)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      </div><!-- /ssec-Aika-Ukya -->
+
+      <!-- 5. MODOS NARRATIVOS -->
+      <div class="sistema-subsec" id="ssec-modos">
+      <section class="sistema-section" id="s-modos">
+        <h2 class="sistema-section-title">5. Modos Narrativos</h2>
+        <p class="sistema-desc">Quatro modos de ação com escala 0–4. A raça define o valor base. O jogador só gasta Pontos de Modo ao elevar acima do valor base racial.</p>
+        <div class="sistema-table-wrap">
+          <table class="sistema-table">
+            <thead><tr><th>Modo</th><th>Foco</th><th>Exemplos</th></tr></thead>
+            <tbody>
+              <tr><td><b>Bruto</b></td><td>Força bruta e resistência</td><td>Arremessar, destruir, suportar impactos</td></tr>
+              <tr><td><b>Ágil</b></td><td>Velocidade e evasão</td><td>Esquivar, sprint, manobras acrobáticas</td></tr>
+              <tr><td><b>Preciso</b></td><td>Acuidade e técnica</td><td>Ataques cirúrgicos, tarefas delicadas</td></tr>
+              <tr><td><b>Intuitivo</b></td><td>Percepção e leitura</td><td>Prever intenções, adaptação rápida</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      </div><!-- /ssec-modos -->
+
+      <!-- 6. COMBATE -->
+      <div class="sistema-subsec" id="ssec-combate">
+      <section class="sistema-section" id="s-combate">
+        <h2 class="sistema-section-title">6. Combate — Sistema Completo</h2>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:8px;">🎲 Teste de Ataque</div>
+            <p style="font-size:0.84rem;color:var(--text-secondary);">Role os dados e some o ATK efetivo. Se superar a DEF do alvo, acerta. ATK nunca soma direto no dano — altera quantidade e qualidade dos dados.</p>
+          </div>
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:8px;">🛡 Defesa</div>
+            <p style="font-size:0.84rem;color:var(--text-secondary);">DEF = ⌊AGI ÷ 2⌋. Reduz chance de ser acertado. Armaduras e escudos adicionam bônus extras.</p>
+          </div>
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:8px;">✨ Magia</div>
+            <p style="font-size:0.84rem;color:var(--text-secondary);">Segue a mesma lógica do físico: ATK → PWR | STR/DEX → MAG | Arma → magia/efeito. Consistência total.</p>
+          </div>
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:8px;">⚡ Iniciativa</div>
+            <p style="font-size:0.84rem;color:var(--text-secondary);">INIC = PER + AGI. Determina ordem de ação. Maior valor age primeiro.</p>
+          </div>
+        </div>
+
+        <!-- ATK FÍSICO -->
+        <div class="sistema-card" style="margin-top:14px;border-left:3px solid var(--lavanda-dark);">
+          <div style="font-weight:700;margin-bottom:10px;font-size:1rem;">⚔️ ATK Efetivo — Fórmula de Dano Físico</div>
+          <p style="font-size:0.84rem;color:var(--text-secondary);margin-bottom:12px;">Cada arma possui um <b>peso normalizado w ∈ [0.00, 1.00]</b>. Armas leves dependem de DEX; pesadas, de FOR. O blend é contínuo.</p>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px;">
+            <div style="background:var(--bg-secondary);border-radius:8px;padding:10px;text-align:center;">
+              <div style="font-size:0.72rem;font-weight:700;color:var(--text-muted);margin-bottom:4px;">COMPONENTE FÍSICO</div>
+              <code style="font-size:0.85rem;color:var(--text-accent);">ATK_fis = FOR×w + DEX×(1−w)</code>
+            </div>
+            <div style="background:var(--bg-secondary);border-radius:8px;padding:10px;text-align:center;">
+              <div style="font-size:0.72rem;font-weight:700;color:var(--text-muted);margin-bottom:4px;">COMPONENTE TÉCNICO</div>
+              <code style="font-size:0.85rem;color:var(--text-accent);">ATK_tec = sign(ATK)×⌊√|ATK|×2⌋</code>
+            </div>
+            <div style="background:var(--lavanda-light);border-radius:8px;padding:10px;text-align:center;">
+              <div style="font-size:0.72rem;font-weight:700;color:var(--text-muted);margin-bottom:4px;">ATK EFETIVO FINAL</div>
+              <code style="font-size:0.9rem;color:var(--text-accent);font-weight:700;">ATK_fis + ATK_tec + bônus</code>
+            </div>
+          </div>
+
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:4px;font-weight:700;">NORMALIZAÇÃO DO PESO (w)</div>
+          <p style="font-size:0.8rem;color:var(--text-secondary);margin-bottom:10px;">w = (peso_kg − 0.4) / (3.0 − 0.4) → arredondado a 2 casas. <b>w=0.00</b> = 0,4 kg (adaga) | <b>w=1.00</b> = 3,0 kg (odachi).</p>
+
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Arma</th><th>Peso (kg)</th><th>w</th><th>Arma</th><th>Peso (kg)</th><th>w</th></tr></thead>
+              <tbody>
+                <tr><td><b>Adaga</b></td><td>0,4</td><td><b>0.00</b></td><td>Lança</td><td>1,6</td><td>0.46</td></tr>
+                <tr><td>Rondel</td><td>0,5</td><td>0.04</td><td>Espada Alexandrina</td><td>1,8</td><td>0.54</td></tr>
+                <tr><td>Kukri</td><td>0,6</td><td>0.08</td><td>Tridente / Naginata</td><td>2,0</td><td>0.62</td></tr>
+                <tr><td>Cinquedea</td><td>0,7</td><td>0.12</td><td>Machado de Guerra</td><td>2,2</td><td>0.69</td></tr>
+                <tr><td>Machado de Mão</td><td>0,8</td><td>0.15</td><td>Foice Gigante</td><td>2,3</td><td>0.73</td></tr>
+                <tr><td>Cimitarra</td><td>1,0</td><td>0.23</td><td>Alabarda / Mart. Guerra</td><td>2,5</td><td>0.81</td></tr>
+                <tr><td>Katana</td><td>1,2</td><td>0.31</td><td>Bisento</td><td>2,6</td><td>0.85</td></tr>
+                <tr><td>Espada Vitoriana</td><td>1,4</td><td>0.38</td><td><b>Odachi / Zweihänder</b></td><td>3,0</td><td><b>1.00</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TABELA ATK → BÔNUS DE DADO -->
+        <div class="sistema-card" style="margin-top:14px;border-left:3px solid var(--celeste-dark);">
+          <div style="font-weight:700;margin-bottom:10px;font-size:1rem;">📊 ATK Efetivo → Bônus de Dano</div>
+          <p style="font-size:0.84rem;color:var(--text-secondary);margin-bottom:10px;">ATK converte em <b>mais/menos dados</b>, não em flat damage. Mínimo: 1 dado total.</p>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>ATK efetivo</th><th>Efeito no dano</th><th>Exemplo (1d8 base)</th></tr></thead>
+              <tbody>
+                <tr style="color:var(--attr-neg);"><td>≤ −6</td><td>−2 dados</td><td>0d8 → 1 dado mínimo</td></tr>
+                <tr style="color:var(--attr-neg);"><td>−5 a −3</td><td>−1 dado</td><td>0d8 → 1 dado mínimo</td></tr>
+                <tr style="color:var(--attr-neg);"><td>−2 a −1</td><td>−1 passo de dado (d8→d6)</td><td>1d6</td></tr>
+                <tr><td>0 – 2</td><td>Neutro</td><td>1d8</td></tr>
+                <tr style="color:var(--attr-pos);"><td>3 – 5</td><td>+1 dado</td><td>2d8</td></tr>
+                <tr style="color:var(--attr-pos);"><td>6 – 8</td><td>+2 dados</td><td>3d8</td></tr>
+                <tr style="color:var(--attr-pos);"><td>9 – 11</td><td>+3 dados</td><td>4d8</td></tr>
+                <tr style="color:var(--attr-pos);font-weight:700;"><td>12+</td><td>+4 dados (hard cap)</td><td>5d8</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:0.78rem;color:var(--text-muted);margin-top:8px;">Fórmula final: <code>dados_finais = max(1, dados_base + bônus)</code> | dado ajustado pela penalidade de passo.</p>
+        </div>
+
+        <!-- DANO MÁGICO -->
+        <div class="sistema-card" style="margin-top:14px;border-left:3px solid var(--rose-dark);">
+          <div style="font-weight:700;margin-bottom:10px;font-size:1rem;">🔮 Dano Mágico — Sistema PWR</div>
+          <p style="font-size:0.84rem;color:var(--text-secondary);margin-bottom:12px;">Magia espelha o físico. Mesma tabela de bônus, mesma lógica — apenas as fontes mudam.</p>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+            <div style="background:var(--bg-secondary);border-radius:8px;padding:10px;">
+              <div style="font-size:0.72rem;font-weight:700;color:var(--text-muted);margin-bottom:4px;">PWR ARCANO</div>
+              <code style="font-size:0.85rem;color:var(--rose-dark);">PWR_arc = MAG</code>
+              <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">Opcional: MAG×0.7 + INT×0.3</p>
+            </div>
+            <div style="background:var(--bg-secondary);border-radius:8px;padding:10px;">
+              <div style="font-size:0.72rem;font-weight:700;color:var(--text-muted);margin-bottom:4px;">PWR TÉCNICO</div>
+              <code style="font-size:0.85rem;color:var(--rose-dark);">PWR_tec = sign(PWR)×⌊√|PWR|×2⌋</code>
+            </div>
+          </div>
+          <div style="background:var(--rose-light);border-radius:8px;padding:10px;text-align:center;margin-bottom:10px;">
+            <div style="font-size:0.72rem;font-weight:700;color:var(--text-muted);margin-bottom:4px;">PWR EFETIVO FINAL</div>
+            <code style="font-size:0.9rem;color:var(--rose-dark);font-weight:700;">PWR_arc + PWR_tec + bônus</code>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-secondary);">Usa a mesma tabela de ATK → bônus de dado. Magias geralmente não sofrem passo de dado, só quantidade. Resistência mágica (RESM) entra depois.</p>
+
+          <div class="sistema-table-wrap" style="margin-top:10px;">
+            <table class="sistema-table">
+              <thead><tr><th>Magia</th><th>Dados base</th><th>Exemplo PWR 11 (+3 dados)</th></tr></thead>
+              <tbody>
+                <tr><td>Mísseis Arcanos</td><td>2d6</td><td>5d6</td></tr>
+                <tr><td>Bola de Fogo</td><td>3d8</td><td>6d8</td></tr>
+                <tr><td>Dreno Vital</td><td>2d10</td><td>5d10</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- EMPATE E ESTRUTURA DE TURNO -->
+        <div class="sistema-card" style="margin-top:14px;">
+          <div style="font-weight:700;margin-bottom:10px;">⚔️ Teste Oposto — Regra de Empate</div>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>#</th><th>Critério</th><th>Descrição</th></tr></thead>
+              <tbody>
+                <tr><td><b>1°</b></td><td>Resultado maior</td><td>Quem rolou o total mais alto vence.</td></tr>
+                <tr><td><b>2°</b></td><td>Vantagem</td><td>Em empate, quem tem vantagem situacional vence.</td></tr>
+                <tr><td><b>3°</b></td><td>Atributo maior</td><td>Se ainda empatados, quem tiver o atributo relevante mais alto vence.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="sistema-card" style="margin-top:14px;">
+          <div style="font-weight:700;margin-bottom:10px;">🗓 Estrutura do Turno</div>
+          <p style="font-size:0.84rem;color:var(--text-secondary);margin-bottom:8px;"><b>M</b> = Maior · <b>u</b> = Utilidade · <b>mov</b> = Movimento · <b>C</b> = Completa · <b>R</b> = Reação</p>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Combinação</th></tr></thead>
+              <tbody>
+                <tr><td>M + u + mov</td></tr>
+                <tr><td>C + R</td></tr>
+                <tr><td>u + mov + R</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="verlorenSystemWorkbench"></div>
+
+        <!-- EMPUNHADURA DUPLA -->
+        <div class="sistema-card" style="margin-top:14px;border-left:3px solid var(--menta-dark);">
+          <div style="font-weight:700;margin-bottom:10px;">⚔ Empunhadura Dupla (1M / 2M)</div>
+          <p style="font-size:0.84rem;color:var(--text-secondary);margin-bottom:10px;">Algumas armas como a <b>Katana, Lança, Kusarigama</b> e outras com <code>empunhadura 1M/2M</code> têm efeitos diferentes dependendo de como são empunhadas. Use os botões de empunhadura no slot de combate para alternar.</p>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Arma</th><th>1 Mão (1M)</th><th>2 Mãos (2M)</th></tr></thead>
+              <tbody>
+                <tr><td><b>Katana</b></td><td>1d8 Corte · +2 precisão ou +1 ataque extra (−2)</td><td>2d4+2 Corte · Alcance ampliado · Sangramento mais profundo</td></tr>
+                <tr><td><b>Lança</b></td><td>1d8 Perf. · Pode arremessar</td><td>2d4+2 Perf. · Alcance 2u · +1 dado em Bruto</td></tr>
+                <tr><td><b>Tridente</b></td><td>1d10 Perf. · Arremessável</td><td>2d6 Perf. · Imobilizar garantido no crítico</td></tr>
+                <tr><td><b>Kusarifundo</b></td><td>1d8 Impacto · Flexível, ignora guarda</td><td>2d4+2 Impacto · Ataque extra (−2) · Alcance 2u</td></tr>
+                <tr><td><b>Kusarigama</b></td><td>1d10 Corte/Impacto · Puxar alvo</td><td>2d6 Corte/Impacto · Alcance 2u · Controle híbrido</td></tr>
+                <tr><td><b>Espada Alexandrina</b></td><td>1d12 Corte · Acesso à mão livre</td><td>2M padrão · −2 penalidade · Derrubar ou Fragilizar</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:0.78rem;color:var(--text-muted);margin-top:8px;">⚔⚔ Armas 2M puras (Odachi, Zweihänder etc.) travam <b>ambas as mãos</b> independente de qual slot forem equipadas.</p>
+        </div>
+      </section>
+      </div><!-- /ssec-combate -->
+
+      <!-- 7. CONDIÇÕES -->
+      <div class="sistema-subsec" id="ssec-condicoes">
+      <section class="sistema-section" id="s-condicoes">
+        <h2 class="sistema-section-title">7. Condições de Status</h2>
+
+        <div class="condicao-grupo">
+          <h3 class="condicao-titulo">😨 Medo & Pânico</h3>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Condição</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td><b>Apreensivo</b></td><td>−1 em todos os testes. Dura poucos turnos.</td></tr>
+                <tr><td><b>Apavorado</b></td><td>Pânico extremo. −4 em todos os testes. Só pode fugir ou se proteger. Requer testes de VON para retornar.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="condicao-grupo">
+          <h3 class="condicao-titulo">🔒 Imobilização</h3>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Condição</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td><b>Imobilizado</b></td><td>Não pode se deslocar. −2 em testes. Pode usar ataques à distância.</td></tr>
+                <tr><td><b>Paralizado</b></td><td>Incapaz de ações físicas. Só testes psicológicos ou de resistência.</td></tr>
+                <tr><td><b>Atordoado</b></td><td>Perda temporária de consciência. Inabilitado por ≥1 turno. Penalidade máxima.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="condicao-grupo">
+          <h3 class="condicao-titulo">🩸 Sangramento</h3>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Nível</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td><b>Sangramento 1</b></td><td>1 dano/turno. Cessa após 3 turnos. −1 resistência e concentração.</td></tr>
+                <tr><td><b>Sangramento 2</b></td><td>2–4 dano/turno. Não cessa naturalmente. −2 em físicos e concentração.</td></tr>
+                <tr><td><b>Hemorragia (3)</b></td><td>5–10% da vida/turno. Com &lt;25% VIDA: teste de resistência ou cai inconsciente. Sem contenção em 3–4 turnos: morte.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="condicao-grupo">
+          <h3 class="condicao-titulo">🧊 Congelamento</h3>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Nível</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td><b>Grau 1</b></td><td>−1 a −2 em deslocamento e físicos. −1 em ataque e esquiva.</td></tr>
+                <tr><td><b>Grau 2</b></td><td>1–3 dano/turno. −2 em físicos e coordenação. Cura reduzida 50–75%.</td></tr>
+                <tr><td><b>Grau 3</b></td><td>Imobilização total. Penalidades máximas. Requer tratamento urgente.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="condicao-grupo">
+          <h3 class="condicao-titulo">💔 Fragilizado</h3>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Nível</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td><b>Grau 1</b></td><td>+25% dano recebido. −2 em resistência física e mental.</td></tr>
+                <tr><td><b>Grau 2</b></td><td>+50% dano. −3 em resistência. −2 de movimento.</td></tr>
+                <tr><td><b>Grau 3</b></td><td>+75% dano. −4 em físicos e mentais. −3 de movimento.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="condicao-grupo">
+          <h3 class="condicao-titulo">🧠 Distúrbios Mentais</h3>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Condição</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td><b>Desorientado</b></td><td>−1 a −2 em percepção, iniciativa e ataques.</td></tr>
+                <tr><td><b>Enlouquecido</b></td><td>−3 em resistência mental, ataque e defesa. Pode agir impulsivamente.</td></tr>
+                <tr><td><b>Insano</b></td><td>Falha automática em resistência mental. Perde controle. Ataca indiscriminadamente.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="condicao-grupo">
+          <h3 class="condicao-titulo">😴 Enfraquecimento & Fadiga</h3>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Condição</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td><b>Enfraquecido 1</b></td><td>−1 em força e ataques. Dano reduzido ~10%.</td></tr>
+                <tr><td><b>Enfraquecido 2</b></td><td>−3 em força, resistência e ataques. Dano −20–30%.</td></tr>
+                <tr><td><b>Enfraquecido 3</b></td><td>−5 em físicos. Dano −50%+. Movimento reduzido à metade.</td></tr>
+                <tr><td><b>Fatigado</b></td><td>−1 a −2 em físicos e mentais. Aliviado com descanso curto.</td></tr>
+                <tr><td><b>Exausto</b></td><td>−3 em todos os testes. Movimento reduzido. Requer repouso prolongado.</td></tr>
+                <tr><td><b>Esgotado</b></td><td>−5 em todos os testes. Risco de colapso em combate.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="condicao-grupo">
+          <h3 class="condicao-titulo">🧿 Controle Mental</h3>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Condição</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td><b>Enfeitiçado</b></td><td>Não pode atacar a fonte. +10 para fonte em testes sociais. Cessa se a fonte for atacada.</td></tr>
+                <tr><td><b>Dominado</b></td><td>Controle parcial. Pode ser compelido a agir. Requer ruptura mágica.</td></tr>
+                <tr><td><b>Charm</b></td><td>Controle total temporário ou permanente. Age como servo do encantador.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="condicao-grupo">
+          <h3 class="condicao-titulo">👁 Cegueira & Surdez</h3>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Condição</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td><b>Cegueira 1</b></td><td>−1 a −2 em precisão e percepção visual. Alcance −25%.</td></tr>
+                <tr><td><b>Cegueira 2</b></td><td>Incapaz de identificar alvos. −3 em ataque à distância. Movimento −30–50%.</td></tr>
+                <tr><td><b>Cegueira Total</b></td><td>−5/falha automática em tudo visual. Ataques à distância impossíveis.</td></tr>
+                <tr><td><b>Surdo 1</b></td><td>−1 a −2 em percepção auditiva e alerta.</td></tr>
+                <tr><td><b>Surdo 2</b></td><td>Falha automática em audição fina. −3 em iniciativa.</td></tr>
+                <tr><td><b>Surdez Total</b></td><td>Falha em todos os testes de audição. Comunicação verbal impossível.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="condicao-grupo">
+          <h3 class="condicao-titulo">🌑 Assombro</h3>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Nível</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td><b>Assombro 1</b></td><td>Atacante recupera 10% do dano como VIDA. Testes de VON com Desvantagem.</td></tr>
+                <tr><td><b>Assombro 2</b></td><td>Recupera 20%. 1d4 dano sombrio/turno. VON com Desvantagem.</td></tr>
+                <tr><td><b>Assombro 3</b></td><td>Recupera 30%. 2d6 dano sombrio/turno. Não pode receber cura mágica. VON falha automática.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="condicao-grupo">
+          <h3 class="condicao-titulo">🔴 Vulnerável & Estado Crítico</h3>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Condição</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td><b>Vulnerável</b></td><td>+50% dano recebido. −1 em defesa e esquiva.</td></tr>
+                <tr><td><b>Estado Crítico</b></td><td>Dano pode ser letal ou dobrado. −4+ em defesa. Requer estabilização urgente.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="condicao-grupo">
+          <h3 class="condicao-titulo">💀 Maldição</h3>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Nível</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td><b>Amaldiçoado 1</b></td><td>−1 em testes variados. Má sorte, pequenos acidentes. Reversível por magia básica.</td></tr>
+                <tr><td><b>Amaldiçoado 2</b></td><td>−2+ em testes importantes. Efeitos contínuos. Requer rituais complexos.</td></tr>
+                <tr><td><b>Amaldiçoado 3</b></td><td>−3 a −5 em quase todos os testes. Risco de morte. Reversão por ritual raro ou divindade.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="condicao-grupo">
+          <h3 class="condicao-titulo">🍂 Necessidades Básicas</h3>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Condição</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td><b>Desidratado/Faminto 1</b></td><td>−1 em físicos de resistência e força. Fadiga leve.</td></tr>
+                <tr><td><b>Desidratado/Faminto 2</b></td><td>−2 a −3 em físicos e mentais. Dores musculares.</td></tr>
+                <tr><td><b>Desidratado/Faminto 3</b></td><td>−5 em todos os testes. Fraqueza extrema. Pode levar à morte.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="condicao-grupo">
+          <h3 class="condicao-titulo">💊 Intoxicação</h3>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Condição</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td><b>Entorpecido</b></td><td>−1 em agilidade, concentração e iniciativa. Temporário.</td></tr>
+                <tr><td><b>Drogado 1</b></td><td>−3 em físicos e mentais. Alterações comportamentais.</td></tr>
+                <tr><td><b>Drogado 2</b></td><td>−5 em quase todos. Alucinações, perda motora, possível coma.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="condicao-grupo">
+          <h3 class="condicao-titulo">☣️ Infecção</h3>
+          <div class="sistema-table-wrap">
+            <table class="sistema-table">
+              <thead><tr><th>Nível</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td><b>Infectado 1</b></td><td>−1 a −2 em resistência. Dano leve/turno. Pode infectar aliados.</td></tr>
+                <tr><td><b>Infectado 2</b></td><td>−3 em físicos e mentais. Dano progressivo. Alto risco de transmissão.</td></tr>
+                <tr><td><b>Infectado 3</b></td><td>−5 em quase todos. Risco de morte em poucos turnos. Transmissão extremamente fácil.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      </div><!-- /ssec-condicoes -->
+
+      <!-- 8. BACKGROUND -->
+      <div class="sistema-subsec" id="ssec-background">
+      <section class="sistema-section" id="s-background">
+        <h2 class="sistema-section-title">8. Background do Personagem</h2>
+        <p class="sistema-desc">O background define quem seu personagem é antes de entrar em jogo. Não concede bônus mecânicos, mas estabelece a base narrativa que o narrador pode usar para criar desafios e oportunidades.</p>
+        <div class="sistema-card">
+          <div style="font-weight:700;margin-bottom:10px;">📋 Elementos do Background</div>
+          <ul class="sistema-list">
+            <li>Crie a história de forma detalhada: local de origem, memórias, experiências.</li>
+            <li>Inclua uma memória afetiva ou marcante da infância.</li>
+            <li>Explique o que trouxe o personagem até aqui e qual seu objetivo.</li>
+            <li>Declare suas prioridades e valores centrais.</li>
+          </ul>
+        </div>
+      </section>
+      </div><!-- /ssec-background -->
+
+      <!-- HABILIDADES RACIAIS (movido do Mundo) -->
+      <div class="sistema-subsec" id="ssec-habilidades-raciais">
+        <section class="sistema-section">
+          <h2 class="sistema-section-title">Habilidades Raciais</h2>
+          <p class="sistema-desc">Catálogo completo de habilidades por raça. Use os filtros para encontrar por raça ou tipo.</p>
+        </section>
+        <div class="mundo-search-bar">
+          <div class="search-wrap" style="flex:1;min-width:200px;">
+            <input class="search-input" id="habMundoSearch" type="text" placeholder="Buscar habilidades..." oninput="filtrarHabilidadesMundo()" />
+          </div>
+          <select class="filter-select" id="habMundoRaceFilter" onchange="filtrarHabilidadesMundo()">
+            <option value="">Todas as raças</option>
+          </select>
+          <select class="filter-select" id="habMundoTipoFilter" onchange="filtrarHabilidadesMundo()">
+            <option value="">Todos os tipos</option>
+            <option value="ativa">Ativas</option>
+            <option value="passiva">Passivas</option>
+            <option value="negativa">Negativas</option>
+            <option value="progressao">Progressão</option>
+          </select>
+        </div>
+        <div class="mundo-hab-grid" id="habMundoGrid"></div>
+      </div><!-- /ssec-habilidades-raciais -->
+
+      <!-- EQUIPAMENTOS (movido do Mundo) -->
+      <div class="sistema-subsec" id="ssec-equipamentos">
+        <section class="sistema-section">
+          <h2 class="sistema-section-title">Equipamentos</h2>
+          <p class="sistema-desc">Catálogo de armas, armaduras e escudos disponíveis no universo Verloren.</p>
+        </section>
+        <div class="mundo-search-bar">
+          <div class="search-wrap" style="flex:1;min-width:200px;">
+            <input class="search-input" id="equipMundoSearch" type="text" placeholder="Buscar equipamentos..." oninput="filtrarEquipMundo()" />
+          </div>
+          <select class="filter-select" id="equipMundoTipoFilter" onchange="filtrarEquipMundo()">
+            <option value="">Todos os tipos</option>
+            <option value="arma">Armas</option>
+            <option value="armadura">Armaduras</option>
+            <option value="escudo">Escudos</option>
+          </select>
+        </div>
+        <div class="equipamentos-mundo-grid" id="equipMundoGrid"></div>
+      </div><!-- /ssec-equipamentos -->
+
+      <!-- 9. ECONOMIA -->
+      <div class="sistema-subsec" id="ssec-economia">
+      <section class="sistema-section" id="s-economia">
+        <h2 class="sistema-section-title">9. Economia & Equipamentos</h2>
+        <p class="sistema-desc">O sistema econômico usa Peças (P) como moeda universal. Personagens começam com moedas baseadas em seu nível inicial. Toda transação é registrada no histórico da ficha.</p>
+
+        <div class="sistema-card" style="margin-bottom:14px;">
+          <div style="font-weight:700;margin-bottom:8px;">💰 Moedas Iniciais</div>
+          <p style="font-size:0.84rem;color:var(--text-secondary);margin-bottom:8px;">50 + (50 × Nível). Exemplos: Nível 1 = 100P | Nível 3 = 200P | Nível 10 = 550P</p>
+          <div style="font-size:0.8rem;color:var(--text-muted);">Recompensas típicas de missão variam de 20P (tarefa simples) a 2000P+ (confrontar criatura de DIF 7+).</div>
+        </div>
+
+        <div class="sistema-table-wrap" style="margin-bottom:14px;">
+          <table class="sistema-table">
+            <thead><tr><th>Categoria de Carga</th><th>Limite</th><th>Penalidade</th></tr></thead>
+            <tbody>
+              <tr><td><b>Leve</b></td><td>≤ Carga/3</td><td>Nenhuma</td></tr>
+              <tr><td><b>Moderada</b></td><td>≤ Carga×2/3</td><td>−1 AGI</td></tr>
+              <tr><td><b>Pesada</b></td><td>≤ Carga máxima</td><td>−2 AGI, −1 DES</td></tr>
+              <tr><td><b>Sobrecarga</b></td><td>> Carga</td><td>MOV ÷ 2, −3 físicos</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.76rem;color:var(--text-muted);margin-top:6px;">Carga (kg): FOR≥0 → FOR³+FOR²+FOR+10 | FOR&lt;0 → FOR×2+10</p>
+        </div>
+
+        <div class="sistema-table-wrap" style="margin-bottom:14px;">
+          <table class="sistema-table">
+            <caption style="font-weight:700;text-align:left;padding:6px 0;font-size:0.85rem;">⚔️ Armas</caption>
+            <thead><tr><th>Arma</th><th>Dano</th><th>Tipo</th><th>Peso</th><th>Preço</th><th>Crítico</th></tr></thead>
+            <tbody>
+              <tr><td>Adaga</td><td>1d4</td><td>Perfuro | 1M</td><td>0,5kg</td><td>30P</td><td>Veneno</td></tr>
+              <tr><td>Florete</td><td>1d4</td><td>Perfuro | 1M</td><td>0,8kg</td><td>110P</td><td>Sangramento</td></tr>
+              <tr><td>Katana</td><td>1d6/2d3</td><td>Corte | 1M/2M</td><td>1,5kg</td><td>100P</td><td>Sangramento</td></tr>
+              <tr><td>Arco Curto</td><td>1d6</td><td>Perfuro | 2M</td><td>1,0kg</td><td>80P</td><td>Preciso</td></tr>
+              <tr><td>Cajado Mágico</td><td>1d4+Mag</td><td>Mágico | 2M</td><td>2,0kg</td><td>150P</td><td>Disrupção</td></tr>
+              <tr><td>Espada Longa</td><td>1d8</td><td>Corte | 1M/2M</td><td>2,5kg</td><td>120P</td><td>Penetrante</td></tr>
+              <tr><td>Lança</td><td>1d6</td><td>Perfuro | 2M</td><td>3,0kg</td><td>60P</td><td>Derrube</td></tr>
+              <tr><td>Machado</td><td>2d6</td><td>Corte | 2M</td><td>4,0kg</td><td>90P</td><td>Destruidor</td></tr>
+              <tr><td>Martelo de Guerra</td><td>2d8</td><td>Impacto | 2M</td><td>6,0kg</td><td>140P</td><td>Esmagamento</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sistema-table-wrap" style="margin-bottom:14px;">
+          <table class="sistema-table">
+            <caption style="font-weight:700;text-align:left;padding:6px 0;font-size:0.85rem;">🛡️ Armaduras & Escudos</caption>
+            <thead><tr><th>Item</th><th>RD</th><th>CA/DEF</th><th>RM</th><th>Penalidade</th><th>Peso</th><th>Preço</th></tr></thead>
+            <tbody>
+              <tr><td>Sem Armadura</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td>Robes Arcanos</td><td>0</td><td>0</td><td>+2</td><td>—</td><td>2kg</td><td>80P</td></tr>
+              <tr><td>Couro</td><td>2</td><td>+1</td><td>0</td><td>−1 AGI</td><td>8kg</td><td>50P</td></tr>
+              <tr><td>Couro Tachonado</td><td>3</td><td>+1</td><td>+1</td><td>−1 AGI</td><td>10kg</td><td>120P</td></tr>
+              <tr><td>Cota de Malha</td><td>4</td><td>+2</td><td>0</td><td>−2 AGI</td><td>16kg</td><td>200P</td></tr>
+              <tr><td>Armadura de Placas</td><td>6</td><td>+3</td><td>0</td><td>−3 AGI</td><td>24kg</td><td>500P</td></tr>
+              <tr><td>Escudo de Madeira</td><td>—</td><td>+1</td><td>—</td><td>−1</td><td>4kg</td><td>30P</td></tr>
+              <tr><td>Adarga de Couro</td><td>—</td><td>+1</td><td>—</td><td>—</td><td>2kg</td><td>40P</td></tr>
+              <tr><td>Escudo Pavez</td><td>—</td><td>+2</td><td>—</td><td>−2</td><td>8kg</td><td>80P</td></tr>
+              <tr><td>Escudo de Ferro</td><td>—</td><td>+2</td><td>—</td><td>−1</td><td>6kg</td><td>100P</td></tr>
+              <tr><td>Escudo Arcano</td><td>—</td><td>+1</td><td>—</td><td>—</td><td>1kg</td><td>200P</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sistema-table-wrap" style="margin-bottom:14px;">
+          <table class="sistema-table">
+            <caption style="font-weight:700;text-align:left;padding:6px 0;font-size:0.85rem;">🧪 Consumíveis & Poções</caption>
+            <thead><tr><th>Item</th><th>Raridade</th><th>Efeito</th><th>Peso</th><th>Preço</th></tr></thead>
+            <tbody>
+              <tr><td>Poção de Cura Menor</td><td>Incomum</td><td>+1d6+1 HP</td><td>0,3kg</td><td>50P</td></tr>
+              <tr><td>Poção de Cura Média</td><td>Raro</td><td>+2d6+3 HP, remove Sangramento</td><td>0,3kg</td><td>120P</td></tr>
+              <tr><td>Poção de Cura Maior</td><td>Épico</td><td>+4d6+6 HP, remove Sangramento e Veneno</td><td>0,3kg</td><td>300P</td></tr>
+              <tr><td>Poção de Mana Menor</td><td>Incomum</td><td>+1d6+1 MP</td><td>0,3kg</td><td>60P</td></tr>
+              <tr><td>Poção de Mana Média</td><td>Raro</td><td>+2d6+4 MP</td><td>0,3kg</td><td>150P</td></tr>
+              <tr><td>Poção de Vigor Menor</td><td>Incomum</td><td>+1d4+1 SP</td><td>0,3kg</td><td>45P</td></tr>
+              <tr><td>Tônico Mental Menor</td><td>Raro</td><td>+1d4+1 SAN, remove Confusão leve</td><td>0,3kg</td><td>80P</td></tr>
+              <tr><td>Antídoto Simples</td><td>Incomum</td><td>Remove veneno DIF≤2</td><td>0,2kg</td><td>35P</td></tr>
+              <tr><td>Antídoto Forte</td><td>Raro</td><td>Remove veneno DIF≤4</td><td>0,2kg</td><td>90P</td></tr>
+              <tr><td>Elixir de Força</td><td>Raro</td><td>+2 FOR por 1h</td><td>0,3kg</td><td>100P</td></tr>
+              <tr><td>Elixir de Agilidade</td><td>Raro</td><td>+2 AGI, +1 DES por 1h</td><td>0,3kg</td><td>100P</td></tr>
+              <tr><td>Elixir de Clareza</td><td>Raro</td><td>+2 INT e SAB por 1h</td><td>0,3kg</td><td>120P</td></tr>
+              <tr><td>Elixir de Ferro</td><td>Épico</td><td>+2 RD, +3 HP temporários por 30min</td><td>0,4kg</td><td>250P</td></tr>
+              <tr><td>Bomba de Fumaça</td><td>Incomum</td><td>Área 4×4u cega por 2 turnos</td><td>0,3kg</td><td>25P</td></tr>
+              <tr><td>Coquetel de Fogo</td><td>Raro</td><td>Área 3×3u, 2d4 fogo</td><td>0,4kg</td><td>75P</td></tr>
+              <tr><td>Veneno de Contato</td><td>Raro</td><td>1d4/turno por 3 turnos (CON DIF 3)</td><td>0,1kg</td><td>80P</td></tr>
+              <tr><td>Kit de Medicina</td><td>Incomum</td><td>5 usos, cura 1d4 HP ou estabiliza</td><td>1,0kg</td><td>60P</td></tr>
+              <tr><td>Cristal de Mana Bruta</td><td>Raro</td><td>Absorve 5 MP armazenados</td><td>0,1kg</td><td>150P</td></tr>
+              <tr><td>Óleo Sagrado</td><td>Raro</td><td>+1d4 sagrado por 3 turnos</td><td>0,3kg</td><td>100P</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sistema-table-wrap">
+          <table class="sistema-table">
+            <caption style="font-weight:700;text-align:left;padding:6px 0;font-size:0.85rem;">💎 Materiais & Ingredientes (raridade e uso)</caption>
+            <thead><tr><th>Material</th><th>Raridade</th><th>Uso Principal</th><th>Preço Base</th></tr></thead>
+            <tbody>
+              <tr><td>Ferro Bruto</td><td>Comum</td><td>Armas e ferramentas comuns</td><td>10P/kg</td></tr>
+              <tr><td>Couro Bruto</td><td>Comum</td><td>Armaduras simples</td><td>8P/unid</td></tr>
+              <tr><td>Ervas Medicinais</td><td>Comum</td><td>Ingrediente para poções menores</td><td>5P/pacote</td></tr>
+              <tr><td>Pedra Afiada</td><td>Incomum</td><td>Ferramentas e pontas de arma</td><td>25P</td></tr>
+              <tr><td>Resina Fria</td><td>Incomum</td><td>Poções de resistência ao frio</td><td>35P</td></tr>
+              <tr><td>Fragmento de Mana</td><td>Raro</td><td>Encantamentos, itens mágicos</td><td>200P</td></tr>
+              <tr><td>Sangue de Besta Rara</td><td>Raro</td><td>Potencializa qualquer poção (dobra efeito)</td><td>150P</td></tr>
+              <tr><td>Cobre Rúnico</td><td>Raro</td><td>Liga mágica, −1 MP em encantamentos</td><td>180P</td></tr>
+              <tr><td>Escama Dracônica</td><td>Épico</td><td>+1 RD em armaduras, resistência elemental</td><td>500P/unid</td></tr>
+              <tr><td>Prata Sagrada</td><td>Épico</td><td>+1d4 sagrado a mortos-vivos</td><td>600P</td></tr>
+              <tr><td>Ouro Rúnico</td><td>Lendário</td><td>Suporta encantamentos +2 ou mais</td><td>2000P</td></tr>
+              <tr><td>Coração Dracônico</td><td>Lendário</td><td>Poder imenso; encantamentos supremos</td><td>5000P</td></tr>
+              <tr><td>Centelha do Primeiro Fogo</td><td>Mítico</td><td>Armas definitivas; inestimável</td><td>50000P+</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      </div><!-- /ssec-economia -->
+
+      <!-- 10. BÊNÇÃOS & PECADOS -->
+      <div class="sistema-subsec" id="ssec-bencaos-pecados">
+      <section class="sistema-section">
+        <h2 class="sistema-section-title">10. Bênçãos & Pecados</h2>
+        <p class="sistema-desc">Bênçãos concedem poderes extraordinários sem custo direto. Pecados concedem poder mas impõem contrapartes obrigatórias que moldam o comportamento do personagem. Ambos são concedidos narrativamente pelo mestre.</p>
+
+        <!-- BÊNÇÃOS -->
+        <h3 style="font-family:var(--font-title);font-size:1.15rem;font-weight:700;color:var(--text-accent);margin:20px 0 12px;letter-spacing:0.04em;">🌟 Bênçãos</h3>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:24px;">
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">👑 Imperador</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>+3 Influência</li>
+              <li>+10% de dano</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">🧠 Sabedoria</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Vasto conhecimento sobre o mundo</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">🔥 Fênix</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Permite gastar <b>todo o Ímpeto</b> para ressurgir</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">🛡️ Rei de Ferro</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>+3 Defesa</li>
+              <li>+1 Bruto</li>
+              <li>Criaturas menores hesitam; algumas se curvam</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">🗣️ Voz do Monarca</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>+4 Influência</li>
+              <li>Ordem direta a NPC não hostil <b>deve ser obedecida</b> (exceto contra sobrevivência dele)</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">💀 Espírito Indestrutível</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Imune a medo e terror</li>
+              <li>Ao morrer: realiza <b>um último ataque com dano dobrado</b></li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">👁️ Olhos do Abismo</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Enxerga magia, ilusões e espíritos constantemente</li>
+              <li>+3 Percepção contra ameaças invisíveis</li>
+              <li>Vê a forma verdadeira de criaturas disfarçadas</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">🌑 Herança da Escuridão</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>+10% Roubo de Vida</li>
+              <li>Ao derrotar inimigo: +2 Sanidade</li>
+              <li>Críticos em Golpe/Tiro ignoram resistências</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">⏳ Relojoeiro do Destino</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>1x por sessão: volta 1 turno e reverte um resultado</li>
+              <li>+2 Reflexo</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">🎲 Azar no Azar</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Se rolar 1: pode transformar em <b>resultado máximo</b> (1x por combate)</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">🧬 Transcendido</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>+20% Sanidade máxima</li>
+              <li>-1 perda de Sanidade</li>
+              <li>Ao aprender algo sobre o inimigo: +2 Golpe contra ele até fim do combate</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">📜 Sabedoria Ancestral</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Conhece mitos, histórias e segredos sobre quase tudo</li>
+              <li>Narrador fornece <b>uma informação vital</b> ao estudar grandes ameaças</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">🐺 Predador Primordial</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>+3 Golpe</li>
+              <li>+2 Dano contra alvos feridos</li>
+              <li>Sente inimigos pelo "cheiro do medo"</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">🐗 Alfa</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Ao eliminar inimigo: <b>1 ataque extra</b> como ação bônus</li>
+              <li>Criaturas com moral baixa fogem</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">✨ Escudo do Celeste</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>50% RD contra dano não material</li>
+              <li>1x por combate: nega completamente um ataque contra aliado adjacente</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">🌅 Aurora Sagrada</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Presença purifica o ambiente</li>
+              <li>Aliados próximos: +2 Sanidade e -1 perda de Sanidade</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">🩸 Sangue do Mártir</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Sacrifica até 5 HP para curar <b>o dobro</b> em um aliado</li>
+              <li>Imune a controle mental com ≥50% HP</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">🐍 Contrato da Serpente</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>+3 Influência, +2 Comunicação, +1 Intuitivo</li>
+              <li>1x por combate: reflete uma condição negativa</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">👻 Guarda-Almas</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Ao abater inimigo: usa sua alma para executar 1 ação (armazenável)</li>
+              <li>+15 Sanidade</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card">
+            <div style="font-weight:700;margin-bottom:6px;">🌌 Caminhante Entre Mundos</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Projeta o espírito por minutos para exploração/infiltração</li>
+              <li>Imune a efeitos que afetem apenas a alma</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- PECADOS -->
+        <h3 style="font-family:var(--font-title);font-size:1.15rem;font-weight:700;color:var(--text-accent);margin:20px 0 12px;letter-spacing:0.04em;">😈 Pecados</h3>
+        <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:14px;">Cada pecado tem um <b>Poder</b> ativo e uma <b>Contraparte</b> obrigatória que restringe o comportamento do personagem.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-bottom:24px;">
+
+          <div class="sistema-card" style="border-left:3px solid #e06060;">
+            <div style="font-weight:700;margin-bottom:8px;">🔥 Ira</div>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-pos);margin-bottom:4px;">Poder</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 8px;padding-left:16px;line-height:1.8;">
+              <li>+20% dano</li>
+              <li>1 ataque extra quando ferido</li>
+            </ul>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-neg);margin-bottom:4px;">Contraparte</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Não pode recuar</li>
+              <li>Deve atacar o inimigo mais próximo (mesmo aliados)</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card" style="border-left:3px solid #8060e0;">
+            <div style="font-weight:700;margin-bottom:8px;">👁️ Inveja</div>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-pos);margin-bottom:4px;">Poder</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 8px;padding-left:16px;line-height:1.8;">
+              <li>Copia temporariamente 1 atributo ou perícia de inimigo próximo</li>
+            </ul>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-neg);margin-bottom:4px;">Contraparte</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>O inimigo copia seus valores e sabe que foi você</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card" style="border-left:3px solid #d4a017;">
+            <div style="font-weight:700;margin-bottom:8px;">💰 Ganância</div>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-pos);margin-bottom:4px;">Poder</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 8px;padding-left:16px;line-height:1.8;">
+              <li>+50% recompensas</li>
+              <li>Encontra itens raros com mais frequência</li>
+            </ul>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-neg);margin-bottom:4px;">Contraparte</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Nenhum favor é gratuito</li>
+              <li>Com mais de 1 recurso raro: -2 Sanidade por dia</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card" style="border-left:3px solid #e060a0;">
+            <div style="font-weight:700;margin-bottom:8px;">💋 Luxúria</div>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-pos);margin-bottom:4px;">Poder</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 8px;padding-left:16px;line-height:1.8;">
+              <li>+4 Influência</li>
+              <li>Um alvo encantado luta por você</li>
+            </ul>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-neg);margin-bottom:4px;">Contraparte</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Se o alvo morrer por sua causa: -2 Sanidade permanente</li>
+              <li>A 0 SAN: vira NPC obsessivo</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card" style="border-left:3px solid #708090;">
+            <div style="font-weight:700;margin-bottom:8px;">💤 Preguiça</div>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-pos);margin-bottom:4px;">Poder</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 8px;padding-left:16px;line-height:1.8;">
+              <li>Ignora fadiga, fome e dor</li>
+            </ul>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-neg);margin-bottom:4px;">Contraparte</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Sempre age por último</li>
+              <li>Não pode usar reações</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card" style="border-left:3px solid #c07030;">
+            <div style="font-weight:700;margin-bottom:8px;">🍖 Gula</div>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-pos);margin-bottom:4px;">Poder</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 8px;padding-left:16px;line-height:1.8;">
+              <li>Ao devorar a essência de um inimigo: vida total e remove condições</li>
+            </ul>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-neg);margin-bottom:4px;">Contraparte</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>+24h sem carne/alma: perde 5 HP por hora</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card" style="border-left:3px solid #e0c020;">
+            <div style="font-weight:700;margin-bottom:8px;">👑 Soberba</div>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-pos);margin-bottom:4px;">Poder</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 8px;padding-left:16px;line-height:1.8;">
+              <li>+1 em todas as ações</li>
+              <li>Ignora 1 ataque mortal por combate</li>
+            </ul>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-neg);margin-bottom:4px;">Contraparte</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Nunca aceita ordens ou recua</li>
+              <li>Deve perseguir o maior inimigo presente</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card" style="border-left:3px solid #404060;">
+            <div style="font-weight:700;margin-bottom:8px;">🕳️ Desespero</div>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-pos);margin-bottom:4px;">Poder</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 8px;padding-left:16px;line-height:1.8;">
+              <li>Quanto menor a vida, maior o dano</li>
+            </ul>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-neg);margin-bottom:4px;">Contraparte</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Quanto menor a vida, pior a Sanidade</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- ARTEFATOS DOS PECADOS -->
+        <h3 style="font-family:var(--font-title);font-size:1.15rem;font-weight:700;color:var(--text-accent);margin:20px 0 8px;letter-spacing:0.04em;">🧿 Artefatos dos Pecados</h3>
+        <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:14px;">Armas e objetos imbuídos com a essência de um pecado. Concedem poder considerável, mas carregam maldições permanentes enquanto equipados.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-bottom:8px;">
+
+          <div class="sistema-card" style="border-left:3px solid #e060a0;">
+            <div style="font-weight:700;margin-bottom:2px;">🎭 Máscara da Luxúria</div>
+            <div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:8px;font-style:italic;">Rosto do Desejo — Artefato / Influência</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 8px;padding-left:16px;line-height:1.8;">
+              <li>+4 Influência</li>
+              <li>Vantagem em Encanto e Enganação</li>
+              <li>1× por cena: controla alguém por instantes</li>
+            </ul>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-neg);margin-bottom:4px;">Maldição</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>−1 Sanidade permanente por uso</li>
+              <li>A 0 SAN: não pode removê-la; vira obsessivo</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card" style="border-left:3px solid #708090;">
+            <div style="font-weight:700;margin-bottom:2px;">💤 O Peso da Preguiça</div>
+            <div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:8px;font-style:italic;">Braço da Letargia — Arma colossal</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 8px;padding-left:16px;line-height:1.8;">
+              <li>+30% dano</li>
+              <li>Derruba inimigos facilmente</li>
+            </ul>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-neg);margin-bottom:4px;">Maldição</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Cada combate gera 1 Nível de Exaustão</li>
+              <li>Uso excessivo → coma</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card" style="border-left:3px solid #c07030;">
+            <div style="font-weight:700;margin-bottom:2px;">🍽️ Maw da Gula</div>
+            <div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:8px;font-style:italic;">Fome que Não Cessa — Arma vampírica</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 8px;padding-left:16px;line-height:1.8;">
+              <li>Ao matar: HP total +1 Dano permanente</li>
+            </ul>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-neg);margin-bottom:4px;">Maldição</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Cada dano ganho gera Fome Espiritual</li>
+              <li>24h sem matar: perde 10% HP por hora</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card" style="border-left:3px solid #8060e0;">
+            <div style="font-weight:700;margin-bottom:2px;">🪞 Lâmina da Inveja</div>
+            <div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:8px;font-style:italic;">Espelho do Rancor</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 8px;padding-left:16px;line-height:1.8;">
+              <li>Copia atributo ou perícia do alvo</li>
+              <li>+10% dano contra alvos desejados</li>
+            </ul>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-neg);margin-bottom:4px;">Maldição</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Perde memórias pessoais</li>
+              <li>Substituídas por traumas alheios</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card" style="border-left:3px solid #e06060;">
+            <div style="font-weight:700;margin-bottom:2px;">👊 Punho da Ira</div>
+            <div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:8px;font-style:italic;">Coração do Massacre</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 8px;padding-left:16px;line-height:1.8;">
+              <li>+2 dano por ferimento sofrido</li>
+              <li>1 ataque extra por turno em fúria</li>
+            </ul>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-neg);margin-bottom:4px;">Maldição</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Não pode defender ou recuar</li>
+              <li>Matar aliado: +poder, −5 Sanidade permanente</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card" style="border-left:3px solid #d4a017;">
+            <div style="font-weight:700;margin-bottom:2px;">🔫 Mão da Ganância</div>
+            <div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:8px;font-style:italic;">O Cofre Vazio — Arma de fogo</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 8px;padding-left:16px;line-height:1.8;">
+              <li>+1 dano permanente por riqueza rara obtida</li>
+              <li>+50% dano contra alvos ricos</li>
+            </ul>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-neg);margin-bottom:4px;">Maldição</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Perder recurso valioso: −10% HP, −2 Sanidade</li>
+            </ul>
+          </div>
+
+          <div class="sistema-card" style="border-left:3px solid #e0c020;">
+            <div style="font-weight:700;margin-bottom:2px;">👑 Coroa da Soberba</div>
+            <div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:8px;font-style:italic;">O Trono Acima do Mundo</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 8px;padding-left:16px;line-height:1.8;">
+              <li>Sempre age primeiro</li>
+              <li>Primeiro ataque do turno: +100% dano</li>
+              <li>+4 Influência contra submissos</li>
+            </ul>
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--attr-neg);margin-bottom:4px;">Maldição</div>
+            <ul style="font-size:0.82rem;color:var(--text-secondary);margin:0;padding-left:16px;line-height:1.8;">
+              <li>Nunca foge ou se rende</li>
+              <li>Ser superado: −5 Sanidade permanente + vingança obrigatória</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+      </div><!-- /ssec-bencaos-pecados -->
+
+      <!-- 11. TRAÇOS DE ROLAGEM -->
+      <div class="sistema-subsec" id="ssec-tracos-rolagem">
+      <section class="sistema-section">
+        <h2 class="sistema-section-title">11. Traços de Rolagem</h2>
+        <p class="sistema-desc">Traços de rolagem são ativados quando o personagem obtém sucessos em uma ação específica. Cada traço tem dois níveis de efeito: com 1 sucesso e com 2 sucessos.</p>
+
+        <div class="sistema-table-wrap" style="margin-bottom:14px;">
+          <table class="sistema-table">
+            <thead><tr><th>Traço</th><th>1 Sucesso</th><th>2 Sucessos</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><b>💪 Poder</b></td>
+                <td>+<em>nível</em> de dano adicional na arma</td>
+                <td>Dano máximo da arma</td>
+              </tr>
+              <tr>
+                <td><b>🦁 Coragem</b></td>
+                <td>+1 dado [A] na rolagem natural</td>
+                <td>Crítico garantido</td>
+              </tr>
+              <tr>
+                <td><b>🦊 Instinto</b></td>
+                <td>Informação geral sobre o alvo/situação</td>
+                <td>Pergunta específica respondida pelo narrador</td>
+              </tr>
+              <tr>
+                <td><b>🔥 Determinação</b></td>
+                <td>Recupera <em>nível</em> de recurso (1× por turno)*</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><b>👁️ Perspicácia</b></td>
+                <td>Move-se 1u adicionalmente</td>
+                <td>Move sem penalidade <b>ou</b> 1,5× do deslocamento</td>
+              </tr>
+              <tr>
+                <td><b>♟️ Estratégia</b></td>
+                <td>Vantagem na próxima rolagem contra esse alvo</td>
+                <td>Alvo tem desvantagem e −1 [A] no próximo teste contra você</td>
+              </tr>
+              <tr>
+                <td><b>🛡️ Resiliência</b></td>
+                <td>−(4 × <em>nível</em>) de dano sofrido</td>
+                <td>−(10 + 2 × <em>nível</em>)% de dano sofrido **</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sistema-card" style="font-size:0.8rem;color:var(--text-secondary);line-height:1.8;">
+          <p style="margin:0 0 6px;">* <b>Determinação</b> — recupera <em>nível</em> pontos de qualquer recurso (mana, energia, vida, sanidade etc.). Apenas 1× por turno.</p>
+          <p style="margin:0;">** <b>Resiliência</b> (2 sucessos) — não é cumulativo com outros efeitos de redução percentual; aplica-se após o cálculo normal de dano.</p>
+        </div>
+
+      </section>
+      </div><!-- /ssec-tracos-rolagem -->
+
+      <!-- ══════════════════════════════════════════════
+           SEÇÃO: MAGIA
+      ══════════════════════════════════════════════ -->
+      <div class="sistema-subsec" id="ssec-magia">
+      <section class="sistema-section">
+        <h2 class="sistema-section-title">12. Sistema de Magia</h2>
+        <p class="sistema-desc">Quatro escolas de magia com regras próprias de conjuração, vantagens táticas e limitações únicas. Cada escola reflete uma filosofia diferente de acesso ao poder mágico.</p>
+
+        <!-- Escolas -->
+        <div style="display:grid;gap:16px;margin-bottom:20px;">
+
+          <!-- ARCANA -->
+          <div class="sistema-card" style="border-left:4px solid #6aace0;">
+            <h3 style="color:var(--celeste-dark);margin:0 0 8px;font-size:1.05rem;">🔵 Arcana — Conhecimento Formal</h3>
+            <p style="color:var(--text-secondary);font-size:0.85rem;margin:0 0 10px;font-style:italic;">Controlada, calculada, reproduzível.</p>
+            <div class="sistema-table-wrap">
+              <table class="sistema-table">
+                <thead><tr><th>Regra</th><th>Detalhe</th></tr></thead>
+                <tbody>
+                  <tr><td><b>Tempo de Conjuração</b></td><td>Magias acima de 10 PM exigem ação de preparação antes. Magias ≤10 PM: ação padrão.</td></tr>
+                  <tr><td><b>Foco de Conjuração</b></td><td>Grimório, bastão rúnico ou anel arcano. Sem foco → Desvantagem em todos os testes.</td></tr>
+                  <tr><td><b>Runa Mental</b></td><td>Deve declarar a runa-conceito (ex: "Ignis-Expansão"). Se impossível narrativamente → magia falha.</td></tr>
+                  <tr><td><b>Ambiente Caótico</b></td><td>Em combate C/C, atordoamento ou dano no mesmo turno → Desvantagem. Se falhar → gasta 25% mana sem efeito.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="margin-top:8px;font-size:0.82rem;color:var(--attr-pos);">✦ Pode preparar magias fora de combate, reduzindo 1 PM/hora de estudo &nbsp;·&nbsp; Memorizar até (Prof × 2) magias (−1 PM do repertório) &nbsp;·&nbsp; Resistência Arcana (Vantagem contra contramagia) &nbsp;·&nbsp; Pode copiar de pergaminhos inimigos.</div>
+          </div>
+
+          <!-- FEITIÇARIA -->
+          <div class="sistema-card" style="border-left:4px solid #e06060;">
+            <h3 style="color:var(--attr-neg);margin:0 0 8px;font-size:1.05rem;">🔴 Feitiçaria — Magia do Sangue</h3>
+            <p style="color:var(--text-secondary);font-size:0.85rem;margin:0 0 10px;font-style:italic;">Espontânea, visceral, poderosa e instável.</p>
+            <div class="sistema-table-wrap">
+              <table class="sistema-table">
+                <thead><tr><th>Regra</th><th>Detalhe</th></tr></thead>
+                <tbody>
+                  <tr><td><b>Sem Preparação</b></td><td>Toda magia é ação padrão, independente do custo. Zero delay.</td></tr>
+                  <tr><td><b>Estado Emocional</b></td><td>Mestre pode conceder Vantagem (raiva, paixão, medo). Mesmo estado pode impor Desvantagem no controle de magnitude.</td></tr>
+                  <tr><td><b>Vazamento de Mana</b></td><td>Ao dormir, sofrer dano maciço ou choque: testa Controle (DIF 4). Falha → libera 1d10 PM descontrolados.</td></tr>
+                  <tr><td><b>Amplificação Emocional</b></td><td>Gasta +50% PM para ampliar como se fosse 1 nível acima (mesmo sem proficiência naquele nível).</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="margin-top:8px;font-size:0.82rem;color:var(--attr-pos);">✦ Pode lançar em reação (+3 PM) &nbsp;·&nbsp; Em fúria/desespero ignora 1° Sucesso Parcial &nbsp;·&nbsp; Instinto Mágico: tenta magias desconhecidas (−3 teste, custo dobrado) &nbsp;·&nbsp; Críticos únicos e dramáticos.</div>
+          </div>
+
+          <!-- BRUXARIA -->
+          <div class="sistema-card" style="border-left:4px solid #6ab87a;">
+            <h3 style="color:var(--menta-dark);margin:0 0 8px;font-size:1.05rem;">🟢 Bruxaria — Terra e Espíritos</h3>
+            <p style="color:var(--text-secondary);font-size:0.85rem;margin:0 0 10px;font-style:italic;">Ritualística, intuitiva, simbólica.</p>
+            <div class="sistema-table-wrap">
+              <table class="sistema-table">
+                <thead><tr><th>Regra</th><th>Detalhe</th></tr></thead>
+                <tbody>
+                  <tr><td><b>Componentes Físicos</b></td><td>Magias exigem ervas, ossos, cinzas etc. Sem componentes: −2 no teste ou magia impossível.</td></tr>
+                  <tr><td><b>Ritual e Tempo</b></td><td>Nível 2+: 10–30 min de ritual fora de combate. Em combate: apenas nível 0–1 instantaneamente.</td></tr>
+                  <tr><td><b>Sintonia Natural</b></td><td>Em terrenos naturais: +2 em todos os testes. Em urbano/subterrâneo: −1.</td></tr>
+                  <tr><td><b>Pacto com Espíritos</b></td><td>Invoca espírito menor do local (5 min ritual). Fornece info, componentes ou amplifica uma magia.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="margin-top:8px;font-size:0.82rem;color:var(--attr-pos);">✦ Maldições/bênçãos duram 2× &nbsp;·&nbsp; Poções e unguentos sem teste &nbsp;·&nbsp; Visão Espiritual passiva (grátis) &nbsp;·&nbsp; Imune a maldições ≤ sua Proficiência.</div>
+          </div>
+
+          <!-- INVOCAÇÃO -->
+          <div class="sistema-card" style="border-left:4px solid #e0a030;">
+            <h3 style="color:var(--attr-warn);margin:0 0 8px;font-size:1.05rem;">🟡 Invocação — Poder Externo</h3>
+            <p style="color:var(--text-secondary);font-size:0.85rem;margin:0 0 10px;font-style:italic;">Artefato, entidade, divindade ou pacto.</p>
+            <div class="sistema-table-wrap">
+              <table class="sistema-table">
+                <thead><tr><th>Regra</th><th>Detalhe</th></tr></thead>
+                <tbody>
+                  <tr><td><b>Catalisador Obrigatório</b></td><td>Todo artefato, relíquia, sigilo ou criatura evocada. Sem catalisador → nenhuma magia.</td></tr>
+                  <tr><td><b>Devoção e Custo</b></td><td>Ritual diário de 10 min. Ignorar 1 dia: −1 testes. Ignorar 3 dias: catalisador inativo.</td></tr>
+                  <tr><td><b>Modo por Catalisador</b></td><td>Selos/Artefatos → Preciso &nbsp;·&nbsp; Espíritos/Natureza → Intuitivo &nbsp;·&nbsp; Armas canalizadoras → Bruto</td></tr>
+                  <tr><td><b>Risco com Entidades</b></td><td>Entidades maiores: testa Vontade (DIF 5). Falha → exige contrapartida imediata.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="margin-top:8px;font-size:0.82rem;color:var(--attr-pos);">✦ Usa PM do catalisador (reserva separada) &nbsp;·&nbsp; Pode invocar criaturas aliadas (1 ativa/vez) &nbsp;·&nbsp; Artefatos bênçãos ignoram 1° Sucesso Parcial/sessão &nbsp;·&nbsp; Escola secundária sem penalidade com qualquer outra.</div>
+          </div>
+        </div>
+
+        <!-- Combate Mágico -->
+        <h3 class="sistema-section-title" style="font-size:1rem;margin-top:16px;">⚔️ Mecânicas de Combate Mágico</h3>
+
+        <div class="sistema-table-wrap" style="margin-bottom:14px;">
+          <table class="sistema-table">
+            <thead><tr><th>Custo de Ação</th><th>Detalhe</th></tr></thead>
+            <tbody>
+              <tr><td><b>Ação Padrão</b></td><td>Magias simples (≤10 PM) ou Feitiçaria em qualquer custo</td></tr>
+              <tr><td><b>Ação de Preparação + Padrão</b></td><td>Arcana: magias acima de 10 PM</td></tr>
+              <tr><td><b>Reação (+3 PM)</b></td><td>Feitiçaria pode lançar fora do turno</td></tr>
+              <tr><td><b>Ritual (10–30 min)</b></td><td>Bruxaria: magias nível 2+ fora de combate</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="sistema-section-title" style="font-size:1rem;margin-top:14px;">🛡️ Reações Mágicas</h3>
+        <div class="sistema-table-wrap" style="margin-bottom:14px;">
+          <table class="sistema-table">
+            <thead><tr><th>Reação</th><th>Custo</th><th>Efeito</th><th>Especial por Escola</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><b>Defender</b></td>
+                <td>Reação + 3 PM+</td>
+                <td>Teste oposto. Sucesso: −(Prof × 3) dano</td>
+                <td>Arcana: selos preparados grátis (1/cena)</td>
+              </tr>
+              <tr>
+                <td><b>Absorver</b></td>
+                <td>Reação + 3 PM (−2 penalidade)</td>
+                <td>Só vs magias. Sucesso: recupera 50% PM do custo da magia absorvida</td>
+                <td>Feitiçaria: 1×/sessão grátis, sem gasto de reação</td>
+              </tr>
+              <tr>
+                <td><b>Refletir</b></td>
+                <td>Reação + 6 PM (−3 penalidade)</td>
+                <td>Só vs alvo único. Sucesso: 75% potência retorna ao lançador</td>
+                <td>Invocação c/ artefato espelho: reduz para −1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Concentração -->
+        <h3 class="sistema-section-title" style="font-size:1rem;margin-top:14px;">🔮 Concentração [CONC]</h3>
+        <div class="sistema-table-wrap" style="margin-bottom:14px;">
+          <table class="sistema-table">
+            <thead><tr><th>Causa de Interrupção</th><th>Dificuldade</th></tr></thead>
+            <tbody>
+              <tr><td>Receber dano</td><td>Metade do dano recebido (mín. 2)</td></tr>
+              <tr><td>Ser agarrado, derrubado ou movido à força</td><td>DIF 3 (automático)</td></tr>
+              <tr><td>Atordoamento ou inconsciência</td><td>Termina imediatamente, sem teste</td></tr>
+              <tr><td>Contramagia direcionada</td><td>Teste oposto</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Sobrecarga -->
+        <h3 class="sistema-section-title" style="font-size:1rem;margin-top:14px;">⚡ Sobrecarga de Mana</h3>
+        <div class="sistema-card" style="font-size:0.85rem;">
+          <p>Quando um conjurador gasta mais PM do que possui, entra em <b>Sobrecarga</b>.</p>
+          <ul style="margin:8px 0 0;padding-left:18px;line-height:2;">
+            <li><b>Reserva de Sobrecarga:</b> Proficiência total × 5 PM</li>
+            <li><b>Custo:</b> Cada PM em Sobrecarga causa 1 de Dano Direto (ignora armadura)</li>
+            <li><b>Penalidade:</b> Magias em Sobrecarga têm Desvantagem no teste</li>
+          </ul>
+          <div class="sistema-table-wrap" style="margin-top:10px;">
+            <table class="sistema-table">
+              <thead><tr><th>Estágio</th><th>Sobrecarga Usada</th><th>Efeito Adicional</th></tr></thead>
+              <tbody>
+                <tr><td>Estágio 1</td><td>1–33% da Reserva</td><td>Dano Direto apenas</td></tr>
+                <tr><td>Estágio 2</td><td>34–66%</td><td>+ Desvantagem em todos os testes físicos</td></tr>
+                <tr><td>Estágio 3</td><td>67–100%</td><td>+ Perda de consciência após a ação</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Elementos -->
+        <h3 class="sistema-section-title" style="font-size:1rem;margin-top:16px;">🌟 Elementos de Magia</h3>
+        <div class="sistema-table-wrap">
+          <table class="sistema-table">
+            <thead><tr><th>Elemento</th><th>Escola Típica</th><th>Característica</th></tr></thead>
+            <tbody>
+              <tr><td>🔥 <b>Fogo</b></td><td>Feitiçaria / Arcana</td><td>Dano em área, Sangramento por queimadura</td></tr>
+              <tr><td>💧 <b>Água</b></td><td>Bruxaria / Siren</td><td>Controle, cura, fluxo e adaptação</td></tr>
+              <tr><td>🌿 <b>Terra</b></td><td>Bruxaria / Jotunn</td><td>Defesa, imobilização, petrificação</td></tr>
+              <tr><td>💨 <b>Ar</b></td><td>Arcana / Faerie</td><td>Velocidade, invisibilidade, deslocamento</td></tr>
+              <tr><td>☀️ <b>Luz</b></td><td>Invocação / Divina</td><td>Cura, bênção, dano sagrado</td></tr>
+              <tr><td>🌑 <b>Sombra</b></td><td>Bruxaria / Feitiçaria</td><td>Maldição, dreno, ilusão</td></tr>
+              <tr><td>⚡ <b>Raio</b></td><td>Arcana / Ex Machina</td><td>Atordoamento, precisão, velocidade</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+      </div><!-- /ssec-magia -->
+
+      <!-- ══════════════════════════════════════════════
+           GRIMÓRIO — ESCOLAS DE MAGIA
+      ══════════════════════════════════════════════ -->
+      <div class="sistema-subsec" id="ssec-grimorio">
+        <div id="grimorioEscolasContainer"></div>
+      </div><!-- /ssec-grimorio -->
+
+      <!-- ══════════════════════════════════════════════
+           GRIMÓRIO — MAGIAS MUNDANAS
+      ══════════════════════════════════════════════ -->
+      <div class="sistema-subsec" id="ssec-grimorio-mundanas">
+        <div id="grimorioMundanasContainer"></div>
+      </div><!-- /ssec-grimorio-mundanas -->
+  </div>
+  </div><!-- /page-sistema -->
+
+  <!-- =========================================================
+       PÁGINA 5 — MUNDO
+  ========================================================= -->
+  <div class="page" id="page-mundo">
+    <div class="library-header">
+      <h1 class="library-title">🌍 Mundo</h1>
+      <p style="color:var(--text-secondary);font-size:0.9rem;">Lore, regiões, fauna, flora e catálogo de drops do universo Verloren</p>
+    </div>
+
+    <!-- Navegação agrupada do Mundo -->
+    <div class="sistema-nav" id="mundoNav">
+
+      <!-- GRUPO: MUNDO -->
+      <div class="sgrp" id="sgrp-mundo-universo">
+        <button class="sgrp-btn has-active open" onclick="toggleMGrp('universo')" id="sgrpbtn-mundo-universo">
+          <span class="sgrp-icon">🌍</span>
+          <span class="sgrp-label">Universo</span>
+          <span class="sgrp-arrow" id="sgrparrow-mundo-universo">▾</span>
+        </button>
+        <div class="sgrp-items open" id="sgrpitems-mundo-universo">
+          <button class="mundo-tab active" onclick="showMundoSection('regioes')" id="mtab-regioes" data-mgrp="universo">🗺️ Regiões</button>
+          <button class="mundo-tab" onclick="showMundoSection('lore')" id="mtab-lore" data-mgrp="universo">📜 Lore</button>
+        </div>
+      </div>
+
+      <!-- GRUPO: FAUNA & FLORA -->
+      <div class="sgrp" id="sgrp-mundo-natureza">
+        <button class="sgrp-btn" onclick="toggleMGrp('natureza')" id="sgrpbtn-mundo-natureza">
+          <span class="sgrp-icon">🐲</span>
+          <span class="sgrp-label">Fauna & Flora</span>
+          <span class="sgrp-arrow" id="sgrparrow-mundo-natureza">▾</span>
+        </button>
+        <div class="sgrp-items" id="sgrpitems-mundo-natureza">
+          <button class="mundo-tab" onclick="showMundoSection('bestiario')" id="mtab-bestiario" data-mgrp="natureza">🐲 Bestiário</button>
+          <button class="mundo-tab" onclick="showMundoSection('metaflora')" id="mtab-metaflora" data-mgrp="natureza">🌿 Metaflora</button>
+        </div>
+      </div>
+
+      <!-- CATÁLOGO: tab direta sem dropdown (item único) -->
+      <div class="sgrp" id="sgrp-mundo-personagem">
+        <button class="sgrp-btn" onclick="showMundoSection('drops')" id="sgrpbtn-mundo-personagem" data-direct="drops">
+          <span class="sgrp-icon">💎</span>
+          <span class="sgrp-label">Drops & Materiais</span>
+        </button>
+      </div>
+
+    </div><!-- /mundoNav -->
+
+    <!-- ─── SEÇÃO: REGIÕES ────────────────────────── -->
+    <div class="mundo-section active" id="msec-regioes">
+      <div class="mundo-search-bar">
+        <div class="search-wrap" style="flex:1;min-width:200px;">
+          <input class="search-input" id="regiaoSearch" type="text" placeholder="Buscar regiões..." oninput="filtrarRegioes()" />
+        </div>
+      </div>
+      <div id="regioesList"></div>
+    </div>
+
+    <!-- ─── SEÇÃO: BESTIÁRIO ──────────────────────── -->
+    <div class="mundo-section" id="msec-bestiario">
+      <div class="mundo-search-bar">
+        <div class="search-wrap" style="flex:1;min-width:200px;">
+          <input class="search-input" id="bestaSearch" type="text" placeholder="Buscar criaturas..." oninput="filtrarBestas()" />
+        </div>
+        <select class="filter-select" id="bestaHabitatFilter" onchange="filtrarBestas()">
+          <option value="">Todos os habitats</option>
+          <option value="Kentrikòs">Kentrikòs</option>
+          <option value="Alsahra">Alsahra</option>
+          <option value="Severnoye">Severnoye</option>
+          <option value="Impersky">Impersky</option>
+          <option value="Hae">Hae</option>
+          <option value="Alloe">Alloe</option>
+          <option value="Vallerohk">Vallerohk</option>
+          <option value="Ryu Tal">Ryu Tal</option>
+          <option value="Lilyfrost">Lilyfrost</option>
+          <option value="Frost Forest">Frost Forest</option>
+        </select>
+        <select class="filter-select" id="bestaDiffFilter" onchange="filtrarBestas()">
+          <option value="">Toda dificuldade</option>
+          <option value="1">Dif. 1 (Passivo)</option>
+          <option value="2">Dif. 2 (Leve)</option>
+          <option value="3">Dif. 3 (Moderado)</option>
+          <option value="4">Dif. 4 (Perigoso)</option>
+          <option value="5">Dif. 5 (Élite)</option>
+          <option value="6">Dif. 6+ (Lendário)</option>
+        </select>
+      </div>
+      <div class="bestiary-grid" id="bestasGrid"></div>
+    </div>
+
+    <!-- ─── SEÇÃO: METAFLORA ─────────────────────── -->
+    <div class="mundo-section" id="msec-metaflora">
+      <div class="mundo-search-bar">
+        <div class="search-wrap" style="flex:1;min-width:200px;">
+          <input class="search-input" id="floraSearch" type="text" placeholder="Buscar flora..." oninput="filtrarFlora()" />
+        </div>
+        <select class="filter-select" id="floraRarFilter" onchange="filtrarFlora()">
+          <option value="">Toda raridade</option>
+          <option value="0">Raridade 0 (Comum)</option>
+          <option value="1">Raridade 1 (Incomum)</option>
+          <option value="2">Raridade 2 (Raro)</option>
+          <option value="3">Raridade 3 (Muito Raro)</option>
+          <option value="4">Raridade 4 (Épico)</option>
+          <option value="5">Raridade 5 (Lendário)</option>
+        </select>
+        <select class="filter-select" id="floraHabFilter" onchange="filtrarFlora()">
+          <option value="">Todos os habitats</option>
+          <option value="Alsahra">Alsahra</option>
+          <option value="Severnoye">Severnoye</option>
+          <option value="Impersky">Impersky</option>
+          <option value="Hae">Hae</option>
+          <option value="Alloe">Alloe</option>
+          <option value="Vallerohk">Vallerohk</option>
+          <option value="Ryu Tal">Ryu Tal</option>
+          <option value="Lilyfrost">Lilyfrost</option>
+          <option value="Frost Forest">Frost Forest</option>
+          <option value="Kentrikòs">Kentrikòs</option>
+        </select>
+      </div>
+      <div class="flora-grid" id="floraGrid"></div>
+    </div>
+
+    <!-- ─── SEÇÃO: DROPS & MATERIAIS ────────────────── -->
+    <div class="mundo-section" id="msec-drops">
+      <div class="mundo-search-bar">
+        <div class="search-wrap" style="flex:1;min-width:200px;">
+          <input class="search-input" id="dropsMundoSearch" type="text" placeholder="Buscar drops e materiais..." oninput="filtrarDropsMundo()" />
+        </div>
+        <select class="filter-select" id="dropsMundoRarFilter" onchange="filtrarDropsMundo()">
+          <option value="">Toda raridade</option>
+          <option value="0">Comum</option>
+          <option value="1">Incomum</option>
+          <option value="2">Raro</option>
+          <option value="3">Muito Raro</option>
+          <option value="4">Épico</option>
+          <option value="5">Lendário</option>
+        </select>
+      </div>
+      <div class="drops-mundo-grid" id="dropsMundoGrid"></div>
+    </div>
+
+    <!-- ─── SEÇÃO: LORE ──────────────────────────────── -->
+    <div class="mundo-section" id="msec-lore">
+      <div style="max-width:860px;margin:0 auto;padding:8px 0 32px;">
+
+        <!-- Whisper bar -->
+        <div class="lore-whisper" id="loreWhisper0">
+          <span class="lore-whisper-icon">✦</span>
+          <em>"Há quem diga que, quando o Véu vibra de forma errada, os Transvelares observam."</em>
+        </div>
+
+        <!-- ── CAPÍTULO I: A CRIAÇÃO ── -->
+        <div class="lore-chapter">
+          <button class="lore-chapter-btn" onclick="toggleLore('lc1')">
+            <span class="lore-chapter-num">I</span>
+            <span class="lore-chapter-title">A Criação — O Véu de Prana e os Primeiros</span>
+            <span class="lore-chapter-arrow" id="lca1">▸</span>
+          </button>
+          <div class="lore-chapter-body" id="lc1">
+            <p>Em algum ponto do universo surgiu uma <strong>fagulha</strong> — uma energia que reagia ao próprio cosmos e vibrava em resposta à existência. Essa fagulha única tornou-se duas, depois cinco, depois cem, depois mil, depois um milhão, até se transformar em um véu de fagulhas infinitesimais, incontáveis e inseparáveis.</p>
+            <p>Essa energia reagia ao universo, e o universo reagia a ela. A essa força primordial chamamos <strong class="lore-term">Prana</strong>. O Véu de Prana entrelaçou-se ao tecido do espaço-tempo, alterando toda a matéria existente. Quando a Prana se condensa, torna-se <strong class="lore-term">Luma</strong>, e a Luma toma forma.</p>
+            <div class="lore-divider">~ .... ~</div>
+            <p>Dessa forma, surgiu uma consciência — <strong>o Primeiro</strong> — e ela se tornou aquilo que chamamos de deus. Porém, era demasiado para uma única existência iniciar e findar todos os fios de Prana do universo. Assim, essa consciência se fragmentou em essências menores: dois irmãos, <strong class="lore-term">Espaço</strong> e <strong class="lore-term">Tempo</strong>.</p>
+            <p>Espaço sempre enxergou virtude tanto na Criação quanto na Destruição, porém a vibração inversa da Destruição passou a buscar engolir a Criação. Houve uma batalha entre as duas faces da matéria, e esse conflito abalou o equilíbrio universal. Tempo, para impedir que os fios do universo colapsassem, <strong>sacrificou-se</strong>.</p>
+            <p>Com isso, Criação e Destruição fragmentaram suas essências ainda mais, até se perderem entre os planos, espalhando memórias, impulsos e desejos das almas fragmentadas. Então, <strong class="lore-term">Espíritos Maiores</strong> colheram sentimentos, vontades e desejos do mundo terreno e, por meio da força, assumiram formas próprias.</p>
+            <ul class="lore-list">
+              <li>Alguns ensinaram às civilizações como concentrar a Prana em <strong class="lore-term">Mana</strong>, um fluido indefinido capaz de moldar o universo e originar qualquer elemento.</li>
+              <li>Outros protegeram aqueles que os adoravam; alguns buscaram o caos.</li>
+              <li>Houve os que distribuíram virtudes, e os que puniram impiedosamente aqueles que perturbaram o equilíbrio.</li>
+              <li>Alguns permaneceram dissolvidos na <strong class="lore-term">Astra</strong>, vagando entre os planos. Outros assumiram formas terrenas de poder incomensurável e estabeleceram seus domínios.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ── CAPÍTULO II: AS GUERRAS ── -->
+        <div class="lore-chapter">
+          <button class="lore-chapter-btn" onclick="toggleLore('lc2')">
+            <span class="lore-chapter-num">II</span>
+            <span class="lore-chapter-title">As Guerras — Cicatrizes no Tecido do Mundo</span>
+            <span class="lore-chapter-arrow" id="lca2">▸</span>
+          </button>
+          <div class="lore-chapter-body" id="lc2">
+            <p>Essas massas de poder concentrado alteraram profundamente o ambiente e a vida ao seu redor, independentemente do meio em que existissem. Surgiram novas raças, criaturas mágicas e forças residuais que tomaram forma própria. As civilizações se ergueram, a tecnologia avançou da pedra ao aço, as raças se multiplicaram e se estabilizaram.</p>
+            <p>O universo parecia, enfim, reencontrar seu equilíbrio… até a <strong class="lore-term">Guerra dos Anjos</strong>. Incontáveis vidas foram perdidas. Ódio foi semeado. Forças negativas alimentaram-se dessa energia e ganharam forma. Alguns deuses tornaram-se mortais para lutar na Terra; outros mortais ascenderam e passaram a ser conhecidos como <strong>deuses menores</strong>.</p>
+            <p>Foi uma marca terrível e sangrenta na história — pura Destruição, infundada em ódio. Com o passar do tempo, os povos se reergueram, mas as cicatrizes permaneceram. Muitos deuses morreram, outros desapareceram. A magia, antes uma virtude divina, espalhou-se até os confins do mundo, e os mortais passaram a tocar os céus.</p>
+            <p>Então irrompeu a <strong class="lore-term">Segunda Guerra dos Anjos</strong>. Temendo que o mundo mortal lhes tomasse o poder, os deuses desceram à Terra em busca de seus heróis — e de qualquer criatura que desafiasse a lei universal e o chamado equilíbrio… ou talvez apenas o orgulho imposto como lei universal.</p>
+            <div class="lore-callout">
+              <strong>O Mundo Hoje</strong>
+              <p>Ainda existem remanescentes desses prodígios: descendentes de deuses que desceram e se tornaram carne. Os anjos juram vingança contra os deuses maiores e consideram os ascendentes uma blasfêmia contra seu sangue privilegiado. Os Espíritos Maiores desprezam qualquer forma de vida inferior, enquanto as raças menores lutam pela subsistência em um mundo povoado por deuses caídos e criaturas que desafiam a própria lógica terrena.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Whisper bar 2 -->
+        <div class="lore-whisper">
+          <span class="lore-whisper-icon">✦</span>
+          <em>"Há quem diga que, quando os ecos das Guerras dos Anjos ainda ressoam no Véu, os Celestiais descem para impor ordem."</em>
+        </div>
+
+        <!-- ── CAPÍTULO III: HIERARQUIA CÓSMICA ── -->
+        <div class="lore-chapter">
+          <button class="lore-chapter-btn" onclick="toggleLore('lc3')">
+            <span class="lore-chapter-num">III</span>
+            <span class="lore-chapter-title">Hierarquia Cósmica — Entidades e Ordens</span>
+            <span class="lore-chapter-arrow" id="lca3">▸</span>
+          </button>
+          <div class="lore-chapter-body" id="lc3">
+
+            <div class="lore-tier lore-tier-beyond">
+              <div class="lore-tier-header">
+                <span class="lore-tier-badge">∞</span>
+                <strong>Transcendentes</strong>
+              </div>
+              <p>Existências que não emergiram do Véu de Prana e não pertencem à estrutura do universo.</p>
+              <ul class="lore-list">
+                <li>Não são feitos de Prana</li>
+                <li>Estão além do Primeiro</li>
+                <li>Não há origem de seu surgimento</li>
+                <li>Não dependem de Espaço ou Tempo</li>
+                <li>Não estão dentro do "sistema"</li>
+              </ul>
+              <div class="lore-sub-entry">
+                <span class="lore-sub-label">Transvelares</span>
+                <p>Manifestações além-véu incognoscíveis. Poder essencialmente infinito. Somente a <strong>Igreja do Axioma</strong> possui informação sobre sua existência.</p>
+              </div>
+            </div>
+
+            <div class="lore-tier lore-tier-transcendental">
+              <div class="lore-tier-header">
+                <span class="lore-tier-badge">★</span>
+                <strong>Transcendentais</strong>
+              </div>
+              <p>Existências nascidas da Luma primordial, pilares estruturais do universo ligados ao Véu de Prana. Alteram leis naturais diretamente. Não dependem de culto para existir. Sua morte abala a realidade cósmica. Fazem parte do "sistema", mas o transcendem.</p>
+              <div class="lore-sub-entry">
+                <span class="lore-sub-label">Deuses Ancestrais</span>
+                <p>Primeiras consciências após a divisão do Primeiro, da fragmentação de Espaço/Tempo. Sem forma fixa — princípios universais puros. Extremamente raros, muitos adormecidos ou dissolvidos. Sustentam o Véu; seu colapso rasga planos.</p>
+              </div>
+              <div class="lore-sub-entry">
+                <span class="lore-sub-label">Deuses Maiores</span>
+                <p>Formados de Ancestrais ou Prana massivo, com identidade e domínios amplos. Moldaram civilizações, criaram anjos e proles. Pilares do imaginário mortal (Guerra, Vida, Julgamento). Muitos caíram nas Guerras dos Anjos.</p>
+              </div>
+              <div class="lore-sub-entry">
+                <span class="lore-sub-label">Deuses Míticos</span>
+                <p>Surgidos de crença concentrada e Prana emocional. Parcialmente dependentes de culto — enfraquecem se esquecidos. Numerosos e politicamente ativos.</p>
+              </div>
+              <div class="lore-sub-entry">
+                <span class="lore-sub-label">Deuses Menores</span>
+                <p>Ascendentes locais ou fragmentos recentes (mortais/espíritos autonomizados). Poder territorial que devasta regiões. Frequentemente ligados a culto; sua destruição tem impacto localizado.</p>
+              </div>
+            </div>
+
+            <div class="lore-tier lore-tier-celestial">
+              <div class="lore-tier-header">
+                <span class="lore-tier-badge">◆</span>
+                <strong>Celestiais</strong>
+              </div>
+              <p>Entidades de Prana altamente estruturado, emanadas por influência divina, mas sem sustentar o universo. Superiores às raças terrenas, com autoridade cósmica. Podem morrer sem colapso estrutural. Linhagem divina ou origem conceitual — atuam fisicamente. Não alteram leis universais permanentemente.</p>
+              <div class="lore-sub-entry">
+                <span class="lore-sub-label">Aspectos</span>
+                <p>Emanações diretas de Deuses Transcendentais — projeções parciais de essência divina. Carregam autoridade real do deus-origem. Estáveis e independentes; sua destruição enfraquece o progenitor. <em>Ex.: Aspecto da Conquista (de um Deus da Guerra).</em></p>
+              </div>
+              <div class="lore-sub-entry">
+                <span class="lore-sub-label">Espíritos Maiores</span>
+                <p>Condensados de emoções, conceitos ou eventos massivos (batalhas, catástrofes). Moldam regiões, criam criaturas e influenciam civilizações. Podem ser cultuados, mas não são divinos estruturais. Politicamente poderosos. <em>Ex.: Espírito da Ruptura.</em></p>
+              </div>
+              <div class="lore-sub-entry">
+                <span class="lore-sub-label">Espíritos Menores</span>
+                <p>Fragmentos ou manifestações limitadas de Maiores/resíduos divinos. Servos locais e guardiões territoriais. Comuns no mundo — perigosos, mas não centrais.</p>
+              </div>
+              <div class="lore-sub-entry">
+                <span class="lore-sub-label">Raças Angélicas</span>
+                <p>Criadas por Deuses Maiores para executar ordem e equilíbrio. Hierarquia interna; asas opcionais; rebeldes potenciais. Odeiam ascendentes — armas conscientes forjadas nas Guerras.</p>
+              </div>
+              <div class="lore-sub-entry">
+                <span class="lore-sub-label">Deigênicos</span>
+                <p>Filhos diretos de deuses com mortais — linhagens de sangue divino ativo. Biologicamente estáveis, herança arcana. Podem ascender. Odiados por anjos puristas. Ponte entre terrenas e celestiais.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Whisper bar 3 -->
+        <div class="lore-whisper">
+          <span class="lore-whisper-icon">✦</span>
+          <em>"Há quem diga que, quando o Véu estremece em dissonância, os Deuses Maiores despertam."</em>
+        </div>
+
+      </div>
+    </div><!-- fim msec-lore -->
+
+  </div>
+
+  <!-- FAB SALVAR -->
+  <button class="fab hidden" id="fabSave" onclick="saveCurrentSheet()">✦ Salvar Ficha</button>
+
+  <!-- CRÉDITOS -->
+  <footer class="credits-footer">
+    <span class="credits-by">By <strong>seththefreak</strong></span>
+    <span class="credits-divider">·</span>
+    <span class="credits-powered">Powered by <span class="credits-claude">Claude AI</span></span>
+  </footer>
+
+  <!-- BOTTOM NAV (mobile only) -->
+  <nav class="bottom-nav" id="bottomNav" aria-label="Navegação principal">
+    <button class="bottom-nav-item active" onclick="showPage('library')" id="bnav-library">
+      <span class="bnav-icon">📚</span>
+      <span>Fichas</span>
+    </button>
+    <button class="bottom-nav-item" onclick="showPage('presets')" id="bnav-presets">
+      <span class="bnav-icon">✨</span>
+      <span>Presets</span>
+    </button>
+    <button class="bottom-nav-item" onclick="showPage('sistema')" id="bnav-sistema">
+      <span class="bnav-icon">📖</span>
+      <span>Sistema</span>
+    </button>
+    <button class="bottom-nav-item" onclick="showPage('mundo')" id="bnav-mundo">
+      <span class="bnav-icon">🌍</span>
+      <span>Mundo</span>
+    </button>
+  </nav>
+</div>
+
+<!-- =========================================================
+     MODAL — IMPORTAR JSON
+========================================================= -->
+<div class="modal-overlay" id="importModal">
+  <div class="modal">
+    <h2 class="modal-title">Importar JSON</h2>
+    <p class="modal-subtitle">Cole o conteúdo JSON de uma ficha ou backup completo.</p>
+    <textarea class="form-textarea" id="importJsonText" style="min-height:120px;font-family:monospace;font-size:0.8rem;" placeholder='{"type":"backup",...}'></textarea>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('importModal')">Cancelar</button>
+      <button class="btn btn-primary" onclick="doImport()">✓ Importar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL — PRÉ-CARREGAR RAÇAS -->
+<div class="modal-overlay" id="preloadModal">
+  <div class="modal" style="max-width:560px;">
+    <h2 class="modal-title">🌟 Pré-carregar Raças</h2>
+    <p class="modal-subtitle">Selecione as raças para carregar como Presets Raciais.</p>
+    <div class="preload-list" id="preloadList"></div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('preloadModal')">Fechar</button>
+      <button class="btn btn-primary" onclick="loadAllRaces()">Carregar Todas</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL — CONFIRMAR EXCLUSÃO -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal">
+    <h2 class="modal-title">Excluir Ficha</h2>
+    <p class="modal-subtitle" id="deleteModalText">Tem certeza que deseja excluir esta ficha? Esta ação não pode ser desfeita.</p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('deleteModal')">Cancelar</button>
+      <button class="btn btn-danger" onclick="confirmDelete()">Excluir</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL — SALVAR COMO PRESET -->
+<div class="modal-overlay" id="savePresetModal">
+  <div class="modal">
+    <h2 class="modal-title">Salvar como Preset Racial</h2>
+    <p class="modal-subtitle">Esta ficha será salva como um template reutilizável.</p>
+    <div class="form-group">
+      <label class="form-label">Nome do Preset</label>
+      <input class="form-input" id="presetNameInput" type="text" placeholder="Nome do Preset Racial..." />
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('savePresetModal')">Cancelar</button>
+      <button class="btn btn-primary" onclick="confirmSaveAsPreset()">✨ Salvar Preset</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL — EDITAR PRESET RACIAL -->
+<div class="modal-overlay" id="editPresetModal">
+  <div class="modal" style="max-width:680px;max-height:90vh;overflow-y:auto;">
+    <h2 class="modal-title" id="editPresetModalTitle">Editar Preset Racial</h2>
+    <p class="modal-subtitle">Edite os atributos e modos narrativos deste preset. As mudanças se aplicam imediatamente a quem usar este preset como base.</p>
+    <div class="form-group">
+      <label class="form-label">Nome</label>
+      <input class="form-input" id="editPresetName" type="text" placeholder="Nome do preset..." />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Conceito Narrativo</label>
+      <textarea class="form-textarea" id="editPresetConceito" style="min-height:60px;"></textarea>
+    </div>
+    <div class="form-label" style="margin-bottom:6px;">Atributos Base</div>
+    <div class="preset-edit-attrs" id="editPresetAttrs"></div>
+    <div class="form-label" style="margin-bottom:6px;margin-top:10px;">Modos Narrativos</div>
+    <div class="preset-edit-modos" id="editPresetModos"></div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('editPresetModal')">Cancelar</button>
+      <button class="btn btn-primary" onclick="confirmEditPreset()">✓ Salvar Alterações</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODO LEITURA / PREVIEW -->
+<div class="read-mode-overlay" id="readModeOverlay">
+  <div class="read-mode-sheet" id="readModeSheet">
+    <div class="read-mode-header-bar">
+      <div></div>
+      <div style="display:flex;gap:10px;">
+        <button class="btn btn-secondary btn-sm" onclick="exportSheetPDF()">📄 PDF</button>
+        <button class="btn btn-secondary btn-sm" onclick="exportSheetPNG()">🖼 PNG</button>
+        <button class="btn btn-ghost btn-sm" onclick="closeReadMode()">✕ Fechar</button>
+      </div>
+    </div>
+    <div id="readModeContent"></div>
+  </div>
+</div>
+
+<!-- MODAL — SELETOR DE EQUIPAMENTO -->
+<div class="modal-overlay" id="seletorEquipamentoModal">
+  <div class="modal modal-large">
+    <h2 class="modal-title" id="seletorEquipTitulo">Escolher Equipamento</h2>
+
+    <div class="equipamento-filtros">
+      <input type="text" id="equipamentoSearch" placeholder="🔍 Buscar equipamento..." oninput="filtrarEquipamentos()" />
+      <select id="equipamentoTipo" onchange="filtrarEquipamentos()">
+        <option value="todos">Todos os tipos</option>
+        <option value="arma">Armas</option>
+        <option value="armadura">Armaduras</option>
+        <option value="escudo">Escudos</option>
+      </select>
+    </div>
+
+    <div class="equipamento-grid" id="equipamentoGrid">
+      <!-- Preenchido via JS -->
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('seletorEquipamentoModal')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL — ADICIONAR ITEM AO INVENTÁRIO -->
+<div class="modal-overlay" id="adicionarItemModal">
+  <div class="modal">
+    <h2 class="modal-title">📦 Adicionar Item ao Inventário</h2>
+    <div class="form-group">
+      <label class="form-label">Nome do Item</label>
+      <input class="form-input" id="itemNomeInput" type="text" placeholder="Ex: Poção de Cura, Corda..." />
+    </div>
+    <div class="form-row">
+      <div class="form-group" style="margin:0;">
+        <label class="form-label">Peso (kg)</label>
+        <input class="form-input" id="itemPesoInput" type="number" min="0" step="0.1" value="0.5" placeholder="0.5" />
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label class="form-label">Quantidade</label>
+        <input class="form-input" id="itemQtdInput" type="number" min="1" value="1" />
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('adicionarItemModal')">Cancelar</button>
+      <button class="btn btn-primary" onclick="confirmarAdicionarItem()">+ Adicionar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL — ADICIONAR RECOMPENSA -->
+<div class="modal-overlay" id="adicionarRecompensaModal">
+  <div class="modal">
+    <h2 class="modal-title">📜 Registrar Recompensa</h2>
+    <div class="form-group">
+      <label class="form-label">Descrição</label>
+      <input class="form-input" id="recompDescInput" type="text" placeholder="Ex: Missão: Banir fantasmas" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Valor (P)</label>
+      <input class="form-input" id="recompValorInput" type="number" min="0" value="100" placeholder="100" />
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('adicionarRecompensaModal')">Cancelar</button>
+      <button class="btn btn-primary" onclick="confirmarAdicionarRecompensa()">✓ Registrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Transação de Moedas -->
+<div class="modal-overlay" id="transacaoModal">
+  <div class="modal">
+    <h2 class="modal-title" id="transacaoTitulo">💰 Transação</h2>
+    <div class="form-group">
+      <label class="form-label">Descrição</label>
+      <input class="form-input" id="transacaoDescInput" type="text" placeholder="Ex: Venda de itens, Recompensa da missão..." />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Valor (P)</label>
+      <input class="form-input" id="transacaoValorInput" type="number" min="0" value="100" placeholder="100" />
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('transacaoModal')">Cancelar</button>
+      <button class="btn btn-primary" onclick="confirmarTransacao()">✓ Confirmar</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script defer src="js/data/races.js"></script>
+<script defer src="js/data/presets.js"></script>
+<script defer src="js/data/equipment.js"></script>
+<script defer src="js/data/world.js"></script>
+<script defer src="js/data/grimorio.js"></script>
+<script defer src="core/companion-core.js"></script>
+<script defer src="utils/common.js"></script>
+<script defer src="systems/dice.js"></script>
+<script defer src="systems/actions.js"></script>
+<script defer src="systems/turns.js"></script>
+<script defer src="systems/combat.js"></script>
+<script defer src="systems/verloren.js"></script>
+<script defer src="ui/verloren-system-workbench.js"></script>
+<script defer src="js/app.js"></script>
+<script defer src="js/pwa.js"></script>
+</body>
+</html>

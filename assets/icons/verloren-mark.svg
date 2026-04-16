@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="64" y1="56" x2="456" y2="456" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d8c5ff"/>
+      <stop offset=".46" stop-color="#8f6cff"/>
+      <stop offset="1" stop-color="#2a3148"/>
+    </linearGradient>
+    <linearGradient id="glyph" x1="154" y1="126" x2="357" y2="374" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff7ff"/>
+      <stop offset="1" stop-color="#efe5ff"/>
+    </linearGradient>
+  </defs>
+  <rect x="32" y="32" width="448" height="448" rx="112" fill="#0f1320"/>
+  <rect x="48" y="48" width="416" height="416" rx="96" fill="url(#bg)"/>
+  <path d="M256 112 150 176v160l106 64 106-64V176l-106-64Z" fill="#13182a" fill-opacity=".22"/>
+  <path d="M256 120 160 178v156l96 58 96-58V178l-96-58Z" stroke="#fff" stroke-opacity=".32" stroke-width="10"/>
+  <path d="M177 189h55l24 54 24-54h55l-51 98 56 98h-56l-28-58-28 58h-56l56-98-51-98Z" fill="url(#glyph)"/>
+  <path d="M256 138v236" stroke="#f7f1ff" stroke-width="12" stroke-linecap="round" stroke-opacity=".56"/>
+</svg>

@@ -1,0 +1,11 @@
+/* ============================================================
+       DIVISOR ORNAMENTADO
+    ============================================================ */
+    .ornament-divider {
+      text-align: center;
+      color: var(--ornament-color);
+      font-size: 1.1rem;
+      letter-spacing: 0.4em;
+      margin: 4px 0;
+      user-select: none;
+    }

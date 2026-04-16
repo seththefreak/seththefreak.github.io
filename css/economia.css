@@ -1,0 +1,271 @@
+/* ============================================================
+       FASE 3 — ECONOMIA & EQUIPAMENTOS
+    ============================================================ */
+
+    .economia-painel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Multi-currency wallet */
+    .carteira-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .moeda-bloco {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 12px 8px;
+      border-radius: var(--radius-md);
+      border: 2px solid var(--border);
+      background: var(--bg-secondary);
+      transition: all 0.2s;
+    }
+    .moeda-bloco:hover { border-color: var(--border-accent); }
+    .moeda-bloco.cobre { border-color: rgba(180,100,40,0.4); background: rgba(180,100,40,0.06); }
+    .moeda-bloco.prata { border-color: rgba(160,170,180,0.4); background: rgba(160,170,180,0.06); }
+    .moeda-bloco.ouro  { border-color: rgba(200,160,30,0.4);  background: rgba(200,160,30,0.06);  }
+    .moeda-bloco.platina { border-color: rgba(80,140,220,0.4); background: rgba(80,140,220,0.06); }
+    .moeda-icone { font-size: 20px; }
+    .moeda-nome {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+    }
+    .moeda-bloco input {
+      width: 100%;
+      padding: 6px 4px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      color: var(--text-primary);
+      font-family: var(--font-title);
+    }
+    .carteira-info-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .carteira-conversao {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .moedas-display {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: var(--bg-secondary);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    .moedas-icone { font-size: 32px; }
+
+    #moedasInput {
+      width: 120px;
+      padding: 8px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-align: center;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      color: var(--text-primary);
+      font-family: var(--font-title);
+      transition: all var(--transition);
+    }
+    #moedasInput:focus { outline: none; border-color: var(--lavanda); box-shadow: 0 0 0 3px rgba(200,180,240,0.2); }
+
+    .moedas-info {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+    }
+
+    .carga-section { margin-top: 12px; }
+
+    .carga-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .carga-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .carga-texto {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .carga-barra {
+      height: 20px;
+      background: var(--bg-secondary);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carga-barra-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--attr-pos), var(--menta));
+      transition: width 0.4s ease, background 0.3s ease;
+      border-radius: 4px;
+    }
+
+    .carga-barra-fill.overload {
+      background: linear-gradient(90deg, var(--attr-neg), var(--rose));
+    }
+
+    /* Slots de Equipamento */
+    .slots-combate {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .slots-combate { grid-template-columns: 1fr; }
+    }
+
+    .slot-equipamento {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      text-align: center;
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .slot-equipamento:hover {
+      border-color: var(--border-accent);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .slot-icone { font-size: 40px; margin-bottom: 6px; line-height: 1; }
+
+    .slot-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .slot-item {
+      min-height: 60px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+
+    .slot-vazio {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .item-slot-nome {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    .item-slot-peso {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .item-remover {
+      margin-top: 6px;
+      padding: 3px 10px;
+      background: var(--attr-neg-bg);
+      color: var(--attr-neg);
+      border: 1px solid var(--attr-neg);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      transition: all var(--transition);
+    }
+    .item-remover:hover { background: var(--attr-neg); color: #fff; }
+
+    /* Grip toggle for dual-grip weapons */
+    .grip-toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin: 4px 0;
+      flex-wrap: wrap;
+    }
+    .grip-btn {
+      padding: 2px 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .grip-btn.active {
+      background: var(--lavanda-light);
+      border-color: var(--lavanda);
+      color: var(--text-accent);
+    }
+    .grip-active-label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-left: 4px;
+    }
+
+    .slot-adicionar {
+      width: 100%;
+      padding: 8px;
+      background: var(--lavanda-light);
+      color: var(--text-accent);
+      border: 1.5px dashed var(--lavanda);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: var(--font-text);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .slot-adicionar:hover { background: var(--lavanda); color: #fff; border-style: solid; }

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>UnheaveN: ERA - Palimpsest</title>
+  <meta name="description" content="Companion app do UnheaveN: ERA - Palimpsest dentro do PWA unificado." />
+  <link rel="manifest" href="../manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/verloren-mark.svg" />
+  <link rel="apple-touch-icon" href="../assets/icons/icon-192.png" />
+  <meta name="theme-color" content="#101625" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="ERA" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Merriweather:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/typography.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .era-topbar {
+      width: min(100%, 1360px);
+      margin: 0 auto 14px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid rgba(58, 65, 80, 0.9);
+      border-radius: 18px;
+      background: rgba(15, 17, 21, 0.84);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.3);
+    }
+
+    .era-topbar-brand {
+      display: grid;
+      gap: 2px;
+    }
+
+    .era-topbar-kicker {
+      color: #FDE68A;
+      font: 700 10px/1 "IBM Plex Mono", monospace;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .era-topbar-title {
+      color: #E5E7EB;
+      font: 700 18px/1.1 "Playfair Display", Georgia, serif;
+    }
+
+    .era-topbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .era-topbar-btn {
+      appearance: none;
+      border: 1px solid rgba(58, 65, 80, 0.9);
+      background: rgba(42, 47, 58, 0.92);
+      color: #E5E7EB;
+      border-radius: 999px;
+      min-height: 40px;
+      padding: 0 14px;
+      text-decoration: none;
+      font: 700 11px/1 "IBM Plex Mono", monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .era-topbar-btn.install {
+      color: #FDE68A;
+      border-color: rgba(253, 230, 138, 0.42);
+      background: rgba(253, 230, 138, 0.1);
+    }
+
+    .era-topbar-meta {
+      width: min(100%, 1360px);
+      margin: 0 auto 14px;
+      color: #6B7280;
+      font: 400 12px/1.5 "IBM Plex Mono", monospace;
+    }
+
+    @media (max-width: 767px) {
+      .era-topbar,
+      .era-topbar-meta {
+        width: 100%;
+      }
+
+      .era-topbar {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        margin-bottom: 0;
+      }
+
+      .era-topbar-meta {
+        padding: 10px 16px 0;
+        margin-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="era-topbar">
+    <div class="era-topbar-brand">
+      <span class="era-topbar-kicker">Sistema ativo</span>
+      <strong class="era-topbar-title">UnheaveN: ERA - Palimpsest</strong>
+    </div>
+
+    <div class="era-topbar-actions">
+      <a class="era-topbar-btn" href="../launcher.html">Hub de sistemas</a>
+      <button class="era-topbar-btn install" id="installAppBtn" type="button" onclick="promptInstallApp()" disabled>Instalar</button>
+    </div>
+  </header>
+
+  <div class="era-topbar-meta" id="installStatusText">Abra no navegador compativel para instalar o app.</div>
+  <div id="root"></div>
+
+  <script>
+    localStorage.setItem('companion_last_system', 'era');
+  </script>
+  <script src="../js/pwa.js"></script>
+  <script src="../core/companion-core.js"></script>
+  <script src="../utils/common.js"></script>
+  <script src="../systems/dice.js"></script>
+  <script src="../systems/actions.js"></script>
+  <script src="../systems/turns.js"></script>
+  <script src="../systems/combat.js"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="data.js"></script>
+  <script type="text/babel" src="era-shared.js" data-presets="react"></script>
+  <script type="text/babel" src="era-ficha.js" data-presets="react"></script>
+  <script type="text/babel" src="era-rolls.js" data-presets="react"></script>
+  <script type="text/babel" src="era-reference.js" data-presets="react"></script>
+  <script type="text/babel" src="era-app.js" data-presets="react"></script>
+</body>
+</html>

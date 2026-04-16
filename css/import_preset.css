@@ -1,0 +1,22 @@
+/* ============================================================
+       SEÇÃO DE IMPORTAR FICHAS PRÉ-CADASTRADAS
+    ============================================================ */
+    .preload-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .preload-chip {
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--lavanda);
+      background: var(--lavanda-light);
+      color: var(--text-accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .preload-chip:hover { background: var(--lavanda); color: #fff; }
+    .preload-chip.loaded { border-color: var(--menta-dark); background: var(--menta-light); color: var(--menta-dark); cursor: default; }
