@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'companion-v3.2.0';
+const CACHE_VERSION = 'companion-v3.3.0';
 const APP_SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const THIRD_PARTY_CACHE = `${CACHE_VERSION}-third-party`;
@@ -138,17 +138,20 @@ self.addEventListener('fetch', event => {
 
   if (THIRD_PARTY_ORIGINS.some(origin => url.hostname.includes(origin))) {
     event.respondWith((async () => {
+    try {
+      return await fetchAndCache(request, RUNTIME_CACHE);
+    } catch (error) {
       const cached = await caches.match(request);
-      if (cached) {
-        event.waitUntil(fetchAndCache(request, THIRD_PARTY_CACHE).catch(() => null));
-        return cached;
+      if (cached) return cached;
+      if (request.destination === 'image') {
+        return (await caches.match('./assets/icons/verloren-mark.svg')) || Response.error();
       }
-      try {
-        return await fetchAndCache(request, THIRD_PARTY_CACHE);
-      } catch (error) {
-        return Response.error();
+      if (request.destination === 'document') {
+        return (await caches.match('./launcher.html')) || (await caches.match('./index.html')) || Response.error();
       }
-    })());
+      return Response.error();
+    }
+  })());
     return;
   }
 
