@@ -156,17 +156,40 @@
 }
 
 /* Carteira compacta — horizontal em vez de 4 blocos grandes */
+/* Carteira compacta — especificidade reforçada */
+.editor-section .carteira-grid,
+.economia-painel .carteira-grid,
 .carteira-grid {
   grid-template-columns: repeat(4, 1fr) !important;
   gap: 6px !important;
 }
+.editor-section .moeda-bloco,
+.economia-painel .moeda-bloco,
 .moeda-bloco {
   padding: 7px 5px !important;
   gap: 2px !important;
 }
+.editor-section .moeda-icone,
 .moeda-icone { font-size: 14px !important; }
+.editor-section .moeda-nome,
 .moeda-nome { font-size: 0.62rem !important; }
+.editor-section .moeda-bloco input,
 .moeda-bloco input { font-size: 0.9rem !important; padding: 4px 2px !important; }
 
 /* Carga mais fina */
+.editor-section .carga-barra,
 .carga-barra { height: 12px !important; }
+
+/* Slots de combate compactos */
+.editor-section .slots-combate {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+.editor-section .slot-equipamento {
+  padding: 10px 8px;
+}
+.editor-section .slot-icone {
+  font-size: 28px;
+  margin-bottom: 4px;
+}
