@@ -77,7 +77,21 @@ if ('serviceWorker' in navigator) {
       if (registration.waiting) {
         registration.waiting.postMessage('skipWaiting');
       }
+
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'activated' && navigator.serviceWorker.controller) {
+            window.location.reload();
+          }
+        });
+      });
+
     } catch (e) {}
+  });
+
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    window.location.reload();
   });
 }
 
