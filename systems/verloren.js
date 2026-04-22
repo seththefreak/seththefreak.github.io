@@ -3,15 +3,15 @@
   var systems = global.CompanionSystems || (global.CompanionSystems = {});
 
   var VERLOREN_CONDITIONS = [
-    { id: 'apreensivo', label: 'Apreensivo', color: '#facc15', desc: '-1 em todos os testes por poucos turnos.' },
-    { id: 'apavorado', label: 'Apavorado', color: '#f97316', desc: '-4 em testes e tende a fugir ou se proteger.' },
-    { id: 'imobilizado', label: 'Imobilizado', color: '#fb7185', desc: 'Sem deslocamento e -2 em testes fisicos.' },
-    { id: 'paralisado', label: 'Paralisado', color: '#38bdf8', desc: 'Nao executa acoes fisicas ate encerrar o efeito.' },
-    { id: 'atordoado', label: 'Atordoado', color: '#eab308', desc: 'Perde a proxima acao maior ou o proprio turno.' },
+    { id: 'apreensivo', label: 'Apreensivo', color: '#BFA14A', desc: '-1 em todos os testes por poucos turnos.' },
+    { id: 'apavorado', label: 'Apavorado', color: '#B45309', desc: '-4 em testes e tende a fugir ou se proteger.' },
+    { id: 'imobilizado', label: 'Imobilizado', color: '#A55A6B', desc: 'Sem deslocamento e -2 em testes fisicos.' },
+    { id: 'paralisado', label: 'Paralisado', color: '#2C7F94', desc: 'Nao executa acoes fisicas ate encerrar o efeito.' },
+    { id: 'atordoado', label: 'Atordoado', color: '#C09C45', desc: 'Perde a proxima acao maior ou o proprio turno.' },
     { id: 'sangramento1', label: 'Sangramento 1', color: '#ef4444', desc: '1 dano por turno e leve queda de foco.' },
     { id: 'sangramento2', label: 'Sangramento 2', color: '#dc2626', desc: '2-4 dano por turno ate estancar.' },
     { id: 'hemorragia', label: 'Hemorragia', color: '#991b1b', desc: 'Dano severo por turno e risco real de queda.' },
-    { id: 'vulneravel', label: 'Vulneravel', color: '#f472b6', desc: '+50% dano recebido e defesa reduzida.' },
+    { id: 'vulneravel', label: 'Vulneravel', color: '#9A5C7E', desc: '+50% dano recebido e defesa reduzida.' },
     { id: 'estado-critico', label: 'Estado Critico', color: '#ffffff', desc: 'Letalidade elevada e necessidade de estabilizacao.' },
     { id: 'assombro1', label: 'Assombro 1', color: '#8b5cf6', desc: 'Recupera 10% do dano causado como vida.' },
     { id: 'assombro2', label: 'Assombro 2', color: '#7c3aed', desc: 'Recupera 20% e causa dano sombrio por turno.' },
@@ -168,14 +168,14 @@
     var con = ev(sheet, 'CON', helpers);
     var forca = ev(sheet, 'FOR', helpers);
     var defBase = ev(sheet, 'DEF', helpers);
-    return defBase + Math.floor((safe(con) + safe(forca)) / 6) + getEquipBonus(sheet, 'ca', helpers);
+    return defBase + Math.floor((con + forca) / 6) + getEquipBonus(sheet, 'ca', helpers);
   }
 
   function calcMR_TOTAL(sheet, helpers) {
     var von = ev(sheet, 'VON', helpers);
     var con = ev(sheet, 'CON', helpers);
     var resmBase = ev(sheet, 'RESM', helpers);
-    return resmBase + Math.floor((safe(von) + safe(con)) / 6) + getEquipBonus(sheet, 'rm', helpers);
+    return resmBase + Math.floor((von + con) / 6) + getEquipBonus(sheet, 'rm', helpers);
   }
 
   function calcATK_TOTAL(sheet, helpers) {
@@ -246,8 +246,13 @@
     var parsed = systems.Dice.parseDiceFormula(formula);
     if (!parsed) return null;
     var modifier = resolveDamageModifier(attackValue);
-    var sides = modifier.stepDelta ? systems.Dice.shiftDiceSides(parsed.sides, modifier.stepDelta) : parsed.sides;
-    var count = Math.max(1, parsed.count + modifier.diceDelta);
+    var count = parsed.count + modifier.diceDelta;
+    var stepDelta = modifier.stepDelta;
+    if (count < 1) {
+      stepDelta += count - 1;
+      count = 1;
+    }
+    var sides = stepDelta ? systems.Dice.shiftDiceSides(parsed.sides, stepDelta) : parsed.sides;
     return {
       baseFormula: parsed.formula,
       adjustedFormula: count + 'd' + sides + (parsed.bonus ? (parsed.bonus > 0 ? '+' + parsed.bonus : parsed.bonus) : ''),
