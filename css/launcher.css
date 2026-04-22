@@ -757,32 +757,22 @@ main {
 }
 
 html.launcher-safe-depth #app,
-html.browser-desktop.browser-opera #app,
-html.browser-desktop.browser-firefox #app,
-html.browser-desktop.browser-safari #app {
+html.browser-desktop #app {
   transform: none !important;
   transform-style: flat;
 }
 
 html.launcher-safe-depth .scanline,
-html.browser-desktop.browser-opera .scanline,
-html.browser-desktop.browser-firefox .scanline,
-html.browser-desktop.browser-safari .scanline,
+html.browser-desktop .scanline,
 html.launcher-safe-depth .card-shine,
-html.browser-desktop.browser-opera .card-shine,
-html.browser-desktop.browser-firefox .card-shine,
-html.browser-desktop.browser-safari .card-shine {
+html.browser-desktop .card-shine {
   display: none;
 }
 
 html.launcher-safe-depth .utility-rail,
 html.launcher-safe-depth .status-card,
-html.browser-desktop.browser-opera .utility-rail,
-html.browser-desktop.browser-opera .status-card,
-html.browser-desktop.browser-firefox .utility-rail,
-html.browser-desktop.browser-firefox .status-card,
-html.browser-desktop.browser-safari .utility-rail,
-html.browser-desktop.browser-safari .status-card {
+html.browser-desktop .utility-rail,
+html.browser-desktop .status-card {
   background: rgba(17, 20, 26, 0.94);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
