@@ -1,7 +1,10 @@
 (function () {
+  var compat = window.CompanionBrowserCompat || {};
   var LAST_SYSTEM_KEY = 'companion_last_system';
   var TRANSITION_MS = 620;
-  var reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var reducedMotionQuery = compat.matchMedia ? compat.matchMedia('(prefers-reduced-motion: reduce)') : window.matchMedia('(prefers-reduced-motion: reduce)');
+  var browserInfo = typeof compat.getBrowserInfo === 'function' ? compat.getBrowserInfo() : {};
+  var supportsBackdropFilter = typeof compat.supportsBackdropFilter === 'function' ? compat.supportsBackdropFilter() : false;
 
   var SYSTEM_MAP = {
     verloren: {
@@ -22,6 +25,34 @@
   var installAppBtn = document.getElementById('installAppBtn');
   var cards = Array.prototype.slice.call(document.querySelectorAll('.system-card[data-system][data-href]'));
   var ctaButtons = Array.prototype.slice.call(document.querySelectorAll('[data-system-cta]'));
+
+  function isDesktopViewport() {
+    return Math.max(window.innerWidth || 0, document.documentElement ? document.documentElement.clientWidth || 0 : 0) > 720;
+  }
+
+  function shouldUseSafeDesktopMode() {
+    if (!isDesktopViewport()) return false;
+    if (browserInfo.isIOS || /Android/i.test(browserInfo.userAgent || '')) return false;
+    return !!(browserInfo.isOpera || browserInfo.isFirefox || browserInfo.isSafari || !supportsBackdropFilter);
+  }
+
+  function syncDesktopRenderingMode() {
+    var root = document.documentElement;
+    if (!root || !root.classList) return;
+
+    if (shouldUseSafeDesktopMode()) {
+      root.classList.add('launcher-safe-depth');
+      if (app) app.style.transform = 'none';
+      return;
+    }
+
+    root.classList.remove('launcher-safe-depth');
+  }
+
+  function findClosest(node, selector) {
+    if (compat.closest) return compat.closest(node, selector);
+    return node && typeof node.closest === 'function' ? node.closest(selector) : null;
+  }
 
   function setButtonLabel(button, label) {
     if (!button) return;
@@ -110,7 +141,7 @@
 
   cards.forEach(function (card) {
     card.addEventListener('click', function (event) {
-      if (event.target.closest('[data-system-cta]')) return;
+      if (findClosest(event.target, '[data-system-cta]')) return;
       handleCardActivation(card);
     });
 
@@ -125,7 +156,7 @@
     button.addEventListener('click', function (event) {
       event.preventDefault();
       event.stopPropagation();
-      var card = button.closest('.system-card');
+      var card = findClosest(button, '.system-card');
       handleCardActivation(card);
     });
   });
@@ -245,7 +276,8 @@
 
   function setupParallax() {
     if (!app || reducedMotionQuery.matches) return;
-    if (window.matchMedia('(pointer: coarse)').matches) return;
+    if (shouldUseSafeDesktopMode()) return;
+    if ((compat.matchMedia ? compat.matchMedia('(pointer: coarse)') : window.matchMedia('(pointer: coarse)')).matches) return;
 
     var pointerX = window.innerWidth / 2;
     var pointerY = window.innerHeight / 2;
@@ -271,6 +303,8 @@
     });
   }
 
+  syncDesktopRenderingMode();
+  window.addEventListener('resize', syncDesktopRenderingMode, { passive: true });
   updateLastSystemUI();
   setupCosmos();
   setupParallax();

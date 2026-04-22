@@ -16,6 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&family=Playfair+Display:wght@600;700;900&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/typography.css" />
   <link rel="stylesheet" href="css/launcher.css" />
+  <script src="js/browser-compat.js"></script>
   <style>
     /* Critical layer guard from the provided launcher file: keeps background layers below interactive UI even with stale CSS cache. */
     #cosmos {
@@ -33,6 +34,38 @@
     #app {
       position: relative;
       z-index: 10;
+    }
+
+    .utility-rail,
+    .status-card,
+    .card,
+    .utility-btn,
+    .btn-enter {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .utility-btn-label,
+    .btn-label,
+    .btn-arr {
+      position: relative;
+      z-index: 5;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    html.launcher-safe-depth #app,
+    html.browser-desktop.browser-opera #app,
+    html.browser-desktop.browser-firefox #app,
+    html.browser-desktop.browser-safari #app {
+      transform: none !important;
+    }
+
+    html.launcher-safe-depth .scanline,
+    html.browser-desktop.browser-opera .scanline,
+    html.browser-desktop.browser-firefox .scanline,
+    html.browser-desktop.browser-safari .scanline {
+      display: none;
     }
 
     #veil {

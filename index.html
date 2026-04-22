@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <script src="js/browser-compat.js"></script>
   <script>
     (function () {
-      var params = new URLSearchParams(window.location.search);
+      var match = (window.location.search || '').match(/(?:\?|&)app=([^&]+)/);
+      var appParam = match ? decodeURIComponent(match[1].replace(/\+/g, ' ')) : '';
       if (
-        params.get('app') === 'verloren' ||
+        appParam === 'verloren' ||
         window.location.hash === '#new' ||
         sessionStorage.getItem('verloren_active') === '1'
       ) {

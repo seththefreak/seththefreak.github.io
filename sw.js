@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'companion-v3.6.0';
+const CACHE_VERSION = 'companion-v3.8.0';
 const APP_SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const THIRD_PARTY_CACHE = `${CACHE_VERSION}-third-party`;
@@ -82,6 +82,7 @@ const APP_SHELL = [
   "./icon-512.png",
   "./index.html",
   "./js/app.js",
+  "./js/browser-compat.js",
   "./js/data/equipment.js",
   "./js/data/grimorio.js",
   "./js/data/presets.js",

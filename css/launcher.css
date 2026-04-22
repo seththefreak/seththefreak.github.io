@@ -62,6 +62,7 @@ body::before {
   z-index: 10;
   isolation: isolate;
   width: 100%;
+  min-height: 100vh;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -114,12 +115,14 @@ main,
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  isolation: isolate;
   width: 100%;
   margin-bottom: 2rem;
   padding: 0.95rem 1rem;
   border: 1px solid rgba(58, 65, 80, 0.9);
   border-radius: 20px;
   background: rgba(17, 20, 26, 0.74);
+  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.32);
 }
@@ -182,6 +185,7 @@ main,
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  isolation: isolate;
   border: 1px solid rgba(253, 211, 77, 0.28);
   background: rgba(253, 211, 77, 0.08);
   color: var(--launcher-gold-warm);
@@ -219,12 +223,15 @@ main,
 
 .utility-btn-label {
   position: relative;
-  z-index: 2;
+  z-index: 5;
   display: inline-block;
   color: inherit;
+  opacity: 1;
+  visibility: visible;
   font: inherit;
   letter-spacing: inherit;
   -webkit-text-fill-color: currentColor;
+  text-fill-color: currentColor;
   text-shadow: 0 0 14px rgba(0, 0, 0, 0.24);
 }
 
@@ -287,10 +294,12 @@ main,
 }
 
 .status-card {
+  isolation: isolate;
   padding: 1rem 1.1rem;
   border: 1px solid rgba(58, 65, 80, 0.85);
   border-radius: 18px;
   background: rgba(18, 21, 28, 0.72);
+  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
 }
@@ -381,6 +390,7 @@ main {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  isolation: isolate;
   min-height: 100%;
   padding: clamp(1.65rem, 3vw, 2.5rem) clamp(1.2rem, 2.5vw, 2.2rem) clamp(1.35rem, 2.4vw, 2.2rem);
   background: rgba(26, 29, 36, 0.92);
@@ -611,7 +621,9 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  isolation: isolate;
   gap: 0.8rem;
+  width: auto;
   width: fit-content;
   margin-top: auto;
   padding: 0.68rem 1.4rem;
@@ -655,15 +667,18 @@ main {
 .btn-label,
 .btn-arr {
   position: relative;
-  z-index: 2;
+  z-index: 5;
 }
 
 .btn-label {
   display: inline-block;
   color: inherit;
+  opacity: 1;
+  visibility: visible;
   font: inherit;
   letter-spacing: inherit;
   -webkit-text-fill-color: currentColor;
+  text-fill-color: currentColor;
   text-shadow: 0 0 14px rgba(0, 0, 0, 0.24);
 }
 
@@ -739,6 +754,38 @@ main {
   pointer-events: none;
   background: linear-gradient(to right, transparent, rgba(167, 139, 250, 0.035), transparent);
   animation: scan 12s linear infinite;
+}
+
+html.launcher-safe-depth #app,
+html.browser-desktop.browser-opera #app,
+html.browser-desktop.browser-firefox #app,
+html.browser-desktop.browser-safari #app {
+  transform: none !important;
+  transform-style: flat;
+}
+
+html.launcher-safe-depth .scanline,
+html.browser-desktop.browser-opera .scanline,
+html.browser-desktop.browser-firefox .scanline,
+html.browser-desktop.browser-safari .scanline,
+html.launcher-safe-depth .card-shine,
+html.browser-desktop.browser-opera .card-shine,
+html.browser-desktop.browser-firefox .card-shine,
+html.browser-desktop.browser-safari .card-shine {
+  display: none;
+}
+
+html.launcher-safe-depth .utility-rail,
+html.launcher-safe-depth .status-card,
+html.browser-desktop.browser-opera .utility-rail,
+html.browser-desktop.browser-opera .status-card,
+html.browser-desktop.browser-firefox .utility-rail,
+html.browser-desktop.browser-firefox .status-card,
+html.browser-desktop.browser-safari .utility-rail,
+html.browser-desktop.browser-safari .status-card {
+  background: rgba(17, 20, 26, 0.94);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 @keyframes fadeIn {
@@ -1003,5 +1050,12 @@ main {
   .card:hover,
   .card:focus-visible {
     transform: none !important;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .utility-rail,
+  .status-card {
+    background: rgba(17, 20, 26, 0.94);
   }
 }
