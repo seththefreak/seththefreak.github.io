@@ -37,6 +37,7 @@ body {
 body {
   position: relative;
   overflow-x: hidden;
+  isolation: isolate;
 }
 
 body::before {
@@ -53,27 +54,59 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: 0;
+  pointer-events: none;
 }
 
 #app {
   position: relative;
-  z-index: 2;
+  z-index: 10;
+  isolation: isolate;
   width: 100%;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1.5rem 2.4rem;
+  gap: clamp(0.75rem, 1.8vw, 1.4rem);
+  padding: clamp(1.2rem, 2.3vw, 2rem) clamp(1rem, 2.4vw, 1.8rem) clamp(2rem, 3.6vw, 2.8rem);
   transform-style: preserve-3d;
 }
 
 #header {
+  position: relative;
+  z-index: 2;
   width: 100%;
-  max-width: 980px;
+  max-width: 1100px;
   text-align: center;
   opacity: 0;
   animation: fallIn 1.05s 0.12s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+main,
+#footer,
+.utility-rail,
+.status-rack,
+.status-card,
+#systems,
+.card,
+.utility-btn,
+.btn-enter {
+  position: relative;
+}
+
+main,
+#footer,
+.utility-rail,
+.status-rack,
+.status-card,
+#systems,
+.card {
+  z-index: 2;
+}
+
+.utility-btn,
+.btn-enter {
+  z-index: 3;
 }
 
 .utility-rail {
@@ -81,6 +114,7 @@ body::before {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  width: 100%;
   margin-bottom: 2rem;
   padding: 0.95rem 1rem;
   border: 1px solid rgba(58, 65, 80, 0.9);
@@ -94,6 +128,7 @@ body::before {
   display: inline-flex;
   align-items: center;
   gap: 0.85rem;
+  min-width: 0;
   color: inherit;
   text-decoration: none;
 }
@@ -117,6 +152,7 @@ body::before {
 .utility-home-copy {
   display: grid;
   gap: 0.2rem;
+  min-width: 0;
 }
 
 .utility-home-copy strong {
@@ -135,6 +171,7 @@ body::before {
 .utility-actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch;
   justify-content: flex-end;
   gap: 0.7rem;
 }
@@ -244,7 +281,7 @@ body::before {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  max-width: 760px;
+  max-width: 860px;
   margin: 2rem auto 0;
   text-align: left;
 }
@@ -300,11 +337,19 @@ body::before {
 
 #systems {
   display: grid;
-  grid-template-columns: 1fr 1px 1fr;
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
   width: 100%;
-  max-width: 880px;
+  max-width: 1040px;
+  align-items: stretch;
   opacity: 0;
   animation: riseUp 1s 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+main {
+  width: 100%;
+  max-width: 1120px;
+  display: flex;
+  justify-content: center;
 }
 
 .vdiv {
@@ -334,7 +379,10 @@ body::before {
 .card {
   position: relative;
   overflow: hidden;
-  padding: 2.5rem 2.2rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: clamp(1.65rem, 3vw, 2.5rem) clamp(1.2rem, 2.5vw, 2.2rem) clamp(1.35rem, 2.4vw, 2.2rem);
   background: rgba(26, 29, 36, 0.92);
   border: 1px solid var(--launcher-border);
   cursor: pointer;
@@ -403,6 +451,7 @@ body::before {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 0;
 }
 
 .card-bg {
@@ -448,10 +497,15 @@ body::before {
   box-shadow: 0 28px 56px rgba(253, 230, 138, 0.07);
 }
 
+.card > :not(.card-bg):not(.card-shine) {
+  position: relative;
+  z-index: 1;
+}
+
 .sigil-wrap {
   position: relative;
-  width: 90px;
-  height: 90px;
+  width: clamp(76px, 8vw, 90px);
+  height: clamp(76px, 8vw, 90px);
   margin-bottom: 1.6rem;
   flex-shrink: 0;
 }
@@ -507,7 +561,7 @@ body::before {
 }
 
 .sys-desc {
-  max-width: 30ch;
+  max-width: 34ch;
   margin: 0 0 1.8rem;
   color: var(--launcher-muted);
   font-size: clamp(0.8rem, 1.25vw, 0.93rem);
@@ -518,7 +572,8 @@ body::before {
 
 .stats {
   display: flex;
-  gap: 1.3rem;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.15rem;
   margin-bottom: 1.8rem;
   padding-top: 1.1rem;
   border-top: 1px solid var(--launcher-border);
@@ -528,6 +583,7 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 0.18rem;
+  min-width: 92px;
 }
 
 .stat-lbl {
@@ -557,6 +613,7 @@ body::before {
   justify-content: center;
   gap: 0.8rem;
   width: fit-content;
+  margin-top: auto;
   padding: 0.68rem 1.4rem;
   background: transparent;
   border: 1px solid;
@@ -638,6 +695,8 @@ body::before {
 }
 
 #footer {
+  width: 100%;
+  max-width: 1120px;
   margin-top: 1.8rem;
   color: var(--launcher-border);
   text-align: center;
@@ -674,7 +733,7 @@ body::before {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 3;
+  z-index: 1;
   width: 100%;
   height: 1px;
   pointer-events: none;
@@ -725,26 +784,43 @@ body::before {
 @media (max-width: 900px) {
   .status-rack {
     grid-template-columns: 1fr;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 720px) {
   #app {
     justify-content: flex-start;
-    padding-top: 1.2rem;
+    padding-top: 1.1rem;
   }
 
   .utility-rail {
     flex-direction: column;
     align-items: stretch;
+    margin-bottom: 1.45rem;
+    padding: 0.9rem;
   }
 
   .utility-actions {
+    width: 100%;
     justify-content: stretch;
+  }
+
+  .utility-actions > * {
+    flex: 1 1 0;
+  }
+
+  .utility-home {
+    justify-content: center;
+  }
+
+  .utility-home-copy {
+    text-align: center;
   }
 
   .utility-btn {
     flex: 1;
+    min-width: 0;
   }
 }
 
@@ -757,7 +833,7 @@ body::before {
   #systems {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1px auto;
-    max-width: 420px;
+    max-width: 100%;
   }
 
   .vdiv {
@@ -778,6 +854,130 @@ body::before {
   .card-era {
     border-left: 1px solid var(--launcher-border);
     border-top: none;
+  }
+
+  #app {
+    gap: 0.35rem;
+    padding: 1rem 0.9rem 1.8rem;
+  }
+
+  #header,
+  main,
+  #footer {
+    max-width: 100%;
+  }
+
+  .pre-label {
+    gap: 0.6rem;
+    margin-bottom: 0.85rem;
+    letter-spacing: 0.32em;
+  }
+
+  .tagline {
+    margin-top: 0.55rem;
+    letter-spacing: 0.16em;
+  }
+
+  .status-rack {
+    gap: 0.75rem;
+    margin-top: 1.35rem;
+  }
+
+  .status-card {
+    padding: 0.9rem 0.95rem;
+  }
+
+  .sep {
+    margin: 1.65rem 0 1.7rem;
+  }
+
+  .card {
+    min-height: 0;
+    padding: 1.35rem 1.1rem 1.15rem;
+  }
+
+  .sigil-wrap {
+    width: 74px;
+    height: 74px;
+    margin-bottom: 1.1rem;
+  }
+
+  .sys-desc {
+    max-width: none;
+    margin-bottom: 1.3rem;
+  }
+
+  .stats {
+    margin-bottom: 1.25rem;
+    padding-top: 0.85rem;
+  }
+
+  .btn-enter {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  #footer {
+    margin-top: 1rem;
+    padding: 0 0.3rem;
+    letter-spacing: 0.18em;
+  }
+}
+
+@media (max-width: 480px) {
+  .utility-home {
+    flex-direction: column;
+    gap: 0.65rem;
+    text-align: center;
+  }
+
+  .utility-home-copy strong {
+    font-size: 1.05rem;
+  }
+
+  .utility-home-copy span {
+    letter-spacing: 0.08em;
+  }
+
+  .pre-label {
+    font-size: 0.54rem;
+    letter-spacing: 0.28em;
+  }
+
+  .pre-label::before,
+  .pre-label::after {
+    width: 22px;
+  }
+
+  #wordmark {
+    font-size: clamp(2.35rem, 14vw, 3.2rem);
+    letter-spacing: 0.08em;
+  }
+
+  .tagline {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+  }
+
+  .stats {
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .stat {
+    min-width: 0;
+  }
+
+  .status-card strong {
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+}
+
+@media (max-height: 860px) and (min-width: 721px) {
+  #app {
+    justify-content: flex-start;
+    padding-top: 1.35rem;
   }
 }
 
