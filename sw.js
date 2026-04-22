@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'companion-v3.5.0';
+const CACHE_VERSION = 'companion-v3.6.0';
 const APP_SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const THIRD_PARTY_CACHE = `${CACHE_VERSION}-third-party`;

@@ -16,6 +16,29 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&family=Playfair+Display:wght@600;700;900&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/typography.css" />
   <link rel="stylesheet" href="css/launcher.css" />
+  <style>
+    /* Critical layer guard from the provided launcher file: keeps background layers below interactive UI even with stale CSS cache. */
+    #cosmos {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .scanline {
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    #app {
+      position: relative;
+      z-index: 10;
+    }
+
+    #veil {
+      z-index: 200;
+    }
+  </style>
 </head>
 <body>
   <canvas id="cosmos" aria-hidden="true"></canvas>
@@ -254,7 +277,7 @@
     </main>
 
     <footer id="footer">
-      Companion PWA · selecione um sistema para continuar
+      Companion PWA &middot; selecione um sistema para continuar
     </footer>
   </div>
 
