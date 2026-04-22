@@ -54,6 +54,21 @@
       visibility: visible;
     }
 
+    /* Fix: background layers inside cards must stay behind content on all browsers */
+    .card-bg,
+    .card-shine {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Ensure all direct card children except bg layers render on top */
+    .card > *:not(.card-bg):not(.card-shine) {
+      position: relative;
+      z-index: 1;
+    }
+
     html.launcher-safe-depth #app,
     html.browser-desktop.browser-opera #app,
     html.browser-desktop.browser-firefox #app,
