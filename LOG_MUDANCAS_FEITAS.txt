@@ -1,0 +1,85 @@
+LOG DE MUDANCAS FEITAS
+Data: 2026-04-22
+Escopo: refatoracao segura com modularizacao incremental, correcao de bugs criticos e validacao de compatibilidade.
+
+RESUMO
+- Modularizacao aplicada sem remover funcionalidades.
+- Correcao de 3 achados de review (2x P1, 1x P2).
+- Estrutura de carga organizada para reduzir acoplamento e melhorar navegacao no codigo.
+
+ARQUIVOS ALTERADOS (PRINCIPAIS)
+- index.html
+- era/index.html
+- sw.js
+- ui/verloren-system-workbench.js
+- js/app.js (fachada de compatibilidade)
+- systems/turn-economy.js
+- js/verloren/00-data-theme-portrait.js
+- js/verloren/10-navigation-editor-core.js
+- js/verloren/20-races-presets-import.js
+- js/verloren/30-export-economy-engine-radar.js
+- js/verloren/40-world-system-grimorio.js
+- js/verloren/50-ficha-views-bootstrap.js
+- era/era-profiles.js
+- era/era-app.js
+- era/era-ficha-acervo.js
+- era/era-ficha-tab.js
+- era/era-ficha.js (fachada)
+- era/era-rolls-dados.js
+- era/era-rolls-combate.js
+- era/era-rolls.js (fachada)
+
+MELHORIAS APLICADAS
+1) Divisao de arquivo grande (Verloren)
+- O monolito js/app.js foi dividido em modulos por dominio em js/verloren/.
+- index.html foi atualizado para carregar os modulos em ordem deterministica.
+- js/app.js agora atua como facade de compatibilidade.
+
+2) Divisao de arquivo grande (ERA)
+- era-ficha.js foi dividido em:
+  - era-ficha-acervo.js
+  - era-ficha-tab.js
+- era-rolls.js foi dividido em:
+  - era-rolls-dados.js
+  - era-rolls-combate.js
+- era-app.js teve extracao de bloco de perfis para era-profiles.js.
+- era/index.html foi atualizado para a nova ordem de scripts.
+
+3) Agrupamento de micro-modulos relacionados
+- systems/actions.js + systems/turns.js consolidados em systems/turn-economy.js para uso principal.
+- index.html e era/index.html passaram a usar systems/turn-economy.js.
+
+BUGS CORRIGIDOS (REVIEW)
+1) [P1] Risco de injecao via sheet.id em handler inline
+- renderCard passou a usar token codificado (encode/decode) com wrappers:
+  - openSheetInline
+  - duplicateSheetInline
+  - openDeleteModalInline
+- Eliminada interpolacao direta de ID bruto em onclick.
+
+2) [P1] HP do PC no tracker sendo sobrescrito no rerender
+- Em ui/verloren-system-workbench.js, acao de HP agora sincroniza sheet._recAtual.HP para PC.
+- debounceSave() e acionado quando houver update no HP do PC.
+
+3) [P2] Cache de ficha ativa stale
+- getActiveSheet agora prioriza global.currentSheetId com relookup antes de usar cache local.
+- Estado stale e limpo quando ficha nao e encontrada.
+
+SERVICE WORKER / CACHE
+- CACHE_VERSION atualizado para companion-v3.4.0.
+- APP_SHELL atualizado com novos modulos:
+  - js/verloren/*.js
+  - era split files
+  - systems/turn-economy.js
+- third-party segue isolado em THIRD_PARTY_CACHE.
+
+VALIDACAO EXECUTADA
+- Checagem de handlers inline vs funcoes globais carregadas: OK (index e era/index).
+- Checagem de sintaxe JS com Node --check (26 arquivos): PASS.
+- Validacao estrutural dos arquivos split (head/tail): OK.
+- Revisao manual de ordem de scripts e compatibilidade: OK.
+
+RISCOS E MITIGACAO
+- Mudancas aplicadas em etapas pequenas, preservando contratos globais.
+- Facades mantidas nos pontos de transicao para evitar quebra de referencia.
+- Nao houve remocao de feature.

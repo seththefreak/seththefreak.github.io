@@ -1,0 +1,50 @@
+LOG DE MUDANCAS A FAZER
+Data base: 2026-04-22
+Objetivo: backlog residual apos modularizacao e correcoes de review.
+
+PRIORIDADE ALTA (baixo risco, alto retorno)
+1) Criar testes de regressao minimos
+- Tipo: unitario + smoke.
+- Escopo inicial:
+  - systems/dice.js
+  - systems/combat.js
+  - systems/turn-economy.js
+  - systems/verloren.js
+- Risco: baixo.
+- Beneficio: protege comportamento apos modularizacao.
+
+2) Revisao de encoding UTF-8
+- Padronizar arquivos que ainda exibem texto corrompido em comentarios/strings.
+- Risco: baixo a medio (diff textual grande).
+- Beneficio: legibilidade e menor risco de bug textual.
+
+3) Observabilidade de erros
+- Reduzir try/catch silencioso e incluir log controlado.
+- Risco: baixo.
+- Beneficio: depuracao mais rapida em producao.
+
+PRIORIDADE MEDIA
+4) Migrar handlers inline para event delegation
+- Fazer por secao (biblioteca, editor, economia) para reduzir acoplamento HTML/JS.
+- Risco: medio.
+- Beneficio: manutencao e seguranca melhores.
+
+5) Consolidar legados de turnos
+- Definir destino de systems/actions.js e systems/turns.js (deprecated wrappers ou remocao planejada).
+- Risco: baixo.
+- Beneficio: evita divergencia com systems/turn-economy.js.
+
+PRIORIDADE BAIXA
+6) Lint/format em modo nao destrutivo
+- Introduzir ESLint + Prettier com baseline gradual.
+- Risco: baixo a medio.
+- Beneficio: consistencia e menor erro humano.
+
+7) Revisao de cache release
+- Padronizar rotina de bump de CACHE_VERSION por release.
+- Risco: baixo.
+- Beneficio: update de PWA mais previsivel.
+
+PONTOS DE ATENCAO
+- Qualquer migracao de handlers inline deve ser incremental.
+- Evitar limpeza de encoding em lote sem snapshot e validacao visual.

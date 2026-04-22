@@ -1,0 +1,104 @@
+const APP_TABS = [
+  { id: "ficha", label: "FICHA", icon: "[]" },
+  { id: "dados", label: "DADOS", icon: "d6" },
+  { id: "combate", label: "COMBATE", icon: "ATK" },
+  { id: "arsenal", label: "ARSENAL", icon: "EQP" },
+  { id: "sistema", label: "SISTEMA", icon: "SYS" },
+];
+
+const HEADER_RESOURCES = [
+  { key: "hp", color: C.corpo, label: "HP" },
+  { key: "sp", color: C.mente, label: "SP" },
+  { key: "pe", color: C.alma, label: "PE" },
+];
+
+const LEGACY_STORAGE_KEY = "uh_char_v2";
+const PROFILES_STORAGE_KEY = "uh_profiles_v1";
+const APP_META_STORAGE_KEY = "uh_app_meta_v1";
+
+function hydrateCharacter(rawCharacter) {
+  const parsed = rawCharacter ? JSON.parse(rawCharacter) : null;
+  if (!parsed) return DEFAULT_CHAR;
+
+  const level = clampNumber(Number(parsed.level) || 1, 1, LEVELS.length);
+  const levelData = getCurrentLevelData(level);
+  const merged = {
+    ...DEFAULT_CHAR,
+    ...parsed,
+    level,
+    pilares: { ...DEFAULT_CHAR.pilares, ...(parsed.pilares || {}) },
+    subs: { ...DEFAULT_SUBS, ...(parsed.subs || {}) },
+    pericias: { ...DEFAULT_PERICIAS, ...(parsed.pericias || {}) },
+    condicoes: Array.isArray(parsed.condicoes) ? parsed.condicoes.filter((id) => getConditionById(id)) : [],
+    effects: Array.isArray(parsed.effects) ? parsed.effects.map(normalizeEffect) : [],
+  };
+
+  return {
+    ...merged,
+    hp: {
+      cur: clampNumber(
+        parsed.hp && parsed.hp.cur != null ? Number(parsed.hp.cur) : DEFAULT_CHAR.hp.cur,
+        0,
+        levelData.hp
+      ),
+      max: levelData.hp,
+    },
+    sp: {
+      cur: clampNumber(
+        parsed.sp && parsed.sp.cur != null ? Number(parsed.sp.cur) : DEFAULT_CHAR.sp.cur,
+        0,
+        100
+      ),
+      max: 100,
+    },
+    pe: {
+      cur: clampNumber(
+        parsed.pe && parsed.pe.cur != null ? Number(parsed.pe.cur) : DEFAULT_CHAR.pe.cur,
+        0,
+        levelData.pe
+      ),
+      max: levelData.pe,
+    },
+  };
+}
+
+function sanitizeCharacter(characterLike) {
+  try {
+    return hydrateCharacter(JSON.stringify(characterLike || DEFAULT_CHAR));
+  } catch (error) {
+    return DEFAULT_CHAR;
+  }
+}
+
+function createProfile(name, characterLike) {
+  const char = sanitizeCharacter(characterLike || DEFAULT_CHAR);
+  return {
+    id: createId("profile"),
+    name: name || char.name || "Ficha",
+    char,
+  };
+}
+
+function hydrateProfiles(rawProfiles, rawLegacyCharacter) {
+  try {
+    if (rawProfiles) {
+      const parsed = JSON.parse(rawProfiles);
+      const parsedProfiles = Array.isArray(parsed.profiles) ? parsed.profiles : [];
+      const profiles = parsedProfiles.map((profile, index) => ({
+        id: profile.id || createId(`profile-${index + 1}`),
+        name: profile.name || `Ficha ${index + 1}`,
+        char: sanitizeCharacter(profile.char),
+      }));
+
+      if (profiles.length) {
+        const activeId = profiles.some((profile) => profile.id === parsed.activeId) ? parsed.activeId : profiles[0].id;
+        return { activeId, profiles };
+      }
+    }
+  } catch (error) {
+  }
+
+  const legacyChar = rawLegacyCharacter ? hydrateCharacter(rawLegacyCharacter) : DEFAULT_CHAR;
+  const initialProfile = createProfile(legacyChar.name || "Ficha 1", legacyChar);
+  return { activeId: initialProfile.id, profiles: [initialProfile] };
+}

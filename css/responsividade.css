@@ -1,0 +1,138 @@
+/* ============================================================
+       RESPONSIVIDADE
+    ============================================================ */
+
+    /* Tablet / telas médias */
+    @media (max-width: 900px) {
+      .main-content { padding: 20px 16px; }
+      .cards-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+      .topbar { padding: 0 16px; }
+      .nav-tab { padding: 5px 10px; font-size: 0.8rem; }
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      /* Topbar compacto */
+      .topbar { padding: 0 12px; height: 52px; }
+      .brand-name span { display: none; }
+      .brand-name { font-size: 1.05rem; }
+      .brand-icon { width: 28px; height: 28px; font-size: 14px; }
+      .topbar-actions { gap: 4px; }
+      .btn-icon { padding: 6px; font-size: 0.9rem; }
+
+      /* Nav tabs: ocultar da topbar no mobile — vai para bottom nav */
+      .nav-tabs { display: none !important; }
+
+      /* ── BOTTOM NAV (mobile only) ── */
+      .bottom-nav {
+        display: flex !important;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        height: 58px;
+        background: var(--bg-card);
+        border-top: 1px solid var(--border);
+        box-shadow: 0 -2px 12px rgba(0,0,0,0.10);
+        z-index: 200;
+        padding: 0 4px;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      .bottom-nav-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        border: none;
+        background: transparent;
+        color: var(--text-muted);
+        font-family: var(--font-text);
+        font-size: 0.62rem;
+        font-weight: 700;
+        cursor: pointer;
+        padding: 6px 2px;
+        border-radius: var(--radius-sm);
+        transition: all var(--transition);
+        letter-spacing: 0.01em;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .bottom-nav-item .bnav-icon { font-size: 1.15rem; line-height: 1; }
+      .bottom-nav-item.active { color: var(--text-accent); }
+      .bottom-nav-item.active .bnav-icon { filter: drop-shadow(0 1px 3px rgba(150,120,200,0.4)); }
+
+      /* Push content above bottom nav */
+      .main-content { padding: 12px 10px 72px !important; }
+      .credits-footer { margin-bottom: 58px; }
+
+      /* Cards: 1 coluna em mobile pequeno */
+      .cards-grid { grid-template-columns: 1fr; gap: 10px; }
+
+      /* Atributos: 4 colunas (mais compacto) */
+      .attrs-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+      .attr-item { padding: 8px 4px; }
+      .attr-value { font-size: 1.5rem; }
+      .attr-label { font-size: 0.6rem; }
+      .attr-btn { width: 20px; height: 20px; font-size: 0.85rem; }
+
+      /* Formulários */
+      .form-row, .form-row-3 { grid-template-columns: 1fr; }
+      .modos-grid { grid-template-columns: 1fr; }
+
+      /* Editor: sem sidebar sticky */
+      .editor-sidebar { position: static; }
+      .editor-title-input { font-size: 1.4rem; }
+      .editor-header { flex-wrap: wrap; gap: 8px; }
+      .editor-section { padding: 14px; margin-bottom: 10px; }
+      .section-title { font-size: 1rem; }
+
+      /* Subatributos */
+      .subatributos-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .subattr-card { padding: 10px 6px; }
+      .subattr-value { font-size: 1.5rem; }
+
+      /* Modo leitura */
+      .read-mode-sheet { padding: 16px; }
+      .read-attrs-grid { grid-template-columns: repeat(4, 1fr); }
+      .read-title { font-size: 1.4rem; }
+
+      /* Recompensas */
+      .recompensa-item { grid-template-columns: 70px 1fr auto; }
+      .recompensa-valor { font-size: 0.9rem; }
+
+      /* Hab grid */
+      .hab-grid { grid-template-columns: 1fr; }
+
+      /* Laika intensidade */
+      .intensidade-btns { flex-direction: column; gap: 4px; }
+      .int-btn { text-align: center; }
+
+      /* Modais */
+      .modal-content { margin: 10px; border-radius: var(--radius-md); }
+      .modal-large { max-height: 90vh; }
+
+
+      /* Library header */
+      .library-title { font-size: 1.5rem; }
+      .library-header { margin-bottom: 16px; gap: 10px; }
+    }
+
+    /* Bottom nav: hidden on desktop */
+    .bottom-nav { display: none; }
+
+    /* Touch: larger tap targets */
+    @media (hover: none) and (pointer: coarse) {
+      .attr-btn { width: 32px; height: 32px; font-size: 1.1rem; }
+      .btn-qty { width: 32px; height: 32px; }
+      .card-action-btn { width: 36px; height: 36px; }
+      .card-actions { opacity: 1; } /* always visible on touch */
+      .hab-toggle { width: 24px; height: 24px; }
+      .int-btn { padding: 10px 16px; font-size: 0.9rem; }
+      .dynamic-remove { width: 36px; height: 36px; }
+    }
+
+    /* PC wide: max out the layout */
+    @media (min-width: 1400px) {
+      .main-content { max-width: 1500px; }
+      .cards-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+      .attrs-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+    }

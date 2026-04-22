@@ -1,0 +1,223 @@
+/* ============================================================
+       MODOS NARRATIVOS
+    ============================================================ */
+    .modos-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .modo-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      transition: all var(--transition);
+    }
+    .modo-item.dominant {
+      border-color: var(--lavanda);
+      background: var(--lavanda-light);
+      box-shadow: var(--shadow-sm);
+    }
+    [data-theme="dark"] .modo-item.dominant { background: rgba(100,80,180,0.2); }
+
+    .modo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .modo-label {
+      font-family: var(--font-title);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .modo-dominant-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--lavanda-dark);
+      background: var(--lavanda);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+    .modo-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .modo-value {
+      font-family: var(--font-title);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-accent);
+      min-width: 32px;
+      text-align: center;
+    }
+    .modo-warn { font-size: 0.7rem; color: var(--attr-warn); margin-top: 4px; }
+
+    /* Indicador de qualidade do modo (1=ruim … 4=dominante) */
+    .modo-quality-bar {
+      display: flex;
+      gap: 3px;
+      margin-top: 6px;
+    }
+    .modo-quality-pip {
+      flex: 1;
+      height: 4px;
+      border-radius: 2px;
+      background: var(--border);
+      transition: background var(--transition);
+    }
+    .modo-quality-pip.filled-1 { background: var(--attr-neg); }
+    .modo-quality-pip.filled-2 { background: var(--attr-warn); }
+    .modo-quality-pip.filled-3 { background: var(--menta-dark); }
+    .modo-quality-pip.filled-4 { background: var(--lavanda); }
+    .modo-quality-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+      color: var(--text-muted);
+    }
+    .modo-quality-label.q1 { color: var(--attr-neg); }
+    .modo-quality-label.q2 { color: var(--attr-warn); }
+    .modo-quality-label.q3 { color: var(--menta-dark); }
+    .modo-quality-label.q4 { color: var(--lavanda-dark); }
+    .modo-quality-label.q0 { color: var(--text-muted); }
+    .modo-item.q0-item { border-color: var(--border-light); opacity: 0.6; }
+    .modo-item.q1-item { border-color: var(--attr-neg-bg); }
+    .modo-item.q2-item { border-color: var(--attr-warn); opacity: 0.85; }
+    .modo-item.q3-item { border-color: var(--menta-dark); }
+    .modo-item.q4-item { border-color: var(--lavanda); background: var(--lavanda-light); box-shadow: var(--shadow-sm); }
+    [data-theme="dark"] .modo-item.q4-item { background: rgba(100,80,180,0.2); }
+
+    /* Badge de forma feérica nos atributos */
+    .attr-fae-badge {
+      position: absolute;
+      bottom: 3px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.58rem;
+      font-weight: 700;
+      color: var(--lavanda-dark);
+      background: var(--lavanda-light);
+      border: 1px solid var(--lavanda);
+      border-radius: 4px;
+      padding: 1px 4px;
+      white-space: nowrap;
+      pointer-events: none;
+      line-height: 1.3;
+    }
+    [data-theme="dark"] .attr-fae-badge { background: rgba(100,80,180,0.3); color: var(--text-accent); }
+    /* Quando Faerie está ativa, o attr-item precisa de espaço extra embaixo */
+    .attr-item.has-fae-badge { padding-bottom: 24px; }
+
+    /* Bloco de Dualidade Morfológica da Faerie */
+    .fae-dualidade {
+      background: linear-gradient(135deg, var(--lavanda-light) 0%, var(--bg-secondary) 100%);
+      border: 1.5px solid var(--lavanda);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    [data-theme="dark"] .fae-dualidade { background: linear-gradient(135deg, rgba(100,80,180,0.18) 0%, var(--bg-secondary) 100%); }
+    .fae-dualidade-title {
+      font-family: var(--font-title);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-accent);
+      margin-bottom: 4px;
+    }
+    .fae-dualidade-sub {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+    .fae-formas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 600px) { .fae-formas { grid-template-columns: 1fr; } }
+    .fae-forma-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+    }
+    .fae-forma-card.faerica { border-color: var(--lavanda); }
+    .fae-forma-nome {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-accent);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .fae-forma-desc { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5; }
+    .fae-mod-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin: 6px 0;
+    }
+    .fae-mod-pill {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+    .fae-mod-pill.pos { background: var(--attr-pos-bg); color: var(--attr-pos); border: 1px solid var(--attr-pos); }
+    .fae-mod-pill.neg { background: var(--attr-neg-bg); color: var(--attr-neg); border: 1px solid var(--attr-neg); }
+    .fae-ganhos { margin-top: 6px; }
+    .fae-ganho-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 5px;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      padding: 2px 0;
+    }
+    .fae-ganho-item::before { content: '✦'; color: var(--lavanda); font-size: 0.6rem; margin-top: 2px; flex-shrink: 0; }
+    .fae-restricoes { margin-top: 6px; border-top: 1px solid var(--border); padding-top: 6px; }
+    .fae-restricao-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 5px;
+      font-size: 0.75rem;
+      color: var(--attr-neg);
+      padding: 2px 0;
+    }
+    .fae-restricao-item::before { content: '⊘'; font-size: 0.65rem; margin-top: 1px; flex-shrink: 0; }
+
+    /* Botão de reset de pontos */
+    .reset-pontos-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      color: var(--text-muted);
+      font-family: var(--font-text);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      margin-top: 8px;
+    }
+    .reset-pontos-btn:hover {
+      border-color: var(--attr-warn);
+      color: var(--attr-warn);
+      background: rgba(220,160,40,0.08);
+    }
