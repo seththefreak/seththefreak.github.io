@@ -3,16 +3,16 @@ window.ERA_DATA = {
   C: {
     bg:"#0F1115", bg2:"#1A1D24", bg3:"#2A2F3A",
     border:"#3A4150", text:"#E5E7EB", muted:"#6B7280",
-    corpo:"#EF4444", mente:"#22D3EE", alma:"#A78BFA",
-    gold:"#FDE68A", green:"#4ADE80"
+    corpo:"#DC2626", mente:"#36B7C8", alma:"#A78BFA",
+    gold:"#FDE68A", green:"#7EA391"
   },
 
   TIERS: ["Leigo","Treinado","Especialista","Mestre","Maestria"],
   TIER_DT: [null, 4, 5, 6, 7],
 
   PILARS: {
-    corpo:{ label:"CORPO", color:"#EF4444", subs:["forca","constituicao","destreza"] },
-    mente:{ label:"MENTE", color:"#22D3EE", subs:["intelecto","sabedoria","vontade"] },
+    corpo:{ label:"CORPO", color:"#DC2626", subs:["forca","constituicao","destreza"] },
+    mente:{ label:"MENTE", color:"#36B7C8", subs:["intelecto","sabedoria","vontade"] },
     alma: { label:"ALMA",  color:"#A78BFA", subs:["poder","dominio","afinidade"] },
   },
 
@@ -39,28 +39,28 @@ window.ERA_DATA = {
     {l:8, hp:239, sp:115, pe:73},
     {l:9, hp:299, sp:144, pe:91},
     {l:10,hp:374, sp:180, pe:114},
-    {l:11,hp:468, sp:225, pe:142},
+    {l:11,hp:468, sp:225, pe:140},
   ],
 
   CONDS: [
-    {id:"envenenado", label:"Envenenado",  color:"#4ADE80", desc:"1d6 HP/turno · −1 Corpo · Antídoto/Lux"},
-    {id:"sangrando",  label:"Sangrando",   color:"#EF4444", desc:"3 HP/turno · Primeiros socorros (u)"},
-    {id:"imobilizado",label:"Imobilizado", color:"#F97316", desc:"Sem mover · −2 Destreza · Força DT 6 p/ sair"},
-    {id:"atordoado",  label:"Atordoado",   color:"#FACC15", desc:"Perde Ação Maior próx. turno · Auto: 1 turno"},
+    {id:"envenenado", label:"Envenenado",  color:"#BFA14A", desc:"1d6 HP/turno · −1 Corpo · Antídoto/Lux"},
+    {id:"sangrando",  label:"Sangrando",   color:"#DC2626", desc:"3 HP/turno · Primeiros socorros (u)"},
+    {id:"imobilizado",label:"Imobilizado", color:"#6B7280", desc:"Sem mover · −2 Destreza · Força DT 6 p/ sair"},
+    {id:"atordoado",  label:"Atordoado",   color:"#FCD34D", desc:"Perde Ação Maior próx. turno · Auto: 1 turno"},
     {id:"cego",       label:"Cego",        color:"#9CA3AF", desc:"Ataques c/ desvantagem · Inimigos c/ vantagem"},
-    {id:"amedrontado",label:"Amedrontado", color:"#C084FC", desc:"Afasta da fonte · −2 tudo · Vontade DT 5/turno"},
-    {id:"queimando",  label:"Queimando",   color:"#FB923C", desc:"1d6 fogo/turno · Ação para apagar ou água"},
-    {id:"congelado",  label:"Congelado",   color:"#67E8F9", desc:"Imobilizado · Próx. ataque físico +1d6 · 2 turnos"},
-    {id:"confuso",    label:"Confuso",     color:"#D946EF", desc:"Alvo aleatório 1d4/turno · Vontade DT 6"},
+    {id:"amedrontado",label:"Amedrontado", color:"#A78BFA", desc:"Afasta da fonte · −2 tudo · Vontade DT 5/turno"},
+    {id:"queimando",  label:"Queimando",   color:"#B91C1C", desc:"1d6 fogo/turno · Ação para apagar ou água"},
+    {id:"congelado",  label:"Congelado",   color:"#0891B2", desc:"Imobilizado · Próx. ataque físico +1d6 · 2 turnos"},
+    {id:"confuso",    label:"Confuso",     color:"#8B5CF6", desc:"Alvo aleatório 1d4/turno · Vontade DT 6"},
   ],
 
   DMG_COLS: ["+0","+1–2","+3–5","+6–9","+10–14","+15+"],
   DMG_ROWS: [
-    {tier:"Leigo",    vals:["1d6","1d10","2d8","3d8","4d8","5d8"]},
-    {tier:"Treinado", vals:["1d10","2d8","3d8","4d8","5d8","6d8"]},
-    {tier:"Esp.",     vals:["2d8","3d8","4d8","5d8","6d8","8d8"]},
-    {tier:"Mestre",   vals:["3d8","4d8","5d8","6d8","8d8","10d8"]},
-    {tier:"Maestria", vals:["4d8","5d8","6d8","8d8","10d8","12d8+"]},
+    {tier:"Leigo",    vals:["1d6","1d8","2d6","2d8","3d8","4d8"]},
+    {tier:"Treinado", vals:["1d8","2d6","2d8","3d8","4d8","5d8"]},
+    {tier:"Esp.",     vals:["2d6","2d8","3d8","4d8","5d8","6d8"]},
+    {tier:"Mestre",   vals:["2d8","3d8","4d8","5d8","6d8","8d8"]},
+    {tier:"Maestria", vals:["3d8","4d8","5d8","6d8","8d8","10d8"]},
   ],
 
   WEAPONS: [
@@ -163,6 +163,7 @@ window.ERA_DATA = {
     {sym:"mov", name:"Movimento",         desc:"4 + Prog. Destreza unidades. Manifestação avançada (4–5 PE)"},
     {sym:"R",   name:"Reação",            desc:"1/rodada. Esquiva, bloqueio, contra-ataque, interceptação"},
     {sym:"C",   name:"Ação Completa",     desc:"Consome M + u + mov. Manifestação extrema (8+ PE)"},
+    {sym:"L",   name:"Ação Livre",        desc:"Ajustes instantâneos e respostas sem custo relevante, sempre a critério da ficção"},
   ],
 
   DT_TABLE: [

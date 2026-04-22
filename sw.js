@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'companion-v3.8.0';
+const CACHE_VERSION = 'companion-v3.10.0';
 const APP_SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const THIRD_PARTY_CACHE = `${CACHE_VERSION}-third-party`;
@@ -67,6 +67,12 @@ const APP_SHELL = [
   "./core/companion-core.js",
   "./era/data.js",
   "./era/era-app.js",
+  "./era/era-app-shell.js",
+  "./era/era-app-state.js",
+  "./era/era-combat-tracker-core.js",
+  "./era/era-compendium-data.js",
+  "./era/era-config.js",
+  "./era/era-device.js",
   "./era/era-ficha-acervo.js",
   "./era/era-ficha-tab.js",
   "./era/era-ficha.js",
@@ -99,6 +105,13 @@ const APP_SHELL = [
   "./js/verloren/50-ficha-views-bootstrap.js",
   "./launcher.html",
   "./manifest.json",
+  "./src/config/splash-config.js",
+  "./src/core/environment.js",
+  "./src/main.js",
+  "./src/modules/splash/splash.js",
+  "./src/ui/splash-view.js",
+  "./src/utils/random.js",
+  "./src/utils/timing.js",
   "./systems/combat.js",
   "./systems/dice.js",
   "./systems/turn-economy.js",

@@ -110,7 +110,7 @@ function TabDados({ char }) {
       } : null);
       setThreatCheck(null);
       setRolling(false);
-    }, 350);
+    }, ERA_UI_TIMINGS.ROLL_REVEAL_MS);
   }
 
   function confirmThreat() {
@@ -130,7 +130,7 @@ function TabDados({ char }) {
       setHist((current) => [confirmation, ...current].slice(0, 8));
       setPendingThreat(null);
       setRolling(false);
-    }, 350);
+    }, ERA_UI_TIMINGS.ROLL_REVEAL_MS);
   }
 
   const cfg = buildRollConfig();
@@ -505,4 +505,3 @@ function TabDados({ char }) {
     </div>
   );
 }
-

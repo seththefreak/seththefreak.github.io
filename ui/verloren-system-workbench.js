@@ -177,7 +177,7 @@
       '</select></label>',
       '<label class="vw-field"><span>Formula</span><input type="text" data-field="customFormula" value="' + utils.escapeHtml(state.customFormula) + '"' + (state.damageMode === 'custom' ? '' : ' disabled') + ' /></label>',
       '<label class="vw-field"><span>Ajuste</span><input type="number" data-field="damageBonus" value="' + state.damageBonus + '" /></label>',
-      '<label class="vw-field"><span>RD alvo</span><input type="number" data-field="targetRd" value="' + state.targetRd + '" min="0" /></label>',
+      '<label class="vw-field"><span>RD alvo</span><input type="number" data-field="targetRd" value="' + state.targetRd + '" /></label>',
       '</div>',
       '<div class="vw-stat-strip">' +
         '<span class="vw-tag">Base: <strong>' + utils.escapeHtml(baseFormula) + '</strong></span>' +
@@ -339,7 +339,7 @@
           rolls: roll.rolls,
           attackValue: attackValue,
           rd: state.targetRd,
-          afterRd: Math.max(0, roll.total - state.targetRd),
+          afterRd: roll.total - state.targetRd,
         };
       }
     }

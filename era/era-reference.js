@@ -1,3 +1,335 @@
+function normalizeReferenceSearch(value) {
+  return (value || "")
+    .toString()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+
+function matchesReferenceSearch(values, normalizedFilter) {
+  if (!normalizedFilter) return true;
+  return values.some((value) => normalizeReferenceSearch(value).includes(normalizedFilter));
+}
+
+function getStyleAccent(detail) {
+  const normalizedWeapon = normalizeReferenceSearch(detail.weapon);
+  const normalizedStyle = normalizeReferenceSearch(detail.style);
+  if (detail.synthesis) return C.alma;
+  if (/(sniper|rifle|pistola|revolver|arco|balestra)/.test(normalizedWeapon)) return C.mente;
+  if (/(controle|cobertura|observador|precisao|utilitaria)/.test(normalizedStyle)) return C.gold;
+  return C.corpo;
+}
+
+function CompendiumTable({ columns, rows }) {
+  if (!rows || !rows.length) {
+    return <div style={{ fontSize: 11, color: C.muted }}>Sem dados nessa secao.</div>;
+  }
+
+  return (
+    <div style={{ overflowX: "auto" }}>
+      <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 11, minWidth: 440 }}>
+        <thead>
+          <tr>
+            {columns.map((column) => (
+              <th
+                key={column.key}
+                style={{
+                  textAlign: column.align || "left",
+                  padding: "6px 7px",
+                  color: C.muted,
+                  borderBottom: `1px solid ${C.border}`,
+                  fontSize: 10,
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {column.label}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, rowIndex) => (
+            <tr key={row.id || row.name || row.tier || row.grade || row.stage || row.combo || rowIndex} style={{ background: rowIndex % 2 === 0 ? C.bg3 : "transparent" }}>
+              {columns.map((column) => (
+                <td key={column.key} style={{ padding: "7px 7px", color: column.emphasis ? column.emphasis(row) : C.text, textAlign: column.align || "left", verticalAlign: "top", lineHeight: 1.5 }}>
+                  {row[column.key]}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function StyleReferencePanel({ filter }) {
+  const normalizedFilter = normalizeReferenceSearch(filter);
+  const detailedKeys = STYLE_DETAILS.reduce((set, detail) => {
+    set.add(`${detail.weapon}::${detail.style}`);
+    return set;
+  }, new Set());
+
+  const shownMap = WEAPON_STYLE_MAP.filter((entry) =>
+    matchesReferenceSearch([entry.weapon, entry.styleA, entry.styleB, entry.synthesis || ""], normalizedFilter)
+  );
+
+  const shownDetails = STYLE_DETAILS.filter((detail) => {
+    const techniqueValues = detail.levels.reduce((acc, level) => {
+      level.entries.forEach((entry) => acc.push(entry.name, entry.type, entry.action, entry.effect));
+      return acc;
+    }, []);
+
+    return matchesReferenceSearch(
+      [detail.weapon, detail.style, detail.summary, detail.requirements || "", ...techniqueValues],
+      normalizedFilter
+    );
+  });
+
+  return (
+    <div>
+      <Sect title="Afinidade de Estilo" color={C.gold}>
+        <ResponsiveGrid minWidth={180}>
+          {STYLE_AFFINITY.map((item) => (
+            <div key={item.level} style={{ ...card, background: item.level >= 2 ? `${C.gold}0F` : C.bg3, borderColor: item.level >= 2 ? `${C.gold}44` : C.border }}>
+              <div style={{ fontFamily: FONT_DISPLAY, fontSize: 24, lineHeight: 1, color: item.level >= 2 ? C.gold : C.text }}>{item.level}</div>
+              <div style={{ fontWeight: 700, fontSize: 13, margin: "6px 0 4px" }}>{item.name}</div>
+              <div style={{ fontSize: 11, color: C.muted, lineHeight: 1.5 }}>{item.effect}</div>
+            </div>
+          ))}
+        </ResponsiveGrid>
+
+        <ResponsiveGrid minWidth={240} style={{ marginTop: 12 }}>
+          <div style={{ ...card, background: `${C.mente}0E`, borderColor: `${C.mente}33` }}>
+            <div style={{ fontWeight: 700, color: C.mente, marginBottom: 6 }}>Permite reagir</div>
+            {STYLE_REACTION_RULES.allow.map((rule) => (
+              <div key={rule} style={{ fontSize: 11, color: C.text, marginBottom: 5, lineHeight: 1.5 }}>{rule}</div>
+            ))}
+          </div>
+          <div style={{ ...card, background: `${C.corpo}0E`, borderColor: `${C.corpo}33` }}>
+            <div style={{ fontWeight: 700, color: C.corpo, marginBottom: 6 }}>Impede reagir</div>
+            {STYLE_REACTION_RULES.block.map((rule) => (
+              <div key={rule} style={{ fontSize: 11, color: C.text, marginBottom: 5, lineHeight: 1.5 }}>{rule}</div>
+            ))}
+          </div>
+          <div style={{ ...card, background: `${C.alma}0E`, borderColor: `${C.alma}33` }}>
+            <div style={{ fontWeight: 700, color: C.alma, marginBottom: 6 }}>Aparos validos</div>
+            {STYLE_REACTION_RULES.parry.map((rule) => (
+              <div key={rule.tool} style={{ marginBottom: 6 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: C.text }}>{rule.tool}</div>
+                <div style={{ fontSize: 11, color: C.muted, lineHeight: 1.4 }}>{rule.scope}</div>
+              </div>
+            ))}
+          </div>
+        </ResponsiveGrid>
+      </Sect>
+
+      <Sect title="Mapa de Estilos" color={C.corpo}>
+        <ResponsiveGrid minWidth={220}>
+          {shownMap.map((entry) => {
+            const hasStyleA = detailedKeys.has(`${entry.weapon}::${entry.styleA}`);
+            const hasStyleB = detailedKeys.has(`${entry.weapon}::${entry.styleB}`);
+            const hasSynthesis = entry.synthesis ? detailedKeys.has(`${entry.weapon}::${entry.synthesis}`) : false;
+
+            return (
+              <div key={entry.weapon} style={{ ...card, background: C.bg3 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", gap: 8, marginBottom: 8 }}>
+                  <div style={{ fontWeight: 700, fontSize: 13 }}>{entry.weapon}</div>
+                  {(hasStyleA || hasStyleB || hasSynthesis) ? <div style={{ fontSize: 9, color: C.gold, letterSpacing: 1 }}>DETALHADO</div> : null}
+                </div>
+                <div className="chip-row">
+                  <span style={{ padding: "3px 8px", borderRadius: 999, background: `${C.corpo}14`, border: `1px solid ${C.corpo}33`, fontSize: 10, color: C.corpo }}>{entry.styleA}</span>
+                  <span style={{ padding: "3px 8px", borderRadius: 999, background: `${C.gold}14`, border: `1px solid ${C.gold}33`, fontSize: 10, color: C.gold }}>{entry.styleB}</span>
+                  {entry.synthesis ? <span style={{ padding: "3px 8px", borderRadius: 999, background: `${C.alma}14`, border: `1px solid ${C.alma}33`, fontSize: 10, color: C.alma }}>{entry.synthesis}</span> : null}
+                </div>
+              </div>
+            );
+          })}
+        </ResponsiveGrid>
+        {shownMap.length === 0 ? <div style={{ textAlign: "center", color: C.muted, paddingTop: 12 }}>Nenhum estilo encontrado para "{filter}".</div> : null}
+      </Sect>
+
+      <Sect title="Tecnicas por Estilo" color={C.alma}>
+        <ResponsiveGrid minWidth={320}>
+          {shownDetails.map((detail) => {
+            const accent = getStyleAccent(detail);
+            return (
+              <div key={`${detail.weapon}-${detail.style}`} style={{ ...card, background: `${accent}0D`, borderColor: `${accent}33` }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 10, marginBottom: 6 }}>
+                  <div>
+                    <div style={{ fontSize: 10, color: C.muted, marginBottom: 2 }}>{detail.weapon}</div>
+                    <div style={{ fontWeight: 700, fontSize: 15, color: accent }}>{detail.style}</div>
+                  </div>
+                  {detail.synthesis ? <div style={{ fontSize: 9, color: C.alma, letterSpacing: 1 }}>SINTESE</div> : null}
+                </div>
+                <div style={{ fontSize: 11, color: C.text, lineHeight: 1.55 }}>{detail.summary}</div>
+                {detail.requirements ? <div style={{ fontSize: 10, color: C.gold, marginTop: 6 }}>{detail.requirements}</div> : null}
+
+                {detail.levels.map((level) => (
+                  <div key={level.tier} style={{ marginTop: 10, paddingTop: 10, borderTop: `1px solid ${C.border}` }}>
+                    <div style={{ fontSize: 10, color: accent, fontWeight: 700, letterSpacing: 1, marginBottom: 6 }}>AFINIDADE {level.tier}</div>
+                    {level.entries.map((entry) => (
+                      <div key={`${level.tier}-${entry.name}`} style={{ marginBottom: 7 }}>
+                        <div style={{ fontSize: 11, fontWeight: 700, color: C.text }}>
+                          {entry.name} <span style={{ color: accent }}>({entry.type} - {entry.action})</span>
+                        </div>
+                        <div style={{ fontSize: 11, color: C.muted, lineHeight: 1.45 }}>{entry.effect}</div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            );
+          })}
+        </ResponsiveGrid>
+        {shownDetails.length === 0 ? <div style={{ textAlign: "center", color: C.muted, paddingTop: 12 }}>Sem tecnicas detalhadas para esse filtro.</div> : null}
+      </Sect>
+    </div>
+  );
+}
+
+function AdvancedSystemsPanel() {
+  const [section, setSection] = useState("alchemy");
+  const sections = [
+    { id: "alchemy", label: "Alquimia" },
+    { id: "chaining", label: "Encadeamento" },
+    { id: "projects", label: "Projetos" },
+    { id: "relics", label: "Reliquias" },
+  ];
+
+  return (
+    <div>
+      <div className="chip-row" style={{ marginBottom: 8 }}>
+        {sections.map((item) => {
+          const active = section === item.id;
+          return (
+            <button
+              key={item.id}
+              onClick={() => setSection(item.id)}
+              style={{
+                padding: "5px 12px",
+                borderRadius: 20,
+                whiteSpace: "nowrap",
+                background: active ? `${C.alma}22` : C.bg2,
+                border: `1px solid ${active ? C.alma : C.border}`,
+                color: active ? C.alma : C.muted,
+                fontSize: 12,
+              }}
+            >
+              {item.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {section === "alchemy" ? (
+        <Sect title="Alquimia e Materiais Persistentes" color={C.alma}>
+          <CompendiumTable
+            columns={[
+              { key: "combo", label: "Combinacao" },
+              { key: "material", label: "Material", emphasis: () => C.gold },
+              { key: "req", label: "Req." },
+              { key: "duration", label: "Duracao" },
+              { key: "properties", label: "Propriedades" },
+            ]}
+            rows={ADVANCED_SYSTEMS.alchemy}
+          />
+        </Sect>
+      ) : null}
+
+      {section === "chaining" ? (
+        <div>
+          <Sect title="Manifestacoes Extremas" color={C.corpo}>
+            <div style={{ ...card, background: C.bg3, marginBottom: 12 }}>
+              {ADVANCED_SYSTEMS.chaining.flow.map((item) => (
+                <div key={item} style={{ fontSize: 11, color: C.text, marginBottom: 6, lineHeight: 1.5 }}>{item}</div>
+              ))}
+            </div>
+            <CompendiumTable
+              columns={[
+                { key: "turns", label: "Turnos" },
+                { key: "pe", label: "PE acumulado" },
+                { key: "master", label: "Base Mestre+" },
+                { key: "mastery", label: "Base Maestria" },
+                { key: "extra", label: "Efeito extra" },
+                { key: "req", label: "Req." },
+              ]}
+              rows={ADVANCED_SYSTEMS.chaining.turns}
+            />
+          </Sect>
+
+          <Sect title="Detectabilidade" color={C.gold}>
+            <ResponsiveGrid minWidth={180}>
+              {ADVANCED_SYSTEMS.chaining.detectability.map((item) => (
+                <div key={item.stage} style={{ ...card, background: `${C.gold}0E`, borderColor: `${C.gold}33` }}>
+                  <div style={{ fontFamily: FONT_DISPLAY, fontSize: 18, color: C.gold, marginBottom: 4 }}>{item.stage}</div>
+                  <div style={{ fontSize: 11, color: C.text, lineHeight: 1.5 }}>{item.effect}</div>
+                </div>
+              ))}
+            </ResponsiveGrid>
+          </Sect>
+        </div>
+      ) : null}
+
+      {section === "projects" ? (
+        <div>
+          <Sect title="Projetos Complexos" color={C.mente}>
+            <CompendiumTable
+              columns={[
+                { key: "grade", label: "Grau", emphasis: () => C.mente },
+                { key: "stages", label: "Etapas" },
+                { key: "dt", label: "DT" },
+                { key: "time", label: "Tempo" },
+                { key: "req", label: "Req. minimo" },
+                { key: "result", label: "Resultado" },
+              ]}
+              rows={ADVANCED_SYSTEMS.projects.tiers}
+            />
+          </Sect>
+
+          <Sect title="Qualidade do Projeto" color={C.gold}>
+            <ResponsiveGrid minWidth={220}>
+              {ADVANCED_SYSTEMS.projects.quality.map((item) => (
+                <div key={item.name} style={{ ...card, background: C.bg3 }}>
+                  <div style={{ fontWeight: 700, color: C.gold, marginBottom: 4 }}>{item.name}</div>
+                  <div style={{ fontSize: 11, color: C.muted, lineHeight: 1.5 }}>{item.trigger}</div>
+                </div>
+              ))}
+            </ResponsiveGrid>
+          </Sect>
+        </div>
+      ) : null}
+
+      {section === "relics" ? (
+        <div>
+          <Sect title="Reliquias e Artefatos" color={C.gold}>
+            <CompendiumTable
+              columns={[
+                { key: "tier", label: "Tier", emphasis: () => C.gold },
+                { key: "pe", label: "PE" },
+                { key: "req", label: "Req." },
+                { key: "will", label: "Vontade?" },
+              ]}
+              rows={ADVANCED_SYSTEMS.relics.tiers}
+            />
+          </Sect>
+
+          <Sect title="Reliquia com Vontade" color={C.alma}>
+            <ResponsiveGrid minWidth={220}>
+              {ADVANCED_SYSTEMS.relics.willNotes.map((item) => (
+                <div key={item.name} style={{ ...card, background: `${C.alma}0E`, borderColor: `${C.alma}33` }}>
+                  <div style={{ fontWeight: 700, color: C.alma, marginBottom: 4 }}>{item.name}</div>
+                  <div style={{ fontSize: 11, color: C.text, lineHeight: 1.5 }}>{item.effect}</div>
+                </div>
+              ))}
+            </ResponsiveGrid>
+          </Sect>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 function TabArsenal() {
   const [filter, setFilter] = useState("");
   const [cat, setCat] = useState("cacl");
@@ -7,15 +339,16 @@ function TabArsenal() {
     { id: "cacp", label: "CaC Pesada" },
     { id: "dist", label: "Distancia" },
     { id: "armor", label: "Armaduras" },
+    { id: "styles", label: "Estilos" },
   ];
 
-  const filterValue = filter.toLowerCase();
+  const normalizedFilter = normalizeReferenceSearch(filter);
   const weaponList = cat === "armor" ? ARMORS : WEAPONS.filter((weapon) => weapon.cat === cat);
-  const shown = weaponList.filter((item) => item.name.toLowerCase().includes(filterValue));
+  const shown = weaponList.filter((item) => matchesReferenceSearch([item.name, item.type || "", item.crit || ""], normalizedFilter));
 
   return (
     <div>
-      <input value={filter} onChange={(event) => setFilter(event.target.value)} placeholder="Buscar..." style={{ marginBottom: 10 }} />
+      <input value={filter} onChange={(event) => setFilter(event.target.value)} placeholder={cat === "styles" ? "Buscar arma, estilo ou tecnica..." : "Buscar..."} style={{ marginBottom: 10 }} />
       <div className="chip-row" style={{ marginBottom: 8 }}>
         {cats.map((item) => {
           const active = cat === item.id;
@@ -39,40 +372,44 @@ function TabArsenal() {
         })}
       </div>
 
-      <ResponsiveGrid minWidth={280}>
-        {cat === "armor"
-          ? shown.map((armor) => (
-              <div key={armor.name} style={{ ...card, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
-                <div>
-                  <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 2 }}>{armor.name}</div>
-                  <div style={{ fontSize: 11, color: C.muted }}>{armor.type} - {armor.pen}</div>
-                </div>
-                      <div style={{ fontFamily: FONT_DISPLAY, fontSize: 22, fontWeight: 700, color: C.corpo }}>RD {armor.rd}</div>
-              </div>
-            ))
-          : shown.map((weapon) => (
-              <div key={weapon.name} style={{ ...card }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 4, gap: 10 }}>
+      {cat === "styles" ? <StyleReferencePanel filter={filter} /> : null}
+
+      {cat !== "styles" ? (
+        <ResponsiveGrid minWidth={280}>
+          {cat === "armor"
+            ? shown.map((armor) => (
+                <div key={armor.name} style={{ ...card, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
                   <div>
-                    <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 1 }}>{weapon.name}</div>
-                    <div style={{ fontSize: 11, color: C.muted }}>
-                      {weapon.type}
-                      {weapon.range ? ` - ${weapon.range}` : ""}
-                      {weapon.emp ? ` - ${weapon.emp}` : ""}
+                    <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 2 }}>{armor.name}</div>
+                    <div style={{ fontSize: 11, color: C.muted }}>{armor.type} - {armor.pen}</div>
+                  </div>
+                  <div style={{ fontFamily: FONT_DISPLAY, fontSize: 22, fontWeight: 700, color: C.corpo }}>RD {armor.rd}</div>
+                </div>
+              ))
+            : shown.map((weapon) => (
+                <div key={weapon.name} style={{ ...card }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 4, gap: 10 }}>
+                    <div>
+                      <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 1 }}>{weapon.name}</div>
+                      <div style={{ fontSize: 11, color: C.muted }}>
+                        {weapon.type}
+                        {weapon.range ? ` - ${weapon.range}` : ""}
+                        {weapon.emp ? ` - ${weapon.emp}` : ""}
+                      </div>
+                    </div>
+                    <div style={{ textAlign: "right", flexShrink: 0 }}>
+                      <div style={{ fontFamily: FONT_DISPLAY, fontSize: 19, fontWeight: 700, color: C.corpo }}>{weapon.dmg}</div>
+                      <div style={{ fontSize: 10, color: C.muted }}>{weapon.act}</div>
                     </div>
                   </div>
-                  <div style={{ textAlign: "right", flexShrink: 0 }}>
-                    <div style={{ fontFamily: FONT_DISPLAY, fontSize: 19, fontWeight: 700, color: C.corpo }}>{weapon.dmg}</div>
-                    <div style={{ fontSize: 10, color: C.muted }}>{weapon.act}</div>
-                  </div>
+                  <div style={{ fontSize: 11, color: C.goldWarm }}>Critico: {weapon.crit}</div>
+                  {weapon.pen ? <div style={{ fontSize: 10, color: C.muted, marginTop: 2 }}>Penalidade: {weapon.pen}</div> : null}
                 </div>
-                <div style={{ fontSize: 11, color: C.goldWarm }}>Critico: {weapon.crit}</div>
-                {weapon.pen ? <div style={{ fontSize: 10, color: C.muted, marginTop: 2 }}>Penalidade: {weapon.pen}</div> : null}
-              </div>
-            ))}
-      </ResponsiveGrid>
+              ))}
+        </ResponsiveGrid>
+      ) : null}
 
-      {shown.length === 0 ? <div style={{ textAlign: "center", color: C.muted, padding: 20 }}>Nenhum resultado para "{filter}"</div> : null}
+      {cat !== "styles" && shown.length === 0 ? <div style={{ textAlign: "center", color: C.muted, padding: 20 }}>Nenhum resultado para "{filter}"</div> : null}
     </div>
   );
 }
@@ -84,6 +421,7 @@ function TabSistema() {
     { id: "conds", label: "Condicoes" },
     { id: "manif", label: "Manifestacoes" },
     { id: "acoes", label: "Acoes" },
+    { id: "advanced", label: "Avancado" },
     { id: "builder", label: "Builder" },
   ];
 
@@ -116,7 +454,7 @@ function TabSistema() {
         <Sect title="Classes de Dificuldade">
           {DT_TABLE.map((item) => (
             <div key={item.dt} style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 0", borderBottom: `1px solid ${C.border}` }}>
-                <div style={{ fontFamily: FONT_DISPLAY, fontSize: 22, fontWeight: 700, color: C.mente, width: 28, flexShrink: 0 }}>{item.dt}</div>
+              <div style={{ fontFamily: FONT_DISPLAY, fontSize: 22, fontWeight: 700, color: C.mente, width: 28, flexShrink: 0 }}>{item.dt}</div>
               <div style={{ flex: 1, fontSize: 13, fontWeight: 600 }}>{item.grau}</div>
               <div style={{ fontSize: 11, color: C.green, textAlign: "right", flexShrink: 0 }}>auto: {item.auto}</div>
             </div>
@@ -205,9 +543,14 @@ function TabSistema() {
               </div>
             </div>
           ))}
+          <div style={{ marginTop: 10, padding: "8px 10px", background: C.bg3, borderRadius: 6, fontSize: 11, color: C.muted, lineHeight: 1.5 }}>
+            No guia de estilos, muitas tecnicas usam <strong style={{ color: C.gold }}>m</strong> para acao menor e <strong style={{ color: C.gold }}>L</strong> para acao livre.
+            O tracker legado do companion continua tratando a acao menor como <strong style={{ color: C.gold }}>u</strong> para manter compatibilidade com o resto do app.
+          </div>
         </Sect>
       ) : null}
 
+      {sec === "advanced" ? <AdvancedSystemsPanel /> : null}
       {sec === "builder" ? <ManifBuilder /> : null}
     </div>
   );

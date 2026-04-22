@@ -11,26 +11,26 @@ const C = {
   muted: "#6B7280",
   corpo: "#DC2626",
   corpoDark: "#B91C1C",
-  corpoAccent: "#EF4444",
+  corpoAccent: "#E06A6A",
   sangue: "#7F1D1D",
-  mente: "#22D3EE",
-  menteLight: "#67E8F9",
-  menteDark: "#0891B2",
-  menteNeon: "#00F0FF",
+  mente: "#36B7C8",
+  menteLight: "#79C9D4",
+  menteDark: "#0D7487",
+  menteNeon: "#22D3EE",
   alma: "#A78BFA",
   almaLight: "#C4B5FD",
   almaDark: "#6D5DD3",
-  almaGlow: "#8B5CF6",
+  almaGlow: "#7C6DD6",
   gold: "#FDE68A",
   goldWarm: "#FCD34D",
   goldDark: "#BFA14A",
   goldGlow: "#FFF7CC",
-  green: "#67E8F9",
-  success: "#67E8F9",
-  warning: "#FCD34D",
-  danger: "#EF4444",
+  green: "#7EA391",
+  success: "#7EA391",
+  warning: "#BFA14A",
+  danger: "#DC2626",
 };
-const APP_VERSION = "3.2.0";
+const APP_VERSION = "3.3.0";
 const FONT_TEXT = '"Merriweather","Lora",Georgia,serif';
 const FONT_DISPLAY = '"Playfair Display","Noto Serif Display",Georgia,serif';
 const FONT_SYSTEM = '"IBM Plex Mono","Inconsolata","Courier Prime",monospace';
@@ -50,6 +50,11 @@ const ARMORS = SOURCE_DATA.ARMORS;
 const ELEMENTOS = SOURCE_DATA.ELEMENTOS;
 const FORMAS = SOURCE_DATA.FORMAS;
 const PROPS = SOURCE_DATA.PROPS;
+const STYLE_AFFINITY = SOURCE_DATA.STYLE_AFFINITY || [];
+const STYLE_REACTION_RULES = SOURCE_DATA.STYLE_REACTION_RULES || { allow: [], block: [], parry: [] };
+const WEAPON_STYLE_MAP = SOURCE_DATA.WEAPON_STYLE_MAP || [];
+const STYLE_DETAILS = SOURCE_DATA.STYLE_DETAILS || [];
+const ADVANCED_SYSTEMS = SOURCE_DATA.ADVANCED_SYSTEMS || { alchemy: [], chaining: { flow: [], turns: [], detectability: [] }, projects: { tiers: [], quality: [] }, relics: { tiers: [], willNotes: [] } };
 const ACOES = SOURCE_DATA.ACOES.map((action) => {
   if (action.sym === "u") {
     return { ...action, desc: "Manifestacao Simples (<=3 KW), sacar arma, usar item, primeiros socorros" };
@@ -113,12 +118,12 @@ const PERICIAS_LIST = [
 ];
 
 const EXTRA_CONDS = [
-  { id: "fragilizado", label: "Fragilizado", color: "#F59E0B", desc: "Perde resistencia e fica mais vulneravel a ataques pesados." },
-  { id: "derrubado", label: "Derrubado", color: "#FB923C", desc: "No chao. Levantar exige Movimento ou uma acao equivalente." },
-  { id: "desarmado", label: "Desarmado", color: "#94A3B8", desc: "Sem arma empunhada. Precisa sacar ou recuperar o equipamento." },
-  { id: "paralisado", label: "Paralisado", color: "#38BDF8", desc: "Nao move nem executa acoes fisicas ate encerrar o efeito." },
-  { id: "silenciado", label: "Silenciado", color: "#A3A3A3", desc: "Falas e efeitos verbais ficam bloqueados ou prejudicados." },
-  { id: "quebrado", label: "Quebrado", color: "#22D3EE", desc: "Colapso mental. -3 em rolagens ate estabilizar." },
+  { id: "fragilizado", label: "Fragilizado", color: "#DC2626", desc: "Perde resistencia e fica mais vulneravel a ataques pesados." },
+  { id: "derrubado", label: "Derrubado", color: "#BFA14A", desc: "No chao. Levantar exige Movimento ou uma acao equivalente." },
+  { id: "desarmado", label: "Desarmado", color: "#6B7280", desc: "Sem arma empunhada. Precisa sacar ou recuperar o equipamento." },
+  { id: "paralisado", label: "Paralisado", color: "#A78BFA", desc: "Nao move nem executa acoes fisicas ate encerrar o efeito." },
+  { id: "silenciado", label: "Silenciado", color: "#6B7280", desc: "Falas e efeitos verbais ficam bloqueados ou prejudicados." },
+  { id: "quebrado", label: "Quebrado", color: "#A78BFA", desc: "Colapso mental. -3 em rolagens ate estabilizar." },
   { id: "inconsciente", label: "Inconsciente", color: "#6B7280", desc: "Incapaz de agir. Exige ajuda, descanso ou teste para retornar." },
   { id: "assombro1", label: "Assombro 1", color: C.alma, desc: "Atacante recupera 10% do dano causado como HP." },
   { id: "assombro2", label: "Assombro 2", color: C.alma, desc: "Gera +1d4 de sombra por turno enquanto estiver ativo." },

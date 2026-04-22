@@ -1,21 +1,3 @@
-const APP_TABS = [
-  { id: "ficha", label: "FICHA", icon: "[]" },
-  { id: "dados", label: "DADOS", icon: "d6" },
-  { id: "combate", label: "COMBATE", icon: "ATK" },
-  { id: "arsenal", label: "ARSENAL", icon: "EQP" },
-  { id: "sistema", label: "SISTEMA", icon: "SYS" },
-];
-
-const HEADER_RESOURCES = [
-  { key: "hp", color: C.corpo, label: "HP" },
-  { key: "sp", color: C.mente, label: "SP" },
-  { key: "pe", color: C.alma, label: "PE" },
-];
-
-const LEGACY_STORAGE_KEY = "uh_char_v2";
-const PROFILES_STORAGE_KEY = "uh_profiles_v1";
-const APP_META_STORAGE_KEY = "uh_app_meta_v1";
-
 function hydrateCharacter(rawCharacter) {
   const parsed = rawCharacter ? JSON.parse(rawCharacter) : null;
   if (!parsed) return DEFAULT_CHAR;
