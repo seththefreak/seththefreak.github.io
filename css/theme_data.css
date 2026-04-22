@@ -196,20 +196,20 @@
   --text-primary:   #E6DCFF;
   --text-secondary: #B9A6F5;
   --text-muted:     #6848A0;
-  --text-accent:    #B47CFF;
+  --text-accent:    #9F7AD4;
   --border:         #3A2B6A;
   --border-light:   #2A1E50;
-  --border-accent:  #7050C8;
-  --lavanda:        #9B5CFF;
-  --lavanda-light:  #7040C0;
-  --lavanda-dark:   #B47CFF;
-  --celeste:        #7040C0;
+  --border-accent:  #5C4A91;
+  --lavanda:        #8261C6;
+  --lavanda-light:  #533A87;
+  --lavanda-dark:   #9F7AD4;
+  --celeste:        #533A87;
   --shadow-sm:      0 2px 8px rgba(0,0,0,0.5);
   --shadow-md:      0 4px 20px rgba(0,0,0,0.6);
-  --shadow-glow:    0 0 30px rgba(180,124,255,0.45);
-  --ornament-color: rgba(180,124,255,0.15);
-  --attr-pos:       #60c88a; --attr-pos-bg: #102818;
-  --attr-neg:       #ff6080; --attr-neg-bg: #280818;
+  --shadow-glow:    0 0 18px rgba(159,122,212,0.24);
+  --ornament-color: rgba(159,122,212,0.12);
+  --attr-pos:       #7EA391; --attr-pos-bg: #13241e;
+  --attr-neg:       #D46A79; --attr-neg-bg: #280818;
 }
 
 /* ── Tropical Ocean ──────────────────────────────────────── */
@@ -248,19 +248,19 @@
   --text-primary:   #D6F5F8;
   --text-secondary: #8ED3DC;
   --text-muted:     #406870;
-  --text-accent:    #1AD1E8;
+  --text-accent:    #5DA8B4;
   --border:         #1F5C66;
   --border-light:   #164448;
-  --border-accent:  #2A9090;
-  --lavanda:        #00B3C6;
-  --lavanda-light:  #007888;
-  --lavanda-dark:   #1AD1E8;
-  --celeste:        #007888;
+  --border-accent:  #2B6E77;
+  --lavanda:        #1E8C9A;
+  --lavanda-light:  #135765;
+  --lavanda-dark:   #5DA8B4;
+  --celeste:        #135765;
   --shadow-sm:      0 2px 8px rgba(0,0,0,0.3);
   --shadow-md:      0 4px 20px rgba(0,0,0,0.5);
-  --shadow-glow:    0 0 20px rgba(26,209,232,0.4);
-  --ornament-color: rgba(26,209,232,0.12);
-  --attr-pos:       #1AD1E8; --attr-pos-bg: #0a2830;
+  --shadow-glow:    0 0 16px rgba(93,168,180,0.24);
+  --ornament-color: rgba(93,168,180,0.1);
+  --attr-pos:       #7EA391; --attr-pos-bg: #10251f;
   --attr-neg:       #e07088; --attr-neg-bg: #300818;
 }
 
