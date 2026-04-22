@@ -1,0 +1,276 @@
+/* ============================================================
+       MUNDO — HABILIDADES (nova subseção)
+    ============================================================ */
+    .mundo-hab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
+    .mundo-hab-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
+    }
+    .mundo-hab-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-accent);
+    }
+
+    .mundo-hab-header {
+      padding: 14px 18px 10px;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mundo-hab-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--lavanda-light), var(--celeste-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .mundo-hab-info { flex: 1; }
+
+    .mundo-hab-nome {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+
+    .mundo-hab-meta {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .mundo-hab-body {
+      padding: 12px 18px 14px;
+    }
+
+    .mundo-hab-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .mundo-hab-efeitos {
+      border-top: 1px solid var(--border-light);
+      padding-top: 8px;
+      margin-top: 8px;
+    }
+
+    .mundo-hab-efeitos-title {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .mundo-hab-efeito-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      padding: 2px 0;
+    }
+    .mundo-hab-efeito-row::before {
+      content: '✦';
+      color: var(--lavanda);
+      font-size: 0.55rem;
+      flex-shrink: 0;
+    }
+
+    .hab-race-badge {
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 10px;
+      background: var(--lavanda-light);
+      color: var(--lavanda-dark);
+      border: 1px solid var(--lavanda);
+    }
+
+    /* ── LORE ── */
+    .lore-whisper {
+      display: flex; align-items: center; gap: 10px;
+      background: linear-gradient(90deg, var(--lavanda-light, #f0ecff) 0%, transparent 100%);
+      border-left: 3px solid var(--lavanda, #9b87c9);
+      border-radius: 6px; padding: 10px 16px; margin: 20px 0;
+      color: var(--text-secondary); font-size: 0.88rem;
+    }
+    .lore-whisper-icon { color: var(--lavanda, #9b87c9); font-size: 1rem; }
+
+    .lore-chapter { margin-bottom: 14px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .lore-chapter-btn {
+      width: 100%; display: flex; align-items: center; gap: 12px;
+      padding: 14px 18px; background: var(--bg-card); border: none; cursor: pointer;
+      text-align: left; transition: background 0.2s;
+    }
+    .lore-chapter-btn:hover { background: var(--lavanda-light, #f0ecff); }
+    .lore-chapter-num {
+      width: 28px; height: 28px; border-radius: 50%; background: var(--lavanda, #9b87c9);
+      color: #fff; font-size: 0.78rem; font-weight: 700; display: flex;
+      align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .lore-chapter-title { flex: 1; font-weight: 600; color: var(--text-primary); font-size: 0.97rem; }
+    .lore-chapter-arrow { color: var(--lavanda, #9b87c9); font-size: 0.9rem; transition: transform 0.25s; }
+    .lore-chapter-arrow.open { transform: rotate(90deg); }
+
+    .lore-chapter-body {
+      display: none; padding: 18px 20px 20px; background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+    }
+    .lore-chapter-body p { margin-bottom: 12px; line-height: 1.65; color: var(--text-secondary); font-size: 0.9rem; }
+    .lore-chapter-body.open { display: block; animation: fadeIn 0.25s ease; }
+
+    .lore-term { color: var(--lavanda, #9b87c9); font-weight: 600; }
+    .lore-divider { text-align: center; color: var(--text-muted); margin: 14px 0; letter-spacing: 6px; }
+
+    .lore-list { padding-left: 20px; margin: 10px 0 14px; }
+    .lore-list li { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; margin-bottom: 5px; }
+
+    .lore-callout {
+      background: var(--lavanda-light, #f0ecff); border-radius: 8px;
+      padding: 14px 16px; margin-top: 14px; border-left: 4px solid var(--lavanda, #9b87c9);
+    }
+    .lore-callout strong { display: block; margin-bottom: 6px; color: var(--text-accent); }
+    .lore-callout p { margin: 0; font-size: 0.88rem; color: var(--text-secondary); }
+
+    .lore-tier { border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; }
+    .lore-tier-beyond { border-color: #c084fc55; background: #f5f0ff22; }
+    .lore-tier-transcendental { border-color: #f59e0b55; background: #fffbeb22; }
+    .lore-tier-celestial { border-color: #38bdf855; background: #f0f9ff22; }
+
+    .lore-tier-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .lore-tier-badge {
+      width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: 0.85rem; font-weight: 700; flex-shrink: 0;
+    }
+    .lore-tier-beyond .lore-tier-badge   { background: #c084fc33; color: #9333ea; }
+    .lore-tier-transcendental .lore-tier-badge { background: #f59e0b33; color: #b45309; }
+    .lore-tier-celestial .lore-tier-badge { background: #38bdf833; color: #0369a1; }
+
+    .lore-sub-entry {
+      background: var(--bg-card); border-radius: 6px; padding: 10px 14px; margin: 8px 0;
+      border-left: 3px solid var(--border);
+    }
+    .lore-sub-label {
+      display: inline-block; font-weight: 700; font-size: 0.85rem;
+      color: var(--text-accent); margin-bottom: 4px;
+    }
+    .lore-sub-entry p { margin: 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.55; }
+
+    .equipamentos-mundo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .equip-mundo-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .equip-mundo-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+    }
+    .equip-mundo-card.arma::before { background: var(--rose-dark); }
+    .equip-mundo-card.armadura::before { background: var(--celeste-dark); }
+    .equip-mundo-card.escudo::before { background: var(--menta-dark); }
+    .equip-mundo-card:hover { border-color: var(--border-accent); box-shadow: var(--shadow-sm); }
+
+    .equip-mundo-nome {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .equip-mundo-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 8px 0;
+    }
+
+    .equip-stat-pill {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .equip-stat-pill.atk { background: var(--rose-light); color: var(--rose-dark); border-color: var(--rose); }
+    .equip-stat-pill.def { background: var(--celeste-light); color: var(--celeste-dark); border-color: var(--celeste); }
+    .equip-stat-pill.mag { background: var(--lavanda-light); color: var(--lavanda-dark); border-color: var(--lavanda); }
+    .equip-stat-pill.pen { background: var(--attr-neg-bg); color: var(--attr-neg); border-color: var(--attr-neg); }
+    .equip-stat-pill.preco { background: var(--amber); color: #987040; border-color: #e0b860; }
+
+    .drops-mundo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .drop-mundo-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+    .drop-mundo-card:hover { border-color: var(--border-accent); box-shadow: var(--shadow-sm); }
+
+    .drop-rarity-bar { height: 3px; }
+
+    .drop-mundo-body { padding: 14px 16px; }
+
+    .drop-mundo-nome {
+      font-family: var(--font-title);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .drop-mundo-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .drop-mundo-fonte {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
