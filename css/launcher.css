@@ -71,6 +71,7 @@ body::before {
   gap: clamp(0.75rem, 1.8vw, 1.4rem);
   padding: clamp(1.2rem, 2.3vw, 2rem) clamp(1rem, 2.4vw, 1.8rem) clamp(2rem, 3.6vw, 2.8rem);
 }
+
 #header {
   position: relative;
   z-index: 2;
@@ -1032,6 +1033,15 @@ html.browser-desktop .status-card {
   #veil {
     animation: none !important;
     transition: none !important;
+  }
+
+  /* Elements that start at opacity:0 and rely on animations to become visible
+     must be explicitly shown when animations are disabled. */
+  #header,
+  #systems,
+  #footer,
+  .sep {
+    opacity: 1 !important;
   }
 
   #app,
