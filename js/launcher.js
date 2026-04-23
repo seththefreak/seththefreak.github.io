@@ -33,7 +33,11 @@
   function shouldUseSafeDesktopMode() {
     if (!isDesktopViewport()) return false;
     if (browserInfo.isIOS || /Android/i.test(browserInfo.userAgent || '')) return false;
-    return !!(browserInfo.isOpera || browserInfo.isFirefox || browserInfo.isSafari || !supportsBackdropFilter);
+    // All desktop browsers use safe mode: preserve-3d + pointer parallax
+    // causes z-index to be ignored in favour of 3D depth order, pushing
+    // card-bg in front of content. Chrome was previously missing from this
+    // check (it supports backdrop-filter, so !supportsBackdropFilter = false).
+    return true;
   }
 
   function syncDesktopRenderingMode() {
