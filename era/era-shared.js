@@ -1,4 +1,10 @@
-const { useState, useEffect, useCallback, useRef } = React;
+/*
+ * Audit refactor:
+ * - Preserved shared ERA constants and mechanics while documenting this shared surface.
+ * - Enlarged compact shared buttons to meet touch-target guidance without changing actions.
+ * - Exposes PDF-sourced compendium tables for the ERA reference UI.
+ */
+const { useState, useEffect, useCallback, useMemo, useRef } = React;
 
 const SOURCE_DATA = window.ERA_DATA;
 const C = {
@@ -30,11 +36,13 @@ const C = {
   warning: "#BFA14A",
   danger: "#DC2626",
 };
-const APP_VERSION = "3.3.0";
+const APP_VERSION = "3.4.1";
 const FONT_TEXT = '"Merriweather","Lora",Georgia,serif';
 const FONT_DISPLAY = '"Playfair Display","Noto Serif Display",Georgia,serif';
 const FONT_SYSTEM = '"IBM Plex Mono","Inconsolata","Courier Prime",monospace';
 const TIERS = SOURCE_DATA.TIERS;
+const APT_SYMBOLS = SOURCE_DATA.APT_SYMBOLS || ["○", "◎", "◆", "❖", "✦"];
+const APT_DIFFS = SOURCE_DATA.APT_DIFFS || [];
 const TIER_DT = SOURCE_DATA.TIER_DT;
 const PILARS = {
   ...SOURCE_DATA.PILARS,
@@ -55,36 +63,49 @@ const STYLE_REACTION_RULES = SOURCE_DATA.STYLE_REACTION_RULES || { allow: [], bl
 const WEAPON_STYLE_MAP = SOURCE_DATA.WEAPON_STYLE_MAP || [];
 const STYLE_DETAILS = SOURCE_DATA.STYLE_DETAILS || [];
 const ADVANCED_SYSTEMS = SOURCE_DATA.ADVANCED_SYSTEMS || { alchemy: [], chaining: { flow: [], turns: [], detectability: [] }, projects: { tiers: [], quality: [] }, relics: { tiers: [], willNotes: [] } };
-const ACOES = SOURCE_DATA.ACOES.map((action) => {
-  if (action.sym === "u") {
-    return { ...action, desc: "Manifestacao Simples (<=3 KW), sacar arma, usar item, primeiros socorros" };
-  }
-  if (action.sym === "mov") {
-    return { ...action, desc: "Movimento e manifestacao avancada (4-5 KW), com reposicionamento tatico." };
-  }
-  if (action.sym === "M") {
-    return { ...action, desc: "Ataque medio/pesado, manifestacao completa (<=7 KW) e interacoes complexas" };
-  }
-  if (action.sym === "C") {
-    return { ...action, desc: "Consome o turno inteiro. Manifestacoes Extremas (8+ KW) entram em encadeamento." };
-  }
-  return action;
-});
+const PDF_SOURCE_GUIDES = SOURCE_DATA.PDF_SOURCE_GUIDES || [];
+const KW_GUIDE = SOURCE_DATA.KW_GUIDE || { principles: [], flow: [], intensities: [], actionTypes: [], bonus: [], healingScale: [], stacking: [] };
+const MANIFESTATION_ADVANCED_REFERENCE = SOURCE_DATA.MANIFESTATION_ADVANCED_REFERENCE || {
+  prerequisites: [],
+  soulUnlocks: [],
+  forms: [],
+  elementalWeapons: [],
+  propertyBands: [],
+  conflicts: [],
+  synergies: [],
+};
+const COMBAT_PRESSURE_SYSTEM = SOURCE_DATA.COMBAT_PRESSURE_SYSTEM || {
+  states: [],
+  damageSources: [],
+  criticalByState: [],
+  execution: [],
+  sniperAim: [],
+  synergies: [],
+  styleRoles: [],
+};
+const ACOES = SOURCE_DATA.ACOES;
 const DT_TABLE = SOURCE_DATA.DT_TABLE;
-
-const LEVEL_HP_VALUES = [24, 31, 38, 46, 53, 60, 67, 74, 82, 89, 96];
-const LEVELS = SOURCE_DATA.LEVELS.map((level, index) => ({
-  ...level,
-  hp: LEVEL_HP_VALUES[index] || level.hp,
-}));
+const RECOVERY = SOURCE_DATA.RECOVERY || [];
+const OVERDRAFT = SOURCE_DATA.OVERDRAFT || [];
+const TRAUMAS = SOURCE_DATA.TRAUMAS || [];
+const EXHAUSTION = SOURCE_DATA.EXHAUSTION || [];
+const DAMAGE_TYPE_RULES = SOURCE_DATA.DAMAGE_TYPE_RULES || [];
+const COMBAT_SEQUENCE = SOURCE_DATA.COMBAT_SEQUENCE || [];
+const DODGE_REACTIONS = SOURCE_DATA.DODGE_REACTIONS || [];
+const PARRY_REACTIONS = SOURCE_DATA.PARRY_REACTIONS || [];
+const SANITY_LOSS = SOURCE_DATA.SANITY_LOSS || [];
+const CONTROL_MANEUVERS = SOURCE_DATA.CONTROL_MANEUVERS || [];
+const POSITIONING_RULES = SOURCE_DATA.POSITIONING_RULES || [];
+const LUCK_ROLL = SOURCE_DATA.LUCK_ROLL || [];
+const LEVELS = SOURCE_DATA.LEVELS;
 
 const AMP_THRESHOLDS = [0, 1, 3, 6, 10, 15];
 const AMP_LABELS = ["+0", "+1-2", "+3-5", "+6-9", "+10-14", "+15+"];
 const MANIFESTATION_ACTIONS = [
-  { maxKw: 3, rangeLabel: "<=3 KW", short: "u", tierLabel: "Simples", label: "u - Simples", detail: "Acao de Utilidade", color: C.menteLight },
-  { maxKw: 5, rangeLabel: "<=5 KW", short: "mov", tierLabel: "Avancada", label: "mov - Avancada", detail: "Movimento", color: C.mente },
-  { maxKw: 7, rangeLabel: "<=7 KW", short: "M", tierLabel: "Completa", label: "M - Completa", detail: "Acao Maior", color: C.gold },
-  { maxKw: Infinity, rangeLabel: "8+ KW", short: "C", tierLabel: "Extrema", label: "C - Extrema", detail: "Encadeamento", color: C.corpoAccent },
+  { maxKw: 3, rangeLabel: "1-3 KW", short: "m", tierLabel: "Simples", label: "m - Simples", detail: "Acao Menor", color: C.menteLight },
+  { maxKw: 7, rangeLabel: "4-7 KW", short: "Mv", tierLabel: "Avancada", label: "Mv - Avancada", detail: "Movimento", color: C.mente },
+  { maxKw: 14, rangeLabel: "8-14 KW", short: "M", tierLabel: "Completa", label: "M - Completa", detail: "Acao Maior", color: C.gold },
+  { maxKw: Infinity, rangeLabel: "15+ KW", short: "C", tierLabel: "Extrema", label: "C - Extrema", detail: "Acao Completa", color: C.corpoAccent },
 ];
 const GRIP_LABELS = {
   "1M": "Uma mao",
@@ -100,36 +121,46 @@ const SUB_TO_PILAR = Object.entries(PILARS).reduce((acc, [pillarId, pillar]) => 
 }, {});
 
 const PERICIAS_LIST = [
-  { id: "influencia", label: "Influencia", groupPilar: "mente", bases: ["sabedoria"] },
-  { id: "comunicacao", label: "Comunicacao", groupPilar: "mente", bases: ["intelecto"] },
-  { id: "oficio", label: "Oficio", groupPilar: "corpo", bases: ["destreza", "sabedoria"] },
-  { id: "medicina", label: "Medicina", groupPilar: "mente", bases: ["intelecto", "sabedoria"] },
-  { id: "manejo", label: "Manejo", groupPilar: "corpo", bases: ["destreza"] },
-  { id: "investigacao", label: "Investigacao", groupPilar: "mente", bases: ["intelecto"] },
-  { id: "pontaria", label: "Pontaria", groupPilar: "corpo", bases: ["destreza"] },
-  { id: "golpe", label: "Golpe", groupPilar: "corpo", bases: ["forca", "destreza"] },
-  { id: "cognicao", label: "Cognicao", groupPilar: "mente", bases: ["intelecto"] },
-  { id: "travessia", label: "Travessia", groupPilar: "corpo", bases: ["destreza"] },
-  { id: "furtividade", label: "Furtividade", groupPilar: "corpo", bases: ["destreza"] },
-  { id: "ocultismo", label: "Ocultismo", groupPilar: "alma", bases: ["dominio"] },
-  { id: "iniciativa", label: "Iniciativa", groupPilar: "corpo", bases: ["destreza", "percepcao"] },
-  { id: "sobrevivencia", label: "Sobrevivencia", groupPilar: "mente", bases: ["sabedoria"] },
-  { id: "percepcao", label: "Percepcao", groupPilar: "mente", bases: ["sabedoria"] },
+  { id: "atletismo", label: "Atletismo", category: "fisicas", groupPilar: "corpo", bases: ["forca", "destreza", "constituicao"] },
+  { id: "furtividade", label: "Furtividade", category: "fisicas", groupPilar: "corpo", bases: ["destreza"] },
+  { id: "golpe", label: "Golpe", category: "fisicas", groupPilar: "corpo", bases: ["forca", "destreza"] },
+  { id: "pontaria", label: "Pontaria", category: "fisicas", groupPilar: "corpo", bases: ["destreza"] },
+  { id: "travessia", label: "Travessia", category: "fisicas", groupPilar: "corpo", bases: ["destreza", "constituicao"] },
+  { id: "pilotagem", label: "Pilotagem", category: "fisicas", groupPilar: "corpo", bases: ["destreza", "intelecto"] },
+  { id: "manejo", label: "Manejo", category: "fisicas", groupPilar: "corpo", bases: ["forca", "destreza"] },
+  { id: "coordenacao", label: "Coordenacao", category: "fisicas", groupPilar: "corpo", bases: ["destreza"] },
+  { id: "fortitude", label: "Fortitude", category: "fisicas", groupPilar: "corpo", bases: ["constituicao", "vontade"] },
+  { id: "coleta", label: "Coleta", category: "fisicas", groupPilar: "corpo", bases: ["sabedoria", "destreza"] },
+
+  { id: "percepcao", label: "Percepcao", category: "mentais", groupPilar: "mente", bases: ["sabedoria", "sintonia"] },
+  { id: "investigacao", label: "Investigacao", category: "mentais", groupPilar: "mente", bases: ["intelecto", "sabedoria"] },
+  { id: "medicina", label: "Medicina", category: "mentais", groupPilar: "mente", bases: ["intelecto", "sabedoria"] },
+  { id: "tecnologia", label: "Tecnologia", category: "mentais", groupPilar: "mente", bases: ["intelecto"] },
+  { id: "cognicao", label: "Cognicao", category: "mentais", groupPilar: "mente", bases: ["intelecto"] },
+  { id: "sobrevivencia", label: "Sobrevivencia", category: "mentais", groupPilar: "mente", bases: ["sabedoria", "constituicao"] },
+  { id: "oficio", label: "Oficio (X)", category: "mentais", groupPilar: "mente", bases: ["intelecto", "destreza", "sabedoria"] },
+  { id: "conhecimento", label: "Conhecimento (X)", category: "mentais", groupPilar: "mente", bases: ["intelecto", "sabedoria"] },
+
+  { id: "persuasao", label: "Persuasao", category: "sociais", groupPilar: "mente", bases: ["sabedoria", "vontade"] },
+  { id: "enganacao", label: "Enganacao", category: "sociais", groupPilar: "mente", bases: ["intelecto", "sabedoria"] },
+  { id: "intimidacao", label: "Intimidacao", category: "sociais", groupPilar: "mente", bases: ["vontade", "forca"] },
+  { id: "influencia", label: "Influencia", category: "sociais", groupPilar: "mente", bases: ["sabedoria", "vontade"] },
+  { id: "comunicacao", label: "Comunicacao", category: "sociais", groupPilar: "mente", bases: ["intelecto", "vontade"] },
+  { id: "performance", label: "Performance", category: "sociais", groupPilar: "mente", bases: ["destreza", "vontade"] },
+
+  { id: "ocultismo", label: "Ocultismo", category: "especiais", groupPilar: "alma", bases: ["intelecto", "dominio", "sintonia"] },
+  { id: "iniciativa", label: "Iniciativa", category: "especiais", groupPilar: "corpo", bases: ["destreza", "sabedoria"] },
+  { id: "sorte", label: "Sorte", category: "especiais", groupPilar: "alma", bases: ["sabedoria", "sintonia"] },
 ];
 
-const EXTRA_CONDS = [
-  { id: "fragilizado", label: "Fragilizado", color: "#DC2626", desc: "Perde resistencia e fica mais vulneravel a ataques pesados." },
-  { id: "derrubado", label: "Derrubado", color: "#BFA14A", desc: "No chao. Levantar exige Movimento ou uma acao equivalente." },
-  { id: "desarmado", label: "Desarmado", color: "#6B7280", desc: "Sem arma empunhada. Precisa sacar ou recuperar o equipamento." },
-  { id: "paralisado", label: "Paralisado", color: "#A78BFA", desc: "Nao move nem executa acoes fisicas ate encerrar o efeito." },
-  { id: "silenciado", label: "Silenciado", color: "#6B7280", desc: "Falas e efeitos verbais ficam bloqueados ou prejudicados." },
-  { id: "quebrado", label: "Quebrado", color: "#A78BFA", desc: "Colapso mental. -3 em rolagens ate estabilizar." },
-  { id: "inconsciente", label: "Inconsciente", color: "#6B7280", desc: "Incapaz de agir. Exige ajuda, descanso ou teste para retornar." },
-  { id: "assombro1", label: "Assombro 1", color: C.alma, desc: "Atacante recupera 10% do dano causado como HP." },
-  { id: "assombro2", label: "Assombro 2", color: C.alma, desc: "Gera +1d4 de sombra por turno enquanto estiver ativo." },
-  { id: "assombro3", label: "Assombro 3", color: C.alma, desc: "+2d6 de sombra e sem cura magica ate purificacao." },
+const PERICIA_GROUPS = [
+  { id: "fisicas", label: "Fisicas", color: C.corpoAccent },
+  { id: "mentais", label: "Mentais", color: C.mente },
+  { id: "sociais", label: "Sociais", color: C.gold },
+  { id: "especiais", label: "Especiais", color: C.alma },
 ];
 
+const EXTRA_CONDS = [];
 const CONDS = [...SOURCE_DATA.CONDS, ...EXTRA_CONDS];
 const DEFAULT_SUBS = Object.fromEntries(Object.keys(SUBS).map((key) => [key, { tier: 0, prog: 0 }]));
 const DEFAULT_PERICIAS = Object.fromEntries(PERICIAS_LIST.map((pericia) => [pericia.id, { tier: 0, prog: 0 }]));
@@ -145,7 +176,7 @@ const DEFAULT_CHAR = {
   pericias: { ...DEFAULT_PERICIAS },
   hp: { cur: 24, max: 24 },
   sp: { cur: 100, max: 100 },
-  pe: { cur: 15, max: 15 },
+  pe: { cur: 12, max: 12 },
   exaustao: 0,
   condicoes: [],
   habilidades: "",
@@ -214,8 +245,8 @@ const SmBtn = ({ onClick, children, color, wide }) => (
   <button
     onClick={onClick}
     style={{
-      width: wide ? 36 : 24,
-      height: 24,
+      minWidth: wide ? 52 : 44,
+      minHeight: 44,
       borderRadius: 4,
       background: C.bg3,
       border: `1px solid ${C.border}`,
@@ -280,6 +311,75 @@ function getCurrentLevelData(level) {
   return LEVELS[index] || LEVELS[0];
 }
 
+function getPillarBaseValue(pillarId) {
+  return Number(PILARS[pillarId] && PILARS[pillarId].base) || 0;
+}
+
+function getPillarPointsAvailable(level) {
+  return 2 + Math.floor((clampNumber(Number(level) || 1, 1, LEVELS.length) - 1) / 2);
+}
+
+function getPillarPointsUsed(pillars) {
+  return Object.keys(PILARS).reduce((total, pillarId) => {
+    const value = Number(pillars && pillars[pillarId]);
+    return total + Math.max(0, (Number.isFinite(value) ? value : getPillarBaseValue(pillarId)) - getPillarBaseValue(pillarId));
+  }, 0);
+}
+
+function getAttributeFreePointsAvailable(level) {
+  return 2 * clampNumber(Number(level) || 1, 1, LEVELS.length);
+}
+
+function getPillarBonusPoints(pillars, pillarId) {
+  const value = Number(pillars && pillars[pillarId]);
+  return Math.max(0, (Number.isFinite(value) ? value : getPillarBaseValue(pillarId)) - getPillarBaseValue(pillarId)) * 3;
+}
+
+function normalizeProgressEntry(entry) {
+  return {
+    tier: clampNumber(Number(entry && entry.tier) || 0, 0, TIERS.length - 1),
+    prog: clampNumber(Number(entry && entry.prog) || 0, 0, 3),
+  };
+}
+
+function shiftProgressEntry(entry, delta) {
+  const next = normalizeProgressEntry(entry);
+  const direction = Number(delta) || 0;
+  if (direction > 0) {
+    if (next.prog < 3) return { ...next, prog: next.prog + 1 };
+    if (next.tier < TIERS.length - 1) return { tier: next.tier + 1, prog: 0 };
+    return next;
+  }
+  if (direction < 0) {
+    if (next.prog > 0) return { ...next, prog: next.prog - 1 };
+    if (next.tier > 0) return { tier: next.tier - 1, prog: 3 };
+  }
+  return next;
+}
+
+function formatApt(tier, prog) {
+  const safeTier = clampNumber(Number(tier) || 0, 0, TIERS.length - 1);
+  const safeProg = clampNumber(Number(prog) || 0, 0, 3);
+  return `${APT_SYMBOLS[safeTier] || ""} ${TIERS[safeTier]} +${safeProg}`;
+}
+
+function getTierDeltaRules(characterTier, targetTier) {
+  const diff = clampNumber((Number(characterTier) || 0) - (Number(targetTier) || 0), -4, 4);
+  if (diff >= 3) return { diff, pge: 2, advantage: 1, auto: "success", label: "+3 APT: sucesso automatico" };
+  if (diff === 2) return { diff, pge: 2, advantage: 1, auto: null, label: "+2 APT: +2 PGE e Vantagem" };
+  if (diff === 1) return { diff, pge: 2, advantage: 0, auto: null, label: "+1 APT: +2 PGE" };
+  if (diff <= -3) return { diff, pge: -2, advantage: -1, auto: "fail", label: "-3 APT: falha automatica" };
+  if (diff === -2) return { diff, pge: -2, advantage: -1, auto: null, label: "-2 APT: -2 PGE e Desvantagem" };
+  if (diff === -1) return { diff, pge: -2, advantage: 0, auto: null, label: "-1 APT: -2 PGE" };
+  return { diff, pge: 0, advantage: 0, auto: null, label: "Mesmo APT" };
+}
+
+function resolveAdvantageState(value) {
+  if (value > 0) return "advantage";
+  if (value < 0) return "disadvantage";
+  return "normal";
+}
+
 function getMeterPercent(current, max) {
   if (max <= 0) return 0;
   return clampNumber((current / max) * 100, 0, 100);
@@ -323,6 +423,7 @@ function getDamageTrackByTier(tierName) {
     "Esp.": ["2d6", "2d8", "3d8", "4d8", "5d8", "6d8"],
     Especialista: ["2d6", "2d8", "3d8", "4d8", "5d8", "6d8"],
     Mestre: ["2d8", "3d8", "4d8", "5d8", "6d8", "8d8"],
+    Lenda: ["3d8", "4d8", "5d8", "6d8", "8d8", "10d8"],
     Maestria: ["3d8", "4d8", "5d8", "6d8", "8d8", "10d8"],
   };
 

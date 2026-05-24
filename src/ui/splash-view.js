@@ -1,15 +1,24 @@
 /*
- * Responsibility: create and update the splash DOM and injected styles.
- * Exports: createSplashView.
+ * Audit refactor:
+ * - Kept splash DOM creation isolated from the startup orchestrator.
+ * - Moved injected splash colors into CSS variables for theme consistency.
+ * - Added JSDoc for the generated view API.
  */
 
+/**
+ * Builds the minimal splash CSS injected at startup.
+ * @param {{FADE_IN_MS?: number, FADE_OUT_MS?: number}} timings
+ * @returns {string}
+ */
 function buildSplashStyles(timings) {
   return `
     #startupSplash {
+      --splash-bg: #0b0c10;
+      --splash-hint-rgb: 255 255 255;
       position: fixed;
       inset: 0;
       z-index: 3000;
-      background: #0b0c10;
+      background: var(--splash-bg);
       opacity: 0;
       transform: scale(1.02);
       transition: opacity ${timings.FADE_IN_MS}ms ease, transform ${timings.FADE_IN_MS}ms ease;
@@ -40,7 +49,7 @@ function buildSplashStyles(timings) {
       bottom: 28px;
       left: 50%;
       transform: translateX(-50%);
-      color: rgba(255, 255, 255, 0.45);
+      color: rgb(var(--splash-hint-rgb) / 0.45);
       font: 500 11px "IBM Plex Mono", monospace, sans-serif;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -55,6 +64,11 @@ function buildSplashStyles(timings) {
   `;
 }
 
+/**
+ * Creates the splash DOM nodes and returns imperative lifecycle hooks.
+ * @param {object} options
+ * @returns {{root: HTMLElement, image: HTMLImageElement, hint: HTMLElement, styleTag: HTMLStyleElement, injectStyles: Function, mount: Function, show: Function, hide: Function, setImage: Function, showSkipHint: Function, remove: Function}}
+ */
 export function createSplashView(options) {
   const config = options || {};
   const documentRef = config.documentRef || document;

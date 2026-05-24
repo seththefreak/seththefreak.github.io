@@ -1,7 +1,18 @@
+/*
+ * Audit refactor:
+ * - Added JSDoc to shared combat encounter helpers.
+ * - Preserved initiative sorting, HP clamping, and condition behavior.
+ * - Kept legacy CompanionSystems.Combat exports for existing pages.
+ */
 (function (global) {
   var utils = global.CompanionUtils || {};
   var systems = global.CompanionSystems || (global.CompanionSystems = {});
 
+  /**
+   * Normalizes raw fighter data into a combatant record.
+   * @param {object} data
+   * @returns {object}
+   */
   function createCombatant(data) {
     var source = data || {};
     var maxHp = Math.max(0, utils.toNumber(source.maxHp, utils.toNumber(source.hp, 0)));
@@ -16,6 +27,11 @@
     };
   }
 
+  /**
+   * Sorts combatants by initiative, then localized name.
+   * @param {object[]} list
+   * @returns {object[]}
+   */
   function sortCombatants(list) {
     return (Array.isArray(list) ? list : []).slice().sort(function (left, right) {
       if ((right.init || 0) !== (left.init || 0)) return (right.init || 0) - (left.init || 0);
@@ -23,6 +39,11 @@
     });
   }
 
+  /**
+   * Creates a normalized encounter from config.
+   * @param {object} config
+   * @returns {object}
+   */
   function createEncounter(config) {
     var source = config || {};
     var fighters = sortCombatants((source.fighters || []).map(createCombatant));
@@ -34,6 +55,11 @@
     };
   }
 
+  /**
+   * Ensures encounter activeId and fighter data are internally valid.
+   * @param {object} encounter
+   * @returns {object}
+   */
   function normalizeEncounter(encounter) {
     var current = createEncounter(encounter);
     if (current.activeId && current.fighters.some(function (fighter) { return fighter.id === current.activeId; })) {
@@ -44,6 +70,12 @@
     });
   }
 
+  /**
+   * Maps fighters and re-normalizes active state.
+   * @param {object} encounter
+   * @param {Function} mapper
+   * @returns {object}
+   */
   function mapFighters(encounter, mapper) {
     var current = normalizeEncounter(encounter);
     return normalizeEncounter(Object.assign({}, current, {
@@ -51,6 +83,12 @@
     }));
   }
 
+  /**
+   * Adds a combatant to an encounter.
+   * @param {object} encounter
+   * @param {object} data
+   * @returns {object}
+   */
   function addCombatant(encounter, data) {
     var current = normalizeEncounter(encounter);
     var fighter = createCombatant(data);
@@ -60,6 +98,12 @@
     }));
   }
 
+  /**
+   * Removes a combatant and repairs activeId if needed.
+   * @param {object} encounter
+   * @param {string} id
+   * @returns {object}
+   */
   function removeCombatant(encounter, id) {
     var current = normalizeEncounter(encounter);
     var fighters = current.fighters.filter(function (fighter) { return fighter.id !== id; });
@@ -69,6 +113,13 @@
     }));
   }
 
+  /**
+   * Applies an HP delta to one combatant, clamped to valid HP.
+   * @param {object} encounter
+   * @param {string} id
+   * @param {number} delta
+   * @returns {object}
+   */
   function changeCombatantHp(encounter, id, delta) {
     return mapFighters(encounter, function (fighter) {
       if (fighter.id !== id) return fighter;
@@ -78,6 +129,13 @@
     });
   }
 
+  /**
+   * Adds or removes a condition id on one combatant.
+   * @param {object} encounter
+   * @param {string} id
+   * @param {string} conditionId
+   * @returns {object}
+   */
   function toggleCombatantCondition(encounter, id, conditionId) {
     return mapFighters(encounter, function (fighter) {
       if (fighter.id !== id) return fighter;
@@ -88,6 +146,14 @@
     });
   }
 
+  /**
+   * Rolls initiative for one fighter using the provided bonus resolver.
+   * @param {object} encounter
+   * @param {string} fighterId
+   * @param {Function | number} bonusResolver
+   * @param {object=} options
+   * @returns {object}
+   */
   function rollInitiative(encounter, fighterId, bonusResolver, options) {
     var config = options || {};
     var sides = Math.max(2, utils.toNumber(config.sides, 6));
@@ -102,6 +168,13 @@
     }));
   }
 
+  /**
+   * Rolls initiative for all fighters.
+   * @param {object} encounter
+   * @param {Function | number} bonusResolver
+   * @param {object=} options
+   * @returns {object}
+   */
   function rollAllInitiatives(encounter, bonusResolver, options) {
     var config = options || {};
     var sides = Math.max(2, utils.toNumber(config.sides, 6));
@@ -115,6 +188,11 @@
     }));
   }
 
+  /**
+   * Advances to the next fighter and resets turn slots.
+   * @param {object} encounter
+   * @returns {object}
+   */
   function nextTurn(encounter) {
     var current = normalizeEncounter(encounter);
     if (!current.fighters.length) return current;

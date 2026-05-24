@@ -2,6 +2,7 @@
  * Responsibility: render the ERA shell and header UI around the active tabs.
  * Exports: HeaderSigil, HeaderResource, ProfileManager, VersionNotice,
  * AppTabButton, AppContent.
+ * Update: exposes the session notes tab requested for live-table utility.
  */
 
 function HeaderSigil() {
@@ -191,5 +192,6 @@ function AppContent({ tab, char, upd }) {
   if (tab === "dados") return <TabDados char={char} />;
   if (tab === "combate") return <TabCombate char={char} />;
   if (tab === "arsenal") return <TabArsenal />;
+  if (tab === "sessao") return <TabSessao char={char} />;
   return <TabSistema />;
 }

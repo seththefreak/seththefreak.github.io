@@ -1,7 +1,7 @@
 /*
  * Responsibility: centralize ERA app config, storage keys and small UI timings.
  * Exports: APP_TABS, HEADER_RESOURCES, LEGACY_STORAGE_KEY, PROFILES_STORAGE_KEY,
- * APP_META_STORAGE_KEY, ERA_UI_TIMINGS, ERA_VIEWPORT.
+ * APP_META_STORAGE_KEY, SESSION_NOTES_STORAGE_KEY, ERA_UI_TIMINGS, ERA_VIEWPORT.
  */
 
 const APP_TABS = [
@@ -10,6 +10,7 @@ const APP_TABS = [
   { id: "combate", label: "COMBATE", icon: "ATK" },
   { id: "arsenal", label: "ARSENAL", icon: "EQP" },
   { id: "sistema", label: "SISTEMA", icon: "SYS" },
+  { id: "sessao", label: "SESSAO", icon: "NT" },
 ];
 
 const HEADER_RESOURCES = [
@@ -21,6 +22,7 @@ const HEADER_RESOURCES = [
 const LEGACY_STORAGE_KEY = "uh_char_v2";
 const PROFILES_STORAGE_KEY = "uh_profiles_v1";
 const APP_META_STORAGE_KEY = "uh_app_meta_v1";
+const SESSION_NOTES_STORAGE_KEY = "uh_era_session_notes_v1";
 
 const ERA_UI_TIMINGS = Object.freeze({
   ROLL_REVEAL_MS: 350,
