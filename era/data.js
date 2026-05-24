@@ -265,11 +265,11 @@ window.ERA_DATA = {
 
   ACOES: [
     {sym:"M",  name:"Acao Maior",    desc:"Acao principal: ataques, Manifestacoes Completas e interacoes complexas."},
-    {sym:"m",  name:"Acao Menor",    desc:"Acao rapida: Manifestacoes Simples (1-3 KW), sacar arma ou usar item."},
-    {sym:"Mv", name:"Movimento",     desc:"Deslocamento base (4 + Progresso Destreza). Manifestacoes Avancadas (4-7 KW)."},
+    {sym:"m",  name:"Acao Menor",    desc:"Acao rapida: Manifestacoes Simples (1-3 keywords), sacar arma ou usar item."},
+    {sym:"Mv", name:"Movimento",     desc:"Deslocamento base (4 + Progresso Destreza). Manifestacoes Avancadas (4-7 keywords)."},
     {sym:"R",  name:"Reacao",        desc:"Esquiva, bloqueio ou contra-ataque. So se perceber a acao."},
     {sym:"L",  name:"Livre",         desc:"Acoes verbais curtas e declaracoes. Ilimitado quando fizer sentido."},
-    {sym:"C",  name:"Acao Completa", desc:"Consome o turno inteiro. Manifestacoes Extremas (15+ KW)."},
+    {sym:"C",  name:"Acao Completa", desc:"Consome o turno inteiro. Manifestacoes Extremas (15+ keywords)."},
   ],
 
   DT_TABLE: [

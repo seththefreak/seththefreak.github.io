@@ -1005,10 +1005,10 @@ window.ERA_DATA = {
       { grade: "V - Cataclismo", pe: "+10+ PE", minTier: "Lenda", effect: "Efeito catastrofico. Pode alterar geografias locais." },
     ],
     actionTypes: [
-      { type: "Simples", peTotal: "1-3 PE", action: "m", note: "Rapida e direta." },
-      { type: "Avancada", peTotal: "4-7 PE", action: "Mv", note: "Libera M para outra coisa." },
-      { type: "Completa", peTotal: "8-14 PE", action: "M", note: "Pode alterar o campo de batalha." },
-      { type: "Extrema", peTotal: "15+ PE", action: "C", note: "Interrupcao por dano ou falha de Vontade DT 5 perde tudo." },
+      { type: "Simples", keywords: "1-3 keywords", action: "m", note: "Rapida e direta." },
+      { type: "Avancada", keywords: "4-7 keywords", action: "Mv", note: "Libera M para outra coisa." },
+      { type: "Completa", keywords: "8-14 keywords", action: "M", note: "Pode alterar o campo de batalha." },
+      { type: "Extrema", keywords: "15+ keywords", action: "C", note: "Interrupcao por dano ou falha de Vontade DT 5 perde tudo." },
     ],
     bonus: [
       { range: "1-2", dice: "-", damage: "-", note: "KW baixo; Manifestacao simples." },

@@ -3,6 +3,7 @@
  * - Documents the ERA character-sheet tab as the owner of pillar/attribute editing UI.
  * - Keeps all progression budgets, labels, and derived resource formulas unchanged.
  * - Uses shared touch-target fixes from era-shared.js/style.css.
+ * - Adds loadout editing so weapons/styles are part of the companion workflow.
  */
 
 /**
@@ -162,6 +163,16 @@ function TabFicha({ char, upd }) {
     }));
   }
 
+  function setLoadout(nextPatch) {
+    upd((currentChar) => ({
+      ...currentChar,
+      loadout: normalizeLoadout({
+        ...(currentChar.loadout || {}),
+        ...nextPatch,
+      }),
+    }));
+  }
+
   function triggerPortraitPicker() {
     if (portraitInputRef.current) {
       portraitInputRef.current.click();
@@ -183,6 +194,7 @@ function TabFicha({ char, upd }) {
   const fichaTabs = [
     { id: "base", label: "Base" },
     { id: "pericias", label: "Pericias" },
+    { id: "arsenal", label: "Arsenal" },
     { id: "extras", label: "Extras" },
   ];
 
@@ -500,6 +512,7 @@ function TabFicha({ char, upd }) {
       ) : null}
 
       {fichaTab === "pericias" ? <PericiasTab char={char} setPericia={setPericia} adjustPericiaProgress={adjustPericiaProgress} /> : null}
+      {fichaTab === "arsenal" ? <FichaLoadoutTab char={char} setLoadout={setLoadout} /> : null}
 
       {fichaTab === "extras" ? (
         <ResponsiveGrid>
@@ -637,6 +650,170 @@ function TabFicha({ char, upd }) {
           </Sect>
         </ResponsiveGrid>
       ) : null}
+    </div>
+  );
+}
+
+function FichaLoadoutTab({ char, setLoadout }) {
+  const loadout = normalizeLoadout(char.loadout);
+  const weapon = getWeaponByName(loadout.weaponName);
+  const gripOptions = weapon ? getWeaponGripOptions(weapon) : [];
+  const criticalOptions = weapon ? getWeaponCriticalOptions(weapon) : [];
+  const styleNames = weapon ? getWeaponStyleNames(weapon.name) : [];
+  const styleDetail = weapon ? getStyleDetail(weapon.name, loadout.styleName) : null;
+  const weaponCats = [
+    { id: "cacl", label: "CaC Leve" },
+    { id: "cacm", label: "CaC Media" },
+    { id: "cacp", label: "CaC Pesada" },
+    { id: "dist", label: "Distancia" },
+  ];
+
+  function updateWeapon(weaponName) {
+    setLoadout({ weaponName, gripId: "", styleName: "", criticalId: "" });
+  }
+
+  return (
+    <div className="desktop-split">
+      <Sect title="Arma Equipada" color={C.corpo}>
+        <Lbl>Escolha da ficha</Lbl>
+        <select value={loadout.weaponName} onChange={(event) => updateWeapon(event.target.value)} style={{ marginBottom: 10 }}>
+          <option value="">Sem arma equipada</option>
+          {weaponCats.map((cat) => (
+            <optgroup key={cat.id} label={cat.label}>
+              {WEAPONS.filter((item) => item.cat === cat.id).map((item) => (
+                <option key={item.name} value={item.name}>{item.name} - {item.dmg}</option>
+              ))}
+            </optgroup>
+          ))}
+        </select>
+
+        {weapon ? (
+          <div style={{ ...card, background: `${C.corpo}0D`, borderColor: `${C.corpo}33` }}>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap", marginBottom: 8 }}>
+              <div>
+                <div style={{ fontSize: 10, color: C.muted }}>Dano base</div>
+                <div style={{ fontFamily: FONT_DISPLAY, fontSize: 24, color: C.corpo, fontWeight: 700 }}>{weapon.dmg}</div>
+              </div>
+              <div>
+                <div style={{ fontSize: 10, color: C.muted }}>Tipo</div>
+                <div style={{ fontSize: 12, color: C.text }}>{weapon.type}</div>
+              </div>
+              <div>
+                <div style={{ fontSize: 10, color: C.muted }}>Acao</div>
+                <div style={{ fontSize: 12, color: C.gold }}>{weapon.act}</div>
+              </div>
+              <div>
+                <div style={{ fontSize: 10, color: C.muted }}>Alcance</div>
+                <div style={{ fontSize: 12, color: C.text }}>{weapon.range || "CaC"}</div>
+              </div>
+            </div>
+
+            <Lbl>Empunhadura ativa</Lbl>
+            <div className="chip-row" style={{ marginBottom: 10 }}>
+              {gripOptions.map((option) => {
+                const active = loadout.gripId === option.id;
+                return (
+                  <button
+                    key={option.id}
+                    onClick={() => setLoadout({ gripId: option.id })}
+                    style={{
+                      padding: "5px 10px",
+                      borderRadius: 999,
+                      background: active ? `${C.corpo}22` : C.bg3,
+                      border: `1px solid ${active ? C.corpo : C.border}`,
+                      color: active ? C.corpo : C.text,
+                      fontSize: 11,
+                    }}
+                  >
+                    {option.gripLabel} <span style={{ color: active ? C.corpo : C.muted }}>{option.formula}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <Lbl>Critico ativo</Lbl>
+            <div className="chip-row">
+              {criticalOptions.map((option) => {
+                const active = loadout.criticalId === option.id;
+                return (
+                  <button
+                    key={option.id}
+                    onClick={() => setLoadout({ criticalId: option.id })}
+                    style={{
+                      padding: "5px 10px",
+                      borderRadius: 999,
+                      background: active ? `${C.gold}18` : C.bg3,
+                      border: `1px solid ${active ? C.gold : C.border}`,
+                      color: active ? C.gold : C.text,
+                      fontSize: 11,
+                    }}
+                  >
+                    {option.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <div style={{ fontSize: 11, color: C.muted }}>Escolha uma arma para o companion usar no dano de combate.</div>
+        )}
+      </Sect>
+
+      <Sect title="Estilo Ativo" color={C.gold}>
+        {weapon && styleNames.length ? (
+          <>
+            <Lbl>Estilo da arma</Lbl>
+            <div className="chip-row" style={{ marginBottom: 12 }}>
+              {styleNames.map((styleName) => {
+                const active = loadout.styleName === styleName;
+                return (
+                  <button
+                    key={styleName}
+                    onClick={() => setLoadout({ styleName })}
+                    style={{
+                      padding: "6px 10px",
+                      borderRadius: 999,
+                      background: active ? `${C.gold}20` : C.bg3,
+                      border: `1px solid ${active ? C.gold : C.border}`,
+                      color: active ? C.gold : C.text,
+                      fontSize: 11,
+                    }}
+                  >
+                    {styleName}
+                  </button>
+                );
+              })}
+            </div>
+
+            {styleDetail ? (
+              <div style={{ display: "grid", gap: 10 }}>
+                <div style={{ ...card, background: `${C.gold}0D`, borderColor: `${C.gold}33` }}>
+                  <div style={{ fontWeight: 700, color: C.gold, marginBottom: 4 }}>{styleDetail.style}</div>
+                  <div style={{ fontSize: 11, color: C.text, lineHeight: 1.5 }}>{styleDetail.summary}</div>
+                  {styleDetail.requirements ? <div style={{ fontSize: 10, color: C.muted, marginTop: 6 }}>{styleDetail.requirements}</div> : null}
+                </div>
+                {styleDetail.levels.map((level) => (
+                  <details key={level.tier} open={level.tier === 1} style={{ ...card, background: C.bg3 }}>
+                    <summary style={{ cursor: "pointer", color: C.gold, fontWeight: 700, fontSize: 12 }}>Afinidade {level.tier}</summary>
+                    <div style={{ display: "grid", gap: 8, marginTop: 8 }}>
+                      {level.entries.map((entry) => (
+                        <div key={`${level.tier}-${entry.name}`} style={{ borderLeft: `2px solid ${C.gold}`, paddingLeft: 8 }}>
+                          <div style={{ fontSize: 11, color: C.text, fontWeight: 700 }}>{entry.name} <span style={{ color: C.muted }}>({entry.action})</span></div>
+                          <div style={{ fontSize: 10, color: C.muted, lineHeight: 1.45 }}>{entry.effect}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </details>
+                ))}
+              </div>
+            ) : (
+              <div style={{ fontSize: 11, color: C.muted }}>Este estilo ainda nao tem tecnicas detalhadas no companion.</div>
+            )}
+          </>
+        ) : (
+          <div style={{ fontSize: 11, color: C.muted }}>Escolha uma arma com estilos mapeados para ativar tecnicas aqui.</div>
+        )}
+      </Sect>
     </div>
   );
 }

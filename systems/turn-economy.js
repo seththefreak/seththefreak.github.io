@@ -25,9 +25,9 @@
       notes: 'A Acao Maior pode virar duas Acoes Menores. Movimento pode ser dividido; Reacao exige perceber a acao.',
       slots: [
         { id: 'major', code: 'M', label: 'Maior', desc: 'Ataques, Manifestacoes Completas e interacoes complexas.', consumes: ['major'], color: '#B45309' },
-        { id: 'utility', code: 'm', label: 'Menor', desc: 'Manifestacoes Simples (1-3 KW), sacar arma ou usar item.', consumes: ['utility'], color: '#BFA14A' },
-        { id: 'movement', code: 'Mv', label: 'Movimento', desc: 'Deslocamento base e Manifestacoes Avancadas (4-7 KW).', consumes: ['movement'], color: '#2C7F94' },
-        { id: 'complete', code: 'C', label: 'Completa', desc: 'Consome o turno inteiro. Manifestacoes Extremas (15+ KW).', consumes: ['major', 'utility', 'movement'], color: '#DC2626', derived: true },
+        { id: 'utility', code: 'm', label: 'Menor', desc: 'Manifestacoes Simples (1-3 keywords), sacar arma ou usar item.', consumes: ['utility'], color: '#BFA14A' },
+        { id: 'movement', code: 'Mv', label: 'Movimento', desc: 'Deslocamento base e Manifestacoes Avancadas (4-7 keywords).', consumes: ['movement'], color: '#2C7F94' },
+        { id: 'complete', code: 'C', label: 'Completa', desc: 'Consome o turno inteiro. Manifestacoes Extremas (15+ keywords).', consumes: ['major', 'utility', 'movement'], color: '#DC2626', derived: true },
         { id: 'reaction', code: 'R', label: 'Reacao', desc: 'Esquiva, bloqueio ou contra-ataque se perceber a acao.', consumes: ['reaction'], color: '#a78bfa' },
       ],
     },

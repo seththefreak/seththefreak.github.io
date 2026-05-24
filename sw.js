@@ -5,7 +5,7 @@
  * - Added defensive request/response guards so failed or partial responses are not cached.
  * - Added newly referenced system modules to the app shell without changing game mechanics.
  */
-const CACHE_VERSION = 'companion-v3.11.2';
+const CACHE_VERSION = 'companion-v3.12.0';
 const APP_SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const THIRD_PARTY_CACHE = `${CACHE_VERSION}-third-party`;

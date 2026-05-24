@@ -237,6 +237,7 @@ function QuickReferencePanel() {
 }
 
 function StyleReferencePanel({ filter }) {
+  const [styleSection, setStyleSection] = useState("affinity");
   const normalizedFilter = normalizeReferenceSearch(filter);
   const detailedKeys = STYLE_DETAILS.reduce((set, detail) => {
     set.add(`${detail.weapon}::${detail.style}`);
@@ -258,9 +259,38 @@ function StyleReferencePanel({ filter }) {
       normalizedFilter
     );
   });
+  const styleSections = [
+    { id: "affinity", label: "Afinidade" },
+    { id: "map", label: "Mapa" },
+    { id: "techniques", label: "Tecnicas" },
+  ];
 
   return (
     <div>
+      <div className="chip-row" style={{ marginBottom: 10 }}>
+        {styleSections.map((section) => {
+          const active = styleSection === section.id;
+          return (
+            <button
+              key={section.id}
+              onClick={() => setStyleSection(section.id)}
+              style={{
+                padding: "5px 12px",
+                borderRadius: 20,
+                whiteSpace: "nowrap",
+                background: active ? `${C.gold}22` : C.bg2,
+                border: `1px solid ${active ? C.gold : C.border}`,
+                color: active ? C.gold : C.muted,
+                fontSize: 12,
+              }}
+            >
+              {section.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {styleSection === "affinity" ? (
       <Sect title="Afinidade de Estilo" color={C.gold}>
         <ResponsiveGrid minWidth={180}>
           {STYLE_AFFINITY.map((item) => (
@@ -296,7 +326,9 @@ function StyleReferencePanel({ filter }) {
           </div>
         </ResponsiveGrid>
       </Sect>
+      ) : null}
 
+      {styleSection === "map" ? (
       <Sect title="Mapa de Estilos" color={C.corpo}>
         <ResponsiveGrid minWidth={220}>
           {shownMap.map((entry) => {
@@ -321,7 +353,9 @@ function StyleReferencePanel({ filter }) {
         </ResponsiveGrid>
         {shownMap.length === 0 ? <div style={{ textAlign: "center", color: C.muted, paddingTop: 12 }}>Nenhum estilo encontrado para "{filter}".</div> : null}
       </Sect>
+      ) : null}
 
+      {styleSection === "techniques" ? (
       <Sect title="Tecnicas por Estilo" color={C.alma}>
         <ResponsiveGrid minWidth={320}>
           {shownDetails.map((detail) => {
@@ -357,6 +391,7 @@ function StyleReferencePanel({ filter }) {
         </ResponsiveGrid>
         {shownDetails.length === 0 ? <div style={{ textAlign: "center", color: C.muted, paddingTop: 12 }}>Sem tecnicas detalhadas para esse filtro.</div> : null}
       </Sect>
+      ) : null}
     </div>
   );
 }
@@ -420,11 +455,11 @@ function KwReferencePanel() {
         />
       </Sect>
 
-      <Sect title="Tipos por PE Total" color={C.mente} className="section-span-2">
+      <Sect title="Acao por Quantidade de Keywords" color={C.mente} className="section-span-2">
         <CompendiumTable
           columns={[
             { key: "type", label: "Tipo", emphasis: () => C.mente },
-            { key: "peTotal", label: "PE Total" },
+            { key: "keywords", label: "Keywords" },
             { key: "action", label: "Acao" },
             { key: "note", label: "Observacao" },
           ]}
@@ -1365,7 +1400,7 @@ function TabSistema() {
                 v5: row.vals[5],
               }))}
             />
-            <div style={{ fontSize: 10, color: C.muted, marginTop: 8 }}>KW define a complexidade. Amplificacao extra em PE define a intensidade.</div>
+        <div style={{ fontSize: 10, color: C.muted, marginTop: 8 }}>A quantidade de keywords define a acao exigida. KW e PE continuam definindo peso, custo e intensidade.</div>
           </Sect>
           <Sect title="Vetor Indireto">
             <div style={{ fontSize: 12, color: C.text, lineHeight: 1.6 }}>
@@ -1399,7 +1434,7 @@ function ManifBuilder() {
   const kw = [...selectedElements, ...selectedForms, ...selectedProps].reduce((total, item) => total + item.pe, 0);
   const keywordCount = getKeywordCount(selectedElements, selectedForms, selectedProps);
   const peTotal = getManifestationPeTotal(kw, amp);
-  const actionMeta = getActionMeta(kw);
+  const actionMeta = getActionMeta(keywordCount);
   const scaleBand = getScaleBand(amp);
   const previewTrack = getDamageTrackByTier("Especialista");
   const selectedSummary = [...selectedElements, ...selectedForms, ...selectedProps];
@@ -1501,7 +1536,7 @@ function ManifBuilder() {
             </div>
           ))}
         </div>
-        <div style={{ fontSize: 10, color: C.muted, marginTop: 6 }}>Keywords e KW definem a forma e a complexidade. Amplificacao define a intensidade.</div>
+        <div style={{ fontSize: 10, color: C.muted, marginTop: 6 }}>A acao escala por quantidade de keywords; KW e Amplificacao definem custo, escala e intensidade.</div>
       </div>
 
       <Sect title="Exemplos de Manifestacao" className="section-span-2" color={C.alma}>

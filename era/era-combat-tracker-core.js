@@ -29,10 +29,10 @@ const TRACKER_AIM_MODES = [
 
 const TRACKER_ACTION_NOTES = [
   "M: ataque principal ou Manifestacao Completa.",
-  "m: saque, item, recarga, manobra simples e Manifestacao Simples (1-3 KW).",
-  "Mv: deslocamento base (4 + PGI DEX) e Manifestacao Avancada (4-7 KW).",
+  "m: saque, item, recarga, manobra simples e Manifestacao Simples (1-3 keywords).",
+  "Mv: deslocamento base (4 + PGI DEX) e Manifestacao Avancada (4-7 keywords).",
   "R: reacao para esquiva, bloqueio ou contra-ataque se perceber a acao.",
-  "C: consome o turno inteiro para Manifestacoes Extremas (15+ KW).",
+  "C: consome o turno inteiro para Manifestacoes Extremas (15+ keywords).",
 ];
 
 /**
@@ -102,7 +102,7 @@ function buildTrackerState(char, fighter, existing) {
     exhaustion: clampNumber(current.exhaustion != null ? Number(current.exhaustion) : (isPC ? char.exaustao : 0), 0, 4),
     defenseBase: toTrackerNumber(current.defenseBase, 0),
     rdCurrent: toTrackerNumber(current.rdCurrent, 0),
-    weaponName: current.weaponName || "",
+    weaponName: current.weaponName || (isPC && char.loadout ? char.loadout.weaponName : "") || "",
     ammoCurrent: clampNumber(Number(current.ammoCurrent) || 0, 0, ammoMax),
     ammoMax,
     aimMode: TRACKER_AIM_MODES.some((mode) => mode.id === current.aimMode) ? current.aimMode : "none",

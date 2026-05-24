@@ -21,6 +21,7 @@ function TabCombate({ char }) {
     conds: [],
   });
   const [combatTab, setCombatTab] = useState("tracker");
+  const [trackerPanel, setTrackerPanel] = useState("recursos");
   const [encounter, setEncounter] = useState(() => window.CompanionSystems.Combat.createEncounter({
     fighters: [initialPc],
   }));
@@ -91,6 +92,7 @@ function TabCombate({ char }) {
     char.pilares.alma,
     char.subs.destreza.prog,
     char.subs.constituicao.prog,
+    char.loadout && char.loadout.weaponName,
   ]);
 
   useEffect(() => {
@@ -254,6 +256,14 @@ function TabCombate({ char }) {
     { id: "armas", label: "Armas" },
     { id: "manif", label: "Manif." },
   ];
+  const trackerPanels = [
+    { id: "recursos", label: "Recursos" },
+    { id: "turno", label: "Turno" },
+    { id: "defesa", label: "Defesa" },
+    { id: "condicoes", label: "Condicoes" },
+    { id: "arsenal", label: "Arsenal" },
+    { id: "lista", label: "Encontro" },
+  ];
 
   return (
     <div>
@@ -358,8 +368,31 @@ function TabCombate({ char }) {
             ) : null}
           </Sect>
 
+          <div className="chip-row" style={{ marginBottom: 10 }}>
+            {trackerPanels.map((panel) => {
+              const active = trackerPanel === panel.id;
+              return (
+                <button
+                  key={panel.id}
+                  onClick={() => setTrackerPanel(panel.id)}
+                  style={{
+                    padding: "6px 10px",
+                    borderRadius: 999,
+                    background: active ? `${C.corpo}22` : C.bg2,
+                    border: `1px solid ${active ? C.corpo : C.border}`,
+                    color: active ? C.corpo : C.muted,
+                    fontSize: 11,
+                  }}
+                >
+                  {panel.label}
+                </button>
+              );
+            })}
+          </div>
+
           {focusedFighter && focusedTracker && focusedBand && focusedOverdraft && focusedDefense ? (
             <>
+              {trackerPanel === "recursos" ? (
               <Sect title="Recursos e Pressao" color={C.corpo}>
                 <div style={{ marginBottom: 12, padding: "10px 12px", background: `${focusedBand.color}12`, border: `1px solid ${focusedBand.color}44`, borderRadius: 8 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
@@ -464,7 +497,9 @@ function TabCombate({ char }) {
                   </div>
                 </div>
               </Sect>
+              ) : null}
 
+              {trackerPanel === "turno" ? (
               <Sect title="Economia de Acoes" color={C.gold}>
                 <div style={{ fontSize: 11, color: C.muted, marginBottom: 8 }}>
                   Marque o que ja foi gasto no turno do combatente ativo. O painel abaixo continua usando a economia consolidada do sistema para nao quebrar o fluxo atual.
@@ -519,7 +554,9 @@ function TabCombate({ char }) {
                 </ResponsiveGrid>
                 <div style={{ fontSize: 10, color: C.muted, marginTop: 8 }}>{actionTemplate.notes}</div>
               </Sect>
+              ) : null}
 
+              {trackerPanel === "defesa" ? (
               <Sect title="Defesa e Resistencias" color={C.mente}>
                 <ResponsiveGrid minWidth={220}>
                   <div style={{ ...card, background: `${C.gold}10`, borderColor: `${C.gold}33` }}>
@@ -566,7 +603,9 @@ function TabCombate({ char }) {
                   </div>
                 </ResponsiveGrid>
               </Sect>
+              ) : null}
 
+              {trackerPanel === "condicoes" ? (
               <Sect title="Condicoes Ativas" color={C.alma}>
                 <div style={{ fontSize: 11, color: C.muted, marginBottom: 10 }}>
                   Ajuste niveis e duracoes aqui. Se o alvo estiver {focusedBand.label.toLowerCase()}, lembre que as condicoes tendem a ficar mais opressivas.
@@ -661,7 +700,9 @@ function TabCombate({ char }) {
                   })}
                 </div>
               </Sect>
+              ) : null}
 
+              {trackerPanel === "arsenal" ? (
               <Sect title="Arsenal, Mira e Canalizacao" color={C.mente}>
                 <ResponsiveGrid minWidth={220}>
                   <div style={{ ...card, background: `${C.gold}10`, borderColor: `${C.gold}33` }}>
@@ -753,9 +794,11 @@ function TabCombate({ char }) {
                   </div>
                 </ResponsiveGrid>
               </Sect>
+              ) : null}
             </>
           ) : null}
 
+          {trackerPanel === "lista" ? (
           <Sect title="Visao Geral do Encontro" color={C.gold}>
             <ResponsiveGrid minWidth={320}>
               {fighters.map((fighter) => {
@@ -879,7 +922,9 @@ function TabCombate({ char }) {
               })}
             </ResponsiveGrid>
           </Sect>
+          ) : null}
 
+          {trackerPanel === "lista" ? (
           <Sect title="Adicionar Combatente" color={C.gold}>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
               <input value={newName} onChange={(event) => setNewName(event.target.value)} placeholder="Nome do combatente..." onKeyDown={(event) => event.key === "Enter" && addF(false)} style={{ flex: 1, minWidth: 220 }} />
@@ -891,6 +936,7 @@ function TabCombate({ char }) {
               </button>
             </div>
           </Sect>
+          ) : null}
         </div>
       ) : null}
 
@@ -901,9 +947,11 @@ function TabCombate({ char }) {
 }
 
 function ArmasDmgTab({ char, damageBonus }) {
-  const [selWeapon, setSelWeapon] = useState(null);
-  const [selectedGripId, setSelectedGripId] = useState(null);
-  const [selectedCritId, setSelectedCritId] = useState(null);
+  const equippedLoadout = normalizeLoadout(char.loadout);
+  const equippedWeapon = getWeaponByName(equippedLoadout.weaponName);
+  const [selWeapon, setSelWeapon] = useState(equippedWeapon);
+  const [selectedGripId, setSelectedGripId] = useState(equippedLoadout.gripId || null);
+  const [selectedCritId, setSelectedCritId] = useState(equippedLoadout.criticalId || null);
   const [customFormula, setCustomFormula] = useState("1d8");
   const [useCustom, setUseCustom] = useState(false);
   const [dmgRes, setDmgRes] = useState(null);
@@ -922,16 +970,31 @@ function ArmasDmgTab({ char, damageBonus }) {
   const criticalOptions = getWeaponCriticalOptions(selWeapon);
   const activeGrip = gripOptions.find((option) => option.id === selectedGripId) || gripOptions[0] || null;
   const activeCrit = criticalOptions.find((option) => option.id === selectedCritId) || criticalOptions[0] || null;
+  const activeStyleDetail = selWeapon ? getStyleDetail(selWeapon.name, equippedLoadout.styleName) : null;
+
+  useEffect(() => {
+    if (!equippedWeapon) return;
+    setUseCustom(false);
+    setSelWeapon(equippedWeapon);
+    setCatFilter(equippedWeapon.cat);
+    setSelectedGripId(equippedLoadout.gripId || null);
+    setSelectedCritId(equippedLoadout.criticalId || null);
+    setDmgRes(null);
+  }, [equippedLoadout.weaponName, equippedLoadout.gripId, equippedLoadout.criticalId]);
 
   useEffect(() => {
     setSelectedGripId((currentGripId) => (
-      gripOptions.some((option) => option.id === currentGripId) ? currentGripId : (gripOptions[0] ? gripOptions[0].id : null)
+      gripOptions.some((option) => option.id === currentGripId)
+        ? currentGripId
+        : (gripOptions.some((option) => option.id === equippedLoadout.gripId) ? equippedLoadout.gripId : (gripOptions[0] ? gripOptions[0].id : null))
     ));
   }, [selWeapon]);
 
   useEffect(() => {
     setSelectedCritId((currentCritId) => (
-      criticalOptions.some((option) => option.id === currentCritId) ? currentCritId : (criticalOptions[0] ? criticalOptions[0].id : null)
+      criticalOptions.some((option) => option.id === currentCritId)
+        ? currentCritId
+        : (criticalOptions.some((option) => option.id === equippedLoadout.criticalId) ? equippedLoadout.criticalId : (criticalOptions[0] ? criticalOptions[0].id : null))
     ));
   }, [selWeapon]);
 
@@ -974,6 +1037,29 @@ function ArmasDmgTab({ char, damageBonus }) {
   return (
     <Sect title="Rolagem de Dano - Armas" color={C.corpo}>
       <div className="chip-row" style={{ marginBottom: 10 }}>
+        {equippedWeapon ? (
+          <button
+            onClick={() => {
+              setUseCustom(false);
+              setCatFilter(equippedWeapon.cat);
+              setSelWeapon(equippedWeapon);
+              setSelectedGripId(equippedLoadout.gripId || null);
+              setSelectedCritId(equippedLoadout.criticalId || null);
+              setDmgRes(null);
+            }}
+            style={{
+              flex: 1,
+              padding: "6px",
+              borderRadius: 6,
+              background: `${C.gold}18`,
+              border: `1px solid ${C.gold}`,
+              color: C.gold,
+              fontSize: 11,
+            }}
+          >
+            Usar arma da ficha
+          </button>
+        ) : null}
         <button
           onClick={() => setUseCustom(false)}
           style={{
@@ -1058,7 +1144,7 @@ function ArmasDmgTab({ char, damageBonus }) {
             })}
           </div>
 
-          {selWeapon ? (
+              {selWeapon ? (
             <div style={{ padding: "10px", background: C.bg3, borderRadius: 8, marginBottom: 12, fontSize: 11, border: `1px solid ${C.border}` }}>
               <div style={{ fontWeight: 700, color: C.corpo, marginBottom: 4 }}>{selWeapon.name}</div>
               <div style={{ color: C.muted, lineHeight: 1.6 }}>
@@ -1131,6 +1217,20 @@ function ArmasDmgTab({ char, damageBonus }) {
                 Dano ativo: <strong style={{ color: C.corpo }}>{activeFormula}</strong>
                 {selWeapon.pen ? <span>{` - Penalidade: ${selWeapon.pen}`}</span> : null}
               </div>
+              {activeStyleDetail ? (
+                <details style={{ marginTop: 10 }}>
+                  <summary style={{ cursor: "pointer", color: C.gold, fontWeight: 700 }}>Estilo ativo: {activeStyleDetail.style}</summary>
+                  <div style={{ fontSize: 10, color: C.muted, lineHeight: 1.5, marginTop: 6 }}>{activeStyleDetail.summary}</div>
+                  <div style={{ display: "grid", gap: 6, marginTop: 8 }}>
+                    {activeStyleDetail.levels.flatMap((level) => level.entries.map((entry) => ({ ...entry, tier: level.tier }))).slice(0, 6).map((entry) => (
+                      <div key={`${entry.tier}-${entry.name}`} style={{ borderLeft: `2px solid ${C.gold}`, paddingLeft: 6 }}>
+                        <div style={{ color: C.text, fontWeight: 700 }}>{entry.name} <span style={{ color: C.gold }}>A{entry.tier}</span></div>
+                        <div style={{ color: C.muted }}>{entry.effect}</div>
+                      </div>
+                    ))}
+                  </div>
+                </details>
+              ) : null}
             </div>
           ) : null}
         </div>
@@ -1255,7 +1355,7 @@ function ManifDmgTab({ char, damageBonus }) {
 
   const peTotal = getManifestationPeTotal(kw, amp);
   const formula = manifDmgFormula(selTier, amp);
-  const actionMeta = getActionMeta(kw);
+  const actionMeta = getActionMeta(keywordCount);
   const scaleBand = getScaleBand(amp);
   const damageTrack = getDamageTrackByTier(selTier);
 
@@ -1277,6 +1377,7 @@ function ManifDmgTab({ char, damageBonus }) {
       tierUsed: selTier,
       keywordCount,
       kwUsed: kw,
+      actionLabel: actionMeta.label,
       ampUsed: amp,
       peTotal,
     });
@@ -1432,7 +1533,7 @@ function ManifDmgTab({ char, damageBonus }) {
               </div>
             ) : null}
           </div>
-          <div style={{ fontSize: 10, color: C.muted, marginTop: 8 }}>PE total usado: {manifRes.peTotal} - acao {getActionMeta(manifRes.kwUsed).label} - intensidade {getScaleBand(manifRes.ampUsed).label}</div>
+          <div style={{ fontSize: 10, color: C.muted, marginTop: 8 }}>PE total usado: {manifRes.peTotal} - acao por keywords: {manifRes.actionLabel} - intensidade {getScaleBand(manifRes.ampUsed).label}</div>
         </div>
       ) : null}
 
@@ -1461,7 +1562,7 @@ function ManifDmgTab({ char, damageBonus }) {
             </div>
           ))}
         </div>
-        <div style={{ fontSize: 10, color: C.muted, marginTop: 6 }}>Toque nas colunas para aplicar a faixa de amplificacao. KW e keywords definem a complexidade; PE extra define a intensidade.</div>
+        <div style={{ fontSize: 10, color: C.muted, marginTop: 6 }}>Toque nas colunas para aplicar a faixa de amplificacao. A acao escala por keywords; PE extra define intensidade.</div>
       </div>
     </Sect>
   );

@@ -28,6 +28,7 @@ function hydrateCharacter(rawCharacter) {
     subs: { ...DEFAULT_SUBS, ...parsedSubs },
     pericias: { ...DEFAULT_PERICIAS, ...(parsed.pericias || {}) },
     condicoes: Array.isArray(parsed.condicoes) ? parsed.condicoes.filter((id) => getConditionById(id)) : [],
+    loadout: normalizeLoadout(parsed.loadout),
     effects: Array.isArray(parsed.effects) ? parsed.effects.map(normalizeEffect) : [],
   };
 

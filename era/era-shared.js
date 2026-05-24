@@ -36,7 +36,7 @@ const C = {
   warning: "#BFA14A",
   danger: "#DC2626",
 };
-const APP_VERSION = "3.4.1";
+const APP_VERSION = "3.5.0";
 const FONT_TEXT = '"Merriweather","Lora",Georgia,serif';
 const FONT_DISPLAY = '"Playfair Display","Noto Serif Display",Georgia,serif';
 const FONT_SYSTEM = '"IBM Plex Mono","Inconsolata","Courier Prime",monospace';
@@ -102,10 +102,10 @@ const LEVELS = SOURCE_DATA.LEVELS;
 const AMP_THRESHOLDS = [0, 1, 3, 6, 10, 15];
 const AMP_LABELS = ["+0", "+1-2", "+3-5", "+6-9", "+10-14", "+15+"];
 const MANIFESTATION_ACTIONS = [
-  { maxKw: 3, rangeLabel: "1-3 KW", short: "m", tierLabel: "Simples", label: "m - Simples", detail: "Acao Menor", color: C.menteLight },
-  { maxKw: 7, rangeLabel: "4-7 KW", short: "Mv", tierLabel: "Avancada", label: "Mv - Avancada", detail: "Movimento", color: C.mente },
-  { maxKw: 14, rangeLabel: "8-14 KW", short: "M", tierLabel: "Completa", label: "M - Completa", detail: "Acao Maior", color: C.gold },
-  { maxKw: Infinity, rangeLabel: "15+ KW", short: "C", tierLabel: "Extrema", label: "C - Extrema", detail: "Acao Completa", color: C.corpoAccent },
+  { maxKeywords: 3, rangeLabel: "1-3 keywords", short: "m", tierLabel: "Simples", label: "m - Simples", detail: "Acao Menor", color: C.menteLight },
+  { maxKeywords: 7, rangeLabel: "4-7 keywords", short: "Mv", tierLabel: "Avancada", label: "Mv - Avancada", detail: "Movimento", color: C.mente },
+  { maxKeywords: 14, rangeLabel: "8-14 keywords", short: "M", tierLabel: "Completa", label: "M - Completa", detail: "Acao Maior", color: C.gold },
+  { maxKeywords: Infinity, rangeLabel: "15+ keywords", short: "C", tierLabel: "Extrema", label: "C - Extrema", detail: "Acao Completa", color: C.corpoAccent },
 ];
 const GRIP_LABELS = {
   "1M": "Uma mao",
@@ -179,6 +179,7 @@ const DEFAULT_CHAR = {
   pe: { cur: 12, max: 12 },
   exaustao: 0,
   condicoes: [],
+  loadout: { weaponName: "", gripId: "", styleName: "", criticalId: "" },
   habilidades: "",
   habilidadesAprendidas: [],
   manifestacoesDef: "",
@@ -436,11 +437,48 @@ function manifDmgFormula(tierName, scaleValue) {
   return damageTrack[Math.min(scaleBand.index, damageTrack.length - 1)];
 }
 
-function getActionMeta(kwTotal) {
-  return window.CompanionSystems.Actions.getThresholdAction(kwTotal, MANIFESTATION_ACTIONS.map((action) => ({
-    max: action.maxKw,
+function getActionMeta(keywordCount) {
+  return window.CompanionSystems.Actions.getThresholdAction(keywordCount, MANIFESTATION_ACTIONS.map((action) => ({
+    max: action.maxKeywords,
     ...action,
   })));
+}
+
+function getWeaponByName(weaponName) {
+  return WEAPONS.find((weapon) => weapon.name === weaponName) || null;
+}
+
+function getWeaponStyleEntry(weaponName) {
+  return WEAPON_STYLE_MAP.find((entry) => entry.weapon === weaponName) || null;
+}
+
+function getWeaponStyleNames(weaponName) {
+  const styleEntry = getWeaponStyleEntry(weaponName);
+  if (!styleEntry) return [];
+  return [styleEntry.styleA, styleEntry.styleB, styleEntry.synthesis].filter(Boolean);
+}
+
+function getStyleDetail(weaponName, styleName) {
+  if (!weaponName || !styleName) return null;
+  return STYLE_DETAILS.find((detail) => detail.weapon === weaponName && detail.style === styleName) || null;
+}
+
+function normalizeLoadout(loadout) {
+  const source = loadout || {};
+  const weapon = getWeaponByName(source.weaponName);
+  const styles = weapon ? getWeaponStyleNames(weapon.name) : [];
+  const gripOptions = weapon ? getWeaponGripOptions(weapon) : [];
+  const criticalOptions = weapon ? getWeaponCriticalOptions(weapon) : [];
+  const gripId = gripOptions.some((option) => option.id === source.gripId) ? source.gripId : (gripOptions[0] ? gripOptions[0].id : "");
+  const criticalId = criticalOptions.some((option) => option.id === source.criticalId) ? source.criticalId : (criticalOptions[0] ? criticalOptions[0].id : "");
+  const styleName = styles.includes(source.styleName) ? source.styleName : (styles[0] || "");
+
+  return {
+    weaponName: weapon ? weapon.name : "",
+    gripId,
+    styleName,
+    criticalId,
+  };
 }
 
 function getAmpBand(amp) {
