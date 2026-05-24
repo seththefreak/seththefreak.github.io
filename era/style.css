@@ -1,11 +1,36 @@
 /* UnheaveN: ERA — Companion · style.css */
 
+/*
+ * Audit refactor:
+ * - Centralized the ERA dark theme palette into CSS variables.
+ * - Added visible focus states and 44px minimum interactive targets.
+ * - Kept the near-black/accent visual theme and responsive layout behavior intact.
+ */
+
+:root {
+  --era-bg: #0F1115;
+  --era-bg-rgb: 15 17 21;
+  --era-panel-rgb: 26 29 36;
+  --era-border: #3A4150;
+  --era-border-rgb: 58 65 80;
+  --era-text: #E5E7EB;
+  --era-gold: #FFF7CC;
+  --era-gold-bright: #FDE68A;
+  --era-gold-rgb: 191 161 74;
+  --era-muted: #6B7280;
+  --era-alma-rgb: 109 93 211;
+  --era-mente-rgb: 8 145 178;
+  --era-control-rgb: 42 47 58;
+  --era-white-rgb: 255 255 255;
+  --era-black-rgb: 0 0 0;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
-  background: #0F1115;
-  color: #E5E7EB;
+  background: var(--era-bg);
+  color: var(--era-text);
   font-family: "Merriweather", "Lora", Georgia, serif;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior: none;
@@ -14,10 +39,10 @@ body {
 
 body {
   background:
-    radial-gradient(circle at 12% 8%, rgba(109, 93, 211, 0.18), transparent 26%),
-    radial-gradient(circle at 88% 12%, rgba(8, 145, 178, 0.14), transparent 22%),
-    radial-gradient(circle at 50% 100%, rgba(191, 161, 74, 0.08), transparent 28%),
-    linear-gradient(180deg, rgba(26, 29, 36, 0.96), rgba(15, 17, 21, 1));
+    radial-gradient(circle at 12% 8%, rgb(var(--era-alma-rgb) / 0.18), transparent 26%),
+    radial-gradient(circle at 88% 12%, rgb(var(--era-mente-rgb) / 0.14), transparent 22%),
+    radial-gradient(circle at 50% 100%, rgb(var(--era-gold-rgb) / 0.08), transparent 28%),
+    linear-gradient(180deg, rgb(var(--era-panel-rgb) / 0.96), rgb(var(--era-bg-rgb) / 1));
   padding: 18px;
 }
 
@@ -35,21 +60,42 @@ body {
   font-family: "Playfair Display", "Noto Serif Display", Georgia, serif;
   font-size: 13px;
   letter-spacing: 4px;
-  color: #FFF7CC;
+  color: var(--era-gold);
   text-transform: uppercase;
-  text-shadow: 0 0 18px rgba(191, 161, 74, 0.24);
+  text-shadow: 0 0 18px rgb(var(--era-gold-rgb) / 0.24);
 }
 
 /* Scrollbar global */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(58, 65, 80, 0.9); border-radius: 999px; }
+::-webkit-scrollbar-thumb { background: rgb(var(--era-border-rgb) / 0.9); border-radius: 999px; }
 
 /* Prevent text selection on buttons */
+button,
+a,
+input,
+select,
+textarea,
+[role="button"],
+[tabindex]:not([tabindex="-1"]) {
+  min-height: 44px;
+}
+
 button {
   -webkit-user-select: none;
   user-select: none;
   transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline: 2px solid var(--era-gold);
+  outline-offset: 3px;
 }
 
 button:hover {
@@ -66,23 +112,23 @@ button:hover {
 
 .app-frame {
   background:
-    radial-gradient(circle at top left, rgba(109, 93, 211, 0.12), transparent 26%),
-    radial-gradient(circle at top right, rgba(8, 145, 178, 0.12), transparent 22%),
-    linear-gradient(180deg, rgba(26, 29, 36, 0.98), rgba(15, 17, 21, 0.98));
-  border: 1px solid #3A4150;
+    radial-gradient(circle at top left, rgb(var(--era-alma-rgb) / 0.12), transparent 26%),
+    radial-gradient(circle at top right, rgb(var(--era-mente-rgb) / 0.12), transparent 22%),
+    linear-gradient(180deg, rgb(var(--era-panel-rgb) / 0.98), rgb(var(--era-bg-rgb) / 0.98));
+  border: 1px solid var(--era-border);
   border-radius: 28px;
   overflow: hidden;
   box-shadow:
-    0 28px 90px rgba(0, 0, 0, 0.48),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    0 28px 90px rgb(var(--era-black-rgb) / 0.48),
+    inset 0 1px 0 rgb(var(--era-white-rgb) / 0.03);
   backdrop-filter: blur(16px);
 }
 
 .app-tabs {
   display: flex;
   flex-wrap: wrap;
-  background: linear-gradient(180deg, rgba(26, 29, 36, 0.98), rgba(20, 23, 30, 0.98));
-  border-bottom: 1px solid #3A4150;
+  background: linear-gradient(180deg, rgb(var(--era-panel-rgb) / 0.98), rgb(var(--era-bg-rgb) / 0.98));
+  border-bottom: 1px solid var(--era-border);
 }
 
 .app-content {
@@ -149,3 +195,9 @@ button:hover {
     padding: 10px 10px 88px;
   }
 }
+/*
+ * Audit refactor:
+ * - Centralized the ERA dark theme palette into CSS variables.
+ * - Added visible focus states and 44px minimum interactive targets.
+ * - Kept the near-black/accent visual theme and responsive layout behavior intact.
+ */

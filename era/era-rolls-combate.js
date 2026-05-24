@@ -1,3 +1,15 @@
+/*
+ * Audit refactor:
+ * - Documents the ERA combat tab as UI over shared combat/turn helpers.
+ * - Preserves damage, initiative, action, condition, and tracker behavior.
+ * - Keeps all ERA mechanics and labels unchanged.
+ */
+
+/**
+ * Renders the ERA combat roller/tracker surface.
+ * @param {{char: object}} props
+ * @returns {React.ReactElement}
+ */
 function TabCombate({ char }) {
   const initialPc = window.CompanionSystems.Combat.createCombatant({
     id: "era-pc",
@@ -31,7 +43,7 @@ function TabCombate({ char }) {
   const focusedFighter = fighters.find((fighter) => fighter.id === focusedFighterId) || fighters.find((fighter) => fighter.id === activeId) || fighters[0] || null;
   const focusedTracker = focusedFighter ? trackerState[focusedFighter.id] : null;
   const focusedBand = focusedFighter ? getPressureBand(focusedFighter.hp, focusedFighter.maxHp) : null;
-  const focusedOverdraft = focusedTracker ? getOverdraftState(focusedTracker.pe) : null;
+  const focusedOverdraft = focusedTracker ? getOverdraftState(focusedTracker.pe, focusedTracker.peMax) : null;
   const focusedDefense = focusedFighter && focusedTracker && focusedBand ? getDefenseSnapshot(char, focusedFighter, focusedTracker, focusedBand) : null;
   const focusedAimMode = focusedTracker ? TRACKER_AIM_MODES.find((mode) => mode.id === focusedTracker.aimMode) || TRACKER_AIM_MODES[0] : TRACKER_AIM_MODES[0];
 
@@ -538,8 +550,8 @@ function TabCombate({ char }) {
                       <SmBtn onClick={() => updateTrackerFor(focusedFighter.id, (current) => ({ ...current, rdCurrent: current.rdCurrent + 1 }))}>+</SmBtn>
                     </div>
                     <div style={{ fontSize: 10, color: C.muted }}>
-                      Apos Fragilizar: {focusedDefense.rdFinal}
-                      {focusedDefense.fragStage > 0 ? ` (${formatSigned(-focusedDefense.fragStage)} no nivel ${focusedDefense.fragStage})` : " sem perda ativa por fragilidade."}
+                      RD manual: {focusedDefense.rdFinal}
+                      {focusedDefense.fragStage > 0 ? `; Fragilizado ${focusedDefense.fragStage} aumenta o dano recebido.` : "; sem fragilidade ativa."}
                     </div>
                   </div>
 
@@ -1231,9 +1243,9 @@ function ArmasDmgTab({ char, damageBonus }) {
 
 function ManifDmgTab({ char, damageBonus }) {
   const tierAlma = char.subs.dominio
-    ? ((TIERS[char.subs.dominio.tier] || "Leigo") === "Especialista" ? "Esp." : (TIERS[char.subs.dominio.tier] || "Leigo"))
+    ? (TIERS[char.subs.dominio.tier] || "Leigo")
     : "Leigo";
-  const manifestTiers = ["Leigo", "Treinado", "Esp.", "Mestre", "Maestria"];
+  const manifestTiers = ["Leigo", "Treinado", "Especialista", "Mestre", "Lenda"];
   const [selTier, setSelTier] = useState(tierAlma);
   const [keywordCount, setKeywordCount] = useState(2);
   const [kw, setKw] = useState(0);

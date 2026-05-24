@@ -1,8 +1,14 @@
 /*
- * Responsibility: orchestrate the ERA shell, active profile state and top-level rendering.
- * Exports: App.
+ * Audit refactor:
+ * - Documented the ERA top-level shell and profile action callbacks.
+ * - Added a null guard before mounting React into #root.
+ * - Preserved tab order, profile behavior, and all game mechanics.
  */
 
+/**
+ * Orchestrates the ERA shell, active profile state, and top-level rendering.
+ * @returns {React.ReactElement}
+ */
 function App() {
   const [tab, setTab] = useState("ficha");
   const [profilesState, setProfilesState] = useState({ activeId: null, profiles: [] });
@@ -31,29 +37,56 @@ function App() {
     setProfilesState((currentState) => updateActiveProfileState(currentState, nextValue));
   }, []);
 
+  /**
+   * Selects an existing profile by id.
+   * @param {string} profileId
+   * @returns {void}
+   */
   function selectProfile(profileId) {
     setProfilesState((currentState) => selectEraProfileState(currentState, profileId));
   }
 
+  /**
+   * Renames the active profile.
+   * @param {string} nextName
+   * @returns {void}
+   */
   function renameActiveProfile(nextName) {
     setProfilesState((currentState) => renameEraActiveProfileState(currentState, nextName));
   }
 
+  /**
+   * Creates a new blank ERA profile and returns to the sheet tab.
+   * @returns {void}
+   */
   function createBlankProfile() {
     setProfilesState((currentState) => createEraBlankProfileState(currentState).nextState);
     setTab("ficha");
   }
 
+  /**
+   * Duplicates the active ERA profile.
+   * @returns {void}
+   */
   function duplicateActiveProfile() {
     setProfilesState((currentState) => duplicateEraActiveProfileState(currentState).nextState);
     setTab("ficha");
   }
 
+  /**
+   * Deletes the active ERA profile.
+   * @returns {void}
+   */
   function deleteActiveProfile() {
     setProfilesState((currentState) => deleteEraActiveProfileState(currentState));
     setTab("ficha");
   }
 
+  /**
+   * Creates a profile from a bundled example character.
+   * @param {object} example
+   * @returns {void}
+   */
   function createExampleProfile(example) {
     setProfilesState((currentState) => createEraExampleProfileState(currentState, example).nextState);
     setTab("ficha");
@@ -157,5 +190,7 @@ function App() {
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+const rootElement = document.getElementById("root");
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(<App />);
+}

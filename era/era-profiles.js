@@ -1,15 +1,31 @@
+/*
+ * Audit refactor:
+ * - Documents profile hydration/normalization helpers.
+ * - Preserves storage schema compatibility and ERA character defaults.
+ * - Keeps all mechanical values and labels unchanged.
+ */
+
+/**
+ * Hydrates a stored ERA character into the current schema.
+ * @param {string | null} rawCharacter
+ * @returns {object}
+ */
 function hydrateCharacter(rawCharacter) {
   const parsed = rawCharacter ? JSON.parse(rawCharacter) : null;
   if (!parsed) return DEFAULT_CHAR;
 
   const level = clampNumber(Number(parsed.level) || 1, 1, LEVELS.length);
   const levelData = getCurrentLevelData(level);
+  const parsedSubs = { ...(parsed.subs || {}) };
+  if (parsedSubs.afinidade && !parsedSubs.sintonia) {
+    parsedSubs.sintonia = parsedSubs.afinidade;
+  }
   const merged = {
     ...DEFAULT_CHAR,
     ...parsed,
     level,
     pilares: { ...DEFAULT_CHAR.pilares, ...(parsed.pilares || {}) },
-    subs: { ...DEFAULT_SUBS, ...(parsed.subs || {}) },
+    subs: { ...DEFAULT_SUBS, ...parsedSubs },
     pericias: { ...DEFAULT_PERICIAS, ...(parsed.pericias || {}) },
     condicoes: Array.isArray(parsed.condicoes) ? parsed.condicoes.filter((id) => getConditionById(id)) : [],
     effects: Array.isArray(parsed.effects) ? parsed.effects.map(normalizeEffect) : [],

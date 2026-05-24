@@ -1,0 +1,1288 @@
+
+
+--- PAGE 1 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 1
+ UNHEAVEN: ERA
+ GUIA DE ARMAS · ESTILOS · TÉCNICAS · PROFICIÊNCIA
+ v2.7.6 — Edição Palimpsest · Sistema criado por Seth the Freak
+ "A arma não faz o guerreiro. Mas ela diz quem ele escolheu ser."
+SOBRE ESTE GUIA
+Este guia expande o combate do Livro do Jogador com Estilos e Técnicas. Usar ou não é opcional — o combate padrão sempre é válido. Afinidade de
+Estilo é concedida pelo Mestre com base em treino narrativo.
+Nível
+Nome
+Efeito
+0
+Desconhecido
+Sem acesso a técnicas do estilo.
+1
+Familiarizado
+Técnicas de Afinidade 1. Sem bônus extra.
+2
+Treinado
+Téc. Afin. 1 e 2. Afin. 1 ganham melhoria.
+3
+Especialista
+Todas as técnicas. Combos e sínteses disponíveis.
+CONDIÇÕES DE REAÇÃO
+PERMITE REAGIR
+IMPEDE REAGIR
+Viu o ataque vir
+Surpresa / furtividade / costas
+Arma compatível com a reação
+Sobrecarga: 2+ ataques no turno
+Não está comprometido (sem M+m)
+Tamanho incompatível (Odachi vs. adaga)
+De pé e consciente
+Atordoado, derrubado, imobilizado
+SUA ARMA / TÉCNICA
+PODE APARAR
+Arma leve (adaga, kukri)
+Somente armas leves
+Haste, arma média+
+Armas leves e médias
+Escudo
+Qualquer arma física
+Corrente/flexível (Afin. 2+)
+Leves, médias e projéteis
+PARTE I — ARMAS CURTAS E COMBATE DESARMADO
+Ataque Desarmado
+1d4 | Impacto | D | Adjacente | Crítico: Atordoado
+◆ Agressão Golpes diretos, pressão constante.
+A1 Rajada [Pressão — M]
+3 golpes curtos; se todos acertam, o 3º ignora reação defensiva.
+A1 Avanço Explosivo [Golpe — m]
+Golpe com avanço de 1u embutido; pode seguir Mv. Empurra 1u.
+A2 Série Rompedora [Pressão — M]
+Cada hit aplica −1 em defesa para o golpe seguinte no turno.
+A2 Derrubada [Golpe — M]
+Golpe baixo + varredura. Derruba; alvo tem desvantagem até gastar m p/ levantar.
+A3 Explosão Total [Pressão — M+m]
+2 ataques completos. Telegrafado — inimigo ganha +1 defesa até seu próximo turno.
+A3 Atordoamento Preciso [Golpe — M]
+Golpe na cabeça sem penalidade de parte. Crítico confirmado = Atordoado 1 turno, sem resistência.
+◆ Controle Agarrões, projeções, pinos.
+A1 Agarrão [Controle — M]
+Alvo não pode se mover enquanto preso (você também não). Soltar = Livre. Escapar: Força vs. Força DT 5.
+A1 Empurrão Direcionado [Controle — m]
+Empurra 1u para direção escolhida — terreno perigoso, outro alvo ou fora de cobertura.
+A2 Projeção [Controle — M]
+Derruba + empurra 2u + dano de impacto. Requer adjacência. Sem esquiva normal.
+A2 Estrangulamento [Controle — M]
+Requer Agarrão ativo. 1 turno sem resistir = Atordoado; 2 turnos = incapacitado. Força vs. Força DT 5/turno.
+
+
+
+--- PAGE 2 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 2
+A3 Imobilização Completa [Controle — M+m]
+Pino total. Imobilizado + Vulnerável até Ação Completa p/ escapar (Força DT 6). Exige Agarrão.
+A3 Redirecionamento [Reação — m]
+Ao receber ataque melee: atacante deslocado 1u e perde próxima m. Requer visão do ataque.
+Soco Inglês
+1d6 | Lacerante | D | Adjacente | Crítico: Sangramento
+◆ Investida Pressão agressiva para frente.
+A1 Jab Metálico [Golpe — m]
+Golpe rápido ao rosto. Cria abertura: alvo −1 defesa até fim do turno.
+A1 Avanço Pressionador [Abertura — m]
+Move 1u e golpeia em sequência. Pode ser usado após Mv.
+A2 Cruzado [Golpe — M]
+Golpe carregado com giro. Dano máximo do soco. Crítico: Sangramento grave + desequilíbrio.
+A2 Dupla Entrada [Pressão — M]
+Jab + cruzado; se jab acertar, cruzado ganha +1 dado.
+A3 Tempestade de Golpes [Pressão — M+m]
+4 socos rápidos; cada acerto acumula Sangramento. Esquiva bem-sucedida interrompe.
+A3 Uppercut Traumático [Golpe — M]
+Golpe ascendente na mandíbula. Dano + Atordoado 1t. Crítico: Atordoado 2t + risco concussão (SP −5).
+◆ Sangria Laceração direcionada, desgaste.
+A1 Corte Lateral [Golpe — m]
+Golpe oblíquo com borda metálica. +1 Sangramento em alvos já com sangramento.
+A1 Mira no Ferimento [Abertura — L]
+Declara ferimento como alvo. Próximo ataque no mesmo local: +1 dado.
+A2 Rasgar [Golpe — M]
+Aplica Sangramento direto sem crítico, mas dano base −1 dado.
+A2 Explorar Brecha [Golpe — m]
+Após alvo falhar em defesa: atinge ponto de abertura, +1 dado, ignora RD leve.
+A3 Dilaceração Profunda [Golpe — M]
+Sangramento 2 direto. Contra armadura pesada: reduz a Sangramento 1.
+A3 Pressão Hemorrágica [Pressão — M+m]
+Em alvo com Sangramento ativo: cada golpe agrava +1 nível. Acumula até Hemorragia.
+Manopla
+1d8 | Impacto | D | Adjacente | Crítico: Fragilizar + Concussão
+◆ Ferro Impacto puro e direto.
+A1 Martelada [Golpe — M]
+Golpe descendente. Aplica −1 RD de armadura/turno de Fragilizar (empilha ×3).
+A1 Guardar e Golpear [Golpe — m]
+Após bloqueio/esquiva Afin. 2+: resposta imediata com custo reduzido.
+A2 Britador [Golpe — M]
+Direcionado à armadura/escudo: −2× Durabilidade. Armadura fraca pode quebrar peça.
+A2 Sequência de Ferro [Pressão — M+m]
+3 golpes pesados acumulando Fragilizar já aplicado. Muito eficiente contra alvos danificados.
+A3 Esmagamento [Golpe — M]
+Fragilizar 2 direto. Crítico: Fragilizar 3. Ignora metade da RD de armaduras médias.
+A3 Frenesi de Impacto [Pressão — M+m]
+4 golpes acumulando Fragilizar. Ao fim, alvo em Fragilizado alto recebe bônus de dano nos ataques seguintes.
+◆ Guarda Fechada Bloquear ativamente, retaliar com impacto.
+A1 Bloqueio Ativo [Reação — sem custo]
+Bloqueia ataque melee leve/médio; dano pela metade. Próximo ataque +1 contra esse alvo.
+A1 Postura Fechada [Abertura — m]
+−1 ataque, +2 defesa vs. impacto e corte. Dura até mudar postura (Livre).
+A2 Contra-Golpe [Reação — m]
+Após bloqueio bem-sucedido: responde com golpe imediato. Alvo não pode esquivar.
+A2 Absorver e Avançar [Golpe — M]
+Aceita receber golpe com dano reduzido para garantir posição e ataque privilegiado.
+A3 Parede de Ferro [Reação — m]
+Intercepta ataque físico em aliado adjacente. Você recebe dano reduzido. 1×/rodada.
+A3 Postura de Punição [Pressão — M]
+Na Postura Fechada: cada ataque bloqueado gera contra-golpe gratuito. Dura 1 rodada.
+Adaga
+1d4 | Perfuração | 1M/D | Adj./3u | Crítico: Perfuração Vital
+◆ Sombra Furtividade, posicionamento, golpe vital.
+
+
+
+--- PAGE 3 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 3
+A1 Golpe Oculto [Golpe — m]
++1 dado de posição furtiva/flanqueada. Pode integrar Mv furtivo.
+A1 Guardar na Manga [Abertura — L]
+Oculta a adaga. Próximo ataque surpresa tem Vantagem.
+A2 Ponto Vital [Golpe — M]
+Pescoço/axila/virilha. Com vantagem posicional: Crítico automático. Requer flanquear ou alvo distraído.
+A2 Silencioso [Golpe — M]
+Alvo não pode gritar/fazer barulho até próximo turno. Requer furtividade.
+A3 Eliminação [Golpe — M]
+Alvo surpreso/imobilizado: dano triplicado. Se matar: sem rastro sonoro. Se falhar: você se expõe.
+A3 Múltiplos Alvos [Golpe — M+m]
+Com 2 adagas (D): golpeia 2 alvos adjacentes. 2º usa abertura criada pelo 1º.
+◆ Duelista Usar o comprimento curto como vantagem próxima.
+A1 Desvio Rápido [Reação — sem custo]
+Redireciona ataque melee leve. Permite reposicionamento de 1u gratuito.
+A1 Saque e Ataque [Golpe — m]
+Saca e golpeia em uma ação. Se adaga estava oculta: alvo não pode reagir.
+A2 Contra-Estocada [Reação — m]
+Após desvio bem-sucedido: contra-ataca ignorando reação do alvo (comprometido).
+A2 Fechar a Distância [Golpe — m]
+Avança 1u e golpeia em Ação Menor. Ótimo após arma pesada errar.
+A3 Dança de Lâminas [Pressão — M]
+Cada desvio bem-sucedido libera golpe adicional (máx. 3). Requer alvo que continue atacando.
+A3 Perfurar a Guarda [Golpe — M]
+Ignora bônus de bloqueio de escudo e +50% RD de armadura leve/média. Requer Abertura prévia.
+Kukri
+1d6 | Corte | 1M/D | Adjacente | Crítico: Sangramento
+◆ Gancho Explorar a curvatura, ângulos internos.
+A1 Corte em Arco [Golpe — m]
+Trajetória curva interna. Ignora bônus de escudo em 50%.
+A1 Puxar com a Lâmina [Golpe — m]
+Após acertar: traciona a lâmina, aprofundando o corte. Aplica Sangramento sem crítico.
+A2 Gancho Vital [Golpe — M]
+Golpe curvado. Em flanco/costas: Crítico automático confirmado.
+A2 Série Interna [Pressão — M]
+2 golpes em arco; se 1º acertar, 2º tem Vantagem.
+A3 Devastação do Arco [Golpe — M]
+Dano extra + Sangramento 2. Crítico: Sangramento 3 + fragilizar leve.
+A3 Três Cortes [Pressão — M+m]
+3 golpes em arco; cada acerto acumula Sangramento. Em alvo com Hemorragia: dano duplicado.
+◆ Dual Dois kukris, fluxo contínuo.
+A1 Ataque Alternado [Golpe — M]
+2 golpes com lâminas opostas. 2º tem −1 dado mas mais difícil de defender.
+A1 Guarda Cruzada [Reação — sem custo]
+Bloqueia ataque melee com os dois kukris; dano pela metade. Funciona vs. leves e médias.
+A2 Tesoura [Golpe — M]
+Ambas as lâminas de lados opostos. Impossível bloquear com escudo pequeno. Dano de ambas.
+A2 Fluxo Dual [Pressão — M+m]
+4 golpes alternados; dano individual reduzido mas Sangramento acumulado acelerado.
+A3 Vórtex de Lâminas [Pressão — M+m]
+Série máxima de cortes alternados. Afeta todos em adjacência. Sangramento acumula em todos.
+A3 Convergência [Golpe — M]
+Ambas as lâminas no mesmo ponto vital. Dano somado. Perfura a maioria das defesas. Requer abertura.
+Cinquedea
+1d8 | Corte/Perfuração | 1M | Adjacente | Crítico: Vital
+◆ Lâmina Larga Cortes devastadores e bloqueios ativos.
+A1 Tajo Largo [Golpe — M]
+Horizontal de máxima largura. Pode acertar 2 alvos adjacentes (−1 dado no 2º).
+A1 Aparar Plano [Reação — sem custo]
+Usa o plano da lâmina para aparar. Funciona vs. armas médias sem penalidade.
+A2 Corte Devastador [Golpe — M]
++1 dado extra. Em armadura leve: perfura facilmente.
+A2 Arco Defensivo [Pressão — M]
+Ataques em arco que atacam e criam espaço. Alvo que avançar toma dano.
+
+
+
+--- PAGE 4 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 4
+A3 Fenda Cruzada [Golpe — M+m]
+Horizontal + diagonal descendente. 2º explora abertura do 1º. Difícil de defender completamente.
+A3 Muro de Lâmina [Reação — m]
+Lâmina larga interposta. Bloqueia ataques leves automaticamente. Vs. médios: Força vs. Força.
+◆ Duelo Próximo Estocadas rápidas, deflexões, espaço zero.
+A1 Estocada Rápida [Golpe — m]
+Ataque perfurante direto. Mais rápido que corte. Pode ser feito como Ação Menor.
+A1 Deflexão [Reação — sem custo]
+Redireciona o ataque. Se bem-sucedido: Vantagem no próximo ataque contra esse alvo.
+A2 Corte e Estocada [Pressão — M]
+Corte amplo força defesa; estocada no ponto descoberto com Vantagem (se 1º acertar/forçar).
+A2 Giro de Punho [Golpe — m]
+Rotação do pulso troca corte/perfuração no mesmo movimento. Dificuldade de defesa +1.
+A3 Finalização Vital [Golpe — M]
+Estocada em ponto vital. Requer abertura prévia. Crítico automático confirmado. Dano máximo.
+A3 Dança de Duelo [Pressão — M+m]
+Ciclo corte + deflexão + estocada. Enquanto continua, alvo acumula penalidades de defesa.
+Rondel
+1d6 | Perfuração | 1M | Adjacente | Crítico: Ignora Resistência
+◆ Perfurador Encontrar o ponto fraco, penetrar.
+A1 Buscar a Junta [Golpe — M]
+Ataque nas falhas da armadura. Ignora 3 pts de RD automaticamente. Requer 1 turno de observação.
+A1 Estocada Concentrada [Golpe — m]
+Peso do corpo na lâmina. Menor mobilidade; ignora RD leve por completo.
+A2 Viseira [Golpe — M]
+Golpe na abertura facial. Crítico automático vs. capacete com viseira. Sem capacete: −1.
+A2 Ponto de Pressão [Golpe — M]
+Explora fraqueza mecânica da armadura. Cada golpe seguinte na mesma área ignora +1 RD (acumula).
+A3 Penetração Total [Golpe — M]
+Ignora toda RD do alvo. Requer 1t de análise (Investigação DT 4) ou Ponto de Pressão 2+×.
+A3 Ponto Mortal [Golpe — M]
+Dano dobrado. Exige Ponto de Pressão ativo ou alvo imobilizado.
+◆ Presa Controle físico + lâmina.
+A1 Agarrar e Ferir [Golpe — M]
+Agarra com uma mão e fere com o Rondel. Sem esquiva durante o golpe. Você também fica parado.
+A1 Segurar o Pulso [Controle — m]
+Agarra pulso/braço de arma. Alvo não pode atacar com essa mão. Força vs. Força p/ escapar.
+A2 Derrubar e Perfurar [Controle — M]
+Derruba e perfura imediatamente. Alvo derrubado tem defesa penalizada, sem esquiva normal.
+A2 Controle de Nuca [Controle — M]
+Rondel na nuca/garganta do imobilizado: rende ou toma dano fatal. Cena social.
+A3 Imobilização Mortal [Controle — M+m]
+Pin total com Rondel em ponto vital. A cada turno pode tentar escapar (Força DT 6) ou toma dano automático.
+A3 Execução de Duelo [Golpe — M]
+Em alvo preso/derrubado: dano triplicado. Com armadura: ainda ignora metade da RD.
+PARTE II — ESPADAS
+Cimitarra
+1d8 | Corte | 1M | 1u | Bônus: +1 Ataque (−2) | Crítico: Desarmar
+◆ Dança Movimento circular, cortes encadeados.
+A1 Corte Circular [Golpe — M]
+Arco completo. Pode atingir 2 alvos adjacentes (−1 dado no 2º, criativo em flanco).
+A1 Fluxo Livre [Abertura — m]
+Mantém lâmina em movimento; próximo ataque custa −1 de ação (M→m ou m→L).
+A2 Encadear [Pressão — M]
+2 acertos: 3º golpe gratuito. Requer alvos em 1u.
+A2 Desarme Cirúrgico [Controle — m]
+Corte na empunhadura. Em crítico ou após Fluxo Livre: executa Desarmar automaticamente.
+A3 Redemoinho [Pressão — M+m]
+Giro completo atingindo todos em adjacência. Dano reduzido por alvo; nenhum esquiva do ângulo oposto.
+A3 Fluxo Eterno [Pressão — M]
+Enquanto acertar, continua atacando (máx. 4 hits). Para ao errar — 1ª falha expõe completamente.
+◆ Duelo Árabe Ângulos enganosos, mão livre, desarmamento.
+
+
+
+--- PAGE 5 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 5
+A1 Ângulo Falso [Golpe — M]
+Começa numa direção, termina em outra. Defensor se posiciona errado: −1 defesa.
+A1 Mão Viva [Reação — sem custo]
+Mão livre desvia/segura pulso do oponente. Permite contra-ataque como Ação Menor.
+A2 Fainta Aberta [Abertura — m]
+Finge ataque para consumir reação do alvo. Ataque real com Vantagem.
+A2 Corte em Oito [Golpe — M]
+Padrão em oito confunde defensor. 2 ataques de ângulos opostos; 2º ignora bloqueio preparado para o 1º.
+A3 Maestria do Ângulo [Golpe — M]
+Ângulo mais imprevisível. Ignora posicionamento de escudo. Crítico confirmado vs. alvo que usou Reação defensiva.
+A3 Desarme em Fluxo [Controle — M]
+2 golpes para criar o desarme: 1º força abertura, 2º bate na empunhadura. Tenta Desarmar automaticamente.
+Katana
+1d8/2d4+2 | Corte | 1M/2M | Adjacente | Bônus: +2/+1 (−2) | Crítico: Sangramento
+◆ Iai Saque e golpe em uma ação.
+A1 Saque Relâmpago [Golpe — m]
+Saca e ataca em Ação Menor. Alvo só reage ao golpe, não ao saque. Pode integrar iniciativa.
+A1 Corte de Saque [Golpe — M]
++1 dado se arma estava embainhada. Aspecto 'Saque Rápido' potencializa.
+A2 Primeiro Corte [Golpe — M]
+Se alvo não usou Reação neste turno: Sangramento automático sem crítico.
+A2 Saque Duplo [Pressão — m]
+2 saques+ataques rápidos. Ambos com −1 dado. Requer reembainhar entre eles (Aspecto Saque Rápido).
+A3 Itomagoi [Golpe — M]
+Dano triplicado. Requer alvo que não saiba do ataque. Embainhe após usar.
+A3 Reflexo Perfeito [Reação — m]
+Ao ser atacado: saca e corta simultaneamente. Quem for mais rápido (Destreza) causa dano. Risco mútuo.
+◆ Kenjutsu Esgrima disciplinada, posições com propósito.
+A1 Postura de Guarda [Abertura — m]
+−1 ataque, +2 defesa até próximo turno. Transição para ataque sem custo adicional.
+A1 Corte Diagonal [Golpe — M]
+O mais natural da katana. +1 dado em 2M. Força reposicionamento ou toma no ombro/braço.
+A2 Encadear Posturas [Pressão — M]
+Transita guarda/ataque no mesmo turno. 1º golpe vem do posicionamento defensivo — intenção ilegível.
+A2 Pressão Mental [Abertura — m]
+Aproxima sem atacar. Alvo gasta Reação para atacar primeiro. Prepara Emboscada.
+A3 Sequência Completa [Pressão — M+m]
+Guarda → Corte → Guarda. 2 golpes intercalados com posicionamento defensivo. Muito difícil de ler.
+A3 Corte Perfeito [Golpe — M]
+Posicionamento correto + timing. Crítico automático confirmado se alvo usou Reação defensiva no turno anterior.
+Espada Vitoriana
+1d10 | Corte | 1M | Adjacente | Aspectos: Balanceada | Crítico: Desarme ou Empurrão 1u
+◆ Esgrima Footwork, distância controlada, ataque e defesa unidos.
+A1 Toque [Golpe — m]
+Pouco dano; revela qual defesa o alvo usa. Próximo ataque ignora essa defesa.
+A1 Recuar e Avançar [Abertura — m]
+Recua 1u (fora do alcance) e avança imediatamente. Alvo não tem tempo de reaproveitar.
+A2 Riposte [Reação — m]
+Após esquivar: estocada precisa ignorando preparação defensiva do alvo neste turno.
+A2 Desengajar [Abertura — m]
+Ao ser pressionado: move 1u sem custo e reposiciona a arma. Quebra encadeamento sem gastar Mv.
+A3 Sequência de Mestre [Pressão — M]
+Desvio + Riposte + Desengajar em sequência. Cada passo alimenta o seguinte. Acumula penalidades em oponente menor.
+A3 Finalização de Esgrima [Golpe — M]
+Após explorar 2+ aberturas no mesmo combate: Crítico automático confirmado.
+◆ Cavaleiro Cortes poderosos, sinergia com escudo, formação.
+A1 Golpe Descendente [Golpe — M]
+Diagonal de cima para baixo. Pode quebrar escudo (dano vs. Durabilidade) ou forçar recuo 1u.
+A1 Escudo e Espada [Abertura — m]
+Com escudo: empurra com escudo e posiciona a espada. Cria abertura gratuita.
+A2 Golpe de Punho [Golpe — m]
+Guarda da espada como impacto. Causa Atordoado leve (sem dano). Cria abertura.
+A2 Avanço de Linha [Pressão — M]
+Avança 1u com corpo inteiro. Alvo recua 1u ou é empurrado/desequilibrado.
+
+
+
+--- PAGE 6 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 6
+A3 Quebrar a Linha [Golpe — M+m]
+Empurra escudo do oponente e ataca o lado exposto. Muito eficaz vs. defensores com escudo grande.
+A3 Estampa de Cavaleiro [Pressão — M+m]
+Escudo + 2 golpes de espada. 1 alvo ou 2 adjacentes. Empurra 1u e aplica Fragilizar em todos.
+Espada Alexandrina
+1d12 | Corte | 1M/2M | Adjacente | Penalidade −2/0 | Crítico: Derrubar ou Fragilizar
+◆ Mão Única Mão livre para escudo, magia ou oportunismo.
+A1 Golpe Pesado 1M [Golpe — M]
+Com penalidade −2 mas mão livre disponível para escudo ou Manifestação.
+A1 Usar a Guarda [Golpe — m]
+Guarda larga como arma secundária: impacto com Atordoado leve. Ação Menor.
+A2 Perfurar e Escudar [Pressão — M]
+Golpe + bloqueio de escudo no mesmo turno. Exige escudo na mão livre.
+A2 Investida [Golpe — M]
+Avança 2u + peso do corpo. +1 dado se mover ≥2u antes. Pode derrubar.
+A3 Punho de Ferro [Pressão — M+m]
+Ataque + golpe de guarda/mão livre. Corte + impacto. 2 tipos de dano.
+A3 Domínio Unilateral [Golpe — M]
+Espada + reação livre disponível. Se não usar reação neste turno: Vantagem no próximo ataque.
+◆ Duas Mãos Zero penalidade, dano máximo.
+A1 Golpe Poderoso [Golpe — M+m]
+Dano máximo sem penalidade. Pode fragilizar armaduras médias num único acerto.
+A1 Pressionar [Pressão — M]
+Controla o espaço com comprimento da espada. Alvo não avança sem tomar dano de oportunidade.
+A2 Corte Profundo [Golpe — M+m]
+Ignora 2 pts de RD adicionais. Crítico: Fragilizar automático.
+A2 Varredura Lateral [Golpe — M]
+Corte horizontal de máxima amplitude. 2 alvos adjacentes sofrem dano completo cada.
+A3 Golpe Definitivo [Golpe — M+m]
+Dano com Vantagem + Crítico automático em alvo já Fragilizado. Telegrafado mas imparável.
+A3 Domínio de Dois Metros [Pressão — M]
+Qualquer alvo que entre em 2u toma dano de oportunidade. Dura 1 rodada. Combina com Pressionar.
+PARTE III — ARMAS DE HASTE
+Lança
+1d8/2d4+2 | Perfuração | 1M/2M | 2u | Crítico: Empurrar 1u | Aspectos: Arremessável
+◆ Formação Disciplina e cooperação.
+A1 Estocada de Linha [Golpe — M]
+Em formação com aliado adjacente: ambos atacam simultaneamente sem custo adicional.
+A1 Manter Distância [Reação — sem custo]
+Ao ser aproximado: dano de oportunidade (1d4) a quem avança para dentro de 2u.
+A2 Muro de Lanças [Pressão — M]
+Com aliado flanqueando: zona de ameaça de 2u. Qualquer avanço inimigo nessa zona causa dano automático.
+A2 Desvio Coordenado [Reação — m]
+Com aliado: desvia o ataque para o lado e aliado responde imediatamente. Custo de Reação compartilhado.
+A3 Avalanche de Hastes [Pressão — M+m]
+2+ lançeiros: ataque simultâneo no mesmo alvo. Cada um rola dano independente; alvo só esquiva de um.
+A3 Linha Inquebrável [Abertura — M]
+3+ aliados com lanças: nenhum inimigo atravessa sem sofrer 3 golpes de oportunidade. Dura 1 rodada.
+◆ Caçador Solo, móvel, versátil.
+A1 Arremesso Controlado [Golpe — M]
+Lança arremessada com precisão. Se acertar, fica no alvo (recuperável).
+A1 Guardar Distância Solo [Abertura — m]
+Sem aliados: posiciona lança para bloquear avanço. Adjacência = dano de oportunidade (1d6).
+A2 Estocada Perfurante [Golpe — M]
+Em 2M: força do corpo em estocada. +1 dado. Ignora RD leve completamente.
+A2 Giro de Haste [Golpe — M]
+Parte traseira da haste como arma de impacto. Surpresa. Causa Atordoado leve.
+A3 Caçada [Pressão — M]
+Cada vez que alvo recua: você avança 1u gratuitamente e ataca. Pressão constante.
+A3 Explosão de Haste [Golpe — M+m]
+Arremessa a lança (M) e imediatamente saca arma secundária para melee. Dois modos no mesmo turno.
+Tridente
+
+
+
+--- PAGE 7 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 7
+1d10/2d6 | Perfuração | 1M/2M | 2u | Crítico: Imobilizar | Aspectos: Arremessável
+◆ Pescador Prender, travar, controlar.
+A1 Prender com as Pontas [Controle — M]
+Pontas envolvem membro/arma. Força vs. Força: vitória = preso enquanto mantiver o tridente.
+A1 Empurrar com a Haste [Controle — m]
+Haste horizontal empurra 2u. Para terreno perigoso ou fora de cobertura.
+A2 Travar no Chão [Controle — M]
+Cravar pontas em torno de pé/tornozelo. Imobiliza deslocamento (Força DT 6). Pode ainda atacar.
+A2 Rede de Pontas [Pressão — M]
+Tridente em rotação criando zona de ameaça. Qualquer ataque ao portador recebe 1d4 automático.
+A3 Travamento Total [Controle — M+m]
+3 pontas prendem arma + corpo: desarma + imobiliza. Requer Prender ativo. Força vs. Força DT 7.
+A3 Presa Mortal [Golpe — M]
+Com alvo preso/imobilizado: estocada entre pontas com Crítico automático.
+◆ Ondas Movimento fluido, alcance variável.
+A1 Investida de Tridente [Golpe — M]
+Avança 1u e perfura. 3 pontas aumentam superfície de contato — difícil esquivar completamente.
+A1 Recuo e Ameaça [Abertura — m]
+Recua 1u (fora de armas curtas) mantendo ameaça de alcance. Avanço do inimigo é punido.
+A2 Dança das Pontas [Pressão — M]
+Ataques alternando ângulos das 3 pontas. Alvo não pode usar a mesma defesa duas vezes.
+A2 Empurrar e Perfurar [Pressão — M]
+Haste empurra 1u, avança e perfura com as pontas. Empurrão + dano.
+A3 Maré [Pressão — M+m]
+Avanço + estocada tripla + recuo p/ posição segura. Dano + posicionamento ideal.
+A3 Arremesso Preciso [Golpe — M]
+Arremessa a 2u. Acerto: Imobiliza (crava pontas). Preso até remover (Força DT 5, Ação Maior).
+Naginata
+1d10 | Corte | 2M | 2u | Bônus: +1 Ataque | Crítico: Desarme | Aspectos: Defesa em Alcance
+◆ Defesa em Alcance Ninguém chega sem ser processado primeiro.
+A1 Barreira de Lâmina [Abertura — m]
+Qualquer avanço para 2u recebe golpe de oportunidade (1d6).
+A1 Desvio de Haste [Reação — sem custo]
+Deflecte ataque a 2u. Vs. armas médias. Após deflexão: posição de contra-ataque.
+A2 Manter no Alcance [Pressão — M]
+Ataca e recua 1u no mesmo movimento. Mantém distância de 2u independente do alvo.
+A2 Contra-Ataque de Alcance [Reação — m]
+Alvo tenta atacar você: contra-golpe aproveitando o avanço do oponente. Dano extra pelo momentum.
+A3 Zona Proibida [Pressão — M+m]
+Nenhum inimigo pode entrar em 2u por 1 rodada sem tomar 2d6 automático.
+A3 Resposta Perfeita [Reação — m]
+Após qualquer bloqueio/esquiva: corte preciso no espaço de alcance com Vantagem.
+◆ Fluxo Naginata em movimento perpétuo.
+A1 Varredura Baixa [Golpe — M]
+Corte horizontal rente ao chão. Difícil bloquear acima. Acerto: alvo recua ou tropeça (−1 próxima ação).
+A1 Mudar o Ângulo [Abertura — m]
+Muda direção do próximo ataque sem telegrama. Ignora bônus de posição defensiva.
+A2 Corte em Cruz [Golpe — M]
+2 cortes em ângulos opostos. Alvo precisa defender 2 ângulos — um passará.
+A2 Fluxo de Lâmina [Pressão — M+m]
+Naginata em movimento contínuo: 3 golpes de afinamento. Cada acerto abre o próximo.
+A3 Tempestade de Cortes [Pressão — M+m]
+4 cortes em ângulos distintos. Até 2 alvos adjacentes. Difícil de defender completamente.
+A3 Desarme em Fluxo [Controle — M]
+Fluxo contínuo prende arma do oponente entre lâmina e haste. Tenta Desarmar. Se conseguir: arma jogada 2u.
+Nagamaki
+1d10 | Corte | 2M | 2u | Crítico: Derrubar | Aspectos: Alcance Híbrido / Varredura
+◆ Varredura Comprimento total, arcos amplos.
+A1 Varredura Ampla [Golpe — M]
+Corte horizontal de máxima amplitude. Afeta todos em 2u numa direção. Dano completo em cada.
+A1 Corte Descendente [Golpe — M+m]
+Diagonal poderoso. Pode derrubar com acerto normal se alvo for leve ou estiver desequilibrado.
+A2 Dupla Varredura [Pressão — M+m]
+
+
+
+--- PAGE 8 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 8
+Varredura na ida e na volta. Alvo na zona defende duas vezes.
+A2 Derrubar e Pressionar [Golpe — M]
+Após derrubar: golpe de seguimento imediato. Alvo no chão não pode esquivar normalmente.
+A3 Tufão [Pressão — M+m]
+Giro 360° com arma estendida. Todos em 2u em todas as direções. Dano completo. Telegrafado.
+A3 Corte Definitivo [Golpe — M+m]
+Toda força num golpe descendente. Dano com Vantagem + Derruba automático. Crítico: Fragilizar além.
+◆ Haste Híbrida Alternância lança/espada, o alvo não sabe o que vem.
+A1 Estocada de Haste [Golpe — m]
+Extremidade como lança — estocada rápida a 2u. Alvo precisa de outra defesa.
+A1 Transição [Abertura — L]
+Declara mudança de modo (haste/espada). Próximo ataque vem do modo oposto: desvantagem na defesa.
+A2 Corte e Estocada [Pressão — M]
+Golpe como espada + estocada como lança. 2 tipos de dano, 2 defesas necessárias.
+A2 Enganar com a Haste [Abertura — m]
+Extremidade da haste cria abertura sem dano. Vantagem no próximo ataque de lâmina.
+A3 Modo Duplo Completo [Pressão — M+m]
+Lâmina + haste + lâmina em sequência rápida. 3 ataques, 3 tipos de dano, 3 direções.
+A3 Alcance Perfeito [Golpe — M]
+Sem penalidade de alcance em nenhuma situação. Crítico tem +1 dado.
+Alabarda
+2d6 | Corte/Perfuração | 2M | 2u | Pesada −2 | Crítico: Derrubar ou Empurrar 2u
+◆ Machado de Haste Lâmina como protagonista.
+A1 Golpe de Lâmina [Golpe — M+m]
+Dano máximo da lâmina de alabarda. Fragiliza armaduras médias com impacto acumulado.
+A1 Gancho de Recuperação [Controle — m]
+Gancho traseiro puxa alvo 1u ou prende escudo. Escudo preso: expõe o alvo.
+A2 Derrubar com Gancho [Controle — M]
+Gancho por baixo puxa tornozelo. Derruba automaticamente se vencer disputa de Força.
+A2 Fender Armadura [Golpe — M+m]
+−2 RD permanente da armadura atingida por combate. Acumula.
+A3 Colheita [Pressão — M+m]
+Golpe de lâmina + gancho + golpe de volta. Até 2 alvos. Acumula dano e controle.
+A3 Corte em Área [Golpe — M+m]
+Giro: todos em 2u em semicírculo tomam dano completo. Crítico de Derrubar pode afetar múltiplos.
+◆ Guarda de Haste Ponta de pique como controle, manter distância.
+A1 Estocada de Pique [Golpe — M]
+Usa a ponta como lança longa. Perfura a 2u. Ignora RD de armaduras leves.
+A1 Barreira de Haste [Abertura — m]
+Alabarda horizontal: inimigos que avancem para 1u tomam golpe de oportunidade.
+A2 Perfurar e Puxar [Golpe — M+m]
+Estocada que perfura e puxa com gancho. Dano + puxão de 1u em sua direção.
+A2 Manter o Espaço [Pressão — M]
+Pique 2u + ameaça de lâmina: qualquer alvo em 2u sob ameaça constante, custo de avanço dobrado.
+A3 Tríplice Ameaça [Pressão — M+m]
+Pique (perfuração) + lâmina (corte) + gancho (controle). Um alvo, 3 ataques distintos.
+A3 Defesa Total [Reação — m]
+Haste bloqueia + contra-ataca com componente oposto. Bloqueia qualquer arma não-larga.
+Bisento
+1d12 | Corte | 2M | 2u | Pesada −2 | Crítico: Derrubar em Área | Aspectos: Lâmina Larga / Varredura
+◆ Varredura Ampla Lâmina larga como área de efeito.
+A1 Limpeza Horizontal [Golpe — M+m]
+Corte horizontal em toda a extensão. Afeta todos em 2u numa linha. Dano completo em cada.
+A1 Corte em Arco [Golpe — M]
+Arco descendente amplo. Afeta 2 alvos adjacentes ao principal (dano levemente reduzido).
+A2 Zona de Destruição [Pressão — M+m]
+Giro completo: todos em 2u em 360°. Dano completo. Telegrafado mas imparável no centro.
+A2 Derrubada em Massa [Golpe — M+m]
+Varredura baixa. Tenta derrubar TODOS os alvos atingidos. Cada um resiste separadamente.
+A3 Devastação Total [Pressão — M+m]
+3 varreduras em ângulos diferentes. Toda a zona de 2u repetidamente. Impossível escapar sem recuar.
+A3 Corte Absolutório [Golpe — M+m]
+Dano com Vantagem + Derruba em área + Fragilizar. O golpe mais pesado do Bisento.
+◆ Presença Existir no campo já muda o comportamento dos inimigos.
+
+
+
+--- PAGE 9 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 9
+A1 Intimidação Ativa [Abertura — m]
+Exibe a lâmina larga. Inimigos de Tier menor resistem (Vontade DT 4) ou recuam 1u involuntariamente.
+A1 Controlar o Espaço [Abertura — m]
+Declara zona de 2u como 'território'. Inimigos que entrem sem preparação: −1 defesa no 1º turno.
+A2 Ameaça Constante [Pressão — M]
+Bisento em rotação lenta. Qualquer tentativa de avanço recebe golpe de oportunidade gratuito. Dura 1 rodada.
+A2 Quebrar Formação [Golpe — M+m]
+Penetra através de 2 inimigos em linha. Ambos sofrem dano parcial.
+A3 Presença Esmagadora [Pressão — M+m]
+Inimigo que reagir defensivamente toma dano extra pelo desequilíbrio. SP −3/golpe neste turno.
+A3 Autoridade [Abertura — M]
+Golpe no chão criando shockwave visual. Todos em 4u resistem a Medo (Vontade DT 5).
+Foice Gigante
+1d10 | Corte | 2M | 2u | Pesada −2 | Crítico: Derrubar + Sangramento | Aspectos: Puxar Alvo
+◆ Segador Explorar Aspecto de puxar, reposicionar inimigos.
+A1 Colheita [Golpe — M]
+Curvatura engata e puxa 1u ao mesmo tempo que corta. Dano + reposicionamento em uma ação.
+A1 Gancho de Tornozelo [Controle — m]
+Rente ao chão: gancha tornozelo e puxa. Derruba (Força vs. Força DT 4).
+A2 Puxar para a Morte [Controle — M]
+Engata e puxa com força: 2u + posiciona atrás de você (flanqueado para aliados). Força DT 5.
+A2 Corte e Arraste [Golpe — M+m]
+Corte + arraste. Sangramento do corte + reposicionamento. Cada turno de movimento agrava Sangramento.
+A3 Colheita em Área [Pressão — M+m]
+Puxões em arco: 2 alvos adjacentes, dano + puxão em ambos para posição desvantajosa.
+A3 Ceifar [Golpe — M+m]
+Puxão violento + corte profundo. Derruba + Sangramento grave. Em alvo com Sangramento: Hemorragia direta.
+◆ Ceifador Curvatura para ângulos impossíveis.
+A1 Ângulo Impossível [Golpe — M]
+Contorna escudos, atinge flanco sem flanquear. Ângulos que armas retas não alcançam.
+A1 Giro Invertido [Golpe — m]
+Lâmina apontada para baixo em movimento circular. Ângulo inesperado: −1 defesa.
+A2 Contornar a Guarda [Golpe — M]
+Por cima ou por baixo do escudo. Ignora bônus de escudo completamente.
+A2 Duplo Ângulo [Pressão — M]
+2 golpes em ângulos opostos. Alvo não pode usar a mesma posição defensiva para ambos.
+A3 Coreografia da Morte [Pressão — M+m]
+Série de golpes impossíveis encadeados. Cada um vem de onde o anterior não estava. Nenhuma defesa cobre todos.
+A3 Corte da Sombra [Golpe — M]
+Curvatura oculta a trajetória até o último momento. −2 defesa + Crítico automático se alvo não tem Sabedoria Especialista+.
+Odachi
+2d8 | Corte | 2M | 2u | Pesada −3 | Crítico: Derrubar + Fragilizar | Aspectos: Varredura
+◆ Corte Absoluto Qualidade sobre quantidade.
+A1 O Único Golpe [Golpe — M+m]
+Toda a preparação para um único corte ideal. Dano com Vantagem. Telegrafado.
+A1 Postura de Espera [Abertura — m]
+Aguarda o momento: +1 dado acumulado para próximo ataque (máx. 2 turnos). Vulnerável.
+A2 Momento Perfeito [Golpe — M+m]
+Após Postura (1t): +2 dados. Após 2t: +3 dados.
+A2 Atravessar [Golpe — M+m]
+Corte que vai de uma extremidade à outra. 2 alvos em linha com dano completo em ambos.
+A3 Corte Mitológico [Golpe — M+m]
+Dano triplicado. Crítico: destrói armadura parcialmente. Se matar: corta ao meio (narrativo).
+A3 Inevitabilidade [Abertura — M]
+Declara o golpe com antecedência. Alvo sabe o que vem mas não consegue parar. Ignora todas as reações defensivas.
+◆ Varredura Comprimento extremo para limpar espaço.
+A1 Varredura de Dois Metros [Golpe — M+m]
+Horizontal atingindo todos em 2u em semicírculo. Dano completo. Derruba leves/desequilibrados.
+A1 Manter Afastado [Abertura — m]
+Zona de exclusão de 2u: qualquer avanço recebe golpe de oportunidade (1d8).
+A2 Dupla Varredura [Pressão — M+m]
+Horizontal + vertical em sequência. Alvos na zona defendem 2 ângulos distintos.
+A2 Quebrar Escudos [Golpe — M+m]
+Ignora RD de bloqueio completamente. Dano direto ao HP + dano à Durabilidade do escudo.
+
+
+
+--- PAGE 10 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 10
+A3 Horizonte Vazio [Pressão — M+m]
+3 varreduras em sequência. Afeta todos em 2u repetidamente. O nome diz tudo.
+A3 Giro Total [Golpe — M+m]
+360° ao redor do portador. Todos em 2u em todas as direções. Dano máximo. Requer espaço.
+Zweihander / Montante
+2d6 | Corte | 2M | 2u | Pesada −3 | Crítico: Empurrar 2u + Fragilizar | Aspectos: Grande
+◆ Meia-Espada Segurar metade da lâmina para controle próximo.
+A1 Morder a Lâmina [Abertura — m]
+Segura a lâmina na metade. Transforma o Zweihander em arma de controle + martelo com a guarda.
+A1 Golpe de Cruzeiro [Golpe — M]
+Em Meia-Espada: guarda como martelo de impacto. Fragilizar + Atordoado leve.
+A2 Alavanca [Controle — M]
+Em Meia-Espada: comprimento como alavanca para derrubar ou desarmar.
+A2 Perfurar com a Ponta [Golpe — M+m]
+Em Meia-Espada: estocada precisa com a ponta. Alcance reduzido, precisão máxima. Ignora RD como Rondel.
+A3 Domínio Próximo [Pressão — M+m]
+Em Meia-Espada: golpe de guarda + alavanca + estocada. Combinação imprevisível no espaço próximo.
+A3 Transição de Modo [Abertura — L]
+Muda instantaneamente entre Meia-Espada e modo normal. Sem custo. Surpreende quem apostou num modo.
+◆ Devastação Poder puro, amplitude máxima.
+A1 Golpe de Autoridade [Golpe — M+m]
+2d6 + push 2u + começo de Fragilizar. Difícil de conter sem defesa superior.
+A1 Quebradora [Golpe — M+m]
+Dano triplicado vs. qualquer bloqueio físico. Escudos leves destruídos num golpe.
+A2 Limpar o Caminho [Pressão — M+m]
+Empurra TODOS os adjacentes 2u em suas direções. Cria espaço vazio ao redor. Separa formações.
+A2 Golpe de Terra [Golpe — M+m]
+Bate no chão: shockwave em 2u, todos derrubados (Constituição DT 5). Dano reduzido, área compensa.
+A3 Devastação Total [Pressão — M+m]
+Golpes de autoridade em sequência. 3 acertos no mesmo alvo: Fragilizar 3 automático.
+A3 A Última Palavra [Golpe — M+m]
+Carregado 1 turno + momentum máximo. Dano triplicado + Fragilizar 3 + Derruba. Se defender: ainda empurra 2u e causa metade.
+PARTE IV — ARMAS DE IMPACTO
+Machado de Mão
+1d6 | Corte | D | Adjacente | Ação: Golpe (m) | Crítico: Sangramento | Aspectos: Arremessável
+◆ Arremessador O arremesso como primeiro passo.
+A1 Arremessar e Avançar [Golpe — m]
+Arremessa (1d6 a 3u) como m e avança para melee. 2 modos em ação mínima.
+A1 Recuperar em Movimento [Livre — —]
+Recolhe machado arremessado ao passar pelo ponto sem parar. 1×/turno.
+A2 Criar Abertura [Golpe — m]
+Arremessa para forçar esquiva: aliado ganha Vantagem no próximo ataque. Sem intenção de dano.
+A2 Duplo Arremesso [Golpe — M]
+Com 2 machados (D): arremessa ambos em sequência. 2º aproveita abertura do 1º. Ambos −1 dado.
+A3 Círculo de Machados [Pressão — M]
+Arremessa sequencialmente entre 2 alvos, obrigando ambos a se defender. Requer 2 machados.
+A3 Precisão Letal [Golpe — M]
+Arremesso único com máxima preparação: Crítico automático confirmado. Machado cravado no alvo.
+◆ Dual Dois machados, pressão que não para.
+A1 Alternância [Golpe — M]
+2 golpes alternados de lados opostos. 2º tem −1 dado mas ignorado em crítico.
+A1 Bloqueio Cruzado [Reação — sem custo]
+Cruza os 2 machados p/ bloquear. Vs. armas médias. Após bloquear: contra-ataque como m.
+A2 Moedor [Pressão — M+m]
+4 golpes alternados rápidos. Dano menor mas acumula Sangramento. Muito difícil de defender.
+A2 Abertura Dual [Golpe — M]
+Um machado bloqueia/deflecte a arma inimiga; outro ataca. 2º golpe indefensável.
+A3 Tempestade de Machados [Pressão — M+m]
+6 golpes em rotação. Afeta adjacentes (pode dividir entre 2 inimigos).
+A3 Convergência Dupla [Golpe — M]
+Ambos os machados no mesmo ponto simultaneamente. Dano somado. Sangramento grave direto.
+Martelo de Mão
+
+
+
+--- PAGE 11 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 11
+1d6 | Impacto | 1M | Adjacente | Ação: Golpe (m) | Crítico: Fragilizar | Aspectos: Contusão / Ignora Armadura
+◆ Ferreiro Precisão, cada golpe no ponto certo.
+A1 Ponto Fraco [Golpe — m]
+Ponto estruturalmente mais fraco da armadura. −1 RD cumulativo/acerto no mesmo ponto (máx. −3).
+A1 Martelada Rápida [Golpe — m]
+Golpe de m aproveitando velocidade. Pode usar após Mv.
+A2 Quebradora de Osso [Golpe — M]
+Articulação/osso. Fragilizar + penalidade: braço = −2 em ataques; perna = deslocamento −1u.
+A2 Perfurar Armadura [Golpe — m]
+Aspecto Ignora Armadura em foco: ignora 100% da RD. Custo M para dano máximo.
+A3 Demolição Sistemática [Pressão — M]
+3 acertos no mesmo local: peça de armadura para de funcionar.
+A3 Golpe de Maestria [Golpe — M]
+Ponto exato, força exata. Fragilizar 3 direto + Atordoado. Ignora toda RD.
+◆ Fluxo Rápido Aproveitar a velocidade, acumular contusão.
+A1 Ritmo Acelerado [Pressão — M]
+2 golpes rápidos como M (ambos −1 dado). Acumula Contusão mais rápido.
+A1 Após Movimento [Golpe — m]
+Pode atacar após Mv sem custo adicional. Mobilidade + agressão.
+A2 Cascata de Impacto [Pressão — M+m]
+3 golpes de m encadeados. 3º acumula Fragilizar do 1º e 2º.
+A2 Aproveitamento [Golpe — m]
+Após aliado acertar mesmo alvo neste turno: +1 dado pelo desequilíbrio.
+A3 Chuva de Impacto [Pressão — M+m]
+4 golpes em ritmo máximo. Fragilizar + Contusão em todos. Em alvo Fragilizado: dano exponencialmente maior.
+A3 Instável mas Letal [Golpe — M]
+Abandona postura defensiva para velocidade máxima. 5 golpes rápidos. Completamente exposto depois.
+Machado de Guerra
+2d8 | Corte | 2M | Adjacente | Pesada −2 | Crítico: Sangramento Grave
+◆ Fenda O corte como solução absoluta.
+A1 Golpe Brutal [Golpe — M+m]
+Dano máximo, potência máxima. Fragiliza armaduras médias em um acerto.
+A1 Fender Escudo [Golpe — M+m]
+Dano triplicado vs. escudos. Escudos leves destruídos. Médios −50% Durabilidade.
+A2 Cortar Através [Golpe — M+m]
+Se matar com excesso de dano: excesso vai para alvo adjacente. Devastador em grupos compactos.
+A2 Golpe Descendente [Golpe — M+m]
+De cima para baixo: dano + Derruba + Sangramento grave. O golpe mais completo de dano puro.
+A3 Dividir ao Meio [Golpe — M+m]
+Carregado 1t: dano triplicado. Em alvo Fragilizado 3: dano quintuplicado. Você fica exposto.
+A3 Rota Sangrenta [Pressão — M+m]
+Move 3u e corta tudo no caminho. Dano + Sangramento em cada. Para ao fim do movimento.
+◆ Pressão Bruta Usar o tamanho para vencer pelo esgotamento.
+A1 Avanço Imparável [Pressão — M]
+Avança e golpeia simultaneamente. Empurra alvo 1u. Inimigos menores não mantêm posição.
+A1 Desestabilizar [Golpe — M]
+Golpe no equilíbrio, não no dano. Derruba ou empurra 2u. Cria posição para golpe seguinte.
+A2 Não Para [Pressão — M+m]
+2 golpes consecutivos sem pausa. Menos dano que golpe único mas sem reposicionamento inimigo.
+A2 Esmagar a Defesa [Golpe — M+m]
+Peso sobrepõe qualquer bloqueio: ignora RD + aplica dano ao bloqueador.
+A3 Moedor de Carne [Pressão — M+m]
+3 golpes pesados em sequência. Em alvo que não recua: Fragilizar acumulativo rápido.
+A3 Inevitável [Pressão — M]
+Avança 2u ignorando reações de oportunidade (Constituição DT 5). Tudo no caminho empurrado.
+Martelo de Guerra
+1d12 | Impacto | 2M | Adjacente | Pesada −2 | Crítico: Fragilizar | Aspectos: Anti-Armadura
+◆ Demolidor Destruição sistemática de proteções.
+A1 Martelar Armadura [Golpe — M+m]
+−3 RD permanente por combate (acumula). Em armaduras pesadas: −5.
+A1 Impacto Profundo [Golpe — M+m]
+Força do impacto transfere para o corpo: Fragilizar + dano contuso passando pela armadura. Ignora metade da RD.
+A2 Britador de Placas [Golpe — M+m]
+
+
+
+--- PAGE 12 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 12
+Peça específica (capacete, braçadeira, peitoral): após 2 acertos, aquela peça cessa de funcionar.
+A2 Cadeia de Impacto [Pressão — M+m]
+2 golpes no mesmo ponto. 2º explora dano já causado: +1d6 adicional.
+A3 Demolição Completa [Golpe — M+m]
+Fragilizar 3 + −6 RD permanente + Atordoado. Vs. sem armadura: só Fragilizar e Atordoado.
+A3 Último Golpe [Golpe — M+m]
+Dano com Vantagem + Fragilizar completo + Atordoado. Em Fragilizado 3: dano triplicado.
+◆ Terremoto O peso como força de área.
+A1 Bater no Chão [Golpe — M+m]
+Shockwave em 2u: todos resistem (Constituição DT 4) ou derrubados. Dano mínimo, área compensa.
+A1 Empurrão de Onda [Golpe — M+m]
+Empurra alvo 3u (em vez de 2u). Se bater em obstáculo: dano adicional.
+A2 Cascata de Quedas [Golpe — M+m]
+Bate entre 2 alvos adjacentes: ambos resistem à queda. Enquanto levantam, você já prepara o próximo.
+A2 Onda de Choque [Pressão — M]
+Pancadas crescentes: todos em 4u −1 em testes físicos por 1 rodada. Acumula em área pequena.
+A3 Terremoto Local [Golpe — M+m]
+Carga máxima no chão: todos em 3u derrubados (Constituição DT 6). Estruturas racham. Cria terreno difícil.
+A3 Fim do Mundo [Pressão — M+m]
+2 golpes de chão + golpe no principal. Principal sofre dano máximo; todos ao redor no chão.
+PARTE V — ARMAS DE CORRENTE
+Kusarigama
+1d10/2d6 | Corte/Impacto | 1M/2M | 2u | Bônus: Ataque Adicional | Crítico: Puxar ou Derrubar
+◆ Kama — A Foice Melee agressivo, ângulos curvos.
+A1 Gancho [Golpe — m]
+Curva da lâmina acerta e puxa 1u ou desequilibra levemente.
+A1 Pressão Circular [Abertura — m]
+Arco que força recuo ou rompe guarda. Sem dano — cria espaço.
+A1 Aparar com a Haste [Reação — sem custo]
+Desvia ataque melee leve/médio. Após aparar: m disponível para contra-ataque.
+A2 Corte em Retorno [Golpe — M]
+Ataque de ida e volta. 2 hits no mesmo alvo ou em adjacentes.
+A2 Enganchar Membro [Controle — M]
+Enganche em braço (−2 ataques) ou perna (deslocamento −1u). Força vs. Força p/ escapar.
+A2 Contra-Golpe [Reação — m]
+Após aparar: responde ignorando reação defensiva do alvo.
+A3 Dança da Foice [Pressão — M+m]
+Ataques em arco acelerado. Cada hit reduz defesa progressivamente. Telegrafado.
+A3 Enganchar e Puxar Arma [Controle — M]
+Tenta arrancar a arma. Vitória = Desarme; Empate = abertura p/ próximo ataque.
+◆ Kunai/Kusari — Corrente e Kunai Operar na distância intermediária.
+A1 Arremesso [Golpe — M]
+Lança a kunai. Se acertar: corrente estendida — próxima técnica de corrente custa m.
+A1 Chicote de Corrente [Golpe — m]
+Corrente como chicote sem soltar a kunai. Lacerante, curto alcance, surpreendente.
+A1 Girar e Manter Distância [Abertura — m]
+Gira corrente em arco. Qualquer avanço recebe dano leve.
+A2 Puxão [Controle — m]
+Após Arremesso conectado: puxa 1u ou desequilibra. Leve em terreno instável: derruba.
+A2 Recolhimento Veloz [Livre — —]
+Recolhe kunai após arremesso sem custo. 1×/turno.
+A2 Enrolar Membro [Controle — M]
+Corrente enrola membro. Braço: perde ataque; Perna: deslocamento reduzido. Libertar = Ação.
+A3 Estrangular [Controle — M+m]
+Corrente no pescoço/torso. Imobiliza + pressão crescente/turno. Requer Enrolar Membro.
+A3 Kunai Fantasma [Golpe — M]
+Finta com foice para consumir reação, depois arremessa kunai. Alvo penalizado para desviar.
+A3 Corrente Viva [Reação — m]
+Corrente desvia projétil ou arma arremessada. Requer visão. Não funciona vs. armas de fogo.
+■ SÍNTESE — Seiry■ — O Dragão Azul
+Requer: Afinidade 2+ em Kama E Afinidade 2+ em Kunai/Kusari
+A2 Fio e Foice [Pressão — M]
+Arremessa kunai como abertura; corrente tensa potencializa golpe de foice: +1 dado. 2 ataques, 1 movimento.
+
+
+
+--- PAGE 13 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 13
+A2 Redemoinho Azul [Pressão — M+m]
+Giro em arco completo: corrente cria zona de ameaça enquanto foice avança em espiral. Hits múltiplos em 2u.
+A2 Resposta Dupla [Reação — m]
+Contra-ataca com foice E enrola corrente no atacante. Dano de Kama + Controle em uma reação.
+Kusarifundo
+1d8/2d4+2 | Impacto | 1M/2M | 2u | Bônus: Ataque Adicional (−2) | Crítico: Imobilizar ou Desarmar
+O estilo Kama é idêntico ao da Kusarigama — consulte a entrada anterior para detalhes completos.
+◆ Fundo/Kusari — Peso e Corrente Impacto que desequilibra, controla, esmaga.
+A1 Giro do Peso [Golpe — M]
+Gira o fundo em arco crescente. Alcance 2u. Pode desequilibrar no acerto.
+A1 Chicote Pesado [Golpe — m]
+Fundo sem carregar o giro. Menor dano mas veloz. Pode desequilibrar.
+A1 Interceptar com Corrente [Reação — sem custo]
+Corrente desvia projétil ou arma arremessada. Vs. leves e projéteis não-explosivos.
+A2 Esmagar de Cima [Golpe — M]
+Giro vertical descendente. Fragilizar + Derruba. Telegrafado.
+A2 Enrolar Tornozelo [Controle — M]
+Corrente baixa. Acerto: derruba e restringe movimento até escapar.
+A2 Oscilação Contínua [Abertura — m]
+Mantém peso em movimento. Próximo golpe com fundo não pode ser aparado por armas leves. Dura 1 turno.
+A3 Impacto Sísmico [Golpe — M+m]
+Inércia máxima: dano máximo + Fragilizar 2 + possível quebra de parte. Altamente telegrafado.
+A3 Pêndulo Controlado [Pressão — M]
+Fundo oscila entre 2 pontos de ameaça. Alvo não sabe de onde vem o próximo. Duplo hit.
+A3 Corrente em Torniquete [Controle — M]
+Imobilização completa. Requer Enrolar Tornozelo ou abertura equivalente.
+■ SÍNTESE — Kokury■ — O Dragão Negro
+Requer: Afinidade 2+ em Kama E Afinidade 2+ em Fundo/Kusari
+A2 Romper e Prender [Golpe — M+m]
+Foice cria Sangramento + corrente imobiliza. 2 efeitos distintos em um turno. Requer posição melee.
+A2 Terremoto Negro [Pressão — M+m]
+Giro total: foice corta em arco + peso esmaga em área. Todos em 2u: dano + knockback.
+A2 Pressão Absoluta [Reação — m]
+Quando bloqueado/aparado: fundo pela corrente atinge pela retaguarda da defesa. Ignora bloqueio ativo.
+PARTE VI — ARCOS E PROJÉTEIS
+Arco Curto
+1d8 | Perfuração | 2M | 6u | Ação: Atirar (M) / Recarga (L) | Crítico: Imobilizar | Aspectos: Disparo Móvel
+◆ Disparo Móvel Atirar em movimento, manter o inimigo reagindo.
+A1 Atirar e Mover [Golpe — M]
+Atira e move 1u. Qualquer ordem (atirar+mover ou mover+atirar). Nunca estático.
+A1 Recuar Atirando [Golpe — m]
+Enquanto recua: tiro de m. −1 dado mas mobilidade máxima.
+A2 Círculo de Fogo [Pressão — M]
+Move em arco ao redor do alvo atirando continuamente. Cada tiro vem de ângulo diferente.
+A2 Flecha em Movimento [Golpe — M]
+Dano levemente reduzido mas trajetória impossível de rastrear corretamente.
+A3 Fantasma Arqueiro [Pressão — M+m]
+Move 3u e atira 2× durante o movimento. Cada disparo vem de posição diferente.
+A3 Mover, Atirar, Desaparecer [Golpe — M]
+Move para cobertura, atira, volta para cobertura. Usa Furtividade como defesa.
+◆ Saraivada Volume de disparos, saturação.
+A1 Tiro Rápido [Golpe — m]
+Dispara como m. −1 dado mas libera M para outra ação. Excelente com Mv+m+m.
+A1 Dois Tiros [Pressão — M]
+2 disparos no mesmo alvo como M. −1 dado em cada; 2º aproveita abertura do 1º.
+A2 Dispersão [Pressão — M]
+3 disparos rápidos: podem ir para alvos diferentes em 6u. Volume força todos a se cobrir.
+A2 Cobrir Aliado [Abertura — M]
+Série de disparos em área ao redor de aliado em perigo. Inimigos próximos −1 em ataques contra aliado por 1t.
+A3 Tempestade de Flechas [Pressão — M+m]
+4 flechas em 2 turnos contínuos (2 M encadeadas). Saturação total de área de 3u.
+A3 Tiro Decisivo [Golpe — M]
+
+
+
+--- PAGE 14 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 14
+Após 2+ tiros de saraivada: alvo está se cobrindo de algum ângulo. Este tiro vai pelo oposto. Vantagem garantida.
+Arco Longo
+1d10 | Perfuração | 2M | 10u | Penalidade −1 | Ação: Atirar (M) / Recarga (m) | Crítico: Perfuração Profunda | Aspectos: Alcance Extremo
+◆ Precisão Um tiro, um resultado.
+A1 Mirar [Abertura — m/M]
+Mira Rápida (m): +1 acerto. Mira Plena (M): +2 acerto + acesso a técnicas de parte.
+A1 Tiro de Longa Distância [Golpe — M]
+Disparos de 8–10u têm +1 dado pelo momentum do projétil. Abaixo de 8u: sem bônus.
+A2 Perfurar a Cobertura [Golpe — M]
+Requer Mira Plena. A flecha perfura cobertura leve como se não existisse.
+A2 Tiro de Parte [Golpe — M]
+Requer Mira Plena. −1 para pernas; cabeça −2 (em vez de −3).
+A3 Tiro Cirúrgico [Golpe — M]
+Requer Mira Plena (2 turnos). Sem penalidade em qualquer parte. Crítico automático confirmado.
+A3 Penetração Total [Golpe — M]
+Distância máxima + Mira Plena: ignora toda RD de armaduras leves e metade de médias.
+◆ Cobertura Dominar o campo pelo posicionamento.
+A1 Tiro de Supressão [Abertura — M]
+Perto o suficiente para forçar cobertura. Sem intenção de acertar. +1 em próximos tiros do aliado.
+A1 Posição Elevada [Abertura — m]
+Se disponível: +1 acerto e +1 dado por altura. Inimigos têm dificuldade para atingir.
+A2 Fogo Cerrado [Pressão — M]
+Inimigo não pode se mover sem tomar 1d10 de oportunidade/turno que tentar.
+A2 Tiro de Área [Pressão — M]
+Dispersa flechas em zona de 2u. Controla área sem necessidade de acerto preciso.
+A3 Volley [Pressão — M+m]
+Mira em arco alto: cai em área de 3u em qualquer distância. Ignora cobertura horizontal.
+A3 Controle Total [Pressão — M]
+Supressão + Fogo Cerrado + posição elevada. Qualquer inimigo em 6u suprimido por 1 rodada.
+Balestra
+1d12 | Perfuração | 2M | 8u | Pesada −2 | Ação: Atirar (M) / Recarga (M) | Crítico: Fragilizar | Aspectos: Alta Penetração
+◆ Anti-Armadura Nenhuma armadura resiste ao virote bem posicionado.
+A1 Penetração Básica [Golpe — M]
+Alta Penetração: ignora 4 pts de RD. Vs. armaduras pesadas: passa por camadas mais fracas.
+A1 Mira Antecipada [Abertura — m/M]
+Mira Rápida (m): +1 acerto. Mira Plena (M): +2 acerto + técnicas anti-armadura avançadas.
+A2 Virote Perfurante [Golpe — M]
+Requer Mira Plena. Ignora TODA RD de leves e médias. Vs. pesadas: ignora 8 pts.
+A2 Buscar a Junta [Golpe — M]
+Requer Mira Plena. Junta da armadura pesada: dano máximo direto ao HP, sem RD.
+A3 Desmontagem [Golpe — M]
+Requer Mira Plena (2 turnos). Destrói peça específica de armadura no acerto. Cessa de funcionar.
+A3 Tiro Definitivo [Golpe — M]
+Recarga + Mira Plena no turno anterior. Este turno: dano triplicado, ignora toda RD, Crítico automático.
+◆ Precisão Calculada Lentidão de recarga como vantagem.
+A1 Calcular o Tiro [Abertura — M]
+Observa 1 turno: identifica padrão de movimento. Próximo tiro ignora bônus de mobilidade.
+A1 Tiro de Parte Calculado [Golpe — M]
+Sem penalidade em qualquer parte após Calcular o Tiro. Com Mira Plena: Crítico automático.
+A2 Emboscada Balística [Golpe — M]
+De posição furtiva após Mira Plena. Alvo não sabe onde você está: Crítico automático confirmado.
+A2 Dois Alvos em Linha [Golpe — M]
+2 alvos em linha de 8u: virote atravessa o 1º e atinge o 2º. Dano total no 1º, metade no 2º.
+A3 O Único Tiro [Golpe — M]
+Calcular + Mira Plena + posição ideal: dano máximo, Crítico automático, Fragilizar imediato.
+A3 Reposicionamento Tático [Abertura — m]
+Após atirar: nova posição furtiva. Alvo não sabe onde você está quando recarregar. Próximo tiro é surpresa.
+Zarabatana
+1d4 | Perfuração+Veneno | 1M | 4u | Ação: Atirar (m) / Recarga (L) | Crítico: Vital | Aspectos: Silenciosa
+◆ Veneno O dardo como veículo; o veneno é a arma.
+A1 Aplicar Veneno [Abertura — L]
+Reveste dardo com veneno disponível. Tipo de veneno define efeito (paralisante, sonífero, letal lento). 1 uso/dardo.
+
+
+
+--- PAGE 15 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 15
+A1 Múltiplos Pontos [Golpe — m]
+Atira em 2 alvos distintos no mesmo turno. Reload gratuito se dardos já preparados.
+A2 Veneno Acumulado [Golpe — m]
+2 dardos no mesmo alvo: se ambos acertam, veneno age em 1 turno ao invés do normal.
+A2 Ponto Vital Envenenado [Golpe — m]
+Requer Mira Rápida (m prévia). Além do veneno: Crítico Vital (narrativo + SP −5).
+A3 Coquetel Letal [Abertura — M]
+Prepara dardo com 2 venenos combinados. Efeitos simultâneos. Requer Medicina ou Venenis.
+A3 Infecção de Área [Pressão — M]
+4+ dardos preparados em sequência rápida. Todos em 4u na frente recebem ao menos um dardo.
+◆ Fantasma Aspecto Silencioso como arma principal.
+A1 Atirar sem Ser Visto [Golpe — m]
+Atira de cobertura sem revelar posição. Alvo não sabe de onde veio. Furtividade define se é descoberto.
+A1 Reposicionar [Abertura — Mv]
+Move após atirar. Se bem-sucedido em Furtividade: próximo disparo é surpresa (Crítico automático).
+A2 Sombra Ativa [Pressão — m]
+Atira e move simultaneamente: m p/ disparo + movimento gratuito de 1u.
+A2 Eliminar Sentinela [Golpe — m]
+Em alvo que não sabe que você existe: ponto vital sem resistência + veneno imediato. Sem ruído.
+A3 Invisível [Abertura — M]
+Posição elevada + cobertura + escuridão: efetivamente indetectável. Todos disparos desta posição Crítico automático.
+A3 Presença Ausente [Pressão — M]
+Atira em múltiplos alvos de posição furtiva sem ser detectado. Pânico gradual no grupo inimigo.
+PARTE VII — SUBSISTEMA DE ARMAS DE FOGO
+SISTEMA DE MIRA
+Tipo de Mira
+Custo
+Efeito
+Mira Rápida
+m
++1 em acerto. Acesso a técnicas básicas de precisão.
+Mira Plena
+M
++2 em acerto. Acesso a técnicas avançadas + bônus de parte.
+Mira Sustentada
+Atravessa turnos
+Cumulativo: +1 por turno extra (máx. +4). Vulnerável enquanto mira.
+COBERTURA
+Cobertura
+Proteção
+Regra
+Parcial
+−1 acerto do atirador
+Exposto ao contra-atirar.
+Total (agachado)
+Impossível ser atingido
+Precisa se expor (m) para atirar.
+Improvisada (móvel)
+−1 acerto
+Pode mover 1u e manter cobertura.
+Destruída
+Nenhuma
+Ataques de alta penetração destroem cobertura leve.
+Sniper sem Mira: −3 em acerto e −1 dado de dano. Para outras armas de fogo: −1 em acerto sem Mira.
+Revólver
+1d8 | Perfuração | Destreza | 12u | Crítico: Vital | 6 tiros / Recarga: Ação Completa
+◆ Duelo Tiro preciso a curta-média distância.
+A1 Primeiro Tiro [Golpe — m]
+Após Mira Rápida: +1 acerto. Pode integrar iniciativa — quem tem Destreza maior atira primeiro.
+A1 Contar as Balas [Abertura — L]
+Declara balas restantes. Informação que muda comportamento inimigo — ou não.
+A2 Tiro Duplo [Pressão — M]
+2 disparos rápidos. −1 dado no 2º mas mesma linha de mira. Consome 2 balas.
+A2 Gatilho Preparado [Abertura — m]
+Prepara o cão: próximo tiro tem Mira Rápida incluída sem custo extra.
+A3 Tiro de Duelo [Golpe — M]
+Mira Plena + disparo único. Crítico automático se você atirar primeiro neste turno.
+A3 Fan the Hammer [Pressão — M+m]
+Empurra o cão repetidamente: 4 disparos com −2 acerto. Volume sobre precisão. Esvazia metade do tambor.
+◆ Controle Tático Revólver como ferramenta tática.
+A1 Tiro de Aviso [Abertura — m]
+Perto do alvo sem intenção de acertar. Força cobertura (Vontade DT 4) por 1t. 1 bala.
+A1 Cobertura de Retirada [Abertura — m]
+Cobre aliado que recua. Perseguidores devem resistir ou cobrir (−2 velocidade de perseguição).
+A2 Disparo de Supressão [Pressão — M]
+3 disparos em zona: inimigos na área se cobrem ou arriscam ser atingidos. Controla espaço.
+
+
+
+--- PAGE 16 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 16
+A2 Tiro no Escuro [Golpe — m]
+Em baixa visibilidade: atira em direção de ruído/movimento. −2 acerto. Alvo não sabe que foi detectado.
+A3 Último Tiro Certeiro [Golpe — M]
+Com 1 bala + Mira Plena: dano triplicado.
+A3 Tiro Ricochete [Golpe — M]
+Requer Mira Plena + obstáculo: calcula ângulo p/ atingir alvo em cobertura total. DT +2 mas ignora cobertura.
+Pistola
+1d8 | Perfuração | Destreza | 10u | Crítico: Vital | 15 tiros / Recarga: Ação Maior
+◆ Assalto Próximo Curta distância, múltiplos disparos, movimento.
+A1 Disparar em Movimento [Golpe — M]
+Atira enquanto move até 2u. −1 dado. Alvo não prevê de onde vem.
+A1 Dois Alvos [Pressão — M]
+1 disparo por alvo em 2 alvos distintos em alcance. Sem Mira mas maximiza o carregador.
+A2 Rajada Controlada [Pressão — M+m]
+3 disparos rápidos no mesmo alvo. 3º acumula abertura criada pelos anteriores. 3 balas.
+A2 Suprimir e Avançar [Pressão — M]
+Dispara em direção ao inimigo para forçar cobertura enquanto fecha distância.
+A3 Esvaziar o Carregador [Pressão — M+m]
+6 disparos em área de 2u. Todos na área esquivam ou tomam 1d8. Recarregar após.
+A3 Ponto Final [Golpe — M]
+Após suprimir 1+ turno: alvo em posição antecipada. Ignora cobertura + Mira Plena gratuita.
+◆ Utilitária Pistola como ferramenta de suporte.
+A1 Cobertura de Aliado [Abertura — m]
+Cobre aliado. Inimigos que atacarem o aliado devem esquivar do seu tiro antes (Destreza DT 5).
+A1 Atenção Desviada [Abertura — m]
+Disparo força alvo a se voltar para você. Aliado ganha Vantagem no próximo ataque.
+A2 Zona Negada [Pressão — M]
+Série nega área de 2u por 1t: movimento na área requer Constituição DT 5 ou toma 1d8.
+A2 Trocar de Posição [Abertura — m]
+Dispara cobertura + move 2u. Alvo focado em você, aliados aproveitam.
+A3 Criar Pânico [Pressão — M]
+Disparos aparentemente aleatórios: todos em 6u resistem (Vontade DT 4) ou não agem ofensivamente por 1t.
+A3 Execução Tática [Golpe — M]
+Após aliado imobilizar/derrubar alvo: Mira Plena gratuita (preparação já feita). Crítico automático.
+Rifle de Assalto
+1d10 | Perfuração | Destreza | 20u | Crítico: Perfuração Profunda | 30 tiros / Recarga: Ação Maior
+◆ Assalto Pressão agressiva, limpar espaços.
+A1 Fogo em Movimento [Golpe — M]
+Avança 2u enquanto atira. Menos preciso mas mantém pressão enquanto fecha distância.
+A1 Rafada Curta [Pressão — m]
+Rafada de 2 disparos como m. −1 dado. Ideal com M+m+Mv.
+A2 Avançar Suprimindo [Pressão — M]
+Dispara série enquanto avança. Força todos à frente a se cobrir ou tomar 1d10. Avança 2u.
+A2 Limpar o Cômodo [Pressão — M+m]
+Em espaço fechado: arco de 90° durante movimento. Todos em 4u × 2u de largura sob risco.
+A3 Rafada Total [Pressão — M+m]
+10 balas em zona de 3u. Alvo esquiva (Destreza DT 5) ou toma 1d10. Enorme consumo.
+A3 Entrada Violenta [Pressão — M]
+Avança 3u ignorando 1º golpe de oportunidade + dispara na chegada com Vantagem.
+◆ Cobertura Tática Controlar o terreno com fogo de cobertura.
+A1 Posição de Cobertura [Abertura — m]
+Posição atrás de cobertura: −2 para ser atingido. Atira de 10u com +1 acerto pela estabilidade.
+A1 Fogo de Supressão [Pressão — M]
+Inimigo não pode se mover ou agir sem tomar 1d10 automático/turno que tentar.
+A2 Controlar Zona [Pressão — M]
+Zona específica de 3u: qualquer inimigo que entre recebe 1d10 de oportunidade. Dura 1 rodada.
+A2 Cobertura para Aliados [Abertura — M]
+Cobre aliados em movimento: eles movem 4u enquanto você suprime. Inimigos focados em você.
+A3 Supremacia de Fogo [Pressão — M+m]
+Toda a área de 6u à frente: nenhum inimigo age ofensivamente sem tomar 1d10. Dura 1 rodada. 15 balas.
+A3 Reposicionamento Tático [Abertura — M]
+Enquanto recarrega: aliados reposicionam 4u. Você troca de posição. Próxima posição é surpresa.
+Sniper
+
+
+
+--- PAGE 17 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 17
+2d10 | Perfuração | Destreza | 40u+ | Crítico: Abater | Recarga: Ação Completa
+◆ Francotirador Mira obrigatória, posicionamento, o tiro que decide.
+A1 Mira Obrigatória [Abertura — M/C]
+Sem Mira: −3 acerto, −1 dado. Mira Rápida (m): neutro. Mira Plena (M): +1 dado. Mira Sustentada: ver tabela.
+A1 Respiração Controlada [Abertura — m]
+Elimina penalidade de movimento leve e qualquer vantagem ambiental (vento, chuva).
+A2 Tiro de Precisão [Golpe — M]
+Requer Mira Plena. Sem penalidade em partes: cabeça/braço/perna tratados normalmente. O 2d10 é decisivo.
+A2 Antecipar Movimento [Abertura — M]
+Observa 1t sem atirar. Aprende padrão de movimento. Próximo tiro ignora bônus de mobilidade e cobertura parcial.
+A3 Abater [Golpe — M]
+Requer Mira Sustentada (2+ turnos). Crítico automático confirmado + 2d10 de dano adicional.
+A3 Tiro Definitivo [Golpe — M]
+Mira Sustentada (3t) + Antecipar Movimento: dano máximo, sem defesa possível, Abater automático.
+◆ Observador Sniper como ferramenta de informação e controle.
+A1 Reconhecimento [Abertura — M]
+Mapeia área de 40u sem atirar. Detecta alvos, cobertura, saídas. Aliados ganham +1 em próxima ação na área.
+A1 Marcar Alvo [Abertura — m]
+Marca alvo. Aliados ganham +1 acerto contra o marcado por 2t.
+A2 Atirar para Revelar [Golpe — m]
+Disparo próximo ao alvo oculto: força movimentação (revela posição) ou risco de ser atingido.
+A2 Negar Saída [Pressão — M]
+Cobre saída específica: qualquer alvo que a use enfrenta 2d10 de oportunidade. Controle de área máximo.
+A3 Terror Psicológico [Pressão — M]
+Tiros próximos sem acertar: todos em 6u resistem (Vontade DT 5) ou não agem ofensivamente por 1t.
+A3 Autoridade de Alcance [Abertura — M]
+Em posição perfeita com Mira Sustentada: qualquer movimento inimigo coberto. Nenhum move mais de 2u sem arriscar Abater.
+REFERÊNCIA RÁPIDA — ESTILOS DE ARMAS
+ARMA
+ESTILO A
+ESTILO B
+SÍNTESE
+Desarmado
+Agressão
+Controle
+—
+Soco Inglês
+Investida
+Sangria
+—
+Manopla
+Ferro
+Guarda Fechada
+—
+Adaga
+Sombra
+Duelista
+—
+Kukri
+Gancho
+Dual
+—
+Cinquedea
+Lâmina Larga
+Duelo Próximo
+—
+Rondel
+Perfurador
+Presa
+—
+Cimitarra
+Dança
+Duelo Árabe
+—
+Katana
+Iai
+Kenjutsu
+—
+Espada Vitoriana
+Esgrima
+Cavaleiro
+—
+Espada Alexandrina
+Mão Única
+Duas Mãos
+—
+Lança
+Formação
+Caçador
+—
+Tridente
+Pescador
+Ondas
+—
+Naginata
+Defesa em Alcance
+Fluxo
+—
+Nagamaki
+Varredura
+Haste Híbrida
+—
+Alabarda
+Machado de Haste
+Guarda de Haste
+—
+Bisento
+Varredura Ampla
+Presença
+—
+Foice Gigante
+Segador
+Ceifador
+—
+Odachi
+Corte Absoluto
+Varredura
+—
+Zweihander
+Meia-Espada
+Devastação
+—
+Machado de Mão
+Arremessador
+Dual
+—
+Martelo de Mão
+Ferreiro
+Fluxo Rápido
+—
+Machado de Guerra
+Fenda
+Pressão Bruta
+—
+Martelo de Guerra
+Demolidor
+Terremoto
+—
+
+
+
+--- PAGE 18 ---
+UnheaveN: ERA · Guia de Armas v2.7.6 · pág. 18
+ARMA
+ESTILO A
+ESTILO B
+SÍNTESE
+Kusarigama
+Kama
+Kunai/Kusari
+Seiry■
+Kusarifundo
+Kama
+Fundo/Kusari
+Kokury■
+Arco Curto
+Disparo Móvel
+Saraivada
+—
+Arco Longo
+Precisão
+Cobertura
+—
+Balestra
+Anti-Armadura
+Precisão Calculada
+—
+Zarabatana
+Veneno
+Fantasma
+—
+Revólver
+Duelo
+Controle Tático
+—
+Pistola
+Assalto Próximo
+Utilitária
+—
+Rifle de Assalto
+Assalto
+Cobertura Tática
+—
+Sniper
+Francotirador
+Observador
+—
+ "Cada arma é um vocabulário. A técnica é a gramática. O combate é a conversa."
+ UnheaveN: ERA — Guia de Armas v2.7.6 · Sistema criado por Seth the Freak · Uso interno de campanha

@@ -1,21 +1,46 @@
+/*
+ * Audit refactor:
+ * - Kept the launcher dark palette centralized in CSS variables and RGB channels.
+ * - Added stronger focus/touch affordances for launcher controls.
+ * - Preserved existing routes, copy, and visual hierarchy.
+ */
+
 :root {
   --launcher-bg: #0f1115;
+  --launcher-bg-rgb: 15 17 21;
   --launcher-block: #1a1d24;
+  --launcher-block-rgb: 26 29 36;
   --launcher-container: #2a2f3a;
+  --launcher-container-rgb: 42 47 58;
   --launcher-border: #3a4150;
+  --launcher-border-rgb: 58 65 80;
   --launcher-text: #e5e7eb;
+  --launcher-text-rgb: 229 231 235;
   --launcher-muted: #6b7280;
   --launcher-par: #a78bfa;
+  --launcher-par-rgb: 167 139 250;
   --launcher-par-light: #c4b5fd;
   --launcher-par-dark: #6d5dd3;
+  --launcher-par-dark-rgb: 109 93 211;
   --launcher-par-accent: #8b5cf6;
   --launcher-cyan: #22d3ee;
+  --launcher-cyan-rgb: 34 211 238;
   --launcher-cyan-light: #67e8f9;
   --launcher-red: #dc2626;
+  --launcher-red-rgb: 220 38 38;
   --launcher-red-light: #ef4444;
   --launcher-gold: #fde68a;
+  --launcher-gold-rgb: 253 230 138;
   --launcher-gold-warm: #fcd34d;
+  --launcher-gold-warm-rgb: 253 211 77;
   --launcher-gold-old: #bfa14a;
+  --launcher-gold-old-rgb: 191 161 74;
+  --launcher-bg-raised-rgb: 17 20 26;
+  --launcher-bg-soft-rgb: 18 21 28;
+  --launcher-mark-top: #171d2f;
+  --launcher-mark-bottom: #0d111a;
+  --launcher-white-rgb: 255 255 255;
+  --launcher-black-rgb: 0 0 0;
 }
 
 *,
@@ -118,12 +143,12 @@ main,
   width: 100%;
   margin-bottom: 2rem;
   padding: 0.95rem 1rem;
-  border: 1px solid rgba(58, 65, 80, 0.9);
+  border: 1px solid rgb(var(--launcher-border-rgb) / 0.9);
   border-radius: 20px;
-  background: rgba(17, 20, 26, 0.74);
+  background: rgb(var(--launcher-bg-raised-rgb) / 0.74);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.32);
+  box-shadow: 0 20px 48px rgb(var(--launcher-black-rgb) / 0.32);
 }
 
 .utility-home {
@@ -140,15 +165,15 @@ main,
   height: 44px;
   border-radius: 14px;
   background:
-    radial-gradient(circle at 52% 52%, rgba(253, 230, 138, 0.9), rgba(253, 230, 138, 0.12) 38%, transparent 52%),
-    radial-gradient(circle at 26% 74%, rgba(220, 38, 38, 0.7), transparent 32%),
-    radial-gradient(circle at 72% 74%, rgba(34, 211, 238, 0.72), transparent 32%),
-    radial-gradient(circle at 48% 20%, rgba(167, 139, 250, 0.72), transparent 32%),
-    linear-gradient(180deg, #171d2f, #0d111a);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+    radial-gradient(circle at 52% 52%, rgb(var(--launcher-gold-rgb) / 0.9), rgb(var(--launcher-gold-rgb) / 0.12) 38%, transparent 52%),
+    radial-gradient(circle at 26% 74%, rgb(var(--launcher-red-rgb) / 0.7), transparent 32%),
+    radial-gradient(circle at 72% 74%, rgb(var(--launcher-cyan-rgb) / 0.72), transparent 32%),
+    radial-gradient(circle at 48% 20%, rgb(var(--launcher-par-rgb) / 0.72), transparent 32%),
+    linear-gradient(180deg, var(--launcher-mark-top), var(--launcher-mark-bottom));
+  border: 1px solid rgb(var(--launcher-white-rgb) / 0.08);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 10px 30px rgba(0, 0, 0, 0.35);
+    inset 0 1px 0 rgb(var(--launcher-white-rgb) / 0.08),
+    0 10px 30px rgb(var(--launcher-black-rgb) / 0.35);
 }
 
 .utility-home-copy {
@@ -185,11 +210,11 @@ main,
   align-items: center;
   justify-content: center;
   isolation: isolate;
-  border: 1px solid rgba(253, 211, 77, 0.28);
-  background: rgba(253, 211, 77, 0.08);
+  border: 1px solid rgb(var(--launcher-gold-warm-rgb) / 0.28);
+  background: rgb(var(--launcher-gold-warm-rgb) / 0.08);
   color: var(--launcher-gold-warm);
   border-radius: 999px;
-  min-height: 42px;
+  min-height: 44px;
   padding: 0 1rem;
   font: 700 0.72rem/1 var(--font-mono);
   letter-spacing: 0.18em;
@@ -205,7 +230,7 @@ main,
 
 .utility-btn:hover:not(:disabled) {
   transform: translateY(-1px);
-  border-color: rgba(253, 230, 138, 0.48);
+  border-color: rgb(var(--launcher-gold-rgb) / 0.48);
   color: var(--launcher-gold);
 }
 
@@ -214,9 +239,17 @@ main,
   cursor: not-allowed;
 }
 
+.utility-home:focus-visible,
+.utility-btn:focus-visible,
+.btn-enter:focus-visible,
+.system-card:focus-visible {
+  outline: 2px solid var(--launcher-gold);
+  outline-offset: 4px;
+}
+
 .utility-btn.ghost {
-  border-color: rgba(58, 65, 80, 0.9);
-  background: rgba(255, 255, 255, 0.03);
+  border-color: rgb(var(--launcher-border-rgb) / 0.9);
+  background: rgb(var(--launcher-white-rgb) / 0.03);
   color: var(--launcher-text);
 }
 
@@ -231,7 +264,7 @@ main,
   letter-spacing: inherit;
   -webkit-text-fill-color: currentColor;
   text-fill-color: currentColor;
-  text-shadow: 0 0 14px rgba(0, 0, 0, 0.24);
+  text-shadow: 0 0 14px rgb(var(--launcher-black-rgb) / 0.24);
 }
 
 .pre-label {
@@ -271,7 +304,7 @@ main,
 
 #wordmark .ln {
   color: var(--launcher-par);
-  text-shadow: 0 0 30px rgba(167, 139, 250, 0.5);
+  text-shadow: 0 0 30px rgb(var(--launcher-par-rgb) / 0.5);
 }
 
 .tagline {
@@ -295,12 +328,12 @@ main,
 .status-card {
   isolation: isolate;
   padding: 1rem 1.1rem;
-  border: 1px solid rgba(58, 65, 80, 0.85);
+  border: 1px solid rgb(var(--launcher-border-rgb) / 0.85);
   border-radius: 18px;
-  background: rgba(18, 21, 28, 0.72);
+  background: rgb(var(--launcher-bg-soft-rgb) / 0.72);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 16px 34px rgb(var(--launcher-black-rgb) / 0.22);
 }
 
 .status-label {
@@ -392,7 +425,7 @@ main {
   isolation: isolate;
   min-height: 100%;
   padding: clamp(1.65rem, 3vw, 2.5rem) clamp(1.2rem, 2.5vw, 2.2rem) clamp(1.35rem, 2.4vw, 2.2rem);
-  background: rgba(26, 29, 36, 0.92);
+  background: rgb(var(--launcher-block-rgb) / 0.92);
   border: 1px solid var(--launcher-border);
   cursor: pointer;
   transition:
@@ -469,11 +502,11 @@ main {
 }
 
 .card-vn .card-bg {
-  background: radial-gradient(ellipse 65% 55% at 30% 30%, rgba(167, 139, 250, 0.07) 0%, transparent 60%);
+  background: radial-gradient(ellipse 65% 55% at 30% 30%, rgb(var(--launcher-par-rgb) / 0.07) 0%, transparent 60%);
 }
 
 .card-era .card-bg {
-  background: radial-gradient(ellipse 65% 55% at 70% 30%, rgba(253, 230, 138, 0.055) 0%, transparent 60%);
+  background: radial-gradient(ellipse 65% 55% at 70% 30%, rgb(var(--launcher-gold-rgb) / 0.055) 0%, transparent 60%);
 }
 
 .card:hover .card-bg,
@@ -482,7 +515,7 @@ main {
 }
 
 .card-shine {
-  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.018) 50%, transparent 65%);
+  background: linear-gradient(110deg, transparent 35%, rgb(var(--launcher-white-rgb) / 0.018) 50%, transparent 65%);
   transform: translateX(-120%);
   transition: transform 0.65s ease;
 }
@@ -494,16 +527,16 @@ main {
 
 .card-vn:hover,
 .card-vn:focus-visible {
-  border-color: rgba(167, 139, 250, 0.28);
+  border-color: rgb(var(--launcher-par-rgb) / 0.28);
   transform: translateY(-5px);
-  box-shadow: 0 28px 56px rgba(109, 93, 211, 0.15);
+  box-shadow: 0 28px 56px rgb(var(--launcher-par-dark-rgb) / 0.15);
 }
 
 .card-era:hover,
 .card-era:focus-visible {
-  border-color: rgba(191, 161, 74, 0.28);
+  border-color: rgb(var(--launcher-gold-old-rgb) / 0.28);
   transform: translateY(-5px);
-  box-shadow: 0 28px 56px rgba(253, 230, 138, 0.07);
+  box-shadow: 0 28px 56px rgb(var(--launcher-gold-rgb) / 0.07);
 }
 
 .card > :not(.card-bg):not(.card-shine) {
@@ -521,12 +554,12 @@ main {
 
 .card-vn:hover .sigil-wrap,
 .card-vn:focus-visible .sigil-wrap {
-  filter: drop-shadow(0 0 16px rgba(167, 139, 250, 0.45));
+  filter: drop-shadow(0 0 16px rgb(var(--launcher-par-rgb) / 0.45));
 }
 
 .card-era:hover .sigil-wrap,
 .card-era:focus-visible .sigil-wrap {
-  filter: drop-shadow(0 0 16px rgba(253, 230, 138, 0.3));
+  filter: drop-shadow(0 0 16px rgb(var(--launcher-gold-rgb) / 0.3));
 }
 
 .card-vn:hover .spin-group,
@@ -624,6 +657,7 @@ main {
   gap: 0.8rem;
   width: auto;
   width: fit-content;
+  min-height: 44px;
   margin-top: auto;
   padding: 0.68rem 1.4rem;
   background: transparent;
@@ -638,12 +672,12 @@ main {
 
 .card-vn .btn-enter {
   color: var(--launcher-par);
-  border-color: rgba(167, 139, 250, 0.28);
+  border-color: rgb(var(--launcher-par-rgb) / 0.28);
 }
 
 .card-era .btn-enter {
   color: var(--launcher-gold-warm);
-  border-color: rgba(253, 211, 77, 0.28);
+  border-color: rgb(var(--launcher-gold-warm-rgb) / 0.28);
 }
 
 .btn-fill {
@@ -656,11 +690,11 @@ main {
 }
 
 .card-vn .btn-fill {
-  background: rgba(167, 139, 250, 0.1);
+  background: rgb(var(--launcher-par-rgb) / 0.1);
 }
 
 .card-era .btn-fill {
-  background: rgba(253, 211, 77, 0.07);
+  background: rgb(var(--launcher-gold-warm-rgb) / 0.07);
 }
 
 .btn-label,
@@ -678,7 +712,7 @@ main {
   letter-spacing: inherit;
   -webkit-text-fill-color: currentColor;
   text-fill-color: currentColor;
-  text-shadow: 0 0 14px rgba(0, 0, 0, 0.24);
+  text-shadow: 0 0 14px rgb(var(--launcher-black-rgb) / 0.24);
 }
 
 .btn-arr {
@@ -699,13 +733,13 @@ main {
 .card-vn:hover .btn-enter,
 .card-vn:focus-visible .btn-enter {
   color: var(--launcher-par-light);
-  border-color: rgba(167, 139, 250, 0.55);
+  border-color: rgb(var(--launcher-par-rgb) / 0.55);
 }
 
 .card-era:hover .btn-enter,
 .card-era:focus-visible .btn-enter {
   color: var(--launcher-gold);
-  border-color: rgba(253, 230, 138, 0.48);
+  border-color: rgb(var(--launcher-gold-rgb) / 0.48);
 }
 
 #footer {
@@ -731,11 +765,11 @@ main {
 }
 
 #veil[data-system="verloren"] {
-  background: radial-gradient(ellipse at 25% 35%, rgba(109, 93, 211, 0.22) 0%, #0f1115 60%);
+  background: radial-gradient(ellipse at 25% 35%, rgb(var(--launcher-par-dark-rgb) / 0.22) 0%, var(--launcher-bg) 60%);
 }
 
 #veil[data-system="era"] {
-  background: radial-gradient(ellipse at 75% 35%, rgba(191, 161, 74, 0.18) 0%, #0f1115 60%);
+  background: radial-gradient(ellipse at 75% 35%, rgb(var(--launcher-gold-old-rgb) / 0.18) 0%, var(--launcher-bg) 60%);
 }
 
 #veil.show {
@@ -751,7 +785,7 @@ main {
   width: 100%;
   height: 1px;
   pointer-events: none;
-  background: linear-gradient(to right, transparent, rgba(167, 139, 250, 0.035), transparent);
+  background: linear-gradient(to right, transparent, rgb(var(--launcher-par-rgb) / 0.035), transparent);
   animation: scan 12s linear infinite;
 }
 
@@ -772,7 +806,7 @@ html.launcher-safe-depth .utility-rail,
 html.launcher-safe-depth .status-card,
 html.browser-desktop .utility-rail,
 html.browser-desktop .status-card {
-  background: rgba(17, 20, 26, 0.94);
+  background: rgb(var(--launcher-bg-raised-rgb) / 0.94);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
@@ -1054,6 +1088,6 @@ html.browser-desktop .status-card {
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .utility-rail,
   .status-card {
-    background: rgba(17, 20, 26, 0.94);
+    background: rgb(var(--launcher-bg-raised-rgb) / 0.94);
   }
 }

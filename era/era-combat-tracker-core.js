@@ -1,22 +1,23 @@
 /*
- * Responsibility: isolate tracker state helpers and condition config from the combat UI.
- * Exports: TRACKER_STAGED_CONDITIONS, TRACKER_BINARY_CONDITIONS, TRACKER_AIM_MODES,
- * TRACKER_ACTION_NOTES, cloneTrackerStages, buildTrackerState, getPressureBand,
- * getOverdraftState, getDefenseSnapshot.
+ * Audit refactor:
+ * - Documents tracker state helpers and condition config used by the combat UI.
+ * - Updates HP pressure bands to the PDF combat expansion thresholds.
+ * - Keeps the helper surface compatible with era-rolls-combate.js.
  */
 
 const TRACKER_STAGED_CONDITIONS = [
-  { id: "sangrando", label: "Sangramento", maxLevel: 3, color: C.corpo, note: "N1: 1 HP/t | N2: 2-4 HP/t | N3: 3 HP/t e risco de hemorragia." },
-  { id: "fragilizado", label: "Fragilizado", maxLevel: 3, color: C.goldDark, note: "Afeta a RD em -1 / -2 / -3. No nivel 3, considere quebra estrutural." },
-  { id: "queimando", label: "Queimadura", maxLevel: 2, color: C.corpoDark, note: "Escala calor continuo, pressao e negacao de espaco seguro." },
-  { id: "congelado", label: "Congelamento", maxLevel: 3, color: C.menteDark, note: "Escala perda de movimento e abre janela para dano fisico ampliado." },
-  { id: "envenenado", label: "Envenenado", maxLevel: 3, color: "#7A8B63", note: "Escala desgaste corporal, testes piores e dano continuo." },
+  { id: "sangrando", label: "Sangramento", maxLevel: 3, color: C.corpo, note: "N1: 1 HP/t | N2: 2-4 HP/t | N3: 5-10% HP max/t e risco de morte sem tratamento." },
+  { id: "fragilizado", label: "Fragilizado", maxLevel: 3, color: C.goldDark, note: "Dano recebido +25% / +50% / +75%; penalidades crescentes fisicas e mentais." },
+  { id: "queimando", label: "Queimadura", maxLevel: 3, color: C.corpoDark, note: "Curas -50% / -75% / -90%; nivel 3 pode inutilizar membro ou carbonizar." },
+  { id: "congelado", label: "Congelamento", maxLevel: 3, color: C.menteDark, note: "Escala perda de movimento, dano continuo e imobilizacao total." },
+  { id: "envenenado", label: "Envenenado", maxLevel: 3, color: "#7A8B63", note: "Escala de 1-3, 4-6 e 7-10 dano por turno com penalidades fisicas/mentais." },
 ];
 
 const TRACKER_BINARY_CONDITIONS = [
-  { id: "atordoado", label: "Atordoado", color: C.goldWarm, note: "Perde a proxima Acao Maior." },
-  { id: "derrubado", label: "Derrubado", color: "#8A6A52", note: "-2 Defesa. Levantar exige gasto de utilidade / menor." },
-  { id: "imobilizado", label: "Imobilizado", color: C.muted, note: "Sem movimento e -2 Destreza ate sair do controle." },
+  { id: "atordoado", label: "Atordoado", color: C.goldWarm, note: "Inabilitado por pelo menos 1 turno; penalidade maxima fisica e mental." },
+  { id: "caido", label: "Caido", color: "#8A6A52", note: "Defesa reduzida ate levantar. Levantar exige Acao Menor." },
+  { id: "imobilizado", label: "Imobilizado", color: C.muted, note: "Nao pode se deslocar ou fugir; -2 em testes." },
+  { id: "paralisado", label: "Paralisado", color: C.alma, note: "Incapaz de agir fisicamente; pode tentar resistencia mental para recuperar mobilidade." },
 ];
 
 const TRACKER_AIM_MODES = [
@@ -27,13 +28,18 @@ const TRACKER_AIM_MODES = [
 ];
 
 const TRACKER_ACTION_NOTES = [
-  "M: ataque principal ou manifestacao completa.",
-  "u/m: saque, item, recarga e manifestacao simples.",
-  "mov: deslocamento base e manifestacao avancada.",
-  "R: 1 reacao por rodada para esquiva, bloqueio ou interceptacao.",
-  "C: fecha o turno com manifestacoes extremas e armas de preparacao longa.",
+  "M: ataque principal ou Manifestacao Completa.",
+  "m: saque, item, recarga, manobra simples e Manifestacao Simples (1-3 KW).",
+  "Mv: deslocamento base (4 + PGI DEX) e Manifestacao Avancada (4-7 KW).",
+  "R: reacao para esquiva, bloqueio ou contra-ataque se perceber a acao.",
+  "C: consome o turno inteiro para Manifestacoes Extremas (15+ KW).",
 ];
 
+/**
+ * Clones staged condition values into mutable tracker state.
+ * @param {object} stagesLike
+ * @returns {object}
+ */
 function cloneTrackerStages(stagesLike) {
   const nextStages = {};
   TRACKER_STAGED_CONDITIONS.forEach((condition) => {
@@ -46,18 +52,31 @@ function cloneTrackerStages(stagesLike) {
   return nextStages;
 }
 
+/**
+ * Parses a tracker numeric value with fallback.
+ * @param {*} value
+ * @param {number} fallback
+ * @returns {number}
+ */
 function toTrackerNumber(value, fallback = 0) {
   const numeric = Number(value);
   return Number.isFinite(numeric) ? numeric : fallback;
 }
 
+/**
+ * Builds the combat tracker state for one fighter.
+ * @param {object} char
+ * @param {object} fighter
+ * @param {object=} existing
+ * @returns {object}
+ */
 function buildTrackerState(char, fighter, existing) {
   const current = existing || {};
   const isPC = !!(fighter && fighter.isPC);
   const activeConditions = fighter && Array.isArray(fighter.conds) ? fighter.conds : [];
-  const maxOverdraft = isPC ? Math.max(0, (Number(char.pilares.alma) || 0) * 5) : Math.max(0, Number(current.maxOverdraft) || 0);
   const spMax = isPC ? Math.max(1, Number(char.sp.max) || 100) : Math.max(1, Number(current.spMax) || 100);
   const peMax = isPC ? Math.max(0, Number(char.pe.max) || 0) : Math.max(0, Number(current.peMax) || 0);
+  const maxOverdraft = isPC ? Math.floor(peMax / 2) : Math.max(0, Number(current.maxOverdraft) || 0);
   const stages = cloneTrackerStages(current.stages);
 
   TRACKER_STAGED_CONDITIONS.forEach((condition) => {
@@ -94,6 +113,12 @@ function buildTrackerState(char, fighter, existing) {
   };
 }
 
+/**
+ * Resolves HP pressure band metadata from current and maximum HP.
+ * @param {number} current
+ * @param {number} max
+ * @returns {object}
+ */
 function getPressureBand(current, max) {
   const percent = getMeterPercent(current, max);
   if (current <= 0) {
@@ -101,10 +126,10 @@ function getPressureBand(current, max) {
       id: "incapacitado",
       label: "Incapacitado",
       color: C.danger,
-      defensePenalty: -2,
-      damagePenalty: 2,
-      durationBonus: 1,
-      note: "Sem acao confiavel. Exige estabilizacao ou teste por rodada.",
+      defensePenalty: -3,
+      damagePenalty: 0,
+      durationBonus: 0,
+      note: "Sem acao confiavel. Exige estabilizacao, cena medica ou decisao do mestre.",
     };
   }
   if (percent <= 33) {
@@ -114,8 +139,8 @@ function getPressureBand(current, max) {
       color: C.danger,
       defensePenalty: -2,
       damagePenalty: 2,
-      durationBonus: 1,
-      note: "Vulneravel a execucao e colapso de defesa.",
+      durationBonus: 0,
+      note: "1-33% HP: -2 Defesa, +2 dados recebidos e vulneravel a Execucao.",
     };
   }
   if (percent <= 66) {
@@ -126,7 +151,7 @@ function getPressureBand(current, max) {
       defensePenalty: -1,
       damagePenalty: 1,
       durationBonus: 1,
-      note: "Pressao alta. Condicoes ficam mais punitivas.",
+      note: "34-66% HP: -1 Defesa, +1 dado recebido e estados duram +1 turno.",
     };
   }
   return {
@@ -140,29 +165,44 @@ function getPressureBand(current, max) {
   };
 }
 
-function getOverdraftState(peValue) {
+/**
+ * Resolves PE overdraft grade from current and maximum PE.
+ * @param {number} peValue
+ * @param {number} peMax
+ * @returns {object}
+ */
+function getOverdraftState(peValue, peMax) {
   const overdraft = peValue < 0 ? Math.abs(peValue) : 0;
+  const max = Math.max(1, Number(peMax) || 1);
   if (!overdraft) {
     return { amount: 0, label: "Estavel", color: C.muted, note: "Sem overdraft ativo." };
   }
-  if (overdraft <= 5) {
-    return { amount: overdraft, label: "Leve", color: C.goldDark, note: "Recuperacao longa cai para metade." };
+  if (overdraft <= max / 10) {
+    return { amount: overdraft, label: "Leve", color: C.goldDark, note: "Limite 1/10 do PE total. Descanso Longo recupera apenas 1/2." };
   }
-  if (overdraft <= 10) {
-    return { amount: overdraft, label: "Moderado", color: C.warning, note: "Recuperacao longa cai para um quarto e gera +1 Exaustao ao acordar." };
+  if (overdraft <= max / 3) {
+    return { amount: overdraft, label: "Moderado", color: C.warning, note: "Limite 1/3 do PE total. Descanso Longo normal, mas reduz Overdraft/Exaustao em 1." };
   }
-  return { amount: overdraft, label: "Severo", color: C.danger, note: "Sem recuperacao espontanea ate estabilizar a essencia." };
+  return { amount: overdraft, label: "Severo", color: C.danger, note: "Limite 1/2 do PE total. Sem recuperacao no Descanso Longo." };
 }
 
+/**
+ * Builds a compact defense/readiness snapshot for combat UI.
+ * @param {object} char
+ * @param {object} fighter
+ * @param {object} tracker
+ * @param {object} band
+ * @returns {object}
+ */
 function getDefenseSnapshot(char, fighter, tracker, band) {
   const destrezaProg = fighter && fighter.isPC ? Number(char.subs.destreza.prog) || 0 : 0;
   const constituicaoProg = fighter && fighter.isPC ? Number(char.subs.constituicao.prog) || 0 : 0;
   const fragStage = tracker.stages.fragilizado.level;
   return {
     defenseCurrent: tracker.defenseBase + band.defensePenalty,
-    rdFinal: tracker.rdCurrent - fragStage,
+    rdFinal: tracker.rdCurrent,
     fragStage,
-    dodgeFormula: fighter && fighter.isPC ? `${Number(char.pilares.corpo) || 0} + Prog DES ${destrezaProg}` : "Defina manualmente para este alvo",
-    blockFormula: fighter && fighter.isPC ? `1d6 + Prog CON ${constituicaoProg}` : "Defina manualmente para este alvo",
+    dodgeFormula: fighter && fighter.isPC ? `${Number(char.pilares.corpo) || 0}d6 + PGI DEX ${destrezaProg}` : "Defina manualmente para este alvo",
+    blockFormula: fighter && fighter.isPC ? `${Number(char.pilares.corpo) || 0}d6 + PGI CON ${constituicaoProg} + item` : "Defina manualmente para este alvo",
   };
 }

@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<!--
+  Audit refactor:
+  - Moved inline topbar colors onto shared ERA CSS variables for dark-theme consistency.
+  - Increased topbar tap targets and guarded last-system storage writes.
+  - Kept script order, GitHub Pages subdirectory paths, and game data untouched.
+-->
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -26,12 +32,12 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      border: 1px solid rgba(58, 65, 80, 0.9);
+      border: 1px solid rgb(var(--era-border-rgb) / 0.9);
       border-radius: 18px;
-      background: rgba(15, 17, 21, 0.84);
+      background: rgb(var(--era-bg-rgb) / 0.84);
       -webkit-backdrop-filter: blur(14px);
       backdrop-filter: blur(14px);
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 20px 48px rgb(var(--era-black-rgb) / 0.3);
     }
 
     .era-topbar-brand {
@@ -40,14 +46,14 @@
     }
 
     .era-topbar-kicker {
-      color: #FDE68A;
+      color: var(--era-gold-bright);
       font: 700 10px/1 "IBM Plex Mono", monospace;
       letter-spacing: 0.16em;
       text-transform: uppercase;
     }
 
     .era-topbar-title {
-      color: #E5E7EB;
+      color: var(--era-text);
       font: 700 18px/1.1 "Playfair Display", Georgia, serif;
     }
 
@@ -60,11 +66,11 @@
 
     .era-topbar-btn {
       appearance: none;
-      border: 1px solid rgba(58, 65, 80, 0.9);
-      background: rgba(42, 47, 58, 0.92);
-      color: #E5E7EB;
+      border: 1px solid rgb(var(--era-border-rgb) / 0.9);
+      background: rgb(var(--era-control-rgb) / 0.92);
+      color: var(--era-text);
       border-radius: 999px;
-      min-height: 40px;
+      min-height: 44px;
       padding: 0 14px;
       text-decoration: none;
       font: 700 11px/1 "IBM Plex Mono", monospace;
@@ -77,15 +83,15 @@
     }
 
     .era-topbar-btn.install {
-      color: #FDE68A;
-      border-color: rgba(253, 230, 138, 0.42);
-      background: rgba(253, 230, 138, 0.1);
+      color: var(--era-gold-bright);
+      border-color: rgb(var(--era-gold-rgb) / 0.42);
+      background: rgb(var(--era-gold-rgb) / 0.1);
     }
 
     .era-topbar-meta {
       width: min(100%, 1360px);
       margin: 0 auto 14px;
-      color: #6B7280;
+      color: var(--era-muted);
       font: 400 12px/1.5 "IBM Plex Mono", monospace;
     }
 
@@ -110,7 +116,7 @@
 
     @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
       .era-topbar {
-        background: rgba(15, 17, 21, 0.96);
+        background: rgb(var(--era-bg-rgb) / 0.96);
       }
     }
   </style>
@@ -132,7 +138,11 @@
   <div id="root"></div>
 
   <script>
-    localStorage.setItem('companion_last_system', 'era');
+    try {
+      localStorage.setItem('companion_last_system', 'era');
+    } catch (error) {
+      // Optional route memory; blocked storage should not prevent the app from loading.
+    }
   </script>
   <script src="../js/pwa.js"></script>
   <script src="../core/companion-core.js"></script>

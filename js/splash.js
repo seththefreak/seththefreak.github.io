@@ -1,6 +1,8 @@
 /*
- * Responsibility: preserve the legacy splash entry while delegating to the new module graph.
- * Exports: none.
+ * Audit refactor:
+ * - Kept the legacy splash entrypoint as a thin module facade.
+ * - Delegated runtime behavior to src/main.js for clearer ownership.
+ * - Preserved script path compatibility for index.html.
  */
 
 import "../src/main.js";

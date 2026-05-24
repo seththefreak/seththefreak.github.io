@@ -1,0 +1,1392 @@
+
+
+--- PAGE 1 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.1
+ UnheaveN: ERA
+ PALIMPSEST
+ CORPO · MENTE · ALMA
+ PARANORMAL · TEK · MUNDO NORMAL
+ v3.0-KW · Edição Palimpsest · Livro do Jogador
+ Sistema de Manifestações revisado com KW — Keyword Weight
+ "Nada é criado do vazio. Tudo é reorganizado."
+ "Nada aqui é mágico. Só ainda não foi entendido."
+ "E algumas coisas nunca serão."
+ Sistema criado por Seth the Freak · Todos os direitos reservados · Uso interno de campanha
+
+
+
+--- PAGE 2 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.2
+INTRO — Como Usar Este Livro
+UnheaveN: ERA é um RPG de mesa sobre pessoas comuns que entram em contato com o sobrenatural. O mundo parece
+normal à superfície, mas existe uma camada invisível chamada Névoa, habitada por entidades, energia espiritual e ecos de
+eventos traumáticos. O mundo possui três camadas sobrepostas: o mundano (leis físicas comuns), o TEK (domínio além do
+alcance humano) e o paranormal (a Névoa, o Estigma, as Manifestações). Personagens com o Estigma percebem e operam
+nas três camadas.
+Mecânica Central
+Toda ação incerta usa d6. Você rola uma quantidade definida pelo Pilar (1–5 dados), usa sempre o melhor resultado, e soma o
+Progresso Interno (+0 a +3) mais bônus de Progresso Efetivo. O total deve atingir uma Classe de Dificuldade (DT).
+■ O Tier de Domínio NÃO gera bônus numérico — define o que você faz sem rolar.
+■ Arredondamento Universal: Fração ≥ 0.7 → sobe. < 0.7 → desce. Ex: 3.7→4, 3.5→3.
+■ Progresso Efetivo: bônus situacionais que somam na rolagem final. Pode ultrapassar +3.
+I — Os Três Pilares
+Todo personagem é definido por três Pilares fundamentais. O valor define quantos dados você rola.
+ Pilar
+ Conceito
+ Subatributos
+CORPO
+Existência física: força, resistência, agilidade.
+Força · Constituição · Destreza
+MENTE
+Intelecto e percepção: razão, foco, intuição.
+Intelecto · Sabedoria · Vontade
+ALMA
+Essência espiritual. Percepção além do físico.
+Poder · Domínio · Afinidade
+■ Corpo e Mente mínimo 1. Alma 0 = sem Estigma. Distribuição base: Corpo 1 · Mente 1 · Alma 0 + 2 pontos livres.
+■ Cada ponto de Pilar concede 3 pontos de Subatributo para distribuir.
+ Valor
+ Mecânica
+ Resultado Típico
+ 1
+1d6
+1 a 6
+ 2
+2d6 melhor
+Alta chance de 5 ou 6
+ 3
+3d6 melhor
+Muito provável 5 ou 6
+ 4
+4d6 melhor
+Quase certo resultado alto
+ 5 (máx.)
+5d6 melhor
+Nível de mestre absoluto
+ Subatributo
+ Pilar
+ Uso
+Força
+CORPO
+Poder físico bruto. Armas pesadas, impacto muscular.
+Constituição
+CORPO
+Resistência a dano, esforço e adversidade.
+Destreza
+CORPO
+Precisão, velocidade, armas leves e de fogo.
+Intelecto
+MENTE
+Raciocínio, análise, conhecimento técnico.
+Sabedoria
+MENTE
+Intuição, percepção e leitura de situação.
+Vontade
+MENTE
+Concentração e resistência mental.
+Poder
+ALMA
+Intensidade bruta da Manifestação.
+Domínio
+ALMA
+Controle e precisão da Manifestação.
+Afinidade
+ALMA
+Sintonia com a malha. Alcance, duração, sensibilidade.
+II — Subatributos e Progressão
+Cada Subatributo possui dois componentes: o Tier de Domínio (competência qualitativa) e o Progresso Interno (bônus
+numérico +0 a +3 na ficha).
+ Tier
+ Auto-Sucesso até
+ Bônus na Rolagem
+Leigo
+— (sempre rola)
++0 a +3
+
+
+
+--- PAGE 3 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.3
+Treinado
+DT 4 (Fácil)
++0 a +3
+Especialista
+DT 5 (Moderado)
++0 a +3
+Mestre
+DT 6 (Difícil)
++0 a +3
+Maestria
+DT 7 (Extremo)
++3 fixo
+■ Pontos investidos aumentam o Progresso Interno. Ao acumular 4 pontos: reset para +0 e +1 Tier.
+■ Limite de Subatributo: máximo de pontos distribuíveis = 4 + nível do personagem.
+■ Não é possível aplicar pontos três vezes seguidas no mesmo Subatributo em uma sessão.
+III — Recursos: HP · SP · PE
+Vida (HP) escala de 24 a 96. Sanidade (SP) é fixada em 100 para todos os níveis — reflete que a mente humana tem um teto
+rígido de ruptura. Essência (PE) escala de 15 a 140 — o único recurso que cresce amplamente com o nível.
+ Nív.
+ HP
+ SP
+ PE
+ Rec. HP (15%)
+ Rec. SP
+ 1
+ 24
+ 100
+ 15
+ 15 mín.
+1d6+1
+ 2
+ 30
+ 100
+ 19
+ 15 mín.
+1d6+2
+ 3
+ 37
+ 100
+ 24
+ 15 mín.
+1d6+3
+ 4
+ 46
+ 100
+ 30
+ 15 mín.
+1d6+4
+ 5
+ 58
+ 100
+ 37
+ 15 mín.
+1d6+5
+ 6
+ 72
+ 100
+ 47
+ 15 mín.
+1d6+6
+ 7
+ 90
+ 100
+ 58
+ 15 mín.
+1d6+7
+ 8
+ 96
+ 100
+ 73
+ 15 mín.
+1d6+8
+ 9
+ 96
+ 100
+ 91
+ 15 mín.
+1d6+9
+ 10
+ 96
+ 100
+ 114
+ 15 mín.
+1d6+10
+ 11
+ 96
+ 100
+ 140
+ 15 mín.
+1d6+11
+■ HP: teto de 96 a partir do nível 8. Combates são perigosos em qualquer nível.
+■ SP: fixo em 100. Perder SP não é gradual — é uma crise.
+■ PE: cresce continuamente. É o recurso de escala, refletindo domínio espiritual crescente.
+Recuperação
+ Recurso
+ Descanso Longo (8h)
+ Condições
+HP
+15% do máximo (mín. 15)
+Local seguro, 2h+ sem combate, sem Exaustão 3+
+SP
++1d6 + nível
+Sem trauma ativo, sem estresse, local seguro
+PE
+3/4 do máximo
+Variável conforme Overdraft
+Overdraft de PE
+Quando PE chega a 0, o personagem pode continuar gastando — entrando em Overdraft. Cada ponto custa 1 nível de
+Exaustão imediato. PE negativo máximo = Alma × 5.
+ Nível de Overdraft
+ PE Gasto além de 0
+ Penalidade na Recuperação
+Leve
+1–5 PE negativos
+Recuperação longa: apenas 1/2 do máximo
+Moderado
+6–10 PE negativos
+Recuperação longa: 1/4 do máximo. +1 Exaustão ao acordar
+Severo
+11+ PE (até cap)
+Nenhuma recuperação espontânea. Exige local Névoa nível 3+ ou
+ritual
+IV — Traumas, Condições e Exaustão
+Traumas
+
+
+
+--- PAGE 4 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.4
+ Trauma
+ Gatilho
+ Efeito
+ Como Curar
+Físico Leve
+HP < 1/4 em combate
+−1 em Corpo
+Descanso longo + primeiros socorros
+Físico Grave
+Inconsciente por dano
+−2 em Corpo; velocidade −1u
+Tratamento médico (2+ dias)
+Psicológico
+SP zerou ou evento extremo
+SP −5 ao confrontar o trauma
+Terapia, Lux ou Marco Pessoal
+De Combate
+Sobreviveu a morte certa
+Desvantagem em iniciativa (1d4
+sessões)
+Tempo ou Marco narrativo
+Marca Paranormal
+Contato com Névoa intensa
+Sensível ao paranormal;
+alucinações
+Exorcismo ou adaptação (Alma +1)
+Exaustão
+ Nível
+ Gatilho
+ Efeito Cumulativo
+1 — Cansado
+Sem descanso longo em 24h
+−1 em todas as rolagens
+2 — Esgotado
+48h sem descanso / Overdraft de PE
+−2 em tudo; PE máximo −25%
+3 — Exausto
+72h / trauma físico grave sem cura
+−3 em tudo; mov. metade; HP bloqueado
+4 — Colapso
+96h+ ou HP chegou a 0 mais de 2×
+Inconsciente. PE zero. Descanso não
+recupera PE
+
+
+
+--- PAGE 5 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.5
+V — Sistema de Rolagem, DTs e Sorte
+Fórmula: PILAR (melhor de Qd6) + Progresso Interno (+0 a +3) + Progresso Efetivo (situacional) = Total vs. DT
+ DT
+ Grau
+ Contexto
+ Auto-Sucesso para
+ 4
+Fácil
+Tarefa rotineira.
+Treinado ou acima
+ 5
+Moderado
+Requer habilidade concentrada.
+Especialista ou acima
+ 6
+Difícil
+Exige treino real e experiência.
+Mestre ou acima
+ 7
+Extremo
+Limiar do potencial humano.
+Maestria
+ 8
+Sobrehumano
+Além das capacidades naturais.
+Estigma ativo ou recurso extraordinário
+ 9
+Transcendente
+Limite absoluto observável.
+Pilar 5 + Progresso +3 + condições especiais
+ Tipo
+ Condição
+ Efeito
+Ameaça (Crítico)
+Melhor dado = 6
+Rola novamente. Se atingir DT original: crítico confirmado.
+Impacto Bruto
+Crítico confirmado
+Dano máximo automático (sem rolar).
+Efeito Crítico
+Crítico confirmado
+Aplica efeito da arma. Rola dano 2× em cenas climáticas.
+Falha Crítica
+Melhor dado = 1 + falha
+Mestre introduz complicação narrativa proporcional.
+■ Vantagem: role 1 dado EXTRA, descarte o pior. Desvantagem: role 1 dado EXTRA, descarte o melhor.
+VI — Combate
+Ações de Turno
+ Sím.
+ Nome
+ Descrição
+M
+Ação Maior
+Ação principal. Ataques, Manifestações Completas, interações complexas.
+m
+Ação Menor
+Ação rápida. Manifestações Simples (1–3 PE), sacar arma, usar item.
+Mv
+Movimento
+Deslocamento base (4 + Progresso Destreza). Também: Manifestações Avançadas (4–7 PE).
+R
+Reação
+1 por rodada. Esquiva, bloqueio, contra-ataque. Só se perceber a ação.
+L
+Livre
+Ações verbais curtas, declarações. Ilimitado.
+C
+Ação Completa
+Consome o turno inteiro. Manifestações Extremas (15+ PE), projetos rápidos.
+ #
+ Ação
+ Detalhe
+ 1
+Declare ataque e alvo
+Informe qual arma ou Manifestação.
+ 2
+Subatributo de ACERTO
+Força (pesadas CaC) · Destreza (leves/distância) · Domínio (Manifestações)
+ 3
+Role PILAR d6 + Progresso
+Use sempre o melhor dado. Total vs. DT de defesa do alvo.
+ 4
+Alvo rola DEFESA
+Destreza (antecipado) / Sabedoria→Destreza (veloz) / Automático (surpresa)
+ 5
+Role DANO
+Dano bruto da arma, rolado duas vezes — pega o melhor. Subtraia RD.
+ 6
+Aplique o dano
+Subtraia RD. Reduza HP. Aplique condições se necessário.
+■ O Progresso Interno NÃO soma no dano físico — apenas dano bruto da arma, rolado 2× (pega o melhor).
+
+
+
+--- PAGE 6 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.6
+VII — O Estigma e as Manifestações
+O Estigma rompe o isolamento entre a consciência e a malha espiritual do mundo, permitindo que a Essência seja mobilizada
+para reorganizar temporariamente as leis da realidade. Requer ao menos 1 ponto em Alma.
+Toda Manifestação combina: ELEMENTO (o que faz) + FORMA (como se manifesta) + PROPRIEDADE (modificadores). O
+custo total em PE é a soma dos três. O KW Total define bônus de dados adicionais — refletindo que combinar Keywords
+complexas produz efeitos intrinsecamente mais poderosos.
+KW — Keyword Weight: Sistema de Bônus de Dados
+Cada Keyword (Elemento, Forma, Propriedade) carrega um KW (Keyword Weight) — seu peso conceitual independente do
+custo de PE. O KW Total de uma Manifestação é a soma dos KW de todos os Keywords usados. Esse valor concede dados
+adicionais à escala base, separados da Amplificação.
+DANO / CURA FINAL = Escala Base (Tier + Amplificação) + Bônus KW + Progresso
+KW por Elemento
+ KW
+ Elementos
+ Custo PE Base
+ 1
+Pyro · Hydro · Geo · Aero · Lux · Umbra
+1 PE cada
+ 2
+Cryo · Electro · Plantae · Saxum · Harenae · Fumum
+2 PE cada
+ 3
+Vita · Inanis · Sonus · Nebula · Solus
+3 PE cada
+ 4
+Ferrum · Hitze · Kalt · Fulgaris · Noctis · Ignis Lux · Plasmoris · Venenis ·
+Chronos Eco
+4 PE cada
+ 5
+Krystallis · Aposis · Oblivion · Pestes · Tempus · Fulminis · Anima
+6–7 PE cada
+ Σ+1
+Elemento Composto (combinação de dois+): KW = soma dos componentes +
+1
+Soma + 1 PE
+KW por Forma
+ KW
+ Formas
+ Custo PE Base
+ 1
+Bola · Parede · Lâmina · Fio · Nuvem · Cilindro · Espinho
+1 PE cada
+ 2
+Cúpula · Barreira · Cone · Pilar
+2 PE cada
+ 3
+Esfera · Espada Curta · Espada Longa · Lança · Adaga · Corrente
+3 PE cada
+ 4
+Armadura Parcial · Golem Pequeno · Runas · Totem
+4–5 PE cada
+ 5
+Armadura Completa · Portal · Selo Místico · Invocação
+5 PE cada
+ 6
+Nexo
+6 PE
+KW por Propriedade
+ KW
+ Propriedades
+ Custo PE Base
+ 1
+Brilhante · Ácido · Pesado · Frio · Calor · Silencioso · Afiado
+1 PE cada
+ 2
+Dureza · Viscosidade · Velocidade · Elétrico · Magnético
+2 PE cada
+ 3
+Venenoso · Perfurante · Explosivo · Paralisante
+3 PE cada
+ 4
+Teletransporte · Barreira Mística · Gelo Eterno
+4 PE cada
+ 5
+Dreno de PE
+5 PE
+ 6
+Chama Perene
+6 PE
+ 7
+Fogo Celestial · Dissolução Etária
+7 PE cada
+Bônus de Dados por KW Total
+ KW Total
+ Bônus de Dados
+ Dano Extra (ref.)
+ Notas
+ 1–2
+—
+—
+Manifestação simples. Sem bônus extra.
+ 3–4
+ +1 dado
+ +1d6/1d8
+Combinação básica começa a render.
+
+
+
+--- PAGE 7 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.7
+ 5–7
+ +2 dados
+ +2d6/2d8
+Manifestação composta com impacto real.
+ 8–10
+ +3 dados
+ +3d6/3d8
+Alta complexidade. Efeito multidimensional.
+ 11–14
+ +4 dados
+ +4d6/4d8
+Construção elaborada. Requer domínio.
+ 15–19
+ +5 dados
+ +5d6/5d8
+Nível de grande ritual ou invocação.
+ 20+
+ +6 dados
+ +6d8+
+Manifestação catastrófica. Raramente atingível.
+■ O tipo de dado do bônus KW herda o tipo da escala base. Se a escala base usa d8, o bônus KW também usa d8.
+■ KW Total ≠ Custo PE Total. O custo de PE de cada Keyword é fixo na tabela de Elementos/Formas/Propriedades. O KW Total é calculado
+separadamente para determinar o bônus de dados.
+■ 2+ Elementos: cada Elemento soma KW e custo PE. Dano de cada tipo aplica separadamente — dado maior como base, demais como bônus
+de tipo (metade, arredondado).
+■ 2+ Formas: forma adicional soma KW +1, custo PE cheio. A primeira define a mecânica principal.
+■ 2+ Propriedades: cada Propriedade soma KW e PE cheio. Efeitos coexistem normalmente.
+Cálculo de uma Manifestação — Passo a Passo
+ #
+ Passo
+ Ação
+ 1
+Some os Keywords
+Liste todos os Elementos, Formas e Propriedades. Some KW e custos de PE.
+ 2
+Defina Amplificação
+Quanto PE extra você injeta? Consulte a tabela de Graus (I a V).
+ 3
+Calcule PE Total
+Custo Keywords + PE de Amplificação = PE gasto. Define o tipo de ação.
+ 4
+Escala base (Tier ×
+Amplificação)
+Consulte a tabela de Dano Base usando seu Tier de Domínio e a faixa de Amplificação.
+ 5
+Bônus KW
+Consulte a tabela de Bônus KW com o KW Total. Adicione os dados (mesmo tipo).
+ 6
+Role e some
+Role escala base + bônus KW. Some Progresso Interno/Efetivo. Aplique condições.
+Amplificação e Intensidade
+ Grau
+PE de Amplificação
+ Tier Mín.
+ Efeito Narrativo
+I — Centelha
+ 0 PE extra
+Leigo
+Efeito limitado. Escala de centímetros.
+II — Chispa
+ +1–2 PE
+Treinado
+Efeito funcional. Alcança uma pessoa ou objeto.
+III — Surto
+ +3–5 PE
+Especialista
+Efeito considerável. Alcança uma sala pequena.
+IV — Ruptura
+ +6–9 PE
+Mestre
+Efeito massivo. Alcança edificações ou grandes áreas.
+V — Cataclismo
+ +10+ PE
+Maestria
+Efeito catastrófico. Pode alterar geografias locais.
+Tipos de Manifestação por PE Total
+ Tipo
+ PE Total
+ Ação
+ Observação
+Simples
+1–3 PE
+m (Ação Menor)
+Rápida e direta.
+Avançada
+4–7 PE
+Mv (Movimento)
+Libera M para outra coisa.
+Completa
+8–14 PE
+M (Ação Maior)
+Pode alterar o campo de batalha.
+Extrema
+15+ PE
+C (Ação Completa)
+Interrupção (dano ou falha Vontade DT 5) perde tudo.
+Escala de Dano de Manifestações — v3.0-KW
+A tabela abaixo mostra a escala base (Tier × Amplificação). Some o Bônus KW depois, conforme a tabela de KW. Por fim,
+some Progresso Interno/Efetivo ao resultado final.
+ Tier
+ +0
+ +1–2 PE
+ +3–5 PE
+ +6–9 PE
+ +10–14 PE
+ +15+ PE
+Leigo
+ 1d6
+ 1d8
+ 2d6
+ 2d8
+ 3d8
+ 4d8
+Treinado
+ 1d8
+ 2d6
+ 2d8
+ 3d8
+ 4d8
+ 5d8
+Especialista
+ 2d6
+ 2d8
+ 3d8
+ 4d8
+ 5d8
+ 6d8
+Mestre
+ 2d8
+ 3d8
+ 4d8
+ 5d8
+ 6d8
+ 8d8
+
+
+
+--- PAGE 8 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.8
+Maestria
+ 3d8
+ 4d8
+ 5d8
+ 6d8
+ 8d8
+ 10d8+
+■ Some Bônus KW (mesmos dados da escala base) após determinar a escala base. Depois some Progresso Interno/Efetivo ao resultado total.
+Escala de Cura de Manifestações — v3.0-KW
+Cura direta de HP em seres com Vontade exige Vetor Indireto. Cura direta funciona normalmente em objetos e personagens
+inconscientes. O bônus KW segue a mesma lógica do dano.
+ Tier
+ +0
+ +1–2 PE
+ +3–5 PE
+ +6+ PE
+Leigo
+ 1d6+2
+ 1d8+2
+ 2d6+3
+ 2d8+4
+Treinado
+ 1d8+3
+ 2d6+3
+ 2d8+4
+ 3d6+5
+Especialista
+ 2d6+4
+ 2d8+5
+ 3d6+6
+ 3d8+7
+Mestre
+ 2d8+5
+ 3d6+6
+ 3d8+8
+ 4d6+10
+Maestria
+ 3d6+6
+ 3d8+8
+ 4d6+10
+ Restauração significativa
+■ Bônus KW na cura: mesma regra — KW 3–4 = +1 dado, KW 5–7 = +2 dados, etc.
+
+
+
+--- PAGE 9 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.9
+VII·A — Elementos
+Os elementos são as linguagens do Estigma. Nenhum é inerentemente bom ou mau.
+Elementos — 1 PE (KW 1)
+ Elem (KW)
+ Custo
+ Natureza
+ Usos Principais
+Pyro
+ 1 PE
+Fogo, calor, ignição.
+Dano de fogo, cauterizar feridas, iluminar área.
+Hydro
+ 1 PE
+Água, líquidos, pressão.
+Dano de impacto, criar água, apagar fogo.
+Geo
+ 1 PE
+Terra, areia grossa, barreiras.
+Dano contundente, criar paredes de terra.
+Aero
+ 1 PE
+Vento, ar, pressão.
+Empurrar objetos, dissipar gases, correntes de ar.
+Lux
+ 1 PE
+Luz, revelação, purificação.
+Dano radiante, revelar o oculto, purificar venenos.
+Umbra
+ 1 PE
+Sombra, ocultamento, entropia.
+Dano de escuridão, ocultar objetos, criar sombras.
+Elementos — 2 PE (KW 2)
+ Elem (KW)
+ Custo
+ Natureza
+ Usos Principais
+Cryo
+ 2 PE
+Frio, gelo, cristalização.
+Congelar superfícies, retardar movimento.
+Electro
+ 2 PE
+Eletricidade, magnetismo.
+Dano elétrico, magnetizar metais, cadeia de arco.
+Plantae
+ 2 PE
+Crescimento orgânico, venenos.
+Imobilizar com raízes, antídotos, regenerar orgânicos.
+Saxum
+ 2 PE
+Pedra, cristal, mineral.
+Estruturas rígidas, lâminas de pedra.
+Harenae
+ 2 PE
+Areia fina, pó, erosão.
+Cegar alvos, nuvens de areia.
+Fumum
+ 2 PE
+Fumaça, gases, névoa opaca.
+Obscurecer visão, cortinas de fumaça, toxinas.
+Elementos — 3 PE (KW 3)
+ Elem (KW)
+ Custo
+ Natureza
+ Usos Principais
+Vita
+ 3 PE
+Energia vital, regeneração.
+Acelerar cura natural, remover infecções.
+Inanis
+ 3 PE
+Vazio, negação.
+Zonas sem Essência, anular Manifestações
+ambientais.
+Sonus
+ 3 PE
+Som, vibração, ressonância.
+Dano sônico, quebrar materiais, desorientar.
+Nebula
+ 3 PE
+Névoa etérea, ressonância espiritual.
+Revelar traços de Estigma, criar Névoa leve.
+Solus
+ 3 PE
+Energia solar pura, radiação.
+Dano radiante intenso, desintegrar frágeis.
+Elementos — 4 PE (KW 4)
+ Elem (KW)
+ Custo
+ Natureza
+ Usos Principais
+Ferrum
+ 4 PE
+Metal, magnetismo em escala.
+Manipular metais, fortalecer armaduras.
+Hitze
+ 4 PE
+Calor extremo, plasma.
+Fundir metais, dano de calor intenso.
+Kalt
+ 4 PE
+Frio profundo, zero absoluto.
+Congelar resistentes, Congelado imediato.
+Fulgaris
+ 4 PE
+Relâmpago dirigido.
+Dano elétrico massivo, detonar eletrônicos.
+Noctis
+ 4 PE
+Noite profunda, escuridão.
+Zonas de escuridão total, ilusões de sombra.
+Ignis Lux
+ 4 PE
+Fogo purificador (Pyro+Lux).
+Dano radiante-ígneo, destruir entidades de Névoa.
+Plasmoris
+ 4 PE
+Plasma corrosivo, matéria instável.
+Dano de dissolução, corroer estruturas.
+Venenis
+ 4 PE
+Toxinas, corrosivos.
+Envenenar superfícies, degradar orgânicos.
+Chronos Eco
+ 4 PE
+Eco temporal (impressões).
+Rever eventos recentes em local (narrativo).
+Elementos — 6–7 PE (KW 5)
+ Elem (KW)
+ Custo
+ Natureza
+ Usos Principais
+
+
+
+--- PAGE 10 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.10
+Krystallis
+ 6 PE
+Cristalização perfeita.
+Criar estruturas permanentes de cristal, petrificar.
+Aposis
+ 6 PE
+Dissolução entrópica.
+Degradar estruturas, campos de desgaste acelerado.
+Oblivion
+ 6 PE
+Apagamento de impressões.
+Eliminar traços de Névoa, apagar marcas físicas.
+Pestes
+ 6 PE
+Praga, contágio.
+Contaminar ambientes. Aprovação do Mestre
+obrigatória.
+Tempus
+ 6 PE
+Manipulação temporal limitada.
+Atrasar/acelerar único objeto em até 6s. NÃO afeta
+seres.
+Fulminis
+ 6 PE
+Relâmpago divino.
+Dano massivo em linha/área, penetra armaduras.
+Anima
+ 7 PE
+Toque de alma, ressonância.
+Comunicar com entidades ligadas a objetos/locais.
+■ Novos Elementos podem ser criados combinando dois ou mais existentes. KW = soma dos componentes + 1. Custo = soma dos componentes
++ 1 PE. Aprovação do Mestre.
+
+
+
+--- PAGE 11 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.11
+VII·B — Formas e Propriedades de Manifestação
+Formas — Básicas (KW 1, custo 1 PE)
+ Forma (KW 1)
+ Alcance
+ Área
+ Descrição
+Bola
+8u
+Ponto
+Projétil compacto. Atinge um alvo.
+Parede
+Contato
+2u×4u
+Barreira plana. Bloqueia passagem e visão.
+Lâmina
+2u
+Arco
+Pode cortar, aparar ou criar arma temporária.
+Fio
+6u
+Linha
+Cortante. Imobilizar, armar armadilha.
+Nuvem
+4u
+2u raio
+Área difusa. Impede visão ou cobre área.
+Cilindro
+Contato
+1u/3u alt.
+Coluna vertical. Bloqueia terreno.
+Espinho
+Contato
+1u
+Ponta concentrada. Perfuração ou fixação.
+Formas — Intermediárias (KW 2–3, custo 2–3 PE)
+ Forma
+ KW
+ Custo
+ Alcance
+ Área
+ Descrição
+Cúpula
+ 2
+2 PE
+Contato
+3u raio
+Hemisfério protetor.
+Barreira
+ 2
+2 PE
+6u
+4u×2u
+Parede mais resistente.
+Cone
+ 2
+2 PE
+4u
+Cone 90°
+Dispersão em leque.
+Pilar
+ 2
+2 PE
+Contato
+1u/5u
+Coluna de impacto. Arremessa ou fixa alvos.
+Esfera
+ 3
+3 PE
+4u
+2u raio
+Bolha de elemento. Pode envolver alvo ou área.
+Armas Elementais e Formas Avançadas (KW 3–6)
+ Forma
+ KW
+ Custo
+ Dano
+ Descrição
+Espada Curta
+ 3
+3 PE
+1d8
+Lâmina elemental leve. Uma mão.
+Espada Longa
+ 3
+3 PE
+1d10
+Versátil. Uma ou duas mãos (+1d4 com 2M).
+Lança
+ 3
+3 PE
+1d8
+Alcance 2u. Perfuração/Elemental.
+Adaga
+ 3
+3 PE
+1d6
+Leve. Pode ser arremessada (4u).
+Corrente
+ 3
+3 PE
+1d8
+Alcance 3u. Pode imobilizar (DT 5).
+Armadura Parcial
+ 4
+4 PE
+RD +8
+Ação Completa para manifestar.
+Golem Pequeno
+ 4
+5 PE
+Corpo 2
+Criatura autônoma. Dura 1 cena sem sustento.
+Runas
+ 4
+4 PE
+—
+Símbolo estável. Armazena Manifestação (ef. 60%).
+Totem
+ 4
+4 PE
+—
+Emite efeito em raio 3u (2 PE/turno).
+Armadura Completa
+ 5
+5 PE
+RD +16
+Ação Completa. Sustento 3 PE/turno.
+Portal
+ 5
+5 PE
+—
+Conexão entre dois pontos. 10u (Treinado) até 1km (Maestria).
+Selo Místico
+ 5
+5 PE
+—
+Bloqueia Essência em área. Suprime Manifestações menores.
+Invocação
+ 5
+5 PE
+—
+Chama entidade para manifestação física. Afinidade Esp+.
+Nexo
+ 6
+6 PE
+—
+Dobra eficiência de Manifestações aliadas em raio 4u. Imóvel.
+Propriedades de Manifestação
+Propriedades modificam comportamento — tipo de dano adicional, condições, alcance especial. Não aumentam diretamente os
+dados de dano base (isso é feito pelo bônus KW).
+ Propriedade
+ KW
+ Custo
+ Efeito
+Brilhante
+ 1
+1 PE
+Emite luz 2u raio. Penalidade a inimigos sensíveis à luz.
+Ácido
+ 1
+1 PE
+Equipamentos atingidos perdem 1 RD permanente por acerto.
+Pesado
+ 1
+1 PE
+Força de impacto aumentada. Crítico: derruba alvo.
+
+
+
+--- PAGE 12 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.12
+Frio
+ 1
+1 PE
+Alvos acumulam 1 nível de Congelamento progressivo.
+Calor
+ 1
+1 PE
+Alvos acumulam 1 nível de Queimadura progressiva.
+Silencioso
+ 1
+1 PE
+Sem som perceptível. Furtividade não é quebrada.
+Afiado
+ 1
+1 PE
+Ignora 1 RD de armadura leve.
+Dureza
+ 2
+2 PE
++50 PV para estruturas/barreiras.
+Viscosidade
+ 2
+2 PE
+Alvos: deslocamento −2u. Pode imobilizar (DT 5 Força).
+Velocidade
+ 2
+2 PE
+Projéteis +1 DT para esquivar.
+Elétrico
+ 2
+2 PE
+Alvo em armadura metálica: +1d6 extra. Pode encadear 2u.
+Magnético
+ 2
+2 PE
+Atrai/repele metais em até 3u. Pode desarmar.
+Venenoso
+ 3
+3 PE
+Aplica Envenenado 1. Progressão normal de condição.
+Perfurante
+ 3
+3 PE
+Ignora até 5 RD. Em crítico: ignora toda RD.
+Explosivo
+ 3
+3 PE
+Impacto: explosão raio 2u. Alvos na área: 50% do dano original.
+Paralisante
+ 3
+3 PE
+DT 5 Vontade ou Atordoado 1 turno. Crítico: Paralisado.
+Teletransporte
+ 4
+4 PE
+Move alvo ou objeto até 8u. Requer linha de visão.
+Barreira Mística
+ 4
+4 PE
+Bloqueia Manifestações de Tier igual ou menor. Dura 3 turnos.
+Gelo Eterno
+ 4
+4 PE
+Congelamento 3 imediato. Remove-se apenas com fogo mágico (3+ PE).
+Dreno de PE
+ 5
+5 PE
+Cada acerto drena 1d6 PE do alvo para o lançador.
+Chama Perene
+ 6
+6 PE
+Fogo inapagável por meios mundanos. Queimadura 2 garantida.
+Fogo Celestial
+ 7
+7 PE
+Dano máximo radiante-ígneo. Ignora toda RD. Entidades de Névoa: dano
+dobrado.
+Dissolução Etária
+ 7
+7 PE
+Objetos: destruídos. Seres: −1 Pilar/rodada (Vontade DT 8 nega).
+
+
+
+--- PAGE 13 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.13
+VIII — Afinidade por Nível · Determinação
+ Nível
+ Efeito
+0 — Latente
+Não pode usar Manifestações. Apenas sente ou sofre influência da Névoa.
+1 — Desperto
+BASE. Pode usar Manifestações. Sem bônus adicionais. Custo normal de PE.
+2 — Sintonizado
+−1 PE em todas as Manifestações (mínimo 1). +1 Prog. efetivo em testes de controle.
+3 — Dominante
+−1 PE adicional (mínimo 1). +1 passo em escala. Vantagem em testes de controle.
+4 — Convergente
+Manipulação livre dentro do conceito da Marca. Pode ignorar limitações menores de KW.
+■ Instabilidade: Nível 3–4 em Zonas XENO pode causar amplificação involuntária. GM solicita testes de Domínio em momentos de alta tensão.
+IX — Sistema de Determinação
+Determinação representa as marcas que experiências extremas deixam — não conquistas, mas sobrevivências. Cada ponto é
+uma cicatriz que virou recurso.
+ Campo
+ Descrição
+Âncora
+O que sustenta aquela Determinação: uma pessoa, evento ou verdade sobre si mesmo.
+Declaração
+Frase na primeira pessoa, no presente, absoluta. Não um desejo, mas um limite.
+X — Habilidades e Perícias
+Habilidades produzem efeitos mecânicos únicos. Cada uma pode ser adquirida uma vez (salvo indicação). O jogador escolhe 2
+habilidades na criação e recebe 1 adicional concedida pela lore.
+Combate e Físico
+ Habilidade
+ Efeito
+Resistente
+Reduz em 2 pts todo dano físico recebido (mínimo 1).
+Letal
+Margem de Ameaça expandida: resultado 5 ou 6 conta como Ameaça.
+Mestre das Armas
+Proficiência com todas as armas. +1 Prog. Efetivo em testes de crítico.
+Guerreiro
+Dado de dano extra em ataques CaC com armas pesadas (descarta o menor).
+Duelista
+Ao declarar alvo único por turno: +1 Prog. Efetivo em ataque e defesa contra ele.
+Atirador
++1 Prog. Efetivo em ataques à distância. Ignora cobertura leve.
+Guardião
++1 Prog. Efetivo em defesa ao proteger aliados. Pode interceptar ataques como Reação.
+Assassino
++1 Prog. Efetivo em ataques surpresa e em Enganação/Disfarce.
+Combatente Dual
+Reduz penalidade de duas armas para −1. +1 ataque extra com arma secundária.
+Evasivo
++1 Prog. Efetivo em Esquiva. Nunca sofre dano de área se esquivar com sucesso.
+Golpe Vital
++1 dado de dano em acertos que superam defesa por 2+. Em crítico: efeito adicional.
+Estigma e Manifestação
+ Habilidade
+ Efeito
+Feiticeiro
++1 Prog. Efetivo em Domínio. −1 PE em Manifestações Simples e Avançadas.
+Invocador
++1 Prog. Efetivo em Poder ao usar Formas de Invocação. +1 turno de duração.
+Barreira Mística
+Manifestações de barreira custam −1 PE. +1 Prog. Efetivo em Afinidade.
+Necromante
++1 Prog. Efetivo em Poder com Umbra/Noctis/Vita. Pode animar mortos (narrativo).
+Mestre das Chamas
++1 Prog. Efetivo em ataques com Pyro e derivados. Resistência a fogo.
+Exorcista
++1 Prog. Efetivo em Domínio e Afinidade vs. entidades. Resistência espiritual.
+Elementalista
+Escolhe 1 Elemento: −1 PE e +1 Prog. Efetivo. (Múltipla aquisição permitida)
+
+
+
+--- PAGE 14 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.14
+Sensitivo
++1 Prog. Efetivo em detectar Névoa, Estigmas ativos e entidades próximas.
+Catalisador
+Pode emprestar até 5 PE por turno a aliado com Estigma em alcance.
+Rastreador de Almas
+Detecta rastros de Essência em até 6u. +1 Prog. Efetivo em identificação.
+Mental / Suporte / Utilidade
+ Habilidade
+ Efeito
+Resiliência Mental
+Reduz perda de sanidade em 1 (mínimo 0) por evento.
+Vontade Indomável
+1× por sessão: re-rola teste mental. Sucesso: recupera 1d4 SP.
+Sangue Frio
++1 Prog. Efetivo em testes de sanidade durante combate ou tensão aguda.
+Curandeiro
+Dobra a eficácia de cura via Medicina. +10 HP em primeiros socorros.
+Ladino
++1 Prog. Efetivo em Furtividade e Ladinagem simultaneamente.
+Analista
++1 Prog. Efetivo em tech humana. Pré-requisito para projetos TEK operacional.
+Líder Tático
+Aliados em alcance 3u ganham +1 Prog. Efetivo em iniciativa.
+Sorte Estranha
+1× por sessão: re-rola uma falha crítica.
+Momento de Glória
+1× por sessão: transforma uma falha comum em sucesso simples.
+
+
+
+--- PAGE 15 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.15
+XI — Criação de Personagem
+ #
+ Passo
+ Descrição
+ 1
+Background / Origem
+Descreva a história: origem, memórias. Declare uma memória afetiva marcante.
+ 2
+Conceito Narrativo
+Quem é seu personagem? Por que está envolvido com o sobrenatural? Tem Estigma?
+ 3
+Pilares Base
+Corpo 1 · Mente 1 · Alma 0 (base). Distribua mais 2 pontos livremente.
+ 4
+Subatributos
+Cada ponto de Pilar concede 3 pts. 4 pontos = +1 Tier. Limite: 4 + nível.
+ 5
+Calcular Recursos
+HP = 24 · SP = 100 · PE = 15 (Nível 1)
+ 6
+Definir a Marca
+Manifestação física pessoal: cicatriz que pulsa, olho que muda de cor... (Alma ≥ 1)
+ 7
+Habilidades Iniciais
+Jogador escolhe 2. Mestre concede 1 adicional pela lore.
+ 8
+Perícias Iniciais
+Todas em Leigo +0. +1 Progresso em 3 perícias (máx. +1 cada). 1 Treinada à escolha.
+ 9
+Manifestações Definidas
+Até (Prog. de Afinidade + 2) Manifestações Definidas. Valide com o Mestre.
+ 10
+Determinação
+Nenhum ponto na criação — o primeiro é concedido após a primeira experiência extrema.
+ 11
+Equipamento e Identidade
+Armas, itens e aparência. Nome, idade, detalhe de personalidade.
+XII — Sistema de Zonas: XENO e XERO
+ Zona XENO — eXtradimensional ENtity
+ Occurrence
+ Efeito
+Manifestações anômalas
+Eventos paranormais ocorrem espontaneamente, sem usuário de Estigma.
+Distorções sensoriais
+Visão, audição e percepção do tempo podem sofrer interferência.
+Surgimento de entidades
+A Névoa atrai ou gera entidades conforme a intensidade.
+Amplificação do Estigma
+Efeitos amplificados — ou perda de controle do usuário.
+ Zona XERO — eXtinction of Esoteric
+ Resonance Output
+ Efeito
+Supressão total
+Impossibilidade absoluta de fenômenos sobrenaturais.
+Estigma inerte
+Habilidades ligadas à Essência completamente suprimidas.
+Vazio perceptivo
+Portadores do Estigma sentem o vazio como dor ou náusea.
+Degradação extrema
+Em níveis profundos: percepção, memória e identidade podem degradar.
+"XERO não representa equilíbrio, mas anulação. Não é o silêncio entre as notas. É a ausência da possibilidade de som."
+
+
+
+--- PAGE 16 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · p.16
+APP·B — Referência Rápida v3.0-KW
+Pilares — Dados
+ Pilar
+ Dados
+1
+1d6
+2
+2d6 melhor
+3
+3d6 melhor
+4
+4d6 melhor
+5 (máx.)
+5d6 melhor
+DTs
+ DT
+ Grau
+4
+Fácil
+5
+Moderado
+6
+Difícil
+7
+Extremo
+8
+Sobrehumano
+9
+Transcendente
+KW — Bônus de Dados (Referência Rápida)
+ KW 1–2
+ KW 3–4
+ KW 5–7
+ KW 8–10
+ KW 11–14
+ KW 15–19
+ KW 20+
+ —
+ +1d
+ +2d
+ +3d
+ +4d
+ +5d
+ +6d
+Dado do bônus = mesmo tipo da escala base (Tier × Amplificação). Some Progresso ao resultado final.
+Dano de Manifestações — Escala Base (+ Bônus KW separado)
+ Tier
+ +0
+ +1–2
+ +3–5
+ +6–9
+ +10–14
+ +15+
+Leigo
+ 1d6
+ 1d8
+ 2d6
+ 2d8
+ 3d8
+ 4d8
+Treinado
+ 1d8
+ 2d6
+ 2d8
+ 3d8
+ 4d8
+ 5d8
+Especialista
+ 2d6
+ 2d8
+ 3d8
+ 4d8
+ 5d8
+ 6d8
+Mestre
+ 2d8
+ 3d8
+ 4d8
+ 5d8
+ 6d8
+ 8d8
+Maestria
+ 3d8
+ 4d8
+ 5d8
+ 6d8
+ 8d8
+ 10d8+
+Tipos de Manifestação
+ Tipo
+ PE Total
+ Ação
+Simples
+1–3 PE
+m
+Avançada
+4–7 PE
+Mv
+Completa
+8–14 PE
+M
+Extrema
+15+ PE
+C
+Rolagem de Sorte
+ 1d10
+ Resultado
+ Efeito
+ 1–3
+Azar
+Complicação narrativa imediata.
+ 4–6
+Neutro
+Nada acontece.
+ 7–9
+Sorte
+Vantagem imediata OU +2 dano.
+ 10
+Grande Sorte
+Efeito positivo significativo (Mestre define).
+ "Desde que tenha uma lógica, tudo é possível. O sistema apoia a lógica — não a limita."
+ UnheaveN: ERA · Palimpsest · Livro do Jogador · v3.0-KW Sistema criado por Seth the Freak · Todos os direitos reservados · Uso interno de campanha

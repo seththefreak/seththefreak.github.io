@@ -1,6 +1,8 @@
 /*
- * Responsibility: orchestrate splash lifecycle while keeping timing and environment explicit.
- * Exports: initSplash.
+ * Audit refactor:
+ * - Documented splash lifecycle orchestration.
+ * - Unbound orientation listeners when the splash is removed to avoid stale handlers.
+ * - Preserved image pools, copy, and timing values.
  */
 
 import { SPLASH_IMAGES, SPLASH_TEXT, SPLASH_TIMINGS } from "../../config/splash-config.js";
@@ -9,11 +11,21 @@ import { createSplashView } from "../../ui/splash-view.js";
 import { selectRandomVariant } from "../../utils/random.js";
 import { createTimerBag } from "../../utils/timing.js";
 
+/**
+ * Chooses a splash image from the pool that matches current orientation.
+ * @param {Function=} random
+ * @returns {string}
+ */
 function pickImage(random) {
   const pool = getViewportPool(SPLASH_IMAGES, window);
   return selectRandomVariant(pool, random);
 }
 
+/**
+ * Initializes and schedules the startup splash lifecycle.
+ * @param {{random?: Function}=} options
+ * @returns {{removeSplash: Function}}
+ */
 export function initSplash(options) {
   const config = options || {};
   const timers = createTimerBag();
@@ -25,13 +37,22 @@ export function initSplash(options) {
   });
   let removed = false;
   let canSkip = false;
+  let unbindOrientation = null;
 
   view.injectStyles();
 
+  /**
+   * Hides and detaches the splash once all timers/listeners are cleaned up.
+   * @returns {void}
+   */
   function removeSplash() {
     if (removed) return;
     removed = true;
     timers.cancelAll();
+    if (typeof unbindOrientation === "function") {
+      unbindOrientation();
+      unbindOrientation = null;
+    }
     view.hide();
     timers.schedule(function detachSplash() {
       view.remove();
@@ -62,7 +83,7 @@ export function initSplash(options) {
     });
   }, { once: true });
 
-  bindOrientationChange(function onOrientationChange() {
+  unbindOrientation = bindOrientationChange(function onOrientationChange() {
     if (removed) return;
     view.setImage(pickImage(config.random));
   });
