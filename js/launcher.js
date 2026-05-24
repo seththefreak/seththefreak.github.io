@@ -1,12 +1,20 @@
+/*
+ * Audit refactor:
+ * - Added documented helpers for viewport, storage, event dispatch, and canvas work.
+ * - Removed production console logging while keeping navigation resilient.
+ * - Batched resize handlers with requestAnimationFrame to avoid repeated layout work.
+ * - Preserved launcher labels, routes, and visual behavior for the GitHub Pages shell.
+ */
 (function () {
-  var compat = window.CompanionBrowserCompat || {};
-  var LAST_SYSTEM_KEY = 'companion_last_system';
-  var TRANSITION_MS = 620;
-  var reducedMotionQuery = compat.matchMedia ? compat.matchMedia('(prefers-reduced-motion: reduce)') : window.matchMedia('(prefers-reduced-motion: reduce)');
-  var browserInfo = typeof compat.getBrowserInfo === 'function' ? compat.getBrowserInfo() : {};
-  var supportsBackdropFilter = typeof compat.supportsBackdropFilter === 'function' ? compat.supportsBackdropFilter() : false;
+  'use strict';
 
-  var SYSTEM_MAP = {
+  const compat = window.CompanionBrowserCompat || {};
+  const LAST_SYSTEM_KEY = 'companion_last_system';
+  const TRANSITION_MS = 620;
+  const reducedMotionQuery = compat.matchMedia ? compat.matchMedia('(prefers-reduced-motion: reduce)') : window.matchMedia('(prefers-reduced-motion: reduce)');
+  const browserInfo = typeof compat.getBrowserInfo === 'function' ? compat.getBrowserInfo() : {};
+
+  const SYSTEM_MAP = {
     verloren: {
       label: 'Verloren RPG Sheets',
       href: 'index.html?app=verloren'
@@ -17,31 +25,56 @@
     }
   };
 
-  var app = document.getElementById('app');
-  var canvas = document.getElementById('cosmos');
-  var veil = document.getElementById('veil');
-  var lastSystemText = document.getElementById('lastSystemText');
-  var openLastSystemBtn = document.getElementById('openLastSystemBtn');
-  var installAppBtn = document.getElementById('installAppBtn');
-  var cards = Array.prototype.slice.call(document.querySelectorAll('.system-card[data-system][data-href]'));
-  var ctaButtons = Array.prototype.slice.call(document.querySelectorAll('[data-system-cta]'));
+  const app = document.getElementById('app');
+  const canvas = document.getElementById('cosmos');
+  const veil = document.getElementById('veil');
+  const lastSystemText = document.getElementById('lastSystemText');
+  const openLastSystemBtn = document.getElementById('openLastSystemBtn');
+  const installAppBtn = document.getElementById('installAppBtn');
+  const cards = Array.prototype.slice.call(document.querySelectorAll('.system-card[data-system][data-href]'));
+  const ctaButtons = Array.prototype.slice.call(document.querySelectorAll('[data-system-cta]'));
 
+  /**
+   * Defers repeated event work until the next animation frame.
+   * @param {Function} callback
+   * @returns {Function}
+   */
+  function createRafThrottle(callback) {
+    let ticking = false;
+    return function rafThrottled() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        ticking = false;
+        callback();
+      });
+    };
+  }
+
+  /**
+   * Checks whether the current viewport should use the wider desktop treatment.
+   * @returns {boolean}
+   */
   function isDesktopViewport() {
     return Math.max(window.innerWidth || 0, document.documentElement ? document.documentElement.clientWidth || 0 : 0) > 720;
   }
 
+  /**
+   * Keeps 3D launcher layers from creating browser-specific stacking issues.
+   * @returns {boolean}
+   */
   function shouldUseSafeDesktopMode() {
     if (!isDesktopViewport()) return false;
     if (browserInfo.isIOS || /Android/i.test(browserInfo.userAgent || '')) return false;
-    // All desktop browsers use safe mode: preserve-3d + pointer parallax
-    // causes z-index to be ignored in favour of 3D depth order, pushing
-    // card-bg in front of content. Chrome was previously missing from this
-    // check (it supports backdrop-filter, so !supportsBackdropFilter = false).
     return true;
   }
 
+  /**
+   * Applies the class that disables unsafe depth transforms on desktop.
+   * @returns {void}
+   */
   function syncDesktopRenderingMode() {
-    var root = document.documentElement;
+    const root = document.documentElement;
     if (!root || !root.classList) return;
 
     if (shouldUseSafeDesktopMode()) {
@@ -53,14 +86,26 @@
     root.classList.remove('launcher-safe-depth');
   }
 
+  /**
+   * Cross-browser closest wrapper used by legacy WebViews.
+   * @param {Element | null} node
+   * @param {string} selector
+   * @returns {Element | null}
+   */
   function findClosest(node, selector) {
     if (compat.closest) return compat.closest(node, selector);
     return node && typeof node.closest === 'function' ? node.closest(selector) : null;
   }
 
+  /**
+   * Updates a button label while preserving nested text spans.
+   * @param {HTMLElement | null} button
+   * @param {string} label
+   * @returns {void}
+   */
   function setButtonLabel(button, label) {
     if (!button) return;
-    var labelNode = button.querySelector('.utility-btn-label');
+    const labelNode = button.querySelector('.utility-btn-label');
     if (labelNode) {
       labelNode.textContent = label;
       return;
@@ -68,27 +113,57 @@
     button.textContent = label;
   }
 
+  /**
+   * Reads the last selected system, guarding private-mode storage failures.
+   * @returns {string}
+   */
   function getLastSystem() {
-    var key = localStorage.getItem(LAST_SYSTEM_KEY);
-    return SYSTEM_MAP[key] ? key : '';
+    try {
+      const key = localStorage.getItem(LAST_SYSTEM_KEY);
+      return SYSTEM_MAP[key] ? key : '';
+    } catch (error) {
+      return '';
+    }
   }
 
+  /**
+   * Persists the last selected system when storage is available.
+   * @param {string} key
+   * @returns {void}
+   */
   function setLastSystem(key) {
     if (!SYSTEM_MAP[key]) return;
-    localStorage.setItem(LAST_SYSTEM_KEY, key);
-  }
-
-  function syncSessionFlags(key) {
-    if (key === 'verloren') {
-      sessionStorage.setItem('verloren_active', '1');
-      return;
+    try {
+      localStorage.setItem(LAST_SYSTEM_KEY, key);
+    } catch (error) {
+      // Storage persistence is optional; navigation remains the source of truth.
     }
-    sessionStorage.removeItem('verloren_active');
   }
 
+  /**
+   * Keeps legacy Verloren session routing compatible with the launcher.
+   * @param {string} key
+   * @returns {void}
+   */
+  function syncSessionFlags(key) {
+    try {
+      if (key === 'verloren') {
+        sessionStorage.setItem('verloren_active', '1');
+        return;
+      }
+      sessionStorage.removeItem('verloren_active');
+    } catch (error) {
+      // Session flags only improve route restoration; blocked storage can fall through.
+    }
+  }
+
+  /**
+   * Synchronizes the "last system" launcher controls.
+   * @returns {void}
+   */
   function updateLastSystemUI() {
-    var key = getLastSystem();
-    var entry = SYSTEM_MAP[key];
+    const key = getLastSystem();
+    const entry = SYSTEM_MAP[key];
 
     if (!entry) {
       if (lastSystemText) lastSystemText.textContent = 'Nenhum sistema aberto ainda.';
@@ -106,19 +181,30 @@
     }
   }
 
+  /**
+   * Emits an optional integration event for external listeners.
+   * @param {string} key
+   * @returns {void}
+   */
   function dispatchSelectionEvent(key) {
     try {
       window.dispatchEvent(new CustomEvent('unheavenSelect', {
         detail: { system: key }
       }));
     } catch (error) {
-      console.warn('[launcher] Falha ao emitir evento de selecao.', error);
+      // Optional event dispatch must never block navigation.
     }
   }
 
+  /**
+   * Stores selection state and navigates with the existing veil transition.
+   * @param {string} key
+   * @param {string=} href
+   * @returns {void}
+   */
   function goToSystem(key, href) {
-    var entry = SYSTEM_MAP[key];
-    var target = (entry && entry.href) || href || '';
+    const entry = SYSTEM_MAP[key];
+    const target = (entry && entry.href) || href || '';
     if (!target) return;
 
     setLastSystem(key);
@@ -138,6 +224,11 @@
     }, TRANSITION_MS);
   }
 
+  /**
+   * Activates a launcher card from click, keyboard, or CTA handlers.
+   * @param {Element | null} card
+   * @returns {void}
+   */
   function handleCardActivation(card) {
     if (!card) return;
     goToSystem(card.getAttribute('data-system'), card.getAttribute('data-href'));
@@ -160,14 +251,14 @@
     button.addEventListener('click', function (event) {
       event.preventDefault();
       event.stopPropagation();
-      var card = findClosest(button, '.system-card');
+      const card = findClosest(button, '.system-card');
       handleCardActivation(card);
     });
   });
 
   if (openLastSystemBtn) {
     openLastSystemBtn.addEventListener('click', function () {
-      var key = getLastSystem();
+      const key = getLastSystem();
       if (!key) return;
       goToSystem(key);
     });
@@ -190,21 +281,24 @@
   function setupCosmos() {
     if (!canvas) return;
 
-    var context = canvas.getContext('2d');
+    const context = canvas.getContext('2d');
     if (!context) return;
 
-    var width = 0;
-    var height = 0;
-    var dpr = 1;
-    var stars = [];
-    var animationFrameId = 0;
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let stars = [];
 
+    /**
+     * Rebuilds the star field for the current canvas dimensions.
+     * @returns {void}
+     */
     function buildStars() {
       stars = [];
-      var total = Math.max(60, Math.floor(width * height / 6000));
+      const total = Math.max(60, Math.floor(width * height / 6000));
 
-      for (var index = 0; index < total; index += 1) {
-        var roll = Math.random();
+      for (let index = 0; index < total; index += 1) {
+        const roll = Math.random();
         stars.push({
           x: Math.random() * width,
           y: Math.random() * height,
@@ -217,6 +311,10 @@
       }
     }
 
+    /**
+     * Resizes the canvas in one frame and redraws the non-animated fallback.
+     * @returns {void}
+     */
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       width = window.innerWidth;
@@ -230,31 +328,36 @@
       renderFrame(0);
     }
 
+    /**
+     * Draws one cosmos frame without reading layout mid-draw.
+     * @param {number} timestamp
+     * @returns {void}
+     */
     function renderFrame(timestamp) {
-      var time = timestamp || 0;
+      const time = timestamp || 0;
       context.clearRect(0, 0, width, height);
 
-      var background = context.createRadialGradient(width * 0.5, height * 0.42, 0, width * 0.5, height * 0.42, Math.max(width, height) * 0.8);
+      const background = context.createRadialGradient(width * 0.5, height * 0.42, 0, width * 0.5, height * 0.42, Math.max(width, height) * 0.8);
       background.addColorStop(0, '#11101e');
       background.addColorStop(0.5, '#0d0e15');
       background.addColorStop(1, '#0F1115');
       context.fillStyle = background;
       context.fillRect(0, 0, width, height);
 
-      var nebulaLeft = context.createRadialGradient(width * 0.1, height * 0.18, 0, width * 0.1, height * 0.18, width * 0.32);
+      const nebulaLeft = context.createRadialGradient(width * 0.1, height * 0.18, 0, width * 0.1, height * 0.18, width * 0.32);
       nebulaLeft.addColorStop(0, 'rgba(109, 93, 211, 0.065)');
       nebulaLeft.addColorStop(1, 'rgba(109, 93, 211, 0)');
       context.fillStyle = nebulaLeft;
       context.fillRect(0, 0, width, height);
 
-      var nebulaRight = context.createRadialGradient(width * 0.9, height * 0.82, 0, width * 0.9, height * 0.82, width * 0.32);
+      const nebulaRight = context.createRadialGradient(width * 0.9, height * 0.82, 0, width * 0.9, height * 0.82, width * 0.32);
       nebulaRight.addColorStop(0, 'rgba(191, 161, 74, 0.05)');
       nebulaRight.addColorStop(1, 'rgba(191, 161, 74, 0)');
       context.fillStyle = nebulaRight;
       context.fillRect(0, 0, width, height);
 
       stars.forEach(function (star) {
-        var pulse = reducedMotionQuery.matches ? 1 : (Math.sin(time * star.speed * 800 + star.phase) * 0.33 + 0.67);
+        const pulse = reducedMotionQuery.matches ? 1 : (Math.sin(time * star.speed * 800 + star.phase) * 0.33 + 0.67);
         context.globalAlpha = star.alpha * pulse;
         context.fillStyle = star.color;
         context.beginPath();
@@ -265,16 +368,21 @@
       context.globalAlpha = 1;
     }
 
+    /**
+     * Continues the lightweight canvas animation while motion is allowed.
+     * @param {number} timestamp
+     * @returns {void}
+     */
     function animate(timestamp) {
       renderFrame(timestamp);
-      animationFrameId = window.requestAnimationFrame(animate);
+      window.requestAnimationFrame(animate);
     }
 
-    window.addEventListener('resize', resize, { passive: true });
+    window.addEventListener('resize', createRafThrottle(resize), { passive: true });
     resize();
 
     if (!reducedMotionQuery.matches) {
-      animationFrameId = window.requestAnimationFrame(animate);
+      window.requestAnimationFrame(animate);
     }
   }
 
@@ -283,14 +391,18 @@
     if (shouldUseSafeDesktopMode()) return;
     if ((compat.matchMedia ? compat.matchMedia('(pointer: coarse)') : window.matchMedia('(pointer: coarse)')).matches) return;
 
-    var pointerX = window.innerWidth / 2;
-    var pointerY = window.innerHeight / 2;
-    var ticking = false;
+    let pointerX = window.innerWidth / 2;
+    let pointerY = window.innerHeight / 2;
+    let ticking = false;
 
+    /**
+     * Applies a small pointer-driven transform in a single animation frame.
+     * @returns {void}
+     */
     function update() {
       ticking = false;
-      var rotateX = ((pointerY / window.innerHeight) - 0.5) * -0.3;
-      var rotateY = ((pointerX / window.innerWidth) - 0.5) * 0.45;
+      const rotateX = ((pointerY / window.innerHeight) - 0.5) * -0.3;
+      const rotateY = ((pointerX / window.innerWidth) - 0.5) * 0.45;
       app.style.transform = 'perspective(1400px) rotateY(' + rotateY + 'deg) rotateX(' + rotateX + 'deg)';
     }
 
@@ -308,7 +420,7 @@
   }
 
   syncDesktopRenderingMode();
-  window.addEventListener('resize', syncDesktopRenderingMode, { passive: true });
+  window.addEventListener('resize', createRafThrottle(syncDesktopRenderingMode), { passive: true });
   updateLastSystemUI();
   setupCosmos();
   setupParallax();

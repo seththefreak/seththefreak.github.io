@@ -1,6 +1,8 @@
 /*
- * Responsibility: centralize splash timings, copy and image variants.
- * Exports: SPLASH_TIMINGS, SPLASH_IMAGES, SPLASH_TEXT.
+ * Audit refactor:
+ * - Documents splash timings, copy, and image variants as declarative config.
+ * - Values are intentionally unchanged; service worker now precaches these assets.
+ * - Kept relative paths compatible with the GitHub Pages root scope.
  */
 
 export const SPLASH_TIMINGS = Object.freeze({

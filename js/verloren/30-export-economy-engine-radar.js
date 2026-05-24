@@ -1,3 +1,10 @@
+/*
+ * Audit refactor:
+ * - Removed production console logging from the equipment tab setup path.
+ * - Added an explicit TODO where legacy DOM grouping can be ambiguous.
+ * - Left Verloren formulas, labels, and generated export markup unchanged.
+ */
+
 /* ============================================================
    MODO LEITURA / PREVIEW
 ============================================================ */
@@ -1457,7 +1464,7 @@ function _setupEquipTabs() {
 
   const allBlocks = new Set([...equipBlocks, ...invBlocks, ...lojaBlocks]);
   if (allBlocks.size < 2) {
-    console.warn('[Verloren] _setupEquipTabs: não foi possível identificar seções separadas.');
+    // TODO(audit): If the editor markup changes, define explicit panel anchors instead of guessing section blocks.
     return;
   }
 
@@ -2254,4 +2261,3 @@ function destruirRadarChart() {
   }
   radarChartInstance = null;
 }
-

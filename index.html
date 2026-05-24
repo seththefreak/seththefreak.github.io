@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<!--
+  Audit refactor:
+  - Guarded legacy Verloren route bootstrap against blocked sessionStorage.
+  - Preserved existing script/style order and GitHub Pages entry behavior.
+  - No game data, labels, or mechanics were changed.
+-->
 <html lang="pt-BR" data-theme="light">
 <head>
   <meta charset="UTF-8" />
@@ -8,12 +14,22 @@
     (function () {
       var match = (window.location.search || '').match(/(?:\?|&)app=([^&]+)/);
       var appParam = match ? decodeURIComponent(match[1].replace(/\+/g, ' ')) : '';
+      var hasVerlorenSession = false;
+      try {
+        hasVerlorenSession = sessionStorage.getItem('verloren_active') === '1';
+      } catch (error) {
+        hasVerlorenSession = false;
+      }
       if (
         appParam === 'verloren' ||
         window.location.hash === '#new' ||
-        sessionStorage.getItem('verloren_active') === '1'
+        hasVerlorenSession
       ) {
-        sessionStorage.setItem('verloren_active', '1');
+        try {
+          sessionStorage.setItem('verloren_active', '1');
+        } catch (error) {
+          // Session routing is optional; the explicit URL remains enough to load Verloren.
+        }
         return;
       }
       window.location.replace('launcher.html');

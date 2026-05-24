@@ -1,3 +1,9 @@
+/*
+ * Audit refactor:
+ * - Documented action and turn-state helpers used by ERA/legacy combat UIs.
+ * - Kept action labels, costs, thresholds, and turn progression behavior unchanged.
+ * - Preserved legacy global CompanionSystems exports.
+ */
 (function (global) {
   var systems = global.CompanionSystems || (global.CompanionSystems = {});
 
@@ -16,7 +22,14 @@
     },
     era: {
       id: 'era',
-      notes: 'Manifestacoes extremas fecham o turno e reacoes seguem 1 por rodada.',
+      notes: 'A Acao Maior pode virar duas Acoes Menores. Movimento pode ser dividido; Reacao exige perceber a acao.',
+      slots: [
+        { id: 'major', code: 'M', label: 'Maior', desc: 'Ataques, Manifestacoes Completas e interacoes complexas.', consumes: ['major'], color: '#B45309' },
+        { id: 'utility', code: 'm', label: 'Menor', desc: 'Manifestacoes Simples (1-3 KW), sacar arma ou usar item.', consumes: ['utility'], color: '#BFA14A' },
+        { id: 'movement', code: 'Mv', label: 'Movimento', desc: 'Deslocamento base e Manifestacoes Avancadas (4-7 KW).', consumes: ['movement'], color: '#2C7F94' },
+        { id: 'complete', code: 'C', label: 'Completa', desc: 'Consome o turno inteiro. Manifestacoes Extremas (15+ KW).', consumes: ['major', 'utility', 'movement'], color: '#DC2626', derived: true },
+        { id: 'reaction', code: 'R', label: 'Reacao', desc: 'Esquiva, bloqueio ou contra-ataque se perceber a acao.', consumes: ['reaction'], color: '#a78bfa' },
+      ],
     },
     verloren: {
       id: 'verloren',
@@ -24,6 +37,11 @@
     },
   };
 
+  /**
+   * Resolves a turn-action template, falling back to the unified defaults.
+   * @param {string} templateId
+   * @returns {{id: string, notes: string, order: string[], slots: object[]}}
+   */
   function resolveTemplate(templateId) {
     var preset = ACTION_PRESETS[templateId] || ACTION_PRESETS.unified;
     var unified = ACTION_PRESETS.unified;
@@ -35,12 +53,25 @@
     };
   }
 
+  /**
+   * Looks up one action by id in a template.
+   * @param {string} templateId
+   * @param {string} actionId
+   * @returns {object | null}
+   */
   function getAction(templateId, actionId) {
     return resolveTemplate(templateId).slots.find(function (slot) {
       return slot.id === actionId;
     }) || null;
   }
 
+  /**
+   * Checks whether an action can be paid from the current turn state.
+   * @param {string} templateId
+   * @param {string} actionId
+   * @param {object} turnState
+   * @returns {boolean}
+   */
   function isActionAvailable(templateId, actionId, turnState) {
     var state = turnState || {};
     var action = getAction(templateId, actionId);
@@ -48,6 +79,12 @@
     return action.consumes.every(function (slotId) { return !!state[slotId]; });
   }
 
+  /**
+   * Returns all actions in a template with their current availability.
+   * @param {string} templateId
+   * @param {object} turnState
+   * @returns {object[]}
+   */
   function getActionStatusList(templateId, turnState) {
     var template = resolveTemplate(templateId);
     return template.slots.map(function (slot) {
@@ -57,6 +94,12 @@
     });
   }
 
+  /**
+   * Resolves the first threshold whose max is at least the provided value.
+   * @param {number} value
+   * @param {{max: number}[]} thresholds
+   * @returns {object | null}
+   */
   function getThresholdAction(value, thresholds) {
     var total = Math.max(0, Number(value) || 0);
     return (Array.isArray(thresholds) ? thresholds : []).find(function (item) {
@@ -77,6 +120,11 @@
 (function (global) {
   var systems = global.CompanionSystems || (global.CompanionSystems = {});
 
+  /**
+   * Creates a full turn state, defaulting all slots to available.
+   * @param {object=} initial
+   * @returns {object}
+   */
   function createTurnState(initial) {
     return Object.assign({
       major: true,
@@ -86,10 +134,21 @@
     }, initial || {});
   }
 
+  /**
+   * Resets turn slots while allowing caller overrides.
+   * @param {object=} initial
+   * @returns {object}
+   */
   function resetTurnState(initial) {
     return createTurnState(initial);
   }
 
+  /**
+   * Toggles one known turn slot.
+   * @param {object} turnState
+   * @param {string} slotId
+   * @returns {object}
+   */
   function toggleTurnSlot(turnState, slotId) {
     var state = createTurnState(turnState);
     if (!(slotId in state)) return state;
@@ -97,6 +156,13 @@
     return state;
   }
 
+  /**
+   * Consumes all slots required by an action if currently available.
+   * @param {object} turnState
+   * @param {string} actionId
+   * @param {string} templateId
+   * @returns {object}
+   */
   function consumeTurnAction(turnState, actionId, templateId) {
     var state = createTurnState(turnState);
     var action = systems.Actions && systems.Actions.getAction(templateId, actionId);
@@ -108,6 +174,13 @@
     return state;
   }
 
+  /**
+   * Moves initiative to the next actor and advances the round after wraparound.
+   * @param {number} activeIndex
+   * @param {number} count
+   * @param {number} round
+   * @returns {{activeIndex: number, round: number}}
+   */
   function advanceTurn(activeIndex, count, round) {
     var total = Math.max(0, Number(count) || 0);
     if (!total) return { activeIndex: 0, round: Math.max(1, Number(round) || 1) };

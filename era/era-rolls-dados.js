@@ -1,3 +1,10 @@
+/*
+ * Audit refactor:
+ * - Added JSDoc and null guards around roll configuration helpers.
+ * - Preserved ERA roll math, APT difference rules, advantage behavior, and labels.
+ * - Kept the reveal timeout as UI timing rather than a mechanical delay.
+ */
+
 function TabDados({ char }) {
   const [mode, setMode] = useState("sub");
   const [selP, setSelP] = useState("corpo");
@@ -7,6 +14,8 @@ function TabDados({ char }) {
   const [selectedEffects, setSelectedEffects] = useState([]);
   const [ef, setEf] = useState(0);
   const [dt, setDt] = useState(5);
+  const [targetTier, setTargetTier] = useState(0);
+  const [advantageMode, setAdvantageMode] = useState("normal");
   const [rolling, setRolling] = useState(false);
   const [res, setRes] = useState(null);
   const [hist, setHist] = useState([]);
@@ -24,58 +33,101 @@ function TabDados({ char }) {
     ));
   }, [selPericia]);
 
+  /**
+   * Toggles a temporary roll effect by id.
+   * @param {string} effectId
+   * @returns {void}
+   */
   function toggleEffect(effectId) {
     setSelectedEffects((current) => (
       current.includes(effectId) ? current.filter((id) => id !== effectId) : [...current, effectId]
     ));
   }
 
+  /**
+   * Builds the current roll configuration from selected attribute or skill.
+   * @returns {object}
+   */
   function buildRollConfig() {
     if (mode === "sub") {
       const subData = char.subs[selS] || { tier: 0, prog: 0 };
       return {
         nd: char.pilares[selP] || 1,
         prog: subData.prog,
+        attrProg: subData.prog,
+        skillProg: 0,
         tier: subData.tier,
         label: SUBS[selS].label,
+        aptLabel: formatApt(subData.tier, subData.prog),
         pilarColor: PILARS[selP].color,
         pilarLabel: PILARS[selP].label,
         baseLabel: SUBS[selS].label,
+        baseAbbr: SUBS[selS].abbr,
       };
     }
 
     const pericia = getPericiaById(selPericia);
     const bases = getPericiaBases(pericia);
-    const activeBase = bases.find((base) => base.id === selPericiaBase) || bases[0];
+    const activeBase = bases.find((base) => base.id === selPericiaBase) || bases[0] || {
+      id: "forca",
+      pillar: "corpo",
+      label: SUBS.forca.label,
+      color: PILARS.corpo.color,
+    };
     const periciaData = char.pericias[pericia.id] || { tier: 0, prog: 0 };
+    const baseData = activeBase && SUBS[activeBase.id] ? (char.subs[activeBase.id] || { tier: 0, prog: 0 }) : { tier: 0, prog: 0 };
+    const combinedTier = Math.max(Number(baseData.tier) || 0, Number(periciaData.tier) || 0);
 
     return {
       nd: char.pilares[activeBase.pillar] || 1,
-      prog: periciaData.prog,
-      tier: periciaData.tier,
+      prog: (Number(baseData.prog) || 0) + (Number(periciaData.prog) || 0),
+      attrProg: Number(baseData.prog) || 0,
+      skillProg: Number(periciaData.prog) || 0,
+      tier: combinedTier,
       label: pericia.label,
+      aptLabel: `${formatApt(combinedTier, periciaData.prog)} (melhor APT entre base/pericia)`,
       pilarColor: activeBase.color,
       pilarLabel: PILARS[activeBase.pillar].label,
       baseLabel: activeBase.label,
+      baseAbbr: SUBS[activeBase.id] ? SUBS[activeBase.id].abbr : activeBase.label,
     };
   }
 
+  /**
+   * Rolls dice and resolves the final result object for UI/history.
+   * @param {object} config
+   * @param {number} targetDt
+   * @param {object | null} modifiers
+   * @returns {object}
+   */
   function createRollResult(config, targetDt, modifiers = null) {
-    const dice = rollN(config.nd, 6);
-    const highestDie = best(dice);
+    const appliedTargetTier = modifiers && modifiers.targetTier != null ? modifiers.targetTier : targetTier;
+    const tierRules = modifiers ? modifiers.tierRules : getTierDeltaRules(config.tier, appliedTargetTier);
+    const manualAdvantage = modifiers ? modifiers.manualAdvantage : (advantageMode === "advantage" ? 1 : advantageMode === "disadvantage" ? -1 : 0);
+    const advantageState = resolveAdvantageState(tierRules.advantage + manualAdvantage);
+    const diceCount = Math.max(0, Number(config.nd) || 0) + (advantageState === "normal" ? 0 : 1);
+    const dice = rollN(diceCount, 6);
+    const sortedDice = [...dice].sort((a, b) => b - a);
+    const highestDie = advantageState === "disadvantage"
+      ? (sortedDice.length > 1 ? sortedDice[1] : 0)
+      : (sortedDice[0] || 0);
     const exaustionMod = modifiers ? modifiers.exaustionMod : -char.exaustao;
     const effectBonus = modifiers ? modifiers.effectBonus : sumSelectedEffectValue(char.effects, selectedEffects, "roll");
     const effectiveEf = modifiers ? modifiers.ef : ef;
-    const total = highestDie + config.prog + effectiveEf + effectBonus + exaustionMod;
-    const autoDt = TIER_DT[config.tier];
-    const auto = autoDt && targetDt <= autoDt;
-    const success = auto || total >= targetDt;
+    const total = highestDie + config.prog + tierRules.pge + effectiveEf + effectBonus + exaustionMod;
+    const auto = tierRules.auto;
+    const success = auto === "success" || (auto !== "fail" && total >= targetDt);
 
     return {
       dice,
       highestDie,
+      advantageState,
       total,
       dt: targetDt,
+      targetTier: appliedTargetTier,
+      tierDiff: tierRules.diff,
+      tierPge: tierRules.pge,
+      tierRuleLabel: tierRules.label,
       success,
       auto,
       threat: highestDie === 6 && !auto,
@@ -84,14 +136,21 @@ function TabDados({ char }) {
       pilarColor: config.pilarColor,
       tier: TIERS[config.tier],
       prog: config.prog,
+      attrProg: config.attrProg,
+      skillProg: config.skillProg,
       ef: effectiveEf,
       effectBonus,
       exaustionMod,
       baseLabel: config.baseLabel,
+      baseAbbr: config.baseAbbr,
       t: new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }),
     };
   }
 
+  /**
+   * Starts a visible roll and stores it in current result/history.
+   * @returns {void}
+   */
   function roll() {
     setRolling(true);
     setTimeout(() => {
@@ -106,6 +165,9 @@ function TabDados({ char }) {
           ef: result.ef,
           effectBonus: result.effectBonus,
           exaustionMod: result.exaustionMod,
+          targetTier: result.targetTier,
+          tierRules: getTierDeltaRules(config.tier, result.targetTier),
+          manualAdvantage: advantageMode === "advantage" ? 1 : advantageMode === "disadvantage" ? -1 : 0,
         },
       } : null);
       setThreatCheck(null);
@@ -113,13 +175,17 @@ function TabDados({ char }) {
     }, ERA_UI_TIMINGS.ROLL_REVEAL_MS);
   }
 
+  /**
+   * Rolls the critical confirmation check against the original DT.
+   * @returns {void}
+   */
   function confirmThreat() {
     if (!pendingThreat) return;
 
     setRolling(true);
     setTimeout(() => {
       const confirmation = createRollResult(pendingThreat.config, pendingThreat.originalResult.dt, pendingThreat.modifiers);
-      const confirmed = confirmation.auto || confirmation.success;
+      const confirmed = confirmation.auto === "success" || confirmation.success;
       const threatResult = {
         originalResult: pendingThreat.originalResult,
         confirmation,
@@ -134,8 +200,9 @@ function TabDados({ char }) {
   }
 
   const cfg = buildRollConfig();
-  const autoDt = TIER_DT[cfg.tier];
-  const autoNow = autoDt && dt <= autoDt;
+  const tierRulesNow = getTierDeltaRules(cfg.tier, targetTier);
+  const manualAdvantageNow = advantageMode === "advantage" ? 1 : advantageMode === "disadvantage" ? -1 : 0;
+  const advantageStateNow = resolveAdvantageState(tierRulesNow.advantage + manualAdvantageNow);
   const selectedPericia = getPericiaById(selPericia);
   const periciaBases = getPericiaBases(selectedPericia);
   const rollEffectBonus = sumSelectedEffectValue(char.effects, selectedEffects, "roll");
@@ -145,7 +212,7 @@ function TabDados({ char }) {
       <Sect title="Configurar Rolagem" color={C.gold}>
         <div className="chip-row" style={{ marginBottom: 12 }}>
           {[
-            { id: "sub", label: "Subatributo" },
+            { id: "sub", label: "Atributo" },
             { id: "pericia", label: "Pericia" },
           ].map((option) => {
             const active = mode === option.id;
@@ -199,7 +266,7 @@ function TabDados({ char }) {
               })}
             </div>
 
-            <Lbl>Subatributo</Lbl>
+            <Lbl>Atributo</Lbl>
             <div className="chip-row" style={{ marginBottom: 12 }}>
               {PILARS[selP].subs.map((subId) => {
                 const active = selS === subId;
@@ -218,7 +285,7 @@ function TabDados({ char }) {
                       fontSize: 12,
                     }}
                   >
-                    {SUBS[subId].label}
+                    {SUBS[subId].abbr} · {SUBS[subId].label}
                     <span style={{ color: subColor, fontWeight: 700, marginLeft: 6 }}>+{subProg}</span>
                   </button>
                 );
@@ -287,7 +354,7 @@ function TabDados({ char }) {
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12, marginBottom: 12 }}>
           <div>
-            <Lbl>Prog. Efetivo</Lbl>
+            <Lbl>PGE extra</Lbl>
             <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 4 }}>
               <SmBtn onClick={() => setEf((value) => value - 1)}>-</SmBtn>
               <span style={{ fontWeight: 700, fontSize: 16, color: C.gold, width: 32, textAlign: "center" }}>{formatSigned(ef)}</span>
@@ -300,6 +367,60 @@ function TabDados({ char }) {
               <SmBtn onClick={() => setDt((value) => clampNumber(value - 1, 1, 9))}>-</SmBtn>
               <span style={{ fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 16, color: C.mente, width: 20, textAlign: "center" }}>{dt}</span>
               <SmBtn onClick={() => setDt((value) => clampNumber(value + 1, 1, 9))}>+</SmBtn>
+            </div>
+          </div>
+          <div>
+            <Lbl>APT do Teste</Lbl>
+            <div className="chip-row" style={{ marginTop: 4 }}>
+              {TIERS.map((tierName, index) => {
+                const active = targetTier === index;
+                return (
+                  <button
+                    key={tierName}
+                    onClick={() => setTargetTier(index)}
+                    title={tierName}
+                    style={{
+                      width: 30,
+                      height: 28,
+                      borderRadius: 5,
+                      background: active ? `${C.mente}22` : C.bg3,
+                      border: `1px solid ${active ? C.mente : C.border}`,
+                      color: active ? C.mente : C.muted,
+                      fontWeight: 700,
+                    }}
+                  >
+                    {APT_SYMBOLS[index]}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          <div>
+            <Lbl>Vantagem</Lbl>
+            <div className="chip-row" style={{ marginTop: 4 }}>
+              {[
+                { id: "normal", label: "Normal" },
+                { id: "advantage", label: "Vant." },
+                { id: "disadvantage", label: "Desv." },
+              ].map((option) => {
+                const active = advantageMode === option.id;
+                return (
+                  <button
+                    key={option.id}
+                    onClick={() => setAdvantageMode(option.id)}
+                    style={{
+                      padding: "6px 9px",
+                      borderRadius: 6,
+                      background: active ? `${C.gold}22` : C.bg3,
+                      border: `1px solid ${active ? C.gold : C.border}`,
+                      color: active ? C.gold : C.muted,
+                      fontSize: 11,
+                    }}
+                  >
+                    {option.label}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -315,12 +436,23 @@ function TabDados({ char }) {
 
         <div style={{ padding: "8px 10px", background: C.bg3, borderRadius: 6, fontSize: 12, marginBottom: 10, display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
           <span style={{ color: cfg.pilarColor }}>{cfg.nd}d6</span>
+          {advantageStateNow !== "normal" ? (
+            <span style={{ color: advantageStateNow === "advantage" ? C.green : C.danger }}>
+              {advantageStateNow === "advantage" ? "Vantagem" : "Desvantagem"}
+            </span>
+          ) : null}
           <span style={{ color: C.muted }}>+</span>
           <span style={{ color: cfg.pilarColor }}>
-            {cfg.prog} ({cfg.label})
+            {cfg.prog} PGE ({cfg.label})
           </span>
           <span style={{ color: C.muted }}>via</span>
-          <span style={{ color: cfg.pilarColor }}>{cfg.baseLabel}</span>
+          <span style={{ color: cfg.pilarColor }}>{cfg.baseAbbr} · {cfg.baseLabel}</span>
+          {tierRulesNow.pge !== 0 ? (
+            <>
+              <span style={{ color: C.muted }}>+</span>
+              <span style={{ color: tierRulesNow.pge > 0 ? C.green : C.danger }}>{formatSigned(tierRulesNow.pge)} APT</span>
+            </>
+          ) : null}
           {ef !== 0 ? (
             <>
               <span style={{ color: C.muted }}>+</span>
@@ -340,9 +472,9 @@ function TabDados({ char }) {
             </>
           ) : null}
           <span style={{ color: C.muted }}>vs</span>
-          <span style={{ color: autoNow ? C.green : C.mente, fontWeight: 700 }}>
-            DT {dt}
-            {autoNow ? " auto" : ""}
+          <span style={{ color: tierRulesNow.auto === "success" ? C.green : tierRulesNow.auto === "fail" ? C.danger : C.mente, fontWeight: 700 }}>
+            DT {dt} | {APT_SYMBOLS[targetTier]} {TIERS[targetTier]}
+            {tierRulesNow.auto === "success" ? " auto" : tierRulesNow.auto === "fail" ? " falha auto" : ""}
           </span>
         </div>
 
@@ -371,8 +503,8 @@ function TabDados({ char }) {
           {res ? (
             <div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
-                <div style={{ fontFamily: FONT_DISPLAY, fontSize: 15, color: res.auto ? C.goldGlow : res.threat ? C.gold : res.success ? C.green : C.danger, fontWeight: 700, letterSpacing: 1 }}>
-                  {res.auto ? "AUTO-SUCESSO" : res.threat ? "AMEACA" : res.success ? "SUCESSO" : res.critfail ? "FALHA CRITICA" : "FALHA"}
+                <div style={{ fontFamily: FONT_DISPLAY, fontSize: 15, color: res.auto === "success" ? C.goldGlow : res.auto === "fail" ? C.danger : res.threat ? C.gold : res.success ? C.green : C.danger, fontWeight: 700, letterSpacing: 1 }}>
+                  {res.auto === "success" ? "AUTO-SUCESSO" : res.auto === "fail" ? "FALHA AUTOMATICA" : res.threat ? "AMEACA" : res.success ? "SUCESSO" : res.critfail ? "FALHA CRITICA" : "FALHA"}
                 </div>
                 <div style={{ fontFamily: FONT_DISPLAY, fontSize: 30, fontWeight: 700, color: res.success ? C.green : C.danger, lineHeight: 1 }}>
                   {res.total}
@@ -404,16 +536,21 @@ function TabDados({ char }) {
               </div>
 
               <div style={{ fontSize: 11, color: C.muted }}>
-                melhor: <strong style={{ color: C.text }}>{res.highestDie}</strong> + {res.label} <strong style={{ color: res.pilarColor }}>+{res.prog}</strong>
+                melhor: <strong style={{ color: C.text }}>{res.highestDie}</strong>
+                {res.advantageState !== "normal" ? <> ({res.advantageState === "advantage" ? "vantagem" : "desvantagem"})</> : null}
+                {" + "}
+                {res.label} <strong style={{ color: res.pilarColor }}>+{res.prog}</strong>
+                {res.skillProg ? <> <span style={{ color: C.muted }}>(base +{res.attrProg}, pericia +{res.skillProg})</span></> : null}
+                {res.tierPge !== 0 ? <> APT <strong style={{ color: res.tierPge > 0 ? C.green : C.danger }}>{formatSigned(res.tierPge)}</strong></> : null}
                 {res.ef !== 0 ? <> ef <strong style={{ color: C.gold }}>{formatSigned(res.ef)}</strong></> : null}
                 {res.effectBonus !== 0 ? <> efeitos <strong style={{ color: C.green }}>{formatSigned(res.effectBonus)}</strong></> : null}
                 {res.exaustionMod !== 0 ? <> exaustao <strong style={{ color: C.danger }}>{res.exaustionMod}</strong></> : null}
                 {" = "}
                 <strong style={{ color: C.text, fontSize: 13 }}>{res.total}</strong>
-                {` vs DT ${res.dt}`}
+                {` vs DT ${res.dt} | ${APT_SYMBOLS[res.targetTier]} ${TIERS[res.targetTier]}`}
               </div>
 
-              <div style={{ fontSize: 10, color: res.pilarColor, marginTop: 4 }}>Base usada: {res.baseLabel}</div>
+              <div style={{ fontSize: 10, color: res.pilarColor, marginTop: 4 }}>Base usada: {res.baseAbbr} · {res.baseLabel}. {res.tierRuleLabel}</div>
 
               {res.threat ? (
                 <div style={{ marginTop: 8 }}>

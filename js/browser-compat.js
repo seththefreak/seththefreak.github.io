@@ -1,7 +1,20 @@
+/*
+ * Audit refactor:
+ * - Documented browser compatibility helpers and global feature shims.
+ * - Preserved legacy fallbacks needed by the non-module app shell.
+ * - Kept all detection output and CSS class names backward-compatible.
+ */
 (function (global) {
   var documentRef = global.document;
   var browserInfoCache = null;
 
+  /**
+   * Defines a missing property while tolerating restricted host objects.
+   * @param {object} target
+   * @param {string} key
+   * @param {*} value
+   * @returns {void}
+   */
   function defineProperty(target, key, value) {
     if (!target || key in target) return;
     try {
@@ -145,6 +158,11 @@
     };
   }
 
+  /**
+   * Safely calls matchMedia for browsers that reject some queries.
+   * @param {string} query
+   * @returns {MediaQueryList}
+   */
   function matchMediaSafe(query) {
     try {
       return global.matchMedia(query);
@@ -153,6 +171,12 @@
     }
   }
 
+  /**
+   * Finds the nearest matching ancestor while allowing text-node event targets.
+   * @param {Node | null} node
+   * @param {string} selector
+   * @returns {Element | null}
+   */
   function closestSafe(node, selector) {
     var current = node;
     while (current) {
@@ -164,6 +188,10 @@
     return null;
   }
 
+  /**
+   * Detects browser capabilities and families used by install/launcher UI.
+   * @returns {object}
+   */
   function getBrowserInfo() {
     if (browserInfoCache) return browserInfoCache;
 
@@ -201,6 +229,10 @@
     return browserInfoCache;
   }
 
+  /**
+   * Returns browser-specific manual PWA install instructions.
+   * @returns {string}
+   */
   function getManualInstallMessage() {
     var info = getBrowserInfo();
 
@@ -222,11 +254,19 @@
     return 'Use o menu do navegador para abrir este companion em modo web ou criar um atalho.';
   }
 
+  /**
+   * Checks CSS backdrop-filter support.
+   * @returns {boolean}
+   */
   function supportsBackdropFilter() {
     if (!global.CSS || typeof global.CSS.supports !== 'function') return false;
     return global.CSS.supports('backdrop-filter', 'blur(1px)') || global.CSS.supports('-webkit-backdrop-filter', 'blur(1px)');
   }
 
+  /**
+   * Adds browser/capability classes consumed by launcher CSS.
+   * @returns {void}
+   */
   function applyBrowserClasses() {
     if (!documentRef || !documentRef.documentElement || !documentRef.documentElement.classList) return;
 

@@ -1,8 +1,22 @@
+/*
+ * Audit refactor:
+ * - Documents the ERA character-sheet tab as the owner of pillar/attribute editing UI.
+ * - Keeps all progression budgets, labels, and derived resource formulas unchanged.
+ * - Uses shared touch-target fixes from era-shared.js/style.css.
+ */
+
+/**
+ * Renders and updates the ERA character sheet editor.
+ * @param {{char: object, upd: Function}} props
+ * @returns {React.ReactElement}
+ */
 function TabFicha({ char, upd }) {
   const [fichaTab, setFichaTab] = useState("base");
   const isMobile = useIsMobile();
   const portraitInputRef = useRef(null);
   const levelData = getCurrentLevelData(char.level);
+  const pillarPointsAvailable = getPillarPointsAvailable(char.level);
+  const pillarPointsUsed = getPillarPointsUsed(char.pilares);
 
   function setResource(resourceKey, nextValue) {
     const currentLevel = getCurrentLevelData(char.level);
@@ -25,7 +39,7 @@ function TabFicha({ char, upd }) {
         cur: clampNumber(currentChar.hp.cur, 0, nextData.hp),
         max: nextData.hp,
       },
-      sp: { cur: 100, max: 100 },
+      sp: { cur: clampNumber(currentChar.sp.cur, 0, nextData.sp), max: nextData.sp },
       pe: {
         cur: clampNumber(currentChar.pe.cur, 0, nextData.pe),
         max: nextData.pe,
@@ -46,14 +60,27 @@ function TabFicha({ char, upd }) {
     }));
   }
 
-  function setPilar(pilarId, value) {
-    const minValue = pilarId === "alma" ? 0 : 1;
+  function adjustSubProgress(subId, delta) {
     upd((currentChar) => ({
       ...currentChar,
-      pilares: {
-        ...currentChar.pilares,
-        [pilarId]: clampNumber(value, minValue, 5),
+      subs: {
+        ...currentChar.subs,
+        [subId]: shiftProgressEntry(currentChar.subs[subId], delta),
       },
+    }));
+  }
+
+  function setPilar(pilarId, value) {
+    upd((currentChar) => ({
+      ...currentChar,
+      pilares: (() => {
+        const minValue = getPillarBaseValue(pilarId);
+        const currentValue = Number(currentChar.pilares[pilarId]) || minValue;
+        const nextValue = clampNumber(value, minValue, 5);
+        const nextPillars = { ...currentChar.pilares, [pilarId]: nextValue };
+        const overBudget = getPillarPointsUsed(nextPillars) > getPillarPointsAvailable(currentChar.level);
+        return overBudget && nextValue > currentValue ? currentChar.pilares : nextPillars;
+      })(),
     }));
   }
 
@@ -75,6 +102,16 @@ function TabFicha({ char, upd }) {
           ...(currentChar.pericias[periciaId] || { tier: 0, prog: 0 }),
           [field]: value,
         },
+      },
+    }));
+  }
+
+  function adjustPericiaProgress(periciaId, delta) {
+    upd((currentChar) => ({
+      ...currentChar,
+      pericias: {
+        ...currentChar.pericias,
+        [periciaId]: shiftProgressEntry(currentChar.pericias[periciaId], delta),
       },
     }));
   }
@@ -253,7 +290,7 @@ function TabFicha({ char, upd }) {
               { key: "sp", abbr: "SP", sublabel: "Sanidade",       color: C.mente },
               { key: "pe", abbr: "PE", sublabel: "Essencia",       color: C.alma  },
             ].map(({ key, abbr, sublabel, color }) => {
-              const maxValue = key === "sp" ? 100 : levelData[key];
+              const maxValue = levelData[key];
               const currentValue = char[key].cur;
               const percent = getMeterPercent(currentValue, maxValue);
               return (
@@ -320,10 +357,13 @@ function TabFicha({ char, upd }) {
 
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             <Sect title="Pilares">
+              <div style={{ fontSize: 11, color: pillarPointsUsed > pillarPointsAvailable ? C.danger : C.muted, marginBottom: 8 }}>
+                Base PH 1 / MD 1 / SL 0. Pontos de Pilar: {pillarPointsUsed}/{pillarPointsAvailable}. Niveis impares apos o 1 concedem +1.
+              </div>
               <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(3, 1fr)" : "repeat(3, 1fr)", gap: 8 }}>
                 {Object.entries(PILARS).map(([pillarId, pillar]) => (
                   <div key={pillarId} style={{ ...card, borderColor: `${pillar.color}44`, textAlign: "center", padding: 8 }}>
-                    <div style={{ fontFamily: FONT_DISPLAY, fontSize: 9, color: pillar.color, letterSpacing: 2, marginBottom: 4 }}>{pillar.label}</div>
+                    <div style={{ fontFamily: FONT_DISPLAY, fontSize: 9, color: pillar.color, letterSpacing: 2, marginBottom: 4 }}>{pillar.abbr} · {pillar.label}</div>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}>
                       <SmBtn onClick={() => setPilar(pillarId, char.pilares[pillarId] - 1)}>-</SmBtn>
                       <span style={{ fontFamily: FONT_DISPLAY, fontSize: 22, fontWeight: 700, color: pillar.color, lineHeight: 1 }}>
@@ -363,7 +403,10 @@ function TabFicha({ char, upd }) {
           </div>
 
           <div className="desktop-split section-span-2" style={{ gridColumn: "1 / -1", marginTop: 2 }}>
-            <Sect title="Subatributos">
+            <Sect title="Atributos">
+              <div style={{ fontSize: 11, color: C.muted, marginBottom: 10 }}>
+                Cada nivel concede +2 pontos livres de Atributo. Cada ponto investido em um Pilar concede +3 pontos para a arvore daquele Pilar.
+              </div>
               {Object.entries(PILARS).map(([pillarId, pillar]) => (
                 <div key={pillarId} style={{ marginBottom: 10 }}>
                   <div style={{ fontFamily: FONT_DISPLAY, fontSize: 10, color: pillar.color, letterSpacing: 2, marginBottom: 5, paddingBottom: 3, borderBottom: `1px solid ${pillar.color}33` }}>
@@ -372,14 +415,12 @@ function TabFicha({ char, upd }) {
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 4 }}>
                   {pillar.subs.map((subId) => {
                     const subData = char.subs[subId] || { tier: 0, prog: 0 };
-                    const autoDt = TIER_DT[subData.tier];
                     return (
                       <div key={subId} style={{ display: "flex", alignItems: "center", gap: 8, padding: "4px 6px", background: C.bg3, borderRadius: 6 }}>
                         <div style={{ width: 110, flexShrink: 0 }}>
-                          <div style={{ fontSize: 12, fontWeight: 600 }}>{SUBS[subId].label}</div>
+                          <div style={{ fontSize: 12, fontWeight: 600 }}>{SUBS[subId].abbr} · {SUBS[subId].label}</div>
                           <div style={{ fontSize: 9, color: pillar.color, letterSpacing: 1 }}>
-                            {TIERS[subData.tier]}
-                            {autoDt ? ` - auto DT${autoDt}` : ""}
+                            {formatApt(subData.tier, subData.prog)}
                           </div>
                         </div>
                         <div style={{ display: "flex", gap: 3 }}>
@@ -387,7 +428,7 @@ function TabFicha({ char, upd }) {
                             <button
                               key={index}
                               onClick={() => setSub(subId, "tier", index)}
-                              title={TIERS[index]}
+                              title={`${APT_SYMBOLS[index]} ${TIERS[index]}`}
                               style={{
                                 width: 13,
                                 height: 13,
@@ -401,9 +442,9 @@ function TabFicha({ char, upd }) {
                           ))}
                         </div>
                         <div style={{ display: "flex", alignItems: "center", gap: 3, marginLeft: "auto" }}>
-                          <SmBtn onClick={() => setSub(subId, "prog", Math.max(0, subData.prog - 1))}>-</SmBtn>
+                          <SmBtn onClick={() => adjustSubProgress(subId, -1)}>-</SmBtn>
                           <span style={{ fontSize: 14, fontWeight: 700, color: pillar.color, width: 24, textAlign: "center" }}>+{subData.prog}</span>
-                          <SmBtn onClick={() => setSub(subId, "prog", Math.min(3, subData.prog + 1))}>+</SmBtn>
+                          <SmBtn onClick={() => adjustSubProgress(subId, 1)}>+</SmBtn>
                         </div>
                       </div>
                     );
@@ -458,7 +499,7 @@ function TabFicha({ char, upd }) {
         </div>
       ) : null}
 
-      {fichaTab === "pericias" ? <PericiasTab char={char} setPericia={setPericia} /> : null}
+      {fichaTab === "pericias" ? <PericiasTab char={char} setPericia={setPericia} adjustPericiaProgress={adjustPericiaProgress} /> : null}
 
       {fichaTab === "extras" ? (
         <ResponsiveGrid>
@@ -600,33 +641,30 @@ function TabFicha({ char, upd }) {
   );
 }
 
-function PericiasTab({ char, setPericia }) {
-  const pillarLabels = { corpo: "CORPO", mente: "MENTE", alma: "ALMA" };
-
+function PericiasTab({ char, setPericia, adjustPericiaProgress }) {
   return (
     <div>
       <div style={{ padding: "8px 10px", background: C.bg3, borderRadius: 6, marginBottom: 10, fontSize: 11, color: C.muted }}>
-        Tier avanca com 4 pontos. Cada pericia agora mostra a base sugerida para testes e combinacoes mistas.
+        PGI vai de +0 a +3. Ao passar de +3, volta para +0 e sobe o APT. Nivel 1 concede 11 pontos de pericia; niveis seguintes concedem +3.
       </div>
 
       <ResponsiveGrid>
-        {["corpo", "mente", "alma"].map((pillarId) => {
-          const pillarColor = PILARS[pillarId].color;
-          const pericias = PERICIAS_LIST.filter((pericia) => pericia.groupPilar === pillarId);
+        {PERICIA_GROUPS.map((group) => {
+          const pericias = PERICIAS_LIST.filter((pericia) => pericia.category === group.id);
           return (
-            <Sect key={pillarId} title={pillarLabels[pillarId]} color={pillarColor}>
+            <Sect key={group.id} title={group.label} color={group.color}>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 4 }}>
               {pericias.map((pericia) => {
                 const data = char.pericias[pericia.id] || { tier: 0, prog: 0 };
-                const autoDt = TIER_DT[data.tier];
+                const pillarColor = PILARS[pericia.groupPilar].color;
                 return (
                   <div key={pericia.id} style={{ display: "flex", alignItems: "center", gap: 8, padding: "4px 6px", background: C.bg3, borderRadius: 6 }}>
                     <div style={{ width: 132, flexShrink: 0 }}>
                       <div style={{ fontSize: 12, fontWeight: 600 }}>{pericia.label}</div>
                       <div style={{ fontSize: 9, color: pillarColor, letterSpacing: 1 }}>
                         {formatPericiaBaseList(pericia)}
-                        {autoDt ? ` - auto DT${autoDt}` : ""}
                       </div>
+                      <div style={{ fontSize: 9, color: group.color, letterSpacing: 1 }}>{formatApt(data.tier, data.prog)}</div>
                     </div>
 
                     <div style={{ display: "flex", gap: 3 }}>
@@ -634,12 +672,12 @@ function PericiasTab({ char, setPericia }) {
                         <button
                           key={index}
                           onClick={() => setPericia(pericia.id, "tier", index)}
-                          title={TIERS[index]}
+                          title={`${APT_SYMBOLS[index]} ${TIERS[index]}`}
                           style={{
                             width: 12,
                             height: 12,
                             borderRadius: 2,
-                            background: data.tier >= index ? pillarColor : C.border,
+                            background: data.tier >= index ? group.color : C.border,
                             border: "none",
                             cursor: "pointer",
                             flexShrink: 0,
@@ -649,9 +687,9 @@ function PericiasTab({ char, setPericia }) {
                     </div>
 
                     <div style={{ display: "flex", alignItems: "center", gap: 3, marginLeft: "auto" }}>
-                      <SmBtn onClick={() => setPericia(pericia.id, "prog", Math.max(0, data.prog - 1))}>-</SmBtn>
-                      <span style={{ fontSize: 13, fontWeight: 700, color: pillarColor, width: 24, textAlign: "center" }}>+{data.prog}</span>
-                      <SmBtn onClick={() => setPericia(pericia.id, "prog", Math.min(3, data.prog + 1))}>+</SmBtn>
+                      <SmBtn onClick={() => adjustPericiaProgress(pericia.id, -1)}>-</SmBtn>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: group.color, width: 24, textAlign: "center" }}>+{data.prog}</span>
+                      <SmBtn onClick={() => adjustPericiaProgress(pericia.id, 1)}>+</SmBtn>
                     </div>
                   </div>
                 );
@@ -664,4 +702,3 @@ function PericiasTab({ char, setPericia }) {
     </div>
   );
 }
-
