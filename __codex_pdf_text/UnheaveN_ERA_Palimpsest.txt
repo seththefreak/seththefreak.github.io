@@ -1,0 +1,722 @@
+
+
+--- PAGE 1 ---
+1
+ UNHEAVEN : ERA
+ P A L I M P S E S T
+ Regras do Sistema
+
+
+
+--- PAGE 2 ---
+2
+■ PILARES (PLL)
+Os Pilares representam as três dimensões fundamentais de um personagem. Cada Pilar possui valor entre 0 e 5.
+■ Físico (PH)
+Aspectos puramente físicos — força, resistência, mobilidade e tudo que envolve o corpo como instrumento.
+■ Mente (MD)
+Tudo que tange a capacidade cognitiva — raciocínio lógico, tempo de reação e resiliência mental.
+■ Alma (SL)
+A essência do personagem — governa manifestações e zonas.
+Distribuição Base
+PH 1 · MD 1 · SL 0
+ Nível 1: distribua +2 pontos livremente entre os Pilares.
+ 
+ Níveis ímpares (3, 5, 7...): receba +1 ponto para distribuir.
+ 
+Nenhum Pilar pode ultrapassar 5.
+■ ATRIBUTOS (ATT)
+Cada Pilar possui 3 Atributos derivados. Todos iniciam em 0.
+Pilar
+Atributo
+Sigla
+Descrição
+Físico (PH)
+Força
+STR
+Potência Muscular
+Constituição
+CON
+Resistência
+Destreza
+DEX
+Agilidade
+Mente (MD)
+Intelecto
+INT
+Inteligência
+Sabedoria
+WIS
+Experiência Prática
+Vontade
+WLL
+Determinação
+Alma (SL)
+Poder
+PWR
+Intensidade
+Domínio
+DOM
+Controle
+Sintonia
+SNT
+Sensibilidade
+Progressão de Atributos
+ Por nível: receba +2 pontos livres para distribuir em qualquer Atributo.
+ 
+ Por ponto investido em um Pilar: receba +3 pontos bônus para distribuir nos Atributos da árvore daquele Pilar.
+ 
+Exemplo: ao elevar PH de 1 para 2, você ganha +3 pontos para gastar entre STR, CON e DEX.
+■ PROGRESSÃO
+
+
+
+--- PAGE 3 ---
+3
+Progresso Interno (PGI)
+O valor de cada Atributo representa seu Progresso Interno dentro do Tier atual. PGI vai de +0 a +3. Ao ultrapassar
++3, o valor reseta para 0 e o Tier avança.
+Aptidão (APT)
+O Tier de Aptidão indica o nível de maestria no Atributo ou Perícia.
+Símbolo
+Tier
+■
+Leigo
+■
+Treinado
+◆
+Especialista
+❖
+Mestre
+✦
+Lenda
+Progresso Efetivo (PGE)
+PGE é o valor final aplicado em uma rolagem. É a soma de todos os modificadores ativos:
+PGE = PGI + Condições + Skills + etc.
+Como Ler um Atributo: [Atributo] · [Tier] +[PGI] → ex: STR · Treinado +2
+■ MÉTODO DE ROLAGEM
+Role PLL dados de d6, pegue o maior resultado e some o PGE.
+PLL# d6 + PGE
+ Vantagem → role +1 dado adicional
+ 
+ Desvantagem → role -1 dado
+ 
+Dificuldade do Teste (DT)
+Representada como (DT) | [APT]. A rolagem deve se igualar ou superar o valor de DT. O APT indicado serve de
+referência para calcular a diferença de tier entre o personagem e o teste.
+Diferença de APT
+Diferença
+Efeito
++1 APT
++2 PGE
++2 APT
+Vantagem
++3 APT
+Sucesso Automático
+-1 APT
+-2 PGE
+
+
+
+--- PAGE 4 ---
+4
+Diferença
+Efeito
+-2 APT
+Desvantagem
+-3 APT
+Falha Automática
+Os modificadores são acumulativos. +2 APT acima = +2 PGE E Vantagem.
+Testes Opostos
+Em testes opostos, a rolagem do oponente é a DT. A diferença de APT é aplicada em ambos simultaneamente.
+Exemplo — ❖ Mestre vs ■ Treinado (diferença de 2 APT): Mestre recebe +2 PGE e Vantagem. Treinado recebe -2 PGE e
+Desvantagem.
+Críticos e Falhas Críticas
+Tipo
+Condição
+Efeito
+Ameaça (Crítico)
+Melhor dado = 6
+Rola novamente. Se atingir a DT original: crítico confirmado.
+Impacto Bruto
+Crítico confirmado
+Dano máximo automático (sem rolar).
+Efeito Crítico
+Crítico confirmado
+Aplica efeito da arma. Rola dano 2× em cenas climáticas.
+Falha Crítica
+Melhor dado = 1 + falha
+Mestre introduz complicação narrativa proporcional.
+Rolagem de Sorte
+1d10
+Resultado
+Efeito
+1–3
+Azar
+Complicação narrativa imediata.
+4–6
+Neutro
+Nada acontece.
+7–9
+Sorte
+Vantagem imediata OU +2 de dano.
+10
+Grande Sorte
+Efeito positivo significativo (Mestre define).
+
+
+
+--- PAGE 5 ---
+5
+■ RECURSOS
+❤■ Vida (HP)
+Nível
+HP
+1
+24
+2
+31
+3
+38
+4
+46
+5
+53
+6
+60
+7
+67
+8
+74
+9
+82
+10
+89
+11
+96
+■ Sanidade (SP)
+Fixada em 100 para todos os personagens e níveis.
+■ Essência (PE)
+Nível
+PE
+1
+12
+2
+25
+3
+38
+4
+51
+5
+65
+6
+78
+7
+91
+8
+104
+9
+117
+10
+131
+11
+144
+Recuperação — Descanso Longo
+
+
+
+--- PAGE 6 ---
+6
+Recurso
+Recuperação
+HP
+12 + 1/4 do HP máximo
+SP
+2#d6 + Nível
+PE
+3/4 do PE máximo
+Overdraft
+Acúmulo de débito em PE além do limite disponível. Cada Descanso Longo reduz o Grau de Overdraft e o Grau de
+Exaustão em 1.
+Grau
+Limite de Overdraft
+Exaustão
+Efeito no Descanso Longo
+Nenhum
+0
+Exausto 1
+Normal
+Leve
+1/10 do total
+Exausto 2
+Recupera apenas 1/2
+Moderado
+1/3 do total
+Exausto 3
+Descanso Longo normal
+Severo
+1/2 do total
+Exausto 4
+Sem recuperação
+
+
+
+--- PAGE 7 ---
+7
+■ EXAUSTÃO (EX)
+Grau
+Estado
+Efeito
+1
+Cansado
+-1 em todas as rolagens
+2
+Esgotado
+-2 em todas as rolagens
+3
+Exausto
+-3 em tudo · Deslocamento 1/2 · Sem recuperações
+4
+Colapso
+Inconsciente · PE zerado
+5
+—
+Morte
+■ TRAUMAS
+■ Trauma Físico
+Grau
+Gatilho
+Efeito
+Leve
+HP < 1/4 do máximo
+-1 em testes de Físico
+Grave
+Receber 3/4 do HP máximo em um único hit
+-2 em todos os testes · Deslocamento 1/2
+■ Trauma Mental
+Grau
+Gatilho
+Efeito
+1
+SP < 75
+-1 em testes de Mente
+2
+SP < 50
+-2 em Mente · -1 em Físico e Alma
+3
+SP < 25
+-3 em todos os testes
+4
+SP < 1
+Insano, inconsciente ou morto
+■ Traumas Especiais
+Fobia
+Gatilho narrativo — -1 acumulativo em todos os testes contra a fonte do medo.
+Trauma de Combate
+Experiência de quase morte — Desvantagem em Iniciativa por 1d4 sessões.
+Estigma
+Pré-requisito e justificativa narrativa para possuir Alma acima de 0. Todo personagem criado com SL > 0 deve ter um
+Estigma que explique essa condição. Pode ser adquirido durante o jogo ao ser exposto a XENO 5 ou outra
+interferência paranormal intensa.
+■ PERDA DE SANIDADE (SP)
+
+
+
+--- PAGE 8 ---
+8
+Dano Físico
+Tipo de Dano
+Perda de SP
+Contundente
+1 ponto
+Perfurante
+1 ponto
+Cortante
+1 ponto
+Lacerante
+2 pontos
+Queimadura
+2 pontos
+Dano Crítico e Trauma Severo
+ Área crítica (cabeça, tronco) com dano crítico ou quebra: 5 a 15 pontos de SP perdidos (critério do mestre).
+ 
+ Trauma severo (testemunhar morte brutal, perda de membro, etc.): 10 a 40 pontos de SP perdidos. Teste de
+ Sanidade para mitigar a perda.
+Perda Crítica de SP
+Perda de 40 ou mais pontos em uma única ocorrência: surto psicótico, paralisia mental ou perda temporária de
+todas as habilidades sociais e de controle mental. Requer descanso, recuperação cuidadosa e auxílio externo para
+estabilização.
+
+
+
+--- PAGE 9 ---
+9
+■ PERÍCIAS
+As Perícias usam o mesmo sistema de PGI e APT dos Atributos. Não são exclusivas de um único Atributo — a ação
+define qual Atributo é rolado; a Perícia soma ao PGE quando aplicável.
+Exemplo: Atletismo pode ser rolado com STR em uma escalada de força ou com DEX em uma corrida de agilidade.
+Distribuição de Pontos
+ Nível 1: 11 pontos para distribuir livremente.
+ 
+ Níveis seguintes: +3 pontos por nível.
+ 
+■ Físicas
+Perícia
+Descrição
+Atletismo
+Esforço físico, corrida, escalada, natação
+Furtividade
+Movimento silencioso e fora de vista
+Golpe
+Ataque corpo a corpo — armado ou desarmado
+Pontaria
+Ataques à distância
+Travessia
+Navegação de obstáculos, parkour
+Pilotagem
+Operação de veículos e equipamentos
+Manejo
+Uso direto das mãos — arremessar, empurrar, agarrar
+Coordenação
+Habilidade manual fina — precisão, controle e delicadeza
+Fortitude
+Resistência física e mental a condições adversas
+Coleta
+Busca e extração de recursos do ambiente
+■ Mentais
+Perícia
+Descrição
+Percepção
+Detecção de estímulos sensoriais
+Investigação
+Análise de pistas e dedução
+Medicina
+Tratamento e primeiros socorros
+Tecnologia
+Uso e compreensão de sistemas tecnológicos
+Cognição
+Raciocínio, memória e conhecimento geral
+Sobrevivência
+Navegação, caça e resistência em campo
+Ofício (X)
+Expertise técnica ou profissional — definida na criação
+Conhecimento (X)
+Domínio teórico em área específica — definido na criação
+■ Sociais
+
+
+
+--- PAGE 10 ---
+10
+Perícia
+Descrição
+Persuasão
+Convencimento honesto
+Enganação
+Blefe, mentira, manipulação
+Intimidação
+Coerção e pressão psicológica
+Influência
+Presença, prestígio e confiabilidade
+Comunicação
+Expressão clara e liderança verbal
+Performance
+Artes performáticas — música, dança, atuação, discurso
+■ Especiais
+Perícia
+Descrição
+Ocultismo
+Conhecimento do sobrenatural e do oculto
+Iniciativa
+Velocidade de reação e prontidão em combate
+Sorte
+Influencia rolagens de sorte e coincidências favoráveis
+
+
+
+--- PAGE 11 ---
+11
+■ COMBATE
+Ações de Turno
+Símb.
+Nome
+Descrição
+M
+Ação Maior
+Ação principal. Ataques, Manifestações Completas, interações complexas.
+m
+Ação Menor
+Ação rápida. Manifestações Simples (1–3 KW), sacar arma, usar item.
+Mv
+Movimento
+Deslocamento base (4 + Progresso Destreza). Manifestações Avançadas (4–7 KW).
+R
+Reação
+Esquiva, bloqueio, contra-ataque. Só se perceber a ação.
+L
+Livre
+Ações verbais curtas, declarações. Ilimitado.
+C
+Ação Completa
+Consome o turno inteiro. Manifestações Extremas (15+ KW).
+ O jogador pode trocar a Ação Maior por duas Ações Menores. Não pode trocar o contrário.
+ 
+ O Movimento pode ser dividido — ex: Mv 2u + Ação Menor + Mv 1u.
+ 
+Sequência de Ataque
+#
+Ação
+Detalhe
+1
+Declare ataque e alvo
+Informe qual arma ou Manifestação.
+2
+Subatributo de ACERTO
+STR (pesadas CaC) · DEX (leves/distância) · DOM (Manifestações)
+3
+Role PILAR d6 + Progresso
+Use sempre o melhor dado. Total vs. DT de defesa do alvo.
+4
+Alvo rola DEFESA
+DEX (antecipado) · WIS→DEX (veloz) · Automático (surpresa)
+5
+Role DANO
+Dano bruto da arma, rolado duas vezes — pegue o melhor. Subtraia RD.
+6
+Aplique o dano
+Subtraia RD. Reduza HP. Aplique condições se necessário.
+O Progresso Interno NÃO soma no dano físico — apenas dano bruto da arma, rolado 2× (pega o melhor).
+■ REAÇÕES
+Ao ser atacado, o alvo escolhe uma reação — não é possível combinar. Reações só são possíveis se o alvo perceber
+o ataque.
+Desviar
+Teste oposto de DEX vs ataque do inimigo.
+Margem
+Resultado
+Efeito
+Falha −4
+Desvio catastrófico
+Dano cheio + condição severa + Abertura para o atacante
+Falha −3
+Desvio quebrado
+Dano cheio + Abertura para o atacante
+Falha −2
+Desvio falho
+Dano cheio, sem condição
+Falha −1
+Desvio parcial
+Toma metade do dano
+
+
+
+--- PAGE 12 ---
+12
+Margem
+Resultado
+Efeito
+Sucesso 0
+Desvio mediano
+Toma 1/4 do dano
+Sucesso +1
+Desvio sólido
+Escapa sem dano
+Sucesso +2
+Desvio firme
+Escapa + reposicionamento favorável
+Sucesso +3
+Desvio perfeito
+Escapa + Abertura
+Bloquear
+Aceita o impacto e rola CON + bônus do item — o resultado é o dano mitigado. Ataques muito velozes exigem um
+teste de Percepção antes de poder bloquear.
+Itens válidos: arma (uma classificação abaixo do atacante — leve bloqueia média, média bloqueia pesada), escudo,
+objeto improvisado ou o próprio corpo.
+Bloquear com o corpo em resultados insatisfatórios pode causar dano adicional, decepamento de membro ou condições
+adversas.
+Aparar
+Requer uma arma em mãos. Teste de STR ou DEX vs ataque (pesadas usam STR, leves usam DEX). Armas
+pesadas somam CON ao dano mitigado nos graus de sucesso. A diferença de peso das armas desloca a margem
+antes de aplicar a faixa.
+Margem
+Resultado
+Efeito
+Falha −4
+Aparada catastrófica
+Dano cheio + condição severa + possível dano na própria arma ou membro
+Falha −3
+Aparada quebrada
+Dano cheio + Abertura para o atacante
+Falha −2
+Aparada falha
+Dano cheio, sem condição
+Falha −1
+Aparada parcial
+Mitiga 1/4 do dano
+Sucesso 0
+Aparada mediana
+Mitiga metade do dano
+Sucesso +1
+Aparada sólida
+Mitiga 3/4 do dano
+Sucesso +2
+Aparada firme
+Mitiga dano cheio
+Sucesso +3
+Aparada perfeita
+Mitiga tudo + Abertura
+Diferença de peso das armas:
+ Arma um peso acima → +1 na margem
+ 
+ Mesmo peso → normal
+ 
+ Arma um peso abaixo → −1 na margem
+ 
+ Dois pesos abaixo → falha automática
+ 
+
+
+--- PAGE 13 ---
+13
+■ CONDIÇÕES
+■ Físicas
+Condição
+Efeito
+Queimadura 1
+Curas -50% · -1 em testes físicos
+Queimadura 2
+Curas -75% · -2 em testes físicos · possível limitação de membro
+Carbonizado
+Membro inutilizado · -4 em testes físicos · curas -90% (permanente)
+Sangramento 1
+1 dano/turno · cessa em 3 turnos · -1 em resistência e concentração
+Sangramento 2
+2–4 dano/turno · não cessa naturalmente · -2 em físicos, esquiva e concentração
+Hemorragia
+5–10% HP/turno · HP<25%: teste por turno para não cair · -3 em físicos
+Congelamento 1
+Deslocamento/mobilidade -1 a -2 · -1 em ataque e esquiva
+Congelamento 2
+1–3 dano/turno · curas -50 a -75% · -2 em físicos e coordenação
+Congelamento 3
+Totalmente imobilizado · penalidades máximas em resistência
+Fragilizado 1
++25% dano recebido · -2 em resistência física e mental
+Fragilizado 2
++50% dano recebido · -3 em resistência · deslocamento -2
+Fragilizado 3
++75% dano recebido · -4 em testes físicos e mentais · deslocamento -3
+Envenenado 1
+1–3 dano/turno
+Envenenado 2
+4–6 dano/turno · -1 em testes físicos
+Envenenado 3
+7–10 dano/turno · -2 em físicos e mentais
+Toxina
+2–5% HP/turno (crescente) · -3 ou mais em físicos e mentais
+Infectado 1
+-1 a -2 em resistência · dano leve/turno · pode infectar aliados
+Infectado 2
+-3 em físicos e mentais · dano progressivo · alto risco de transmissão
+Infectado 3
+-5 em quase tudo · dano grave · transmissão fácil · morte sem intervenção
+Enfraquecido 1
+-1 em força e ataques · dano -10%
+Enfraquecido 2
+-3 em força, resistência e ataques · dano -20 a -30%
+Enfraquecido 3
+-5 em físicos · dano -50% · deslocamento 1/2
+Desidratado/Faminto 1
+-1 em resistência e força
+Desidratado/Faminto 2
+-2 a -3 em físicos e mentais
+Desidratado/Faminto 3
+-5 em tudo · confusão mental · sem tratamento → morte
+■ Controle
+Condição
+Efeito
+Imobilizado
+Não pode se deslocar · pode usar ações sem movimentação · -2 em testes
+
+
+
+--- PAGE 14 ---
+14
+Condição
+Efeito
+Paralizado
+Incapaz de agir fisicamente · altamente vulnerável · testes de resistência mental para recuperar
+Atordoado
+Inabilitado por 1+ turno · penalidade máxima em físicos e mentais
+■ Mental
+Condição
+Efeito
+Assustado
+-2 em ataque, resistência física e mental · iniciativa e deslocamento -1/turno
+Apavorado
+-4 em todos os testes · só pode fugir ou se proteger
+Desorientado
+-1 a -2 em percepção, iniciativa e ataques · dificuldade de mover em linha reta
+Enlouquecido
+-3 em resistência mental, ataque e defesa · pode agir contra aliados
+Insano
+Falha automática em resistência mental · ações incontroláveis
+Entorpecido
+-1 em agilidade, concentração e iniciativa · efeito temporário
+Drogado 1
+-3 em físicos e mentais · alterações comportamentais
+Drogado 2
+-5 em quase tudo · alucinações · perda de controle motor
+■ Sensorial
+Condição
+Efeito
+Cegueira 1
+-1 a -2 em precisão e percepção visual · alcance -25%
+Cegueira 2
+-3 em ataques à distância · -2 em defesa fora de contato · testes visuais falham
+Cegueira 3 — Total
+Falha automática em tudo que exija visão · combate à distância impossível
+Surdo 1
+-1 a -2 em percepção auditiva e testes sociais
+Surdo 2
+Falha automática em audição fina · -3 em iniciativa · -2 em sociais
+Surdo 3 — Total
+Falha automática em tudo baseado em audição · comunicação verbal impossível
+Silenciado 1
+Incapaz de falar · habilidades verbais bloqueadas
+Silenciado 2
+Perda vocal · -2 em sociais · habilidades verbais bloqueadas
+Mudo
+Perda definitiva da fala · requer comunicação alternativa permanente
+■ Vulnerabilidade
+Condição
+Efeito
+Vulnerável
++50% dano recebido · -1 em defesa e esquiva
+Estado Crítico
+Dano pode ser letal ou dobrado · -4 ou mais em defesa e esquiva
+■ Mágico / Especial
+
+
+
+--- PAGE 15 ---
+15
+Condição
+Efeito
+Amaldiçoado 1
+-1 em testes variados · má sorte leve
+Amaldiçoado 2
+-2 ou mais em testes importantes · possível perda gradual de HP
+Amaldiçoado 3
+-3 a -5 em quase tudo · possíveis deformidades físicas
+Enfeitiçado
+Não pode agir contra a fonte · fonte +10 em sociais com o alvo
+Dominado
+Pode ser compelido a agir por ordens da fonte · inclusive contra aliados
+Charm
+Controle total da vontade · age como subordinado direto da fonte
+Assombro 1
+Atacante recupera 10% do dano como HP · Desvantagem em WLL contra medo
+Assombro 2
+Atacante recupera 20% · 1d4 dano de sombra/turno · Desvantagem em WLL
+Assombro 3
+Atacante recupera 30% · 2d6 dano/turno · cura mágica bloqueada · WLL falha auto

@@ -1,0 +1,877 @@
+
+
+--- PAGE 1 ---
+EXPANSÃO DE COMBATE
+ ARSENAL & ESTILOS
+ UNHEAVEN: ERA · PALIMPSEST
+ DANO ESCALÁVEL
+ PRESSÃO CONTÍNUA
+ IDENTIDADE DE ARMA
+ Condições amplificam dano sem inflar
+ números base
+Thresholds de HP criam tensão do início
+ ao fim
+ Cada arma mantém função e estilo
+ único
+ "Combate é o argumento mais honesto. A pressão revela o que o tempo esconde."
+ v1.0 · Revisão do sistema de combate · Compatível com o Guia de Armas v2.7.6
+ Seth the Freak · Uso interno de campanha
+
+
+
+--- PAGE 2 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+2
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+01 · INTRODUÇÃO
+Por que este documento existe
+O sistema de combate do Unheaven: ERA tem uma identidade forte — mas um problema estrutural que cresce com o nível.
+O PROBLEMA CENTRAL
+A vida escala de 24 → 96 HP (níveis 1–11). O dano das armas permanece quase flat. Resultado:
+Nível
+HP Médio
+Dano Médio (2d10)
+% do HP por ataque
+1
+24
+~11
+~45% — lethal
+5
+60
+~11
+~18%
+11
+96
+~11
+~11% — spongy
+Esta expansão resolve isso sem reescrever as armas. O dano escala via estados e condições, não via números maiores.
+FILOSOFIA DE DESIGN
+✦ Dano via condição, não número. Armas não ficam mais fortes — o contexto fica.
+✦ Pressão crescente. O combate intensifica conforme progride, não estagna.
+✦ Identidade inviolável. Cada arma faz algo que outras não fazem.
+✦ Zero power creep. Nível alto recompensa leitura de jogo, não ficha maior.
+Este documento é compatível com o Guia de Armas v2.7.6. As técnicas existentes não mudam — o que muda é como o
+sistema lê os estados do alvo.
+Regras novas estão marcadas com [NOVO]. Regras revisadas com [REV].
+
+
+
+--- PAGE 3 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+3
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+02 · NÚCLEO DO COMBATE
+Fluxo de turno · Ações · Dano
+O combate funciona em rodadas. Em cada rodada, cada personagem tem um turno com um conjunto fixo de ações.
+TIPOS DE AÇÃO
+Sigla
+Uso
+M — Ação Maior
+Ataque principal, técnica ofensiva pesada, uso de habilidade complexa.
+m — Ação Menor
+Ataque rápido, movimento tático, ativação de postura, recarga curta.
+L — Ação Livre
+Declaração de estado, comunicação, soltar objeto, trocar empunhadura.
+Mv — Movimento
+Deslocamento base do personagem (normalmente 3–4u por turno).
+C — Completa
+Usa M + m no mesmo turno. Commit total — sem reações disponíveis.
+Reação
+Fora do turno. Condicionada a trigger. Limite: 1 por rodada (salvo exceções).
+FLUXO DO TURNO
+SEQUÊNCIA PADRÃO (por turno)
+1 · Ação Maior — Ataque, técnica, ou ação significativa.
+2 · Ação Menor — Ação secundária ou parte do Movimento.
+3 · Movimento — Pode ser dividido antes e depois das ações.
+O jogador pode trocar a Ação Maior por duas Ações Menores. Não pode trocar o contrário.
+O Movimento pode ser dividido: ex. Mv 2u + Ação Menor + Mv 1u.
+SISTEMA DE DANO — REVISADO [REV]
+O dano base das armas não muda. O que escala é o contexto do combate: estados do alvo, condições ativas, e
+posicionamento.
+Fonte de Dano
+Efeito
+Base
+Rola os dados da arma. Aplica RD da armadura.
+Condição: Ferido
++1 dado em todos os ataques recebidos pelo alvo.
+Condição: Crítico
++2 dados em todos os ataques recebidos pelo alvo.
+Vantagem Posicional
+Flanqueado, derrubado, surpreso: +1 dado de dano.
+Estado Ativo
+Sangramento, Fragilizar, etc: efeito adicional conforme regra do estado.
+Crítico (acerto)
+Efeito da arma + bônus adicional conforme estado do alvo (ver Cap. 04).
+Desta forma, um ataque em nível 11 contra um alvo em estado Crítico com Fragilizar ativo causa substancialmente mais
+dano sem que nenhum número base tenha mudado.
+DEFESA
+
+
+
+--- PAGE 4 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+4
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+ESQUIVAR vs. BLOQUEAR
+Esquivar: Teste de Destreza vs. acerto. Se bem-sucedido, evita todo o dano. Gasta a Reação do turno.
+Bloquear (escudo/arma): Reduz dano pela metade ou conforme regra da arma. Pode não gastar Reação se for parte de
+técnica.
+Redução de Dano (RD): Passiva da armadura. Subtraída do dano antes de qualquer cálculo de estado.
+Estados que penalizam Defesa (Ferido, Crítico) reduzem o valor de acerto necessário para acertar o alvo, não o valor de
+Destreza do jogador.
+
+
+
+--- PAGE 5 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+5
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+03 · SISTEMA DE PRESSÃO
+Thresholds de Vida · Estados Progressivos [NOVO]
+O Sistema de Pressão resolve o problema de esponja de HP no late game. Conforme o alvo perde vida, ele entra em estados
+que amplificam o dano recebido e abrem vulnerabilidades.
+OS TRÊS ESTADOS
+ INTACTO
+ FERIDO
+ CRÍTICO
+ 67 – 100% HP
+ 34 – 66% HP
+ 1 – 33% HP
+ Sem efeito adicional. Combate
+ normal.
+ −1 Defesa +1 dado recebido
+ Estados duram +1 turno
+ −2 Defesa +2 dados recebidos
+ Vulnerável a Execução
+REFERÊNCIA DE HP POR NÍVEL
+Valores aproximados baseados na progressão padrão HP 24→96.
+Nível
+HP Máximo
+Ferido a partir de
+Crítico a partir de
+Nível 1
+24 HP
+≤ 15 HP
+≤ 7 HP
+Nível 2
+32 HP
+≤ 21 HP
+≤ 10 HP
+Nível 3
+40 HP
+≤ 26 HP
+≤ 13 HP
+Nível 4
+48 HP
+≤ 31 HP
+≤ 15 HP
+Nível 5
+56 HP
+≤ 36 HP
+≤ 18 HP
+Nível 6
+64 HP
+≤ 42 HP
+≤ 21 HP
+Nível 7
+72 HP
+≤ 47 HP
+≤ 23 HP
+Nível 8
+80 HP
+≤ 52 HP
+≤ 26 HP
+Nível 9
+88 HP
+≤ 58 HP
+≤ 29 HP
+Nível 10
+96 HP
+≤ 63 HP
+≤ 31 HP
+Nível 11
+96 HP
+≤ 63 HP
+≤ 31 HP
+EXECUÇÃO [ESPECIAL]
+QUANDO OCORRE
+Um alvo em estado Crítico pode ser Executado sob as seguintes condições:
+✦ Qualquer Crítico confirmado contra o alvo → rola Constituição DT 5. Falha = incapacitado ou morto (GM decide).
+✦ Técnicas com tag Execução ativam automaticamente em alvo Crítico.
+✦ O threshold de Execução pode ser expandido por feitos/técnicas específicas (ex.: Eliminação da Adaga funciona em alvo
+Ferido se especificado).
+A Execução não é instantânea por padrão — o GM tem autoridade narrativa sobre o resultado. Em PvE: geralmente lethal.
+Em PvP: incapacitado + rendição forçada.
+
+
+
+--- PAGE 6 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+6
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+IMPACTO NO DESIGN
+Por que isso funciona:
+Em nível 1, o alvo com 24 HP entra em Crítico com apenas 8 HP restantes — e a maioria dos ataques já causa dano
+comparável. O sistema de pressão não muda muito early game.
+Em nível 11, o alvo com 96 HP precisa de muito mais dano para entrar em Crítico (32 HP), mas quando entra, cada ataque
+causa +2 dados extras. Um sniper com Mira Sustentada pode executar. Uma adaga de flanqueio tritura.
+O late game não fica spongy — ele fica tenso. A pressão de entrar nos thresholds é uma jogada ofensiva E defensiva.
+
+
+
+--- PAGE 7 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+7
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+04 · CRÍTICOS ESCALÁVEIS
+Como os críticos interagem com os estados [REV]
+Críticos não são mais apenas dano extra ou efeito fixo. Eles interagem com o estado atual do alvo, tornando-se
+progressivamente mais letais.
+TABELA DE INTERAÇÃO
+Estado do Alvo
+Efeito do Crítico
+Tag
+Intacto
+Efeito crítico da arma normalmente.
+Padrão
+Ferido
+Efeito crítico + o estado aplicado agrava em 1 nível (Sangramento 1→2, Fragilizar
+1→2, etc.)
+Agrava estado
+Crítico
+Efeito crítico + Execução disponível (DT Constituição 5). Se falhar: Abatido 1 turno.
+Execução
+CRÍTICOS POR ARMA — COMPORTAMENTO EM CADA ESTADO
+EXEMPLOS REPRESENTATIVOS
+Sangramento (Kukri, Soco Inglês, etc.)
+Intacto: Sangramento 1.
+Ferido: Sangramento 2 direto.
+Crítico: Sangramento 3 + Execução disponível.
+Fragilizar (Manopla, Espada Alexandrina, etc.)
+Intacto: Fragilizar 1.
+Ferido: Fragilizar 2 direto.
+Crítico: Fragilizar 3 + armadura parcialmente destruída.
+Atordoado (Desarmado, Martelos, etc.)
+Intacto: Atordoado 1 turno.
+Ferido: Atordoado + perde próxima Reação.
+Crítico: Atordoado + Execução disponível.
+Abater (Sniper)
+Intacto: +2d10 dano extra.
+Ferido: +2d10 + Derrubado.
+Crítico: Execução automática (DT 6). Falha: incapacitado 2 turnos.
+Vital (Adaga, Revólver, etc.)
+Intacto: Penalidade narrativa (SP -5).
+Ferido: SP -5 + 1 estado adicional.
+Crítico: Execução automática disponível.
+CONFIRMAÇÃO DE CRÍTICO
+O sistema de crítico do Unheaven: ERA permanece como no Livro do Jogador — roll d20, faixa crítica conforme arma. Este
+capítulo apenas define o que acontece após a confirmação.
+Se uma técnica garante Crítico Automático, ela ainda verifica o estado do alvo para determinar o efeito completo.
+
+
+
+--- PAGE 8 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+8
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+05 · PROPRIEDADES DE ARMAS
+Otimizadas · Agrupadas por Função [REV]
+As propriedades foram reduzidas e agrupadas por função. Micro-regras redundantes foram fundidas. Propriedades similares
+em comportamento foram unificadas.
+Total anterior: ~12 propriedades. Total novo: 8 propriedades.
+GRUPO 1 — DANO PERSISTENTE
+Propriedade
+Efeito
+Origem
+Sangramento 1
+1 dano no início de cada turno do alvo.
+Corte/Perfuração
+Sangramento 2
+2 dano/turno + −1 em testes físicos.
+Corte crítico
+Sangramento 3
+3 dano/turno + −1 Defesa + risco de Hemorragia.
+Crítico + acúmulo
+Hemorragia
+5 dano/turno + −2 Defesa + incapacidade progressiva. Requer cura
+imediata.
+Sangramento 3 + trigger
+Curar: Medicina DT 3 (Sangramento 1–2) / DT 5 (Sangramento 3) / DT 6 (Hemorragia). Causa Sangramento 1 automaticamente ao curar Hemorragia.
+GRUPO 2 — ESTRUTURAL
+Propriedade
+Efeito
+Origem
+Fragilizar 1
+−1 RD da armadura (cumulativo por combate).
+Impacto/Armas pesadas
+Fragilizar 2
+−2 RD + −1 em Defesa.
+Crítico + Fragilizar 1
+Fragilizar 3
+−3 RD + −1 Defesa + peça de armadura comprometida.
+Crítico + Fragilizar 2
+Contusão
+Penalidade específica: braço = −2 ataques; perna = −1 Mv; cabeça =
+−1 testes mentais.
+Impacto em membro
+GRUPO 3 — CONTROLE
+Propriedade
+Efeito
+Origem
+Atordoado
+Perde a próxima Ação Maior. −1 Defesa até o início de seu turno.
+Impacto na cabeça/crítico
+Imobilizado
+Não pode se deslocar. Pode ainda atacar. Escape: Força DT
+variável.
+Controle/presa
+Derrubado
+−2 Defesa até gastar Ação Menor para se levantar. Ataques melee
+têm Vantagem.
+Queda/varredura
+Preso
+Membro específico inutilizável. Escape: Força DT conforme técnica.
+Correntes/agarrão
+GRUPO 4 — MENTAL
+Propriedade
+Efeito
+Origem
+Medo
+Recuo forçado de 1u ou −1 em ataques e defesa por 1 turno
+(Vontade DT variável).
+Intimidação/área
+Abatido
+Incapacitado por 1–2 turnos. Não pode agir. Resulta de Execução
+falha ou crítico em Crítico.
+Crítico em Crítico
+
+
+
+--- PAGE 9 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+9
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+REGRAS DE ACÚMULO
+✦ Sangramento e Fragilizar acumulam em nível (1→2→3). Não acumulam instâncias separadas.
+✦ Atordoado e Derrubado não empilham — apenas renovam duração.
+✦ Contusão em membros diferentes são efeitos separados e acumulam normalmente.
+✦ No estado Ferido, estados aplicados duram +1 turno adicional.
+✦ No estado Crítico, Sangramento e Fragilizar avançam diretamente para nível 2 se aplicados em nível 1.
+
+
+
+--- PAGE 10 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+10
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+06 · SNIPER: REDESIGN
+O problema e a solução formal [REV]
+A Sniper é o caso mais grave de escala quebrada. Este capítulo documenta formalmente o problema e apresenta a solução
+integrada ao Sistema de Pressão.
+PROBLEMA IDENTIFICADO
+2d10 causa ~11 dano médio. Em nível 1 (HP 24): devastador. Em nível 11 (HP 96): irrelevante.
+O crítico Abater original não define escala — é apenas 'mata' ou 'quase mata', o que depende do HP relativo e rapidamente
+se torna insignificante.
+O setup de Mira (3 turnos para o tiro definitivo) é custo fixo para retorno decrescente. No late game, o sniper perde
+relevância.
+SOLUÇÃO
+A Sniper agora caça estados. O investimento de Mira determina o que Abater faz contra cada estado. O alvo Crítico
+transforma o sniper em executor.
+ABATER — TABELA COMPLETA [REV]
+Nível de Mira
+Efeito de Abater
+Tag
+Sem Mira
+Penalidade ativa: −3 acerto, −1 dado.
+Nunca
+recomendado
+Mira Rápida (m)
+Tiro normal. Sem bônus de Abater. Crítico: +1d10 extra.
+Básico
+Mira Plena (M)
+Acerto: +1d10. Crítico: +2d10. vs Ferido: derruba. vs Crítico: Execução
+DT 5.
+Padrão
+Mira Sustentada 2 turnos
+vs Intacto: +2d10 + derruba. vs Ferido: Abater automático (sem rolar
+crítico). vs Crítico: Execução DT 6.
+Sniper real
+Mira Sustentada 3+ turnos
+vs Qualquer estado: Abater automático com acerto. vs Crítico: Execução
+DT 8 (difícil sobreviver).
+Tiro definitivo
+IMPACTO NO DESIGN
+Em nível 1–4: 2d10 já é impactante. Abater é raro porque os alvos têm pouco HP — o combate termina antes do setup.
+Em nível 5–8: o setup de 2–3 turnos é viável. Alvos no estado Ferido são prioridade. O sniper começa a ganhar relevância
+estratégica.
+Em nível 9–11: o sniper com Mira Sustentada pode executar um alvo em Crítico garantidamente. O alto HP do late game
+não importa — o que importa é chegar a 33%.
+O sniper vira um amplificador de pressão do grupo: o time desgasta, o sniper finaliza.
+
+
+
+--- PAGE 11 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+11
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+REGRAS ESPECÍFICAS — SNIPER REVISADA
+✦ Respiração Controlada: elimina penalidade de movimentação leve E ambientais. Não muda.
+✦ Antecipar Movimento: agora também ignora o bônus de Defesa passivo do estado Ferido (−1 def não se aplica ao tiro).
+✦ Terror Psicológico: agora em alvos que já estão Feridos, a DT de Vontade aumenta para 6 (pressão acumulada).
+✦ Tiro Definitivo (Afinidade 3): o setup de 3 turnos agora garante Abater independente de crítico. Execução contra Crítico
+sobe para DT 8.
+✦ Autoridade de Alcance: agora limita movimento inimigo a 1u (era 2u) em alvos Feridos.
+
+
+
+--- PAGE 12 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+12
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+07 · IDENTIDADE DAS ARMAS
+Anti-redundância · Funções únicas
+Cada arma ocupa um papel que nenhuma outra preenche completamente. Este capítulo documenta a função única de cada
+arma e como o Sistema de Pressão interage com cada identidade.
+CORPO A CORPO — MATRIZ DE FUNÇÃO
+Arma
+Estilo A
+Estilo B
+Crítico
+Função Única
+Desarmado
+Pressão constante
+Controle via agarrão
+Atordoado
+Nunca desarmado
+Soco Inglês
+Sangramento em corte
+Laceração
+direcionada
+Sangramento
+Explorar ferimentos
+Manopla
+Impacto puro +
+Fragilizar
+Bloqueio ativo
+Fragilizar +
+Concussão
+Anti-armadura leve
+Adaga
+Golpe vital furtivo
+Duelo rápido
+Vital
+Furtividade + posição
+Kukri
+Arco interno
+Dual bleed
+Sangramento
+Anti-escudo + acúmulo
+Cinquedea
+Lâmina larga híbrida
+Duelo próximo
+Vital
+Versátil espaço zero
+Rondel
+Anti-armadura
+penetrante
+Controle + perfurar
+Ignora RD
+Armaduras pesadas
+Cimitarra
+Fluxo de momentum
+Ângulos enganosos
+Desarme
+Velocidade + cadeia
+Katana
+Saque + primeiro corte
+Esgrima disciplinada
+Sangramento
+Timing +
+comprometimento
+Espada Vitoriana
+Footwork + riposte
+Cavaleiro + escudo
+Desarme/Empurr
+ão
+Equilíbrio total
+Espada Alexandrina
+1M versátil
+2M máximo dano
+Derrubar/Fragiliz
+ar
+Escala de empunhadura
+ARMAS DE HASTE — MATRIZ DE FUNÇÃO
+Arma
+Estilo A
+Estilo B
+Crítico
+Função Única
+Lança
+Formação + alcance
+Solo + arremesso
+Empurrar
+Cooperação /
+arremesso
+Tridente
+Prender membros
+Movimento fluido
+Imobilizar
+Controle de
+espaço
+Naginata
+Defesa em alcance
+Fluxo ofensivo
+Desarme
+Zona de exclusão
+2u
+Nagamaki
+Varredura de área
+Haste híbrida
+Derrubar
+Imprevisibilidade
+de modo
+Alabarda
+Lâmina + gancho
+Pique defensivo
+Derrubar/Empurrar 2u
+Três ameaças em
+uma
+Bisento
+Varredura ampla
+Presença
+ameaçadora
+Derrubar em Área
+Limpeza de grupo
+Foice Gigante
+Puxar + reposicionar
+Ângulos impossíveis
+Derrubar + Sangramento
+Anti-posição
+Odachi
+Um golpe perfeito
+Varredura extrema
+Derrubar + Fragilizar
+Maior alcance
+melee
+Zweihander
+Meia-espada tática
+Devastação pura
+Empurrar 2u + Fragilizar
+Autoridade de
+campo
+
+
+
+--- PAGE 13 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+13
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+ARMAS SIMILARES — COMO SE DIFERENCIAM
+Odachi vs Zweihander: Odachi = qualidade de golpe único, escala por acúmulo de Mira e tempo; Zweihander =
+quantidade/autoridade, controle de área, Meia-Espada torna-o imprevisível no espaço próximo.
+Bisento vs Nagamaki: Bisento = varredura limpa de grupos, presença ameaçadora; Nagamaki = imprevisibilidade entre
+espada e haste, alvos únicos confusos.
+Cimitarra vs Katana: Cimitarra = momentum encadeado, nunca para; Katana = timing de saque, comprometimento
+consciente, recompensa pausas.
+Adaga vs Rondel: Adaga = furtividade e ponto vital; Rondel = anti-armadura e controle físico (presa).
+
+
+
+--- PAGE 14 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+14
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+08 · INTERAÇÕES E COMBOS
+Sinergias entre estados · Nenhuma regra oculta
+Combos no Unheaven: ERA emergem de estados que interagem, não de cadeias de técnicas memorizadas. Este capítulo
+documenta as sinergias mais relevantes.
+SINERGIAS DE ESTADO
+Sangramento + Crítico (estado)
+O alvo já perde HP por turno. No estado Crítico: Sangramento 2+ causa Execução automática disponível a cada turno. O tempo
+vira aliado.
+Fragilizar + Arma pesada
+Fragilizar 3 elimina quase toda a RD. Odachi, Zweihander, Machado de Guerra em alvo Fragilizado 3 causam dano integral.
+Devastador.
+Derrubado + Adaga/Rondel
+Alvo derrubado tem −2 Defesa. Adaga com Flanqueio → Crítico automático. Rondel com Execução de Duelo → dano triplicado.
+Sempre usar pós-derrubada.
+Imobilizado + Sniper
+Alvo imobilizado conta como em cobertura zero. Mira Plena + Imobilizado + estado Crítico = Execução garantida. Sinergia de grupo
+definitiva.
+Atordoado + qualquer M+m
+Atordoado remove a Reação do alvo naquele turno. Técnicas M+m telegrafadas se tornam seguras pois o alvo não pode
+interromper.
+Medo + Bisento/Odachi
+Alvo em Medo recua 1u. Bisento alcança 2u. Alvo recuando = sem defesa de posição. Autoridade do Bisento nesse contexto é
+absoluta.
+Sangramento + Movimento
+Foice Gigante (Corte e Arraste): movimento com Sangramento ativo agrava o sangramento. Forçar o alvo a se mover é punição.
+Kombinação com Imobilizar = sadismo tático.
+Fragilizar + Fragili. (acúmulo)
+Martelo de Guerra + Machado de Guerra em sequência. Fragilizar do Martelo destrói a armadura; o Machado causa dano máximo
+no turno seguinte. Parceria ideal anti-armadura.
+SINERGIAS RANGED + MELEE
+Combinação
+Sinergia
+Arco Curto (Saraivada) + Melee rush
+Saturação forçando cobertura → aliado melee avança sem reação. Clássico
+combate de grupo.
+
+
+
+--- PAGE 15 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+15
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+Combinação
+Sinergia
+Pistola (Suprimir e Avançar) + Espada
+Alexandrina
+Pistoleiro suprime → espadachim fecha 2M em segurança. Dois estilos em
+harmonia perfeita.
+Revólver (Marcar Alvo) + Sniper
+Revólver marca (aliados +1 acerto) → sniper com Mira Sustentada em alvo
+marcado. DT de Execução efetivamente reduzida por contexto.
+Zarabatana (veneno paralisante) + Rondel
+Veneno paralisante imobiliza → Rondel (Presa Mortal): Crítico automático + dano
+triplicado. O combo mais letal contra alvo único.
+Rifle de Assalto (Supremacia de Fogo) +
+reposicionamento melee
+Área de 6u suprimida por 1 rodada. Melee reposiciona 4u de graça com
+Cobertura para Aliados. Campo reconfigurado sem custo.
+
+
+
+--- PAGE 16 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+16
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+09 · ESTILOS E O SISTEMA DE PRESSÃO
+Como estilos interagem com os novos estados
+Os Estilos de Combate do Guia de Armas v2.7.6 não mudam. Este capítulo documenta como cada categoria de estilo se
+beneficia ou interage com o Sistema de Pressão.
+ESTILOS DE PRESSÃO
+Inclui: Agressão, Investida, Ferro, Dança, Fluxo, Assalto...
+Estes estilos pressionam o alvo para fazê-lo entrar em estados de HP mais rápido. O objetivo primário é empurrar o alvo para
+Ferido/Crítico para que outros estilos ou aliados finalizem.
+Tática: Priorize acúmulo de Sangramento ou Fragilizar. Cada estado que aplicar prepara o terreno para a finalização. Estilos de
+Pressão SÃO o Early Game do combate.
+ESTILOS DE CONTROLE
+Inclui: Controle, Presa, Pescador, Formação, Meia-Espada...
+Estes estilos brilham quando o alvo está Derrubado, Imobilizado ou Preso. O Sistema de Pressão não os afeta diretamente — eles
+CRIAM as condições para o crítico executar.
+Tática: Combinação ideal: controle imobiliza, aliado com técnica de execução finaliza. Um alvo Imobilizado + Crítico (estado HP) é
+a configuração de execução mais segura do sistema.
+ESTILOS DE FINALIZAÇÃO
+Inclui: Sombra, Iai, Francotirador, Perfurador, Presa Mortal...
+Estes estilos são projetados para o single-hit decisivo. Com o Sistema de Pressão, a condição de ativação (alvo surpreso,
+imobilizado, em Mira Sustentada) agora também verifica o estado HP.
+Tática: No estado Crítico, a DT de Execução é acessível. Estes estilos existem para explorar isso. O alvo deve chegar ao threshold
+via aliados — então o finalizador entra.
+ESTILOS DEFENSIVOS
+Inclui: Guarda Fechada, Defesa em Alcance, Cavaleiro, Observador...
+O Sistema de Pressão é bidirecional. Estes estilos protegem aliados e evitam que PCs entrem em estados de vulnerabilidade.
+Bloquear ataques impede acúmulo de Sangramento. Manter distância evita Fragilizar.
+Tática: Em alvo Crítico (estado do PC), priorize recuar, usar cobertura, e curar Sangramento. Estes estilos são o kit de
+sobrevivência quando as coisas saem errado.
+ESTILOS DE ALCANCE
+Inclui: Saraivada, Precisão, Cobertura, Anti-Armadura...
+Arcos e armas de fogo interagem com os thresholds de duas formas: (1) acumulam dano para empurrar o alvo para o próximo
+threshold, (2) forçam alvos a se cobrir, criando oportunidades de melee.
+Tática: Marcar Alvo (Sniper) + Mira Sustentada em alvo Crítico = o combo de alcance mais impactante. Arco Longo com Volley
+(ângulo alto) é a melhor forma de forçar múltiplos alvos para Ferido simultaneamente.
+
+
+
+--- PAGE 17 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+17
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+10 · REFERÊNCIA RÁPIDA
+Tabelas de sessão · Imprimir e usar
+ESTADOS DE HP
+Estado
+HP%
+Defesa
+Dano recebido
+Especial
+INTACTO
+67–100%
+Normal
+Normal
+—
+FERIDO
+34–66%
+−1
++1 dado
+Estados duram +1 turno
+CRÍTICO
+1–33%
+−2
++2 dados
+Vulnerável a Execução
+PROPRIEDADES — REFERÊNCIA
+DANO
+ESTRUTURAL
+CONTROLE
+MENTAL
+Sangramento 1–3
+Hemorragia
+Fragilizar 1–3 Contusão
+(membro)
+Atordoado Imobilizado
+Derrubado Preso
+Medo Abatido
+CRÍTICOS POR ESTADO
+Estado
+Efeito adicional no crítico
+Intacto
+Efeito crítico da arma normalmente.
+Ferido
+Efeito crítico + agrava estado em 1 nível (Sang. 1→2, Frag. 1→2, etc.).
+Crítico
+Efeito crítico + Execução disponível. DT Constituição 5. Falha: Abatido.
+SNIPER — ABATER POR MIRA E ESTADO
+Mira
+vs Intacto
+vs Ferido
+vs Crítico
+Sem Mira
+−3 acerto, −1 dado
+−3 acerto, −1 dado
+−3 acerto, −1 dado
+Mira Rápida
+Normal
++1d10 crítico
++1d10 + Exec. DT 5
+Mira Plena
++1d10
+Abater: +2d10 + Derruba
+Execução DT 5
+Sustentada 2t
++2d10 + Derruba
+Abater auto. (s/ crítico)
+Execução DT 6
+Sustentada 3t+
+Abater auto.
+Abater auto.
+Execução DT 8
+AÇÕES — RESUMO
+Ação
+Custo
+Uso típico
+Maior (M)
+1 por turno
+Ataque principal, técnica pesada
+Menor (m)
+1 por turno
+Ataque rápido, mira, recarga curta
+Livre (L)
+0
+Declaração, soltar objeto, trocar grip
+Movimento (Mv)
+1 por turno
+Deslocamento (pode dividir)
+Completa (C)
+M + m
+Commit total. Sem reação disponível.
+Reação
+1 por rodada
+Esquivar, bloquear, contra-ataque, interceder
+DANO — TODAS AS FONTES
+Fonte
+Dano Adicional
+Base da arma
+Dados conforme ficha
+
+
+
+--- PAGE 18 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+18
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+Fonte
+Dano Adicional
+Estado Ferido (receptor)
++1 dado extra em TODOS os ataques recebidos
+Estado Crítico (receptor)
++2 dados extras em TODOS os ataques recebidos
+Vantagem posicional (flanqueio, derrubado,
+surpresa)
++1 dado de dano
+Sangramento 1
+1 dano / início de turno
+Sangramento 2
+2 dano / turno + −1 testes físicos
+Sangramento 3
+3 dano / turno + −1 Defesa
+Hemorragia
+5 dano / turno + −2 Defesa + incapacidade progressiva
+
+
+
+--- PAGE 19 ---
+UNHEAVEN: ERA · EXPANSÃO DE COMBATE · Palimpsest Edition
+v1.0
+19
+Seth the Freak · Uso interno de campanha
+Arsenal & Estilos
+11 · NOTAS DE DESIGN
+Raciocínio por trás de cada decisão
+Este capítulo documenta o raciocínio das decisões de design para o GM e para futuras revisões.
+Por que não aumentar os dados de dano das armas?
+Aumentar dados resolve o problema agora mas o recria em cada iteração. Uma Sniper 3d10 no nível 5 seria devastadora early e
+ainda irrelevante late. A solução via estados é permanente — ela escala com o HP, não contra ele.
+Por que 33% e 67% como thresholds?
+São frações naturais que o jogador consegue calcular de cabeça. 33% de 96 = ~32 HP. 67% de 96 = ~64 HP. No late game, entrar
+no estado Crítico ainda requer trabalho — mas quando ocorre, o resultado é dramático. Não queremos thresholds em 50% que
+tornam o late game caótico desde o meio do combate.
+Por que Execução é DT variável e não automática?
+Execução automática tornaria qualquer crítico em alvo Crítico uma morte garantida. Com DT, há tensão: um boss com Constituição
+alta pode sobreviver. Um minion não. A tensão do dado é parte da experiência — o jogador sente a possibilidade, não a certeza.
+Por que reduzir de 12 para 8 propriedades?
+Propriedades raramente usadas eram micro-regras que fragmentavam atenção. Fusionar Contusão de Osso e Fragilizar em
+'Contusão (membro específico)' simplifica sem perder sabor. O sistema fica mais rápido na mesa.
+Por que Sangramento e Fragilizar têm 3 níveis cada?
+Três níveis permitem escala percebida sem tabela complexa. Nível 1 é common, nível 2 é situação de atenção, nível 3 é
+emergência. O jogador entende a severidade imediatamente. Mais de 3 criaria microgestão desnecessária.
+O Sistema de Pressão torna o combate mais letal ou menos?
+Mais letal no late game, mais consistente no early. Isso é intencional. O early game deixa de ser roleta-russa (um crítico pode
+matar) e vira combate tárico. O late game deixa de ser spongy e volta a ter tensão real. A curva de perigo é suavizada e
+redistribuída.
+ "Complexidade não é profundidade. Profundidade é o que sobrevive à simplificação."
+ — Seth the Freak · Unheaven: ERA · Palimpsest

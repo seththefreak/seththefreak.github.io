@@ -1,0 +1,348 @@
+
+
+--- PAGE 1 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · Sistema de Manifestações Revisado
+p. 1
+ UnheaveN: ERA
+ PALIMPSEST
+ SISTEMA DE MANIFESTAÇÕES — REVISÃO KW
+ v3.0-KW · Errata Mecânica
+Esta errata revisa a escala de dano, cura e efeitos de Manifestações para incorporar o KW total (Keyword Weight
+acumulado de Elementos + Formas + Propriedades) como terceira dimensão de escala, ao lado do Tier de Domínio e da
+Amplificação (PE extra). Manifestações com múltiplos Keywords acumulam KW e ganham dados adicionais — refletindo que
+combinar elementos e formas complexas produz efeitos intrinsecamente mais poderosos.
+VII — O Estigma e as Manifestações (Revisado)
+KW — Keyword Weight: O Que É e Para Que Serve
+Toda Manifestação é montada a partir de Keywords: Elementos, Formas e Propriedades. Cada Keyword carrega um KW
+(Keyword Weight) que representa sua complexidade intrínseca — não é o custo de PE, mas o peso conceitual daquela
+linguagem do Estigma.
+O KW Total de uma Manifestação é a soma de todos os KW de cada Keyword usada. Esse valor define bônus de dados
+adicionais à escala base, independente de Amplificação. Múltiplos Elementos, múltiplas Formas ou múltiplas Propriedades
+se acumulam normalmente.
+ DANO / CURA FINAL = Escala Base (Tier + Amplificação) + Bônus KW
+ Progresso Interno/Efetivo (+0 a +3) soma ao resultado final dos dados, como sempre.
+KW por Keyword — Referência Rápida
+O custo de PE e o KW são independentes. Um Elemento pode custar 1 PE mas ter KW 1; outro custa 6 PE e tem KW 5. O
+custo de PE define quanto você gasta; o KW define o peso narrativo-mecânico.
+Elementos
+ KW
+ELEMENTOS
+CUSTO PE BASE
+ 1
+Pyro · Hydro · Geo · Aero · Lux · Umbra
+ 1 PE cada
+ 2
+Cryo · Electro · Plantae · Saxum · Harenae · Fumum
+ 2 PE cada
+ 3
+Vita · Inanis · Sonus · Nebula · Solus
+ 3 PE cada
+ 4
+Ferrum · Hitze · Kalt · Fulgaris · Noctis · Ignis Lux · Plasmoris · Venenis · Chronos Eco
+ 4 PE cada
+ 5
+Krystallis · Aposis · Oblivion · Pestes · Tempus · Fulminis · Anima
+ 6–7 PE cada
+ *
+Elemento Composto (combinação de dois+): KW = soma dos componentes + 1
+ Soma + 1
+Formas
+ KW
+FORMAS
+CUSTO PE BASE
+ 1
+Bola · Parede · Lâmina · Fio · Nuvem · Cilindro · Espinho
+ 1 PE cada
+ 2
+Cúpula · Barreira · Cone · Pilar
+ 2 PE cada
+ 3
+Esfera · Espada Curta · Espada Longa · Lança · Adaga · Corrente
+ 3 PE cada
+ 4
+Armadura Parcial · Golem Pequeno · Runas · Totem
+ 4–5 PE cada
+ 5
+Armadura Completa · Portal · Selo Místico · Invocação
+ 5 PE cada
+
+
+
+--- PAGE 2 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · Sistema de Manifestações Revisado
+p. 2
+ 6
+Nexo
+ 6 PE
+Propriedades
+ KW
+PROPRIEDADES
+CUSTO PE BASE
+ 1
+Brilhante · Ácido · Pesado · Frio · Calor · Silencioso · Afiado
+ 1 PE cada
+ 2
+Dureza · Viscosidade · Velocidade · Elétrico · Magnético
+ 2 PE cada
+ 3
+Venenoso · Perfurante · Explosivo · Paralisante
+ 3 PE cada
+ 4
+Teletransporte · Barreira Mística · Gelo Eterno
+ 4 PE cada
+ 5
+Dreno de PE
+ 5 PE
+ 6
+Chama Perene
+ 6 PE
+ 7
+Fogo Celestial · Dissolução Etária
+ 7 PE cada
+Bônus de Dados por KW Total
+Depois de calcular o KW Total da Manifestação, consulte a tabela abaixo para obter os dados adicionais que somam à
+escala base. Esses dados usam o mesmo tipo (d6, d8) da escala base — se a escala base usa d8, o bônus KW também usa
+d8.
+KW TOTAL
+ BÔNUS DE
+ DADOS
+ DANO EXTRA
+(REFERÊNCIA)
+ NOTAS
+ 1–2
+ —
+ —
+KW baixo: sem bônus extra. Manifestação simples.
+ 3–4
+ +1 dado
+ +1d6/1d8
+Combinação básica começa a render.
+ 5–7
+ +2 dados
+ +2d6/2d8
+Manifestação composta com impacto real.
+ 8–10
+ +3 dados
+ +3d6/3d8
+Alta complexidade. Efeito multidimensional.
+ 11–14
+ +4 dados
+ +4d6/4d8
+Construção elaborada. Requer domínio.
+ 15–19
+ +5 dados
+ +5d6/5d8
+Nível de grande ritual ou invocação.
+ 20+
+ +6 dados
+ +6d8+
+Manifestação catastrófica. Raramente atingível.
+■ O tipo de dado do bônus KW herda o tipo da escala base (Tier + Amplificação). Se a escala base rende d8, o bônus KW também usa d8.
+■ Dano máximo com Progresso incluído: escala base + bônus KW + Progresso Interno/Efetivo.
+Escala de Dano Completa — Tier × Amplificação × KW
+A tabela abaixo mostra o dano da escala base (Tier + Amplificação) sem o bônus KW. O bônus KW é somado depois,
+conforme a tabela anterior.
+ TIER
+ +0
+ +1–2 PE
+ +3–5 PE
+ +6–9 PE
+ +10–14 PE
+ +15+ PE
+Leigo
+ 1d6
+ 1d8
+ 2d6
+ 2d8
+ 3d8
+ 4d8
+Treinado
+ 1d8
+ 2d6
+ 2d8
+ 3d8
+ 4d8
+ 5d8
+Especialista
+ 2d6
+ 2d8
+ 3d8
+ 4d8
+ 5d8
+ 6d8
+Mestre
+ 2d8
+ 3d8
+ 4d8
+ 5d8
+ 6d8
+ 8d8
+Maestria
+ 3d8
+ 4d8
+ 5d8
+ 6d8
+ 8d8
+ 10d8+
+Após determinar a escala base, some o Bônus KW (mesmos dados). Então some Progresso Interno/Efetivo ao resultado final.
+Escala de Cura — Tier × Amplificação × KW
+Cura direta de HP em seres com Vontade exige Vetor Indireto. Cura direta funciona normalmente em objetos e personagens
+inconscientes. O bônus KW segue a mesma lógica do dano.
+ TIER
+ +0
+ +1–2 PE
+ +3–5 PE
+ +6+ PE
+Leigo
+ 1d6+2
+ 1d8+2
+ 2d6+3
+ 2d8+4
+
+
+
+--- PAGE 3 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · Sistema de Manifestações Revisado
+p. 3
+Treinado
+ 1d8+3
+ 2d6+3
+ 2d8+4
+ 3d6+5
+Especialista
+ 2d6+4
+ 2d8+5
+ 3d6+6
+ 3d8+7
+Mestre
+ 2d8+5
+ 3d6+6
+ 3d8+8
+ 4d6+10
+Maestria
+ 3d6+6
+ 3d8+8
+ 4d6+10
+ Restauração significativa
+Bônus KW na cura: same rule — KW 3–4 = +1 dado, KW 5–7 = +2 dados, etc.
+Custo de PE Total de uma Manifestação
+O custo de PE de uma Manifestação é a soma de todos os Keywords + Amplificação. Isso não muda da v3.0 original — o
+que muda é que o KW total agora também escala o dano.
+ PE TOTAL = Custo dos Elementos + Custo das Formas + Custo das Propriedades + PE de
+ Amplificação
+■ KW Total ≠ Custo PE Total. O custo de PE de cada Keyword é fixo na tabela de Elementos/Formas/Propriedades. O KW Total é calculado
+separadamente para determinar o bônus de dados.
+■ Manifestações sustentadas custam metade do KW base por turno (apenas PE de sustento, não amplificação).
+Múltiplos Keywords — Acúmulo e Interação
+Uma Manifestação pode combinar múltiplos Elementos, múltiplas Formas e múltiplas Propriedades. Cada um contribui ao
+KW Total e ao custo de PE. As regras a seguir definem como isso funciona.
+SITUAÇÃO
+REGRA
+EXEMPLO
+2+ Elementos
+Cada Elemento soma seu KW e seu custo PE. Dano de cada
+tipo aplica separadamente — use o dado maior como base,
+demais como bônus de tipo (metade, arredondado).
+Pyro (KW1) + Electro (KW2) → KW 3,
+PE 3 base. Dano: fogo + 50% elétrico.
+2+ Formas
+Cada Forma adicional soma KW +1 (forma secundária), custo
+PE cheio. A primeira Forma define a mecânica principal;
+formas extras adicionam efeitos.
+Bola (KW1) + Cone (KW2) → esfera
+que se abre em cone. KW total +3.
+2+ Propriedades
+Cada Propriedade soma KW e PE cheio. Efeitos coexistem
+normalmente.
+Explosivo (KW3) + Venenoso (KW3) →
+explosão que libera toxina. KW +6.
+Elemento
+Composto
+KW = soma dos componentes + 1. PE = soma + 1.
+Aprovação do Mestre.
+Pyro(1) + Hydro(1) = Vapor. KW 3,
+custo 3 PE.
+■ Não existe limite de Keywords por Manifestação além do PE disponível e da aprovação narrativa do Mestre.
+■ Quando dois efeitos de condição do mesmo tipo coexistem (ex: duas fontes de Sangramento), aplique apenas o maior estágio.
+Exemplos Práticos
+EXEMPLO 1 — Manifestação Simples
+Construção: Pyro (KW 1, 1 PE) + Bola (KW 1, 1 PE) + Calor (KW 1, 1 PE)
+PE Total: 3 PE (Simples — Ação Menor)
+KW Total: 3 → Bônus KW: +1 dado
+Amplificação: 0 PE extra (sem amplificação)
+Personagem: Especialista em Domínio
+Escala base (Especialista, +0): 2d6
+Bônus KW (KW 3–4 = +1 dado): +1d6
+Dano final: 3d6 + Progresso
+Condição: aplica Calor → 1 nível de Queimadura progressiva
+EXEMPLO 2 — Manifestação Composta (Alta KW)
+
+
+
+--- PAGE 4 ---
+UnheaveN: ERA · Palimpsest · v3.0-KW · Sistema de Manifestações Revisado
+p. 4
+Construção: Electro (KW 2, 2 PE) + Fulgaris (KW 4, 4 PE) + Esfera (KW 3, 3 PE) + Elétrico (KW 2, 2 PE) + Paralisante
+(KW 3, 3 PE)
+PE Keywords: 2+4+3+2+3 = 14 PE
+KW Total: 2+4+3+2+3 = 14 → Bônus KW: +4 dados
+Amplificação: +4 PE (Grau IV — Ruptura) → Total PE: 18 (Extrema — Ação Completa)
+Personagem: Mestre em Domínio
+Escala base (Mestre, +6–9 PE): 5d8
+Bônus KW (KW 11–14 = +4 dados): +4d8
+Dano final: 9d8 + Progresso
+Condições: Elétrico (alvos com armadura metálica +1d6) + Paralisante (DT 5 Vontade ou Atordoado)
+EXEMPLO 3 — Manifestação de Cura Composta
+Construção: Vita (KW 3, 3 PE) + Lux (KW 1, 1 PE) + Esfera (KW 3, 3 PE) + Brilhante (KW 1, 1 PE)
+PE Keywords: 3+1+3+1 = 8 PE
+KW Total: 3+1+3+1 = 8 → Bônus KW: +3 dados
+Amplificação: +2 PE → Total PE: 10 (Completa — Ação Maior)
+Personagem: Especialista em Domínio
+Escala base cura (Especialista, +1–2 PE): 2d8+5
+Bônus KW (KW 8–10 = +3 dados): +3d8
+Cura final: 5d8+5 + Progresso
+Efeito adicional: Brilhante emite luz 2u (penalidade a inimigos sensíveis); Lux pode revelar oculto ou purificar venenos
+(narrativo).
+Referência Rápida — Sistema KW
+ #
+PASSO
+AÇÃO
+ 1
+Some os Keywords
+Liste todos os Elementos, Formas e Propriedades. Some os KW e os custos de
+PE.
+ 2
+Defina Amplificação
+Quanto PE extra você injeta? Consulte a tabela de Graus (I a V).
+ 3
+Calcule PE Total
+Custo Keywords + PE de Amplificação = PE gasto. Define o tipo de ação
+(Simples/Avançada/Completa/Extrema).
+ 4
+Escala base (Tier × Amplificação)
+Consulte a tabela de Dano Base usando seu Tier de Domínio e a faixa de
+Amplificação.
+ 5
+Bônus KW
+Consulte a tabela de Bônus KW com o KW Total. Adicione os dados (mesmo tipo
+da escala base).
+ 6
+Role e some
+Role escala base + bônus KW. Some Progresso Interno/Efetivo ao resultado.
+Aplique condições.
+Bônus KW — Resumo
+ KW 1–2
+ KW 3–4
+ KW 5–7
+ KW 8–10
+ KW 11–14
+ KW 15–19
+ KW 20+
+ —
+ +1 dado
+ +2 dados
+ +3 dados
+ +4 dados
+ +5 dados
+ +6 dados
+ UnheaveN: ERA · Palimpsest · v3.0-KW · Sistema criado por Seth the Freak · Uso interno de campanha
