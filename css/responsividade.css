@@ -1,3 +1,15 @@
+/*
+ * Audit refactor:
+ * - Added responsive-local RGB variables for shadow/focus-safe color use.
+ * - Increased touch targets in mobile and coarse-pointer layouts.
+ * - Preserved existing breakpoints and page behavior.
+ */
+
+:root {
+  --responsive-shadow-rgb: 0 0 0;
+  --responsive-accent-rgb: 150 120 200;
+}
+
 /* ============================================================
        RESPONSIVIDADE
     ============================================================ */
@@ -18,7 +30,7 @@
       .brand-name { font-size: 1.05rem; }
       .brand-icon { width: 28px; height: 28px; font-size: 14px; }
       .topbar-actions { gap: 4px; }
-      .btn-icon { padding: 6px; font-size: 0.9rem; }
+      .btn-icon { min-width: 44px; min-height: 44px; padding: 6px; font-size: 0.9rem; }
 
       /* Nav tabs: ocultar da topbar no mobile — vai para bottom nav */
       .nav-tabs { display: none !important; }
@@ -31,7 +43,7 @@
         height: 58px;
         background: var(--bg-card);
         border-top: 1px solid var(--border);
-        box-shadow: 0 -2px 12px rgba(0,0,0,0.10);
+        box-shadow: 0 -2px 12px rgb(var(--responsive-shadow-rgb) / 0.10);
         z-index: 200;
         padding: 0 4px;
         padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -58,7 +70,7 @@
       }
       .bottom-nav-item .bnav-icon { font-size: 1.15rem; line-height: 1; }
       .bottom-nav-item.active { color: var(--text-accent); }
-      .bottom-nav-item.active .bnav-icon { filter: drop-shadow(0 1px 3px rgba(150,120,200,0.4)); }
+      .bottom-nav-item.active .bnav-icon { filter: drop-shadow(0 1px 3px rgb(var(--responsive-accent-rgb) / 0.4)); }
 
       /* Push content above bottom nav */
       .main-content { padding: 12px 10px 72px !important; }
@@ -72,7 +84,7 @@
       .attr-item { padding: 8px 4px; }
       .attr-value { font-size: 1.5rem; }
       .attr-label { font-size: 0.6rem; }
-      .attr-btn { width: 20px; height: 20px; font-size: 0.85rem; }
+      .attr-btn { min-width: 44px; min-height: 44px; font-size: 0.85rem; }
 
       /* Formulários */
       .form-row, .form-row-3 { grid-template-columns: 1fr; }
@@ -121,13 +133,13 @@
 
     /* Touch: larger tap targets */
     @media (hover: none) and (pointer: coarse) {
-      .attr-btn { width: 32px; height: 32px; font-size: 1.1rem; }
-      .btn-qty { width: 32px; height: 32px; }
-      .card-action-btn { width: 36px; height: 36px; }
+      .attr-btn { min-width: 44px; min-height: 44px; font-size: 1.1rem; }
+      .btn-qty { min-width: 44px; min-height: 44px; }
+      .card-action-btn { min-width: 44px; min-height: 44px; }
       .card-actions { opacity: 1; } /* always visible on touch */
-      .hab-toggle { width: 24px; height: 24px; }
-      .int-btn { padding: 10px 16px; font-size: 0.9rem; }
-      .dynamic-remove { width: 36px; height: 36px; }
+      .hab-toggle { min-width: 44px; min-height: 44px; }
+      .int-btn { min-height: 44px; padding: 10px 16px; font-size: 0.9rem; }
+      .dynamic-remove { min-width: 44px; min-height: 44px; }
     }
 
     /* PC wide: max out the layout */

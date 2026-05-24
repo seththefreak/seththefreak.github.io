@@ -1,0 +1,1544 @@
+
+
+--- PAGE 1 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 1
+ UNHEAVEN: ERA v2.7.2 · Seth the Freak
+ GUIA DE MANIFESTAÇÕES
+ EXPANSÃO AVANÇADA
+ v3.0-KW · Atualizado com Sistema de Keyword Weight
+ Formas · Propriedades · Elementos · Alquimia · Projetos · Relíquias · KW Bônus
+ "Desde que tenha uma lógica, tudo é possível."
+ "O sistema apoia a lógica — não a limita."
+ "Encontre o vetor correto, não force um atalho."
+ UNHEAVEN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW
+
+
+
+--- PAGE 2 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 2
+CONTEÚDO
+■ I. Requisitos e Pré-requisitos
+■ II. Formas — Guia Completo
+■ III. Propriedades — Guia Completo
+■ IV. Empilhamento de Keywords — inclui Sistema KW Bônus (NOVO)
+■ V. Elementos Expandidos — Usos Avançados
+■ VI. Combinações Avançadas
+■ VII. Alquimia e Subprodutos
+■ VIII. Encadeamento de Turnos
+■ IX. Projetos Complexos
+■ X. Relíquias e Artefatos
+■ XI. Referência Rápida
+I — Sistema de Requisitos
+Este guia usa um sistema de pré-requisitos para formas, propriedades e projetos avançados. Requisitos refletem o que o
+personagem precisa dominar para executar algo de alta complexidade — não são limitações arbitrárias, mas consequências
+lógicas de competência, treinamento e risco.
+Vocabulário de Requisitos
+ Notação
+ Significado
+ Exemplo
+Alma X+
+Pilar Alma com valor mínimo X
+Alma 2+ = Pilar Alma 2 ou mais
+Sub. Tier
+Subatributo no Tier especificado ou acima
+Afinidade Especialista = Tier Esp. ou
+Mestre/Maestria
+Sub. PI+X
+Subatributo com Progresso Interno mínimo X
+Domínio PI+2 = PI de Domínio 2 ou 3
+Nível X+
+Nível narrativo do personagem
+Nível 5+ = personagem de nível 5 ou acima
+Hab: Nome
+Habilidade específica adquirida
+Hab: Feiticeiro, Analista, Elementalista
+Exp: Elemento
+Experiência prática comprovada com aquele elemento
+Exp: Tempus = uso prévio documentado
+Tier Combinado
+Soma dos Tiers de dois subatributos relevantes
+Afinidade+Domínio Mestre = ambos Mestre ou
+equiv.
+Pilares e Progressão para Manifestações Avançadas
+ Pilar Alma
+ Desbloqueio
+ Observação
+Alma 0
+Sem Estigma. Nenhuma Manifestação.
+Pode perceber anomalias físicas. Sem acesso ao paranormal.
+Alma 1
+Manifestações básicas. Marca Desperta.
+Elementos de 1–2 PE. Formas simples. 1–2 propriedades.
+Alma 2
+Manifestações intermediárias. Sub-arrays.
+Elementos até 4 PE. Combinações. Formas medianas.
+Alma 3
+Manifestações avançadas. Runas Complexas.
+Elementos até 6 PE. Projetos Avançados. Totens Mestres.
+Alma 4
+Manifestações extremas. Projetos Lendários.
+Todos elementos. Mandala, Nexo. Construtos APEX.
+Alma 5
+Apex. Limiar entre personagem e entidade.
+Sem limite teórico de KW. Risco de dissolução de identidade.
+II — Formas — Guia Completo
+A FORMA define como uma Manifestação se manifesta fisicamente no mundo. Cada Forma tem custo próprio de PE (somado
+ao KW total), geometria de efeito, requisitos e restrições. Formas podem ser modificadas por Propriedades. Uma Manifestação
+sem Forma explícita usa Toque por padrão.
+Formas Básicas — Alma 1+, sem requisito especial
+
+
+
+--- PAGE 3 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 3
+ Forma
+ KW
+ Custo
+ PE
+ Req.
+ Descrição
+Toque
+ 0
+ 0 PE
+sem req.
+Contato direto com o alvo. 0 alcance — requer adjacência. Única
+forma que permite transferência direta de Essência.
+Projétil
+ 1
+ 1 PE
+Domínio Treinado
+Linha de visão. Alcance base = 6u + PI Afinidade × 2u. Impossível de
+bloquear fisicamente sem barreira.
+Pulso
+ 1
+ 1 PE
+Poder Treinado
+Onda de Essência irradiada. Raio = 2u + PI de Poder. Afeta tudo no
+raio, inclusive aliados.
+Cone
+ 2
+ 2 PE
+Domínio Treinado
+Forma triangular. Comprimento = 4u + PI Afinidade. Largura = 2u na
+base. Cobre área sem mirar alvos individuais.
+Formas Intermediárias — Afinidade Treinado+
+ Forma
+ KW
+ Custo
+ PE
+ Req.
+ Descrição
+Onda
+ 2
+ 2 PE
+Afinidade Treinado
+Frente de força em linha. 8u comprimento, 2u largura. Empurra
+objetos não-fixos 2u.
+Barreira
+ 2
+ 2 PE
+Afinidade Treinado
+3u × 2u por padrão. HP = PI Poder × 10 + PE gasto × 5. Sustentação
+= metade do KW por turno.
+Fio/Filamento
+ 2
+ 2 PE
+Domínio Especialista
+Linha precisa. Alcance = 10u + PI Domínio × 3u. +1 Progresso efetivo
+em acerto. Ignora RD leve.
+Aura
+ 2
+ 2 PE
+Afinidade Especialista
+Campo que envolve o usuário. Raio = 1u + PI Afinidade. Move-se com
+o usuário. Transferível por contato (+1 PE).
+Impregnar
+ 2
+ 2 PE
+Afinidade Treinado
+Infunde objeto ou superfície. Tamanho máx = PI Afinidade × volume
+de maleta.
+Contínuo
+ 2
+ 2 PE
+Vontade Treinado
+Feixe sustentado. Ativo enquanto usuário mantiver Ação Maior.
+Escala sobe 1 dado após 2 turnos consecutivos.
+Formas Avançadas — Afinidade Especialista+, Alma 2+
+ Forma
+ KW
+ Custo
+ PE
+ Req.
+ Descrição
+Campo
+ 3
+ 3 PE
+Afinidade Esp. + Alma
+2+
+Zona persistente. Raio = 2u + PI Afinidade. Ativação passiva — ser
+que entra sofre o efeito.
+Espiral
+ 2
+ 2 PE
+Domínio Esp. +
+Afinidade Treinado
+Força que orbita e converge em espiral em 2 turnos. Turno 2: +2
+Progresso efetivo.
+Véu
+ 3
+ 3 PE
+Afinidade Esp. + Nível
+4+
+Cobertura que permeia superfície ou volume. Até 6u × 6u. Invisível a
+olho nu.
+Âncora
+ 2
+ 2 PE
+Afinidade Esp.
+Fixa um efeito a um ponto. Persiste sem usuário. Pode ter condição
+de ativação.
+Invocação
+ 3
+ 3 PE
+Alma 2+, Afinidade
+Esp., Nível 4+
+Cria constructo semi-autônomo. Tier Leigo. PI Poder em HP. PI
+Afinidade turnos de duração.
+Rede/Teia
+ 3
+ 3 PE
+Domínio Esp. +
+Afinidade Esp.
+Malha de 4u × 4u. Ser que entra faz Força vs. DT do elemento. Falha
+= preso.
+Formas Mestras — Mestre+, Alma 3+, Nível 6+
+ Forma
+ KW
+ Custo
+ PE
+ Req.
+ Descrição
+Núcleo
+ 3
+ 3 PE
+Domínio Mestre +
+Alma 3+
+Ponto de compressão que detona. Esfera 0.3u, detona em raio = PI
+Afinidade u após 1d4 turnos. +2 dados de dano base.
+Mandala
+ 4
+ 4 PE
+Afinidade Mestre +
+Alma 3+, Nível 6+
+Geometria ritual. Área 5u raio. Toda Manifestação na Mandala: +1
+Progresso efetivo em Poder.
+
+
+
+--- PAGE 4 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 4
+Nexo
+ 4
+ 4 PE
+Afinidade Mestre +
+Alma 3+, Nível 7+
+Liga dois pontos no espaço. Manifestações lançadas em um ponto
+emergem no outro. PI Afinidade horas.
+
+
+
+--- PAGE 5 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 5
+III — Propriedades — Guia Completo
+Propriedades modificam o comportamento de uma Manifestação sem mudar seu Elemento ou Forma. Cada Propriedade
+adiciona PE ao KW e seu valor de KW contribui para o bônus de dados. O número máximo de Propriedades = PI de Afinidade +
+2.
+ Propriedade
+ KW
+ Custo PE
+ Req.
+ Efeito
+Perfurante
+ 1*
+1 PE
+sem req
+Reduz a RD efetiva do alvo pela metade ao calcular dano.
+Silencioso
+ 1*
+1 PE
+sem req
+Sem assinatura visual, auditiva ou térmica. Sensitivo DT 7+
+para notar.
+Rápido
+ 1*
+1 PE
+Domínio Treinado
+Alvo não pode reagir ou esquivar. Sem rolagem de defesa.
+Residual
+ 1*
+1 PE
+sem req
+Deixa rastro de efeito fraco na área por PI Afinidade turnos
+(metade do dano/efeito).
+Expansivo
+ 1*
+1 PE
+Afinidade Treinado
+Área cresce 1u por turno até PI Afinidade máximo.
+Carregado
+ 1*
+1 PE
+Afinidade Treinado
+Pode ser preparado em 1 turno e liberado como Ação Menor.
+Dura PI Afinidade turnos.
+Atrasado
+ 1*
+1 PE
+Afinidade Treinado
+Efeito ocorre 1d4 turnos após ativação. Pode ser abortado
+pelo criador.
+Catalisador
+ 1*
+1 PE
+sem req
+Amplifica material compatível presente. Ex: Pyro em
+Catalisador dobra dano em objetos inflamáveis.
+Preciso
+ 1*
+1 PE
+Domínio Treinado
+Manifestação de área pode excluir alvos designados (PI
+Domínio alvos excluídos).
+Persistente
+ 1*
+1 PE
+Afinidade Treinado
+Duração base dobrada. Custo de sustentação não muda.
+Invertido
+ 2*
+2 PE
+Afinidade Esp.
+Inverte a natureza primária do elemento. Pyro invertido =
+frio-ardente. Mesma mecânica, dano frio.
+Penetrante
+ 2*
+2 PE
+Domínio Esp.
+Atravessa barreiras físicas de espessura <= PI de Domínio
+em decímetros.
+Encadeado
+ 2*
+2 PE
+Domínio Esp.
+Ao acertar, pode pular para 1 alvo adjacente (até PI Domínio
+u). Rolagem −1 PE.
+Dissipante
+ 2*
+2 PE
+Domínio Esp.
+Cancela/dispersa Manifestações ativas de KW <= ao desta.
+Requer DT Domínio vs. Domínio do criador.
+Reflexivo
+ 2*
+2 PE
+Domínio Esp.
+Pode ricochetear 1× em superfície sólida. Muda ângulo
+45–90 graus. Dano −1 dado.
+Selado
+ 2*
+2 PE
+Afinidade Esp.
+Bloqueia o efeito dentro de um volume definido — não vaza
+ou expande para fora.
+Duplo
+ 2*
+2 PE
+Afinidade Esp.
+Divide a Manifestação em dois disparos menores (−1 dado
+cada, alvos distintos).
+Amplificado
+ 2*
+2 PE
+Poder Esp.
+Eleva o dado base em um tipo (1d6→1d8, etc). Não acumula
+com si mesmo.
+Composto
+ varia
+varia
+Afinidade Esp.
+Adiciona segundo elemento ao efeito (custo = metade do
+segundo elemento, min 1 PE).
+Vinculado
+ 2*
+2 PE
+Afinidade Esp.
+Efeito persiste ligado ao alvo específico, não ao espaço.
+Segue o alvo por PI Afinidade turnos.
+Instável
+ −1*
+−1 PE
+Nível 3+
+Reduz custo em 1 PE mas adiciona DT 4 de controle: falha =
+efeito torcido definido pelo Mestre.
+Imune
+ 2*
+2 PE
+Domínio Mestre
+Aliados designados (PI Domínio) são imunes ao efeito
+mesmo em área.
+Sobrenatural
+ 2*
+2 PE
+Afinidade Mestre
+Efeito visível apenas para portadores de Estigma.
+Fisicamente indetectável por não-Estigma.
+Inversão Alvo
+ 3*
+3 PE
+Domínio Mestre
+Redireciona o efeito para um alvo alternativo se o original
+desviar com sucesso (Sabedoria DT 6).
+* As Propriedades do Guia Avançado usam o mesmo sistema de KW da errata v3.0-KW. O KW de cada Propriedade soma ao KW Total da
+Manifestação e contribui para o bônus de dados.
+
+
+
+--- PAGE 6 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 6
+IV — Empilhamento de Keywords
+Empilhamento de Keywords é a prática de combinar múltiplas Formas, Propriedades e Elementos em uma única Manifestação.
+Quanto mais Keywords, maior a complexidade — e maiores os requisitos e riscos de controle. O KW Total também determina
+bônus de dados adicionais.
+Limite de Keywords por Tier de Afinidade
+ Tier de Afinidade
+ Max.
+Keywords
+ Elementos
+ Formas
+ Propriedades
+ Obs.
+Leigo
+ 3
+ 1
+ 1
+ 1
+Manifestações básicas. KW
+<= 4.
+Treinado
+ 5
+ 1–2
+ 1
+ 2–3
+Pode combinar 2 elementos
+básicos.
+Especialista
+ 7
+ 2
+ 2
+ 3–4
+Formas medianas.
+Propriedades avançadas.
+Mestre
+ 10
+ 3
+ 2–3
+ 5–6
+Formas mestras.
+Propriedades mestras.
+Maestria
+ Sem limite
+ Todos
+ Todos
+ Todos
+Limite prático =
+sustentabilidade narrativa.
+KW — Keyword Weight: Sistema de Bônus de Dados
+Cada Keyword (Elemento, Forma, Propriedade) carrega um KW (Keyword Weight) — seu peso conceitual independente do
+custo de PE. O KW Total de uma Manifestação é a soma dos KW de todos os Keywords usados. Esse valor concede dados
+adicionais à escala base, separados da Amplificação.
+DANO / CURA FINAL = Escala Base (Tier + Amplificação) + Bônus KW + Progresso
+KW por Elemento
+ KW
+ Elementos
+ Custo PE Base
+ 1
+Pyro · Hydro · Geo · Aero · Lux · Umbra
+1 PE cada
+ 2
+Cryo · Electro · Plantae · Saxum · Harenae · Fumum
+2 PE cada
+ 3
+Vita · Inanis · Sonus · Nebula · Solus
+3 PE cada
+ 4
+Ferrum · Hitze · Kalt · Fulgaris · Noctis · Ignis Lux · Plasmoris · Venenis ·
+Chronos Eco
+4 PE cada
+ 5
+Krystallis · Aposis · Oblivion · Pestes · Tempus · Fulminis · Anima
+6–7 PE cada
+ Σ+1
+Elemento Composto (combinação de dois+): KW = soma dos componentes +
+1
+Soma + 1 PE
+KW por Forma
+ KW
+ Formas
+ Custo PE Base
+ 1
+Bola · Parede · Lâmina · Fio · Nuvem · Cilindro · Espinho
+1 PE cada
+ 2
+Cúpula · Barreira · Cone · Pilar
+2 PE cada
+ 3
+Esfera · Espada Curta · Espada Longa · Lança · Adaga · Corrente
+3 PE cada
+ 4
+Armadura Parcial · Golem Pequeno · Runas · Totem
+4–5 PE cada
+ 5
+Armadura Completa · Portal · Selo Místico · Invocação
+5 PE cada
+ 6
+Nexo
+6 PE
+KW por Propriedade
+ KW
+ Propriedades
+ Custo PE Base
+ 1
+Brilhante · Ácido · Pesado · Frio · Calor · Silencioso · Afiado
+1 PE cada
+ 2
+Dureza · Viscosidade · Velocidade · Elétrico · Magnético
+2 PE cada
+
+
+
+--- PAGE 7 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 7
+ 3
+Venenoso · Perfurante · Explosivo · Paralisante
+3 PE cada
+ 4
+Teletransporte · Barreira Mística · Gelo Eterno
+4 PE cada
+ 5
+Dreno de PE
+5 PE
+ 6
+Chama Perene
+6 PE
+ 7
+Fogo Celestial · Dissolução Etária
+7 PE cada
+Bônus de Dados por KW Total
+ KW Total
+ Bônus de Dados
+ Dano Extra (ref.)
+ Notas
+ 1–2
+—
+—
+Manifestação simples. Sem bônus extra.
+ 3–4
+ +1 dado
+ +1d6/1d8
+Combinação básica começa a render.
+ 5–7
+ +2 dados
+ +2d6/2d8
+Manifestação composta com impacto real.
+ 8–10
+ +3 dados
+ +3d6/3d8
+Alta complexidade. Efeito multidimensional.
+ 11–14
+ +4 dados
+ +4d6/4d8
+Construção elaborada. Requer domínio.
+ 15–19
+ +5 dados
+ +5d6/5d8
+Nível de grande ritual ou invocação.
+ 20+
+ +6 dados
+ +6d8+
+Manifestação catastrófica. Raramente atingível.
+■ O tipo de dado do bônus KW herda o tipo da escala base. Se a escala base usa d8, o bônus KW também usa d8.
+■ KW Total ≠ Custo PE Total. O custo de PE de cada Keyword é fixo na tabela de Elementos/Formas/Propriedades. O KW Total é calculado
+separadamente para determinar o bônus de dados.
+■ 2+ Elementos: cada Elemento soma KW e custo PE. Dano de cada tipo aplica separadamente — dado maior como base, demais como bônus
+de tipo (metade, arredondado).
+■ 2+ Formas: forma adicional soma KW +1, custo PE cheio. A primeira define a mecânica principal.
+■ 2+ Propriedades: cada Propriedade soma KW e PE cheio. Efeitos coexistem normalmente.
+Cálculo de uma Manifestação — Passo a Passo
+ #
+ Passo
+ Ação
+ 1
+Some os Keywords
+Liste todos os Elementos, Formas e Propriedades. Some KW e custos de PE.
+ 2
+Defina Amplificação
+Quanto PE extra você injeta? Consulte a tabela de Graus (I a V).
+ 3
+Calcule PE Total
+Custo Keywords + PE de Amplificação = PE gasto. Define o tipo de ação.
+ 4
+Escala base (Tier ×
+Amplificação)
+Consulte a tabela de Dano Base usando seu Tier de Domínio e a faixa de Amplificação.
+ 5
+Bônus KW
+Consulte a tabela de Bônus KW com o KW Total. Adicione os dados (mesmo tipo).
+ 6
+Role e some
+Role escala base + bônus KW. Some Progresso Interno/Efetivo. Aplique condições.
+Conflitos: Propriedades Incompatíveis
+ Combinação Inválida
+ Motivo
+ Exceção / Alternativa
+Silencioso + Expansivo
+Expansão cria movimento — inevitavelmente
+detectável.
+Silencioso pode ser usado se área já
+estabelecida.
+Rápido + Atrasado
+Velocidade e atraso são excludentes.
+Use Carregado para preparar e Rápido para
+disparar.
+Instável + Amplificado
+Amplificar algo instável = probabilidade muito
+alta de falha crítica.
+Permitido com Nív 7+ e DT de controle +2.
+Reflexivo + Preciso
+Ricochete invalida a exclusão de alvos
+específicos.
+Reflexivo primeiro, Preciso apenas no tiro
+original.
+Selado + Expansivo
+Conter e expandir são logicamente
+contraditórios.
+Selado define o limite máximo de Expansivo.
+Duplo + Encadeado
+Ambos multiplicam alvos — custo/benefício
+incontrolável.
+Permitido com Afinidade Maestria. KW
+dobrado.
+Inversão Alvo + Reflexivo
+Dois mecanismos de redirecionar conflitam.
+Mestre decide qual tem prioridade na colisão.
+
+
+
+--- PAGE 8 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 8
+Sinergias: Combinações que Reduzem Custo
+ Combinação
+ Redução
+ Condição
+ Efeito Narrativo
+Persistente + Âncora
+−1 PE
+Afinidade Esp.
+Duração do efeito ancorado ainda mais longa.
+Contínuo + Amplificado
+−1 PE
+Vontade Esp.
+Fluxo sustentado naturalmente amplifica.
+Campo + Catalisador
+−1 PE
+Elemento compatível
+presente
+Campo catalisa material ambiental de graça.
+Silencioso + Carregado
+−1 PE
+Domínio Esp.
+Preparação silenciosa é naturalmente oculta.
+Preciso + Imune
+−1 PE
+Domínio Mestre
+Imune e Preciso compartilham lógica de seleção.
+Vinculado + Persistente
+−1 PE
+Afinidade Mestre
+Efeito vinculado já é naturalmente persistente.
+Núcleo + Amplificado
+−1 PE
+Domínio Mestre + Nível 6+
+Núcleo já concentra — amplificar é natural.
+Regras Gerais de Empilhamento
+■ Limite prático: mesmo sem limite de Tier, cada Keyword adicional além de 6 exige DT de Domínio +1 para controlar.
+■ Ordem de resolução: Elemento → Forma → Propriedades (na ordem que logicamente faz sentido).
+■ Propriedades de área vs. alvo: Propriedades de "alvo único" (Rápido, Vinculado) não se aplicam a Formas de área.
+■ KW e instabilidade: KW total acima de 10 sem Maestria em Afinidade exige teste de Domínio DT 6 para não haver deriva.
+■ Cancelamento de Keywords: o usuário pode cancelar Keywords declaradas durante uma Extrema antes de lançar.
+■ Máxima eficiência: Manifestações Definidas representam Keywords já otimizados — desconto de 1 PE.
+■ Aprovação narrativa: Keywords que criem efeitos de escala catastrófica ou irreversível requerem aprovação do Mestre.
+
+
+
+--- PAGE 9 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 9
+V — Elementos Expandidos — Usos Avançados
+Esta seção expande os usos criativos de cada elemento. Os limites são lógicos, não arbitrários — o Mestre julga a coerência do
+vetor proposto.
+PYRO — Fogo, Calor, Ignição (KW 1, 1 PE)
+ Uso Básico
+ Uso Avançado — Domínio Esp.
+ Uso Mestre
+Dano de fogo 1d4+. Cauterizar feridas em
+objetos. Iluminar áreas. Aquecer
+superfícies. Derreter gelo.
+Criar nicho térmico. Controle de combustão em
+fogões/forjas. Sinalização térmica.
+Pyro+Impregnação = roupa que aquece.
+Gradiente térmico preciso. Combustão
+controlada sem oxigênio externo. Campo
+de supressão de chama. Forja espiritual
+com Hitze.
+HYDRO — Água, Líquidos, Pressão (KW 1, 1 PE)
+ Uso Básico
+ Uso Avançado — Domínio Esp.
+ Uso Mestre
+Criar água pura. Dano hidráulico. Apagar
+fogo. Mover objetos por pressão. Resfriar.
+Criar ambiente úmido. Purificar líquidos
+contaminados. Criar bolsa de pressão.
+Propulsão hidráulica.
+Manipular fluidos corporais (plasma
+externo). Pressurização até ruptura. Canal
+hidráulico permanente.
+GEO — Terra, Areia, Estabilidade (KW 1, 1 PE)
+ Uso Básico
+ Uso Avançado — Domínio Esp.
+ Uso Mestre
+Criar paredes de terra. Dano contundente.
+Ancoragem. Cobrir buracos. Plataformas.
+Análise de composição do solo. Criar trincheira
+em 1 turno. Compactação que cria pedra.
+Geo+Impregnação = camuflagem.
+Escultura de terreno em escala
+arquitetônica. Fundação instantânea para
+construção. Geo+Saxum = pedra moldada
+permanente.
+AERO — Vento, Ar, Pressão (KW 1, 1 PE)
+ Uso Básico
+ Uso Avançado — Domínio Esp.
+ Uso Mestre
+Empurrar objetos. Dispersar gases.
+Correntes de ar. Impulsionar projéteis.
+Ventilar.
+Criar vórtice de baixa pressão (sucção). Voar
+brevemente via Vetor Indireto. Separar gases
+por densidade.
+Campo de compressão de ar (dano sônico
+de impacto). Corredor de vento de alta
+velocidade. Protocolo de dispersão
+química.
+LUX — Luz, Revelação, Pureza (KW 1, 1 PE)
+ Uso Básico
+ Uso Avançado — Domínio Esp.
+ Uso Mestre
+Dano radiante. Revelar oculto. Purificar
+venenos em objetos. Campos de luz.
+Revelar Névoa.
+Comunicação via código de luz.
+Lux+Impregnação = sinalizador permanente.
+Revelar runas e Estigmas em objetos.
+Purificação de zona de influência
+paranormal. Revelar Chronos Eco sem o
+elemento. Detectar Estigmas ativos em
+20u.
+VITA — Energia Vital, Regeneração (KW 3, 3 PE)
+ Uso Básico
+ Uso Avançado — Domínio Esp.
+ Uso Mestre
+Regenerar tecidos orgânicos. Remover
+infecções. Acelerar cura natural.
+Vita+Lux = restauração rápida. Totem de
+regeneração de área. Suprimir venenos por
+indireto.
+Vita+Inanis = campo que separa toxinas de
+tecido orgânico. Vita como combustível de
+ressurreição ritual.
+INANIS — Vazio, Negação (KW 3, 3 PE)
+ Uso Básico
+ Uso Avançado — Domínio Esp.
+ Uso Mestre
+Criar zona neutra de Essência. Anular
+Manifestações ambientais.
+Criar sala segura. Anular Manifestações de KW
+<= ao seu. Separar subprodutos de elementos.
+Inanis+Véu = campo supressor permanente
+(requer Runa Mestra). Anular AMK LOW
+em uma rodada.
+NEBULA — Névoa Etérea, Ressonância Espiritual (KW 3, 3 PE)
+
+
+
+--- PAGE 10 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 10
+ Uso Básico
+ Uso Avançado — Domínio Esp.
+ Uso Mestre
+Criar Névoa leve. Revelar traços de
+Estigma. Criar ambiente de sensibilidade
+paranormal.
+Forensica espiritual de objetos. Criar ambiente
+de Névoa controlada para rituais.
+Nebula+Chronos Eco = rever impressões
+espirituais do passado de um local
+(Ocultismo DT 5).
+
+
+
+--- PAGE 11 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 11
+Elementos 4 PE (KW 4) — Usos Avançados
+ Elemento (KW 4)
+ Uso Avançado
+ Uso Mestre
+Ferrum (4 PE)
+Manipular objetos metálicos com precisão cirúrgica.
+Ferrum+Hitze = metal líquido como projétil.
+Ferrum+Saxum = liga mineral-metálica.
+Eletroímã que neutraliza armas metálicas.
+Hitze (4 PE)
+Fundir metais em combate. Hitze+Geo = magma preciso.
+Ambiente de calor extremo seletivo.
+Hitze+Ferrum = forja espiritual em campo de
+batalha. Plasma incipiente: gás ionizado,
+dano de fogo.
+Kalt (4 PE)
+Congelar materiais que resistem a Cryo (concreto, metal).
+Kalt+Saxum = estrutura irrompível.
+Kalt+Cryo = aproximação do zero absoluto
+em volume pequeno. Supercondutividade
+espiritual com Electro.
+Fulgaris (4 PE)
+Fulgaris em cadeia por múltiplos condutores. Fulminação
+precisa em linha reta.
+Fulgaris+Kalt = eletricidade supercondutora.
+Tempestade localizada
+(Fulgaris+Aero+Electro).
+Noctis (4 PE)
+Criar zona de escuridão perceptual. Noctis+Umbra =
+invisibilidade total em zona.
+Noctis+Nebula = dissonância cognitiva —
+ser não sabe onde está nem quem é
+enquanto na zona.
+Ignis Lux (4 PE)
+Purificação de entidades de Névoa em objetos. Dano
+radiante-ígneo. Exorcismo assistido.
+Ignis Lux+Anima = comunicação com
+entidades através de purificação (paradoxo
+de respeito).
+Venenis (4 PE)
+Envenenar superfícies de contato (indireto). Criar subproduto
+ácido com Fumum.
+Venenis+Aposis = decomposição acelerada
+de material orgânico morto. Antídoto
+universal via Venenis invertido.
+Chronos Eco (4
+PE)
+Forensica espiritual: ver quem esteve em local nas últimas
+24h. Detectar rastros de Estigma antigos.
+Chronos Eco+Anima = diálogo com eco
+residual de ser que morreu no local.
+Elementos 6–7 PE (KW 5) — Usos Avançados
+ Elemento (KW 5)
+ Uso Avançado
+ Uso Mestre
+Krystallis (6 PE)
+Criar relíquias de alta resistência como base. Krystallis+Ignis
+Lux = Cristal de Pureza.
+Criação de golem de cristal
+(Invocação+Krystallis). Armadilha cristalina
+de longa duração.
+Aposis (6 PE)
+Degradar estruturas fisicamente (projeto de demolição).
+Aposis+Venenis = corrosão acelerada.
+Aposis+Oblivion = eraser: remove física E
+espiritualmente. Eliminação de evidências
+em escala.
+Oblivion (6 PE)
+Eliminar rastros de Estigma de local. Apagar marcas físicas
+em objetos.
+Oblivion+Véu = área onde nenhuma
+Manifestação deixa rastro. Oblivion em Runa
+Mestra = zona de sigilo permanente.
+Tempus (7 PE)
+Forense temporal: analisar objetos por impressões de tempo.
+Atrasar/acelerar objeto único.
+Tempus+Nebula = reconstrução de evento
+passado em área (DT 7+ Ocultismo). Única
+manipulação de causalidade menor.
+Anima (7 PE)
+Comunicar com entidades ligadas a objetos/locais. Sentir
+memórias de objeto.
+Anima+Nebula = diálogo com Estigmas
+residuais de área. Anima em construto =
+consciência incipiente.
+
+
+
+--- PAGE 12 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 12
+VI — Combinações Avançadas e Reações em Cadeia
+Além das combinações básicas, usuários avançados podem criar reações de 3+ elementos, reações em cadeia e fenômenos
+alquímicos raros. O KW Total dessas combinações frequentemente ultrapassa 10, gerando bônus de dados expressivos.
+Combinações de 2 Elementos — Expandidas
+ A + B
+ Reação
+ KW Total
+ Custo
+ Req.
+Vita + Hydro
+Soro Vital
+ 5
+2+2=4 PE+
+Afinidade Esp.
+Lux + Sonus
+Onda Reveladora
+ 4
+3 PE
+Afinidade Esp.
+Inanis + Geo
+Vazio de Pedra
+ 4
+4 PE
+Mestre Afinidade
+Nebula + Lux
+Revelação de Estigma
+ 4
+3 PE
+Afinidade Esp.
+Cryo + Saxum
+Armadura de Gelo-Pedra
+ 4
+4 PE
+Mestre Afinidade
+Aero + Sonus
+Transmissão Direcional
+ 4
+2 PE
+Afinidade Treinado
+Pyro + Venenis
+Gás Sufocante
+ 5
+4 PE
+Especialista Afinidade
+Umbra + Cryo
+Gelo das Sombras
+ 3
+4 PE
+Mestre Afinidade
+Ferrum + Geo
+Metal da Terra
+ 5
+5 PE
+Mestre Afinidade + Analista
+Noctis + Nebula
+Névoa Negra
+ 7
+5 PE
+Mestre Afinidade
+Chronos Eco + Anima
+Eco de Alma
+ 9
+6 PE
+Maestria Afinidade
+Fulgaris + Ferrum
+Eletroímã Massivo
+ 8
+6 PE
+Mestre Afinidade
+■ KW Total das combinações inclui os KWs dos elementos base. Formas e Propriedades adicionais somam ao KW Total, podendo elevar o
+bônus de dados.
+Combinações de 3+ Elementos — Fenômenos Raros
+Regra: 3 elementos = soma + 2 PE · 4 elementos = soma + 4 PE · 5+ elementos = soma + 6 PE Requisitos: 3 elem. = Esp.
+Afinidade · 4 elem. = Mestre Afinidade · 5+ = Maestria Domínio O KW Total dessas combinações quase sempre atinge +3 a +6
+dados de bônus.
+ Combinação
+ Fenômeno
+ KW
+ Custo
+ Req.
+Pyro+Geo+Hydro
+Vapor de Magma
+ 5
+7 PE
+Esp. Afinidade
+Aero+Electro+Hydro
+Tempestade Localizada
+ 7
+8 PE
+Mestre Afinidade
+Lux+Inanis+Umbra
+Limiar Absoluto
+ 7
+9 PE
+Mestre Afinidade
+Vita+Lux+Sonus
+Frequência Restauradora
+ 7
+8 PE
+Mestre Afinidade
+Cryo+Aero+Saxum
+Tormenta de Cristal
+ 7
+9 PE
+Mestre Afinidade
+Ferrum+Hitze+Saxum
+Metal Absurdo
+ 9
+10 PE
+Mestre Afinidade + Analista
+Neb.+Chronos Eco+Anima
+Santuário da Memória
+ 12
+12 PE
+Maestria + Nível 8+
+Inanis+Geo+Lux
+Cripta Selada
+ 8
+11 PE
+Mestre Afinidade + Nível 6+
+Fulgaris+Ferrum+Aero
+Tormenta Magnética
+ 9
+11 PE
+Maestria Domínio + Nível 7+
+
+
+
+--- PAGE 13 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 13
+VII — Alquimia Avançada e Subprodutos
+Alquimia é a prática de criar materiais físicos ou espirituais persistentes via Manifestação. Todo subproduto alquímico obedece
+à lógica física — não há transmutação mágica arbitrária.
+ Combinação
+ Material
+ Req.
+ Duração
+ Propriedades
+Pyro + Plantae
+Carbono Bruto
+Treinado Afin.
+Instável
+Material estrutural. Base para Diamante
+Espiritual.
+Carbono + Kalt
+Diamante Espiritual
+Esp.+Mestre Afin.
+Permanente
+Dureza extrema. Base para lâminas de corte
+e relíquias de precisão.
+Hydro + Geo
+Lama / Barro
+Leigo
+1d4 rodadas
+Moldável. Endurece em 10 min. Base para
+cerâmica.
+Geo + Hitze
+Cerâmica / Tijolo
+Treinado Afin.
+Permanente
+Material de construção sólido. Resistente ao
+fogo.
+Plantae + Vita
+Resina Orgânica
+Treinado Afin.
+1d6 dias
+Adesiva e flexível. Base para venenos,
+antídotos e lacres.
+Fumum + Venenis
+Ácido Fraco
+Esp. Afin.
+1d4 turnos
+Corrói metal leve e orgânico.
+Cryo + Hydro
+Gelo Puro
+Esp. Afin.
+1d4h sem
+calor
+Gelo estrutural de alta pureza. Transparente.
+Geo + Saxum
+Pedra Moldada
+Treinado Afin.
+Perm. c/ 6+PE
+Pedra pré-formada. Estrutural.
+Ferrum + Hitze
+Metal Forjado
+Esp.+Analista
+Permanente
+Base para relíquias metálicas. Conduz
+Essência.
+Ferrum + Saxum
+Liga
+Mineral-Metálica
+Mestre+Analista
+Permanente
+Alta resistência. Levemente mais leve que
+metal puro.
+Ignis Lux + Krystallis
+Cristal de Pureza
+Mestre Afin.
+Permanente
+Base para Runas Mestras. Conduz Lux puro.
+Hitze+Ferrum+Saxum
+Aço Espiritual
+Mestre+Analista,
+Nív 6+
+Permanente
+Dureza: Diamante espiritual. Conduz
+Essência. Base para relíquias superiores.
+Inanis + Geo
+Pedra Neutra
+Mestre Afin.
+Permanente
+Material que não conduz Essência. Ideal
+para contenção.
+Nebula + Vita
+Neblina Vital
+Mestre Afin.
+3 turnos
+Gás tênue que regenera 1 HP/turno a seres
+que respiram.
+
+
+
+--- PAGE 14 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 14
+VIII — Encadeamento de Turnos — Manifestações Extremas
+Manifestações Extremas (8+ PE) requerem encadeamento de turnos — o usuário canaliza Essência por múltiplos turnos antes
+de liberar. Esta é a técnica de maior potência do sistema.
+Estrutura do Encadeamento
+ Fase
+ Ação
+ Efeito
+1 — Iniciação
+Ação Maior + Ação Menor
+Gasta PE inicial (KW base). Marca começa a brilhar. Declaração de
+elementos.
+2 — Canalização
+Ação Maior por turno
+Gasta PE de manutenção (metade do KW base, por turno). Efeito cresce.
+3 — Liberação
+Ação Maior
+Libera tudo acumulado. Dano/efeito escala conforme tabela abaixo.
+X — Interrupção
+Qualquer
+Dano sofrido = Vontade DT (5 + turnos canalizados). Falha = efeito parcial
+ou aleatório.
+Escala de Dano por Turnos Canalizados
+ Turnos
+ PE Total Acumulado
+ Dado Base
+ (Mestre+)
+ Dado Base
+ (Maestria)
+ Efeito Extra
+ Requisito
+1 turno
+KW base
+ 2d8
+ 3d6
+Nenhum
+Qualquer
+2 turnos
+KW + 50% do KW
+ 3d6
+ 3d8
++1 Propriedade grátis
+Afinidade Esp.
+3 turnos
+KW + KW total
+ 3d8
+ 4d6
++Amplificado grátis
+Mestre Afinidade
+4 turnos
+KW + 2× KW
+ 4d6
+ 4d8
++Penetrante + Amplif.
+Mestre Afinidade
+5 turnos
+KW + 3× KW
+ 4d8
+ 5d6+
+Escala Cataclismo
+Maestria + Nív 9+
+■ O bônus KW do dado base de encadeamento soma ao bônus KW normal da Manifestação. Uma Manifestação Extrema canalizada por 3
+turnos com KW Total 8 recebe: dado base do encadeamento + +3 dados de bônus KW.
+
+
+
+--- PAGE 15 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 15
+IX — Projetos Complexos — Sistema Expandido
+Projetos são ações estendidas que produzem resultados permanentes ou de grande escala: relíquias, construtos, arcologia,
+criação de material alquímico, modificação corporal.
+ Grau
+ Etapas
+ DT/Et.
+ Tempo/Et.
+ Req. Mínimo
+ Resultado Possível
+Simples
+1
+4–5
+1–2h
+Treinado relevante
+Reparar, craftar objeto simples, 1ª runa
+Moderado
+2–3
+5–6
+4–8h
+Especialista + Habilidade
+Relíquia Menor, poção complexa, golem
+simples
+Complexo
+4–6
+6–7
+1–3 dias
+Mestre + Analista + Nív 5+
+Relíquia Maior, Golem Avançado,
+implante
+Avançado
+6–10
+7–8
+3–7 dias
+Mestre 2+ subs + Nív 7+
+Construto PRIME, arcologia, modificação
+corporal
+Lendário
+10+
+8–9
+Semanas+
+Maestria + Equipe + Nív 9+
+Construtos APEX, portais, reescrita
+corporal
+Qualidade de Projetos
+ Qualidade
+ Condição
+ Benefício
+ Penalidade / Risco
+Subpadrão
+Falha parcial em 2+ etapas
+Funciona, mas com limitações.
+−1 durabilidade. Chance de falha em
+uso crítico.
+Padrão
+Sucesso em todas as
+etapas
+Funciona conforme especificado.
+Nenhuma.
+Superior
+Crítico em 1+ etapas +
+20% PE cap
++1 dado de dano (armas).
+Mais reconhecível por usuários de
+Estigma.
+Obra-Prima
+Crítico em 3+ etapas ou
+Maestria
+Propriedade extra. Menor custo de
+ativação.
+Atrai interesse de entidades e
+colecionadores.
+Lendário
+Crítico na maioria + Nív 9+
+Relíquia com Vontade. Único no
+mundo.
+Pode ter agenda própria. Impossível
+duplicar.
+
+
+
+--- PAGE 16 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 16
+X — Relíquias e Artefatos — Sistema Completo
+Relíquias são objetos imbuídos com efeitos permanentes. Diferente de runas (que armazenam PE para usar), relíquias
+incorporam o efeito como propriedade do objeto. O KW Total do efeito imbuído contribui para a potência da relíquia.
+ Tier
+ PE Total
+ Req. Criador
+Propriedades
+ Vontade
+ ?
+ Efeito Especial
+Sigilo / Runa Simples
+2–8 PE
+Treinado Afin.
+1 KW fixo
+Não
+1d4 usos. Ativa por contato.
+Relíquia Menor
+5–15 PE
+Esp. Afin., Nív 3+
+1–2 fixas
+Não
+Funciona sem usuário Estigma
+presente.
+Relíquia Média
+16–29 PE
+Mestre Afin., Nív 5+
+2–3 + gatilho
+Não
+Propriedade ativa e passiva.
+Regenera PE próprio.
+Relíquia Maior
+30–50 PE
+Maestria ou equipe,
+Nív 7+
+3–5 +
+Mandala
+Possível
+Vontade surge se PE >= 30.
+Lealdade.
+Relíquia
+Transcendente
+50+ PE
+Maestria + Nív 9+ +
+projeto
+Ilimitadas
+Sim
+Agenda própria. Pode recusar uso.
+Desenvolvimento.
+
+
+
+--- PAGE 17 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 17
+XI — Referência Rápida — Expansão Avançada v3.0-KW
+Formas — Custo e KW
+ Forma
+ KW
+ Custo
+Toque
+ 0
+0 PE
+Projétil
+ 1
+1 PE
+Pulso
+ 1
+1 PE
+Cone
+ 2
+2 PE
+Onda
+ 2
+2 PE
+Barreira
+ 2
+2 PE
+Fio
+ 2
+2 PE
+Aura
+ 2
+2 PE
+Impregnar
+ 2
+2 PE
+Contínuo
+ 2
+2 PE
+Campo
+ 3
+3 PE
+Espiral
+ 2
+2 PE
+Véu
+ 3
+3 PE
+Âncora
+ 2
+2 PE
+Invocação
+ 3
+3 PE
+Rede
+ 3
+3 PE
+Núcleo
+ 3
+3 PE
+Mandala
+ 4
+4 PE
+Nexo
+ 4
+4 PE
+Propriedades — Custo e KW
+ Propriedade
+ KW
+ Custo
+Perfurante
+ 1
+1 PE
+Silencioso
+ 1
+1 PE
+Rápido
+ 1
+1 PE
+Residual
+ 1
+1 PE
+Expansivo
+ 1
+1 PE
+Carregado
+ 1
+1 PE
+Atrasado
+ 1
+1 PE
+Catalisador
+ 1
+1 PE
+Preciso
+ 1
+1 PE
+Persistente
+ 1
+1 PE
+Penetrante
+ 2
+2 PE
+Encadeado
+ 2
+2 PE
+Dissipante
+ 2
+2 PE
+Reflexivo
+ 2
+2 PE
+Selado
+ 2
+2 PE
+Duplo
+ 2
+2 PE
+Amplificado
+ 2
+2 PE
+Composto
+ var
+var
+Vinculado
+ 2
+2 PE
+Invertido
+ 2
+2 PE
+Instável
+ −1
+−1 PE
+Imune
+ 2
+2 PE
+Sobrenatural
+ 2
+2 PE
+Inversão Alvo
+ 3
+3 PE
+KW — Bônus de Dados (Referência Rápida)
+ KW 1–2
+ KW 3–4
+ KW 5–7
+ KW 8–10
+ KW 11–14
+ KW 15–19
+ KW 20+
+ —
+ +1d
+ +2d
+ +3d
+ +4d
+ +5d
+ +6d
+Dado do bônus = mesmo tipo da escala base (Tier × Amplificação). Some Progresso ao resultado final.
+Encadeamento — Escala Rápida
+ Turnos
+ Dado Base Mestre
+ Dado Base
+ Maestria
+ Efeito Extra
+ Req.
+1 turno
+ 2d8
+ 3d6
+Nenhum
+Qualquer
+2 turnos
+ 3d6
+ 3d8
++1 Prop grátis
+Afin. Esp.
+3 turnos
+ 3d8
+ 4d6
++Amplificado grátis
+Mestre Afin.
+4 turnos
+ 4d6
+ 4d8
++Penetrante+Amplif.
+Mestre+Nív7
+5 turnos
+ 4d8
+ 5d6+
+Escala Cataclismo
+Maestria+Nív9
+
+
+
+--- PAGE 18 ---
+UnheaveN: ERA v2.7.2 · Guia de Manifestações — Expansão Avançada · v3.0-KW · Pág. 18
+Tiers de Relíquia
+ Tier
+ PE
+ Req.
+Sigilo/Runa
+2–8
+Treinado
+Relíquia Menor
+5–15
+Esp.+Nív3
+Relíquia Média
+16–29
+Mestre+Nív5
+Relíquia Maior
+30–50
+Maestria+Nív7
+Transcendente
+50+
+Maestria+Nív9+
+Qualidade de Projetos
+ Qualidade
+ Condição
+Subpadrão
+2+ etapas em falha parcial
+Padrão
+Sucesso normal
+Superior
+Crítico em 1+ etapas
+Obra-Prima
+3+ críticos
+Lendário
+Maioria críticos + Nív9+
+ "Desde que tenha uma lógica, tudo é possível." "O sistema apoia a lógica — não a limita. Encontre o vetor correto, não
+ force um atalho."
+ UNHEAVEN: ERA v2.7.2 · Sistema por Seth the Freak · Guia de Manifestações — Expansão Avançada · v3.0-KW Uso interno de campanha

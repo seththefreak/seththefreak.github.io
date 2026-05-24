@@ -1,0 +1,2262 @@
+
+
+--- PAGE 1 ---
+UnheaveN: ERA
+ PALIMPSEST
+ GUIA AVANÇADO
+ Manifestações · Condições · Extensões
+ "Desde que tenha uma lógica, tudo é possível."
+ "O sistema apoia a lógica — não a limita."
+ "Encontre o vetor correto, não force um atalho."
+ v3.0 · Edição Palimpsest · Expansão Avançada
+ Atualizado com base no Sistema Unificado v3.0 e Livro do Jogador v3.0
+ Sistema criado por Seth the Freak · Todos os direitos reservados · Uso interno de campanha
+
+
+
+--- PAGE 2 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 2
+ — SUMÁRIO —
+I Sistema de Requisitos e Pré-requisitos
+II Formas de Manifestação — Guia Completo
+III Propriedades de Manifestação — Guia Completo
+IV Empilhamento de Keywords
+V Elementos — Usos Avançados
+VI Combinações Avançadas e Reações em Cadeia
+VII Alquimia e Subprodutos
+VIII Encadeamento de Turnos
+IX Projetos Complexos
+X Relíquias e Artefatos
+XI Catálogo Verloren — Condições Completas
+XII Referência Rápida
+■ NOVO/ATUALIZADO em v3.0 Escala de dano canônica · Elementos novos (Fulgaris, Noctis, Plasmoris, Venenis) · Adaga
+Elemental · Ajustes de PE em Formas e Propriedades · Referência Rápida completa
+
+
+
+--- PAGE 3 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 3
+ — I —
+ Sistema de Requisitos e Pré-requisitos
+Vocabulário de Requisitos
+Os requisitos refletem o que o personagem precisa dominar para executar manifestações de alta complexidade. Não são
+limitações arbitrárias, mas consequências lógicas de competência, treinamento e risco.
+Notação
+Significado
+Exemplo
+Alma X+
+Pilar Alma com valor mínimo X
+Alma 2+ = Pilar Alma 2 ou mais
+Sub. Tier
+Subatributo no Tier especificado ou acima
+Afinidade Especialista = Tier Esp. ou superior
+Sub. PI+X
+Subatributo com Progresso Interno mínimo X
+Domínio PI+2 = PI de Domínio 2 ou 3
+Nível X+
+Nível narrativo do personagem
+Nível 5+ = personagem de nível 5 ou acima
+Hab: Nome
+Habilidade específica adquirida
+Hab: Feiticeiro, Analista, Elementalista
+Exp: Elem.
+Experiência prática com aquele elemento
+Exp: Tempus = uso prévio documentado
+Tier Comb.
+Soma dos Tiers de dois subatributos
+Afinidade+Domínio Mestre = ambos Mestre equiv.
+Escala de Pré-requisitos — Visão Geral
+Faixa
+Req. Mínimo
+Capacidades
+INICIANTE
+Leigo → Treinado
+Alma 1+, subatributos básicos
+Formas simples, 1 prop., Elementos 1–2 PE
+COMPETENTE
+Treinado → Especialista
+Alma 2+, Afinidade Treinado
+Formas medianas, 2–3 props., Elementos até 3 PE
+AVANÇADO
+Especialista → Mestre
+Alma 2+, Nível 4+, multi-subs
+Formas complexas, 4–5 props., Elementos até 4 PE
+MESTRE
+Mestre → Maestria
+Alma 3+, Nível 7+, habs. específicas
+Formas mestras, 6+ props., Elementos até 6 PE
+TRANSCENDENTE
+Maestria
+Alma 4+, Nível 9+, exp. documentada
+Projetos lendários, construtos, todos os elementos
+Pilares de Alma e Desbloqueios
+Alma
+Desbloqueio
+Observação
+0
+Sem Estigma. Nenhuma Manifestação.
+Pode perceber anomalias físicas. Sem acesso ao paranormal.
+1
+Manifestações básicas. Marca Desperta.
+Elementos 1–2 PE. Formas simples. 1–2 propriedades.
+2
+Manifestações intermediárias. Sub-arrays.
+Elementos até 4 PE. Combinações. Formas medianas.
+3
+Manifestações avançadas. Runas Complexas.
+Elementos até 6 PE. Projetos Avançados. Totens Mestres.
+4
+Manifestações extremas. Projetos Lendários.
+Todos os elementos. Mandala, Nexo. Construtos APEX.
+5
+Apex. Limiar entre personagem e entidade.
+Sem limite teórico de KW. Risco de dissolução de identidade.
+
+
+
+--- PAGE 4 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 4
+ — II —
+ Formas de Manifestação — Guia Completo
+A Forma define como uma Manifestação se manifesta fisicamente no mundo. Cada Forma tem custo próprio de PE (somado ao
+KW total), geometria de efeito, requisitos e restrições. Formas podem ser modificadas por Propriedades. Uma Manifestação sem
+Forma explícita usa Toque por padrão.
+Formas Básicas — Alma 1+, sem requisito especial (0–1 PE)
+Toque 0 PE
+Req: Alma 1+ | Alcance: Adjacência (1u) | Área: Contato
+Contato direto com alvo ou superfície. A forma mais eficiente — sem perda de PE por distância. Única que permite transferência
+de Essência diretamente.
+Restrição: Expõe o usuário. Inimigos com AM livre podem contra-atacar imediatamente.
+Projétil 1 PE
+Req: Domínio Treinado | Alcance: 6u + PI Afin.×2 | Área: Ponto de impacto
+Força concentrada lançada em direção a um alvo. Impossível de bloquear fisicamente sem barreira. Acerto: Domínio vs.
+Destreza do alvo.
+Restrição: Linha de visão obrigatória. Cobertura total = imune.
+Pulso 1 PE
+Req: Poder Treinado | Alcance: Raio 2u + PI Poder | Área: Esfera ao redor
+Onda de Essência irradiada a partir do usuário. Acerto automático dentro do raio. Afeta tudo no raio, inclusive aliados.
+Restrição: Não pode ser direcionado. Usuário no epicentro pode sofrer ricochete sem proteção.
+Cone 2 PE
+Req: Domínio Treinado | Alcance: 4u + PI Afin. | Área: Cone 90° à frente
+Forma triangular irradiada em direção escolhida. Cobre área sem precisar mirar individualmente. Domínio define DT de defesa
+dos alvos.
+Restrição: Usuário deve escolher direção ao declarar. Não rastreia alvos.
+Bola 1 PE
+Req: Alma 1+ | Alcance: 8u | Área: Ponto de impacto
+Projétil compacto e denso. Atinge um alvo. Mais volumoso que o Projétil — menos preciso, mais impacto físico. Pode
+ricochetear.
+Restrição: Linha de visão obrigatória.
+Parede 1 PE
+Req: Alma 1+ | Alcance: Contato | Área: 2u × 4u
+Barreira plana que bloqueia passagem e linha de visão. Construída a partir do ponto de contato do usuário.
+Restrição: Não pode ser movida após criada sem nova Manifestação.
+Lâmina 1 PE
+Req: Alma 1+ | Alcance: Contato / 2u | Área: Corte em arco
+Formato de lâmina elemental. Pode cortar, aparar ou criar arma temporária. Permite atacar com Domínio em vez de Força.
+Restrição: Arma elemental dura 1 cena ou enquanto sustentada (KW÷2/turno).
+
+
+
+--- PAGE 5 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 5
+Fio 1 PE
+Req: Alma 1+ | Alcance: 6u | Área: Linha fina
+Fio tenso ou cortante de Essência. Imobilizar, armar armadilha, cortar em linha. Difícil de perceber (Percepção DT 5).
+Restrição: Afeta apenas alvos na linha direta. Sem área.
+Nuvem 1 PE
+Req: Alma 1+ | Alcance: 4u | Área: Raio 2u
+Área difusa de elemento. Não tem forma sólida. Impede visão ou cobre área com efeito passivo.
+Restrição: Dissipa-se com Aero (Dispersão) ou vento forte.
+Cilindro 1 PE
+Req: Alma 1+ | Alcance: Contato | Área: Raio 1u, Alt. 3u
+Coluna vertical de elemento. Bloqueia terreno ou ergue superfície. Pode servir como prisão temporária ou plataforma.
+Restrição: Cilindro invertido pode aprisionar alvos aéreos.
+Espinho 1 PE
+Req: Alma 1+ | Alcance: Contato | Área: 1u
+Ponta concentrada de Essência. Perfeito para perfuração ou fixação. Crítico: ignora 2 RD adicional.
+Restrição: Espinhos múltiplos em área: +1 PE por unidade adicional de raio.
+Formas Intermediárias — Afinidade Treinado+ (2–3 PE)
+Cúpula 2 PE
+Req: Afinidade Treinado | Alcance: Contato | Área: Raio 3u
+Hemisfério protetor que bloqueia projéteis e efeitos de área. PV base = PI Poder ×10 + PE gasto ×5. Sustentável: KW÷2 por
+turno.
+Restrição: Aliados dentro precisam sair ativamente para agir fora.
+Barreira 2 PE
+Req: Afinidade Treinado | Alcance: 6u | Área: 4u × 2u
+Parede mais resistente e posicionável à distância. Pode bloquear Manifestações de KW menor. HP: PI Poder ×15. RD = Tier de
+Afinidade.
+Cubo 2 PE
+Req: Afinidade Treinado | Alcance: Contato | Área: 2u × 2u × 2u
+Volume sólido de elemento. Cria obstáculo tridimensional ou enclausura área completa.
+Plataforma 2 PE
+Req: Afinidade Treinado | Alcance: Contato | Área: 3u × 3u
+Superfície flutuante capaz de sustentar peso. Pode ser movida verticalmente (2u/turno com Mv). PI Poder determina carga
+máxima.
+Pilar 2 PE
+Req: Afinidade Treinado | Alcance: Contato | Área: Raio 1u, Alt. 5u
+Coluna de impacto que arremessa ou fixa alvos. Alvo sobre o pilar: Constituição DT 5 ou arremessado (dano de queda).
+Esfera 3 PE
+Req: Afinidade Treinado | Alcance: 4u | Área: Raio 2u
+Bolha de elemento que pode envolver alvo ou área. Completamente fechada em todas as direções. Esfera pressurizada (+2
+PE): explode ao ser quebrada.
+
+
+
+--- PAGE 6 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 6
+Onda 2 PE
+Req: Afinidade Treinado | Alcance: 8u de comprimento | Área: 2u de largura
+Frente de força propagada em linha. Move-se pelo ambiente. Empurra objetos não-fixos 2u. Água amplifica Hydro/Electro.
+Restrição: Não vira cantos. Para ao atingir barreira sólida suficiente.
+Escada 3 PE
+Req: Afinidade Treinado | Alcance: Contato | Área: Variável
+Estrutura escalável para navegação vertical. Pode ser inclinada, em espiral ou reta.
+Formas — Armas Elementais (3 PE) ■ Adaga adicionada em v3.0
+Forma
+PE
+Req.
+Dano
+Alcance
+Descrição
+Espada Curta
+3
+Domínio Treinado
+1d8 Corte/Elem.
+CaC (1u)
+Lâmina elemental leve. Uma mão. Crítico: efeito elemental.
+Espada Longa
+3
+Domínio Treinado
+1d10 Corte/Elem.
+CaC (1u)
+Versátil: 1 ou 2 mãos (+1d4 c/ 2M). Crítico: Sangramento elemental.
+Lança
+3
+Domínio Treinado
+1d8 Perf./Elem.
+CaC (2u)
+Alcance 2u. Mantém distância. Cryo: imobilizado em crítico.
+Adaga
+3
+Domínio Treinado
+1d6 Perf./Elem.
+CaC / 4u
+Leve. Pode ser arremessada (alcance 4u). Versátil em espaços confinados.
+Arco
+3
+Domínio Treinado
+1d8 Perf./Elem.
+Distância (12u)
+Munição elemental ilimitada. Usa Pontaria para acerto.
+Corrente
+3
+Domínio Treinado
+1d8 Impacto/Elem.
+3u
+Pode imobilizar (Força DT 5). Crítico: Imobilizado 1 turno automático.
+Duração de armas elementais: 1 cena ou enquanto sustentada (KW÷2/turno).
+Formas Avançadas — Afinidade Especialista+, Alma 2+ (2–3 PE)
+Campo 3 PE
+Req: Afin. Esp. + Alma 2+ | Alcance: Fixo no ponto | Área: Raio 2u + PI Afin.
+Zona persistente de efeito em área. Qualquer ser que entra sofre o efeito automaticamente. Altura padrão: 3u. Dois campos
+sobrepostos de elementos compatíveis = reação elemental automática.
+Restrição: Área fixa — não se move. Afeta aliados indiscriminadamente sem Propriedade Imune.
+Espiral 2 PE
+Req: Dom. Esp. + Afin. Treinado | Alcance: Raio inicial 3u → central | Área: Convergente
+Força que orbita e converge. Turno 1: metade do dano. Turno 2: dano total + condição de impacto. No T2: +2 Progresso efetivo
+— desvio muito difícil.
+Restrição: Alvo pode escapar se deslocar 4u+ no turno 1.
+Véu 3 PE
+Req: Afin. Esp. + Nível 4+ | Alcance: Superfície ou volume | Área: 6u × 6u
+Cobertura que permeia superfície ou volume — invisível a olho nu. Torna a superfície impregnada com o elemento. Detectável:
+Sensitivo DT 5, Ocultismo DT 4.
+Restrição: Seres com Vontade atravessando percebem resistência leve.
+Âncora 2 PE
+Req: Afinidade Esp. | Alcance: Ponto, objeto ou coordenada | Área: Estacionária
+Fixa um efeito a um ponto mesmo sem usuário presente. Duração base: PI Afin. dias. Configurável com gatilho de ativação
+(Treinado = 1 gatilho; Mestre = 4+).
+Restrição: Destruir o objeto âncora destroi o efeito.
+
+
+
+--- PAGE 7 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 7
+Rede/Teia 3 PE
+Req: Dom. Esp. + Afin. Esp. | Alcance: 4u à frente | Área: 4u × 4u
+Malha interligada. Filamentos de 0.1u. Ser que entra: Força vs. DT elemental. Falha = preso. Cada turno preso, elemento age
+sobre o ser.
+Restrição: Pode ser rompida por Força Mestre ou equivalente.
+Fio/Filamento 2 PE
+Req: Domínio Esp. | Alcance: 10u + PI Dom.×3 | Área: Linha mm
+Linha precisa e fina de Essência. +1 Progresso efetivo em acerto. Ignora cobertura parcial. Pode ser usado para corte cirúrgico
+ou acupuntura espiritual.
+Restrição: Afeta apenas um alvo por uso. Sem área de efeito.
+Aura 2 PE
+Req: Afinidade Esp. | Alcance: Move com o usuário | Área: Raio 1u + PI Afin.
+Campo que envolve o usuário ou objeto tocado. Afeta tudo que entra no raio. Pode ser protetiva ou ofensiva. Sustentada —
+custo normal por turno.
+Restrição: Usuário dentro da própria Aura pode ser afetado se não protegido.
+Contínuo 2 PE
+Req: Vontade Treinado | Alcance: Linha 8u | Área: Feixe ou fluxo
+Feixe sustentado enquanto concentrado. Aplica efeito a cada turno. Escala sobe 1 dado após 2 turnos consecutivos. Requer
+Ação Maior por turno.
+Restrição: Qualquer dano exige Vontade DT 5 ou o feixe para. Sem movimento durante uso.
+Impregnar 2 PE
+Req: Afinidade Treinado | Alcance: Objeto tocado | Área: PI Afin. ×maleta
+Infunde um objeto ou superfície com o elemento. Duração: PI Afin. horas, ou permanente com Runas. Armas encantadas só
+beneficiam o portador.
+Restrição: Apenas objetos sem Vontade. Não afeta seres diretamente.
+Invocação 3 PE
+Req: Alma 2+, Afin. Esp., Nív.4+ | Alcance: Ponto de invocação | Área: Construto PI Poder HP
+Cria constructo semi-autônomo de Tier Leigo. Executa comandos simples. Age na iniciativa do criador. Duração: PI Afin. turnos.
+Restrição: Sem Vontade própria. Não toma iniciativa. Desobedece se criador inconsciente.
+Formas Mestras — Mestre+, Alma 3+, Nível 6+ (3–5 PE)
+Núcleo 3 PE
+Req: Dom. Mestre + Alma 3+ | Alcance: Estacionário | Área: Esfera 0.3u → raio PI Afin.
+Ponto de compressão extrema que detona após 1d4 turnos. Dano na explosão: +2 dados de dano base. Área ao redor sofre
+50% do dano. Dois Núcleos em colisão = dano triplicado na interseção.
+Restrição: Detonação acidental se criador inconsciente ou falhar Vontade.
+Mandala 4 PE
+Req: Afin. Mestre + Alma 3+, Nível 6+ | Alcance: Fixo no ponto | Área: Raio 5u, 2–4 nodos
+Geometria ritual de máxima eficiência. Toda Manifestação na Mandala tem +1 Progresso efetivo em Poder. Permanece por PI
+Afin. cenas. Mandalas sobrepostas criam amplificação cumulativa.
+Restrição: Criação = 1 turno completo (sem AM ou MOV). Pode ser sabotada ou destruída.
+
+
+
+--- PAGE 8 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 8
+Nexo 4 PE
+Req: Afin. Mestre + Alma 3+, Nível 7+ | Alcance: Ilimitada (pontos conhecidos) | Área: Dois pontos
+Liga dois pontos no espaço. Manifestações lançadas em um ponto emergem no outro. Duração: PI Afin. horas. Pode ser
+estabilizado com Runa Mestra.
+Restrição: Ambos os pontos devem ter sido tocados pelo usuário anteriormente.
+Armadura Parcial 4 PE
+Req: Dom. Esp. + Alma 2+ | Alcance: Corpo do usuário | Área: Partes específicas
+Reveste partes do corpo em elemento. RD +8 elemental. Ocupa Ação Completa para manifestar. Com Regenerante: barreira se
+recupera 5 PV/turno.
+Restrição: Impede uso de armaduras físicas no mesmo local.
+Armadura Completa 5 PE
+Req: Dom. Mestre + Alma 3+ | Alcance: Corpo inteiro | Área: Cobertura total
+Reveste o corpo inteiro em elemento. RD +16 elemental. Ocupa Ação Completa. Sustento: 3 PE/turno. Com Kalt: atacantes CaC
+sofrem 1d4 de Kalt por turno de contato.
+Restrição: Não pode ser combinada com Armadura Parcial do mesmo elemento.
+Golem Pequeno 5 PE
+Req: Dom. Mestre + Alma 3+, Nível 5+ | Alcance: Ponto de criação | Área: Construto Corpo 2
+Criatura autônoma de Pilar Corpo 2. Segue comandos básicos e complexos. Dura 1 cena sem sustento. HP = 30. Com Hab:
+Invocador: +10 HP e +1 cena.
+Rifle Elemental 5 PE
+Req: Dom. Mestre + Alma 3+ | Alcance: 20u | Área: Perfuração/Elemental
+2d8 elemental. Alcance 20u. Crítico: perfuração de RD completa (ignora toda RD). Usa Pontaria para acerto. Arma elemental de
+maior alcance disponível.
+Formas Místicas e Rituais (4–6 PE)
+Forma
+PE
+Req.
+Descrição
+Runas
+4
+Afin. Mestre + Alma 3+
+Símbolo estável. Armazena Manifestação (60% ef.). Runas Simples: 1 gatilho. Mestras: permanente, autônoma.
+Símbolos
+4
+Afin. Mestre + Alma 3+
+Marca de efeito contínuo em superfície. Dura 1d4h sem custo adicional. Emite efeito passivo constante.
+Totem
+4
+Afin. Mestre + Alma 3+
+Estrutura física de canalização. Emite efeito raio 3u (2 PE/turno). HP: 50. Totem Mestre (Nív.7+): raio 5u, dois efeitos.
+Selo Místico
+5
+Afin. Mestre + Alma 3+
+Bloqueia Essência em área. Suprime Manifestações de Tier menor que o Domínio do criador.
+Portal
+5
+Afin. Mestre + Alma 3+
+Conexão entre dois pontos. Distância máxima: 10u (Treinado) até 1km (Maestria). Objetos e efeitos podem cruzar.
+Nexo (Ritual)
+6
+Afin. Mestre + Nível 7+
+Ponto de amplificação. Dobra eficiência de Manifestações aliadas em raio 4u. Imóvel.
+
+
+
+--- PAGE 9 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 9
+ — III —
+ Propriedades de Manifestação — Guia Completo
+Propriedades modificam o comportamento de uma Manifestação sem mudar seu Elemento ou Forma. Não aumentam
+diretamente os dados de dano base — alteram mecânica, comportamento e condições aplicadas. Número máximo de
+Propriedades = PI de Afinidade + 2. Propriedades conflitantes não podem ser combinadas.
+Propriedades de 1 PE — Básicas
+Propriedade
+PE
+Requisito
+Efeito
+Brilhante
+1
+—
+Emite luz raio 2u. Penalidade a inimigos sensíveis. Inimigos no escuro +1 DT para se esconder.
+Ácido
+1
+—
+Equipamentos atingidos perdem 1 RD permanente por acerto crítico. Seres: 1d4/turno por 2 turnos.
+Pesado
+1
+—
+Impacto aumentado. Crítico: derruba alvo (Constituição DT 5 para resistir).
+Leve
+1
+—
+Manifestação silenciosa e de baixo impacto físico. −1 DT para detectar. Não quebra furtividade.
+Frio
+1
+—
+Alvos atingidos acumulam 1 nível de Congelamento progressivo por acerto.
+Calor
+1
+—
+Alvos atingidos acumulam 1 nível de Queimadura progressiva por acerto.
+Silencioso
+1
+—
+Sem som perceptível. Furtividade não é quebrada. Sensitivo DT 7+ para notar.
+Afiado
+1
+—
+Ignora 1 RD de armadura leve. Crítico: Sangramento 1 automático.
+Perfurante
+1
+—
+Reduz a RD efetiva do alvo pela metade ao calcular dano. Incompatível com dano de área.
+Residual
+1
+—
+Deixa rastro de efeito fraco na área por PI Afin. turnos (metade do dano/efeito).
+Expansivo
+1
+Afin. Treinado
+Área cresce 1u por turno até PI Afinidade máximo.
+Carregado
+1
+Afin. Treinado
+Prepare em 1 turno; libere depois como Ação Menor. Dura PI Afin. turnos.
+Atrasado
+1
+Afin. Treinado
+Efeito ocorre 1d4 turnos após ativação. Pode ser abortado pelo criador.
+Catalisador
+1
+—
+Amplifica material compatível presente: Pyro dobra dano em inflamáveis.
+Preciso
+1
+Dom. Treinado
+Manifestação de área pode excluir alvos designados (PI Domínio alvos excluídos).
+Persistente
+1
+Afin. Treinado
+Duração base dobrada. Custo de sustentação não muda.
+Rápido
+1
+Dom. Treinado
+Alvo não pode reagir ou esquivar. Sem rolagem de defesa — dano automático se acertar.
+Instável
+−1
+Nível 3+
+Reduz custo em 1 PE. DT 4 de controle: falha = efeito torcido (Mestre define).
+Propriedades de 2–3 PE — Avançadas
+Propriedade
+PE
+Requisito
+Efeito
+Dureza
+2
+—
++50 PV para estruturas/barreiras. RD 2 contra destruição física.
+Flexibilidade
+2
+—
+Dobra e contorna obstáculos. Alcança alvos em cobertura parcial sem penalidade.
+Viscosidade
+2
+—
+Material grudento. Deslocamento −2u. Imobiliza com falha em Força DT 5.
+Velocidade
+2
+—
+Duplica velocidade de projéteis. +1 DT para esquivar. Incompatível com Rápido.
+Ocultação
+2
+—
+Manifestação invisível à percepção mundana. Estigmas detectam (DT 5 Afinidade).
+Elétrico
+2
+—
+Alvo em armadura metálica: +1d6 adicional. Encadeia em adjacentes (2u).
+Regenerante
+2
+Afin. Treinado
+Efeito cura/atua ao longo de 3 turnos (total igual). Não pode ser interrompida.
+Magnético
+2
+Afin. Treinado
+Atrai/repele metais em até 3u. Pode desarmar ou manipular objetos metálicos.
+Penetrante
+2
+Dom. Esp.
+Atravessa barreiras físicas de espessura ≤ PI Domínio em decímetros.
+Encadeado
+2
+Dom. Esp.
+Ao acertar, pula para 1 alvo adjacente (até PI Dom. u). Rolagem com −1 PE de efeito.
+Dissipante
+2
+Dom. Esp.
+Cancela Manifestações ativas de KW ≤ ao desta. Domínio vs. Domínio do criador.
+
+
+
+--- PAGE 10 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 10
+Propriedade
+PE
+Requisito
+Efeito
+Reflexivo
+2
+Dom. Esp.
+Pode ricochetear 1× em superfície sólida. Muda ângulo 45–90°. Dano −1 dado.
+Selado
+2
+Afin. Esp.
+Bloqueia o efeito dentro de um volume definido — não vaza ou expande.
+Duplo
+2
+Afin. Esp.
+Divide a Manifestação em dois disparos menores (−1 dado cada, alvos distintos).
+Amplificado
+2
+Poder Esp.
+Eleva o dado base em um tipo (1d6→1d8, 1d8→1d10 etc.). Não acumula.
+Composto
+var.
+Afin. Esp.
+Adiciona segundo elemento ao efeito. Custo = metade do segundo elemento (mín. 1 PE).
+Vinculado
+2
+Afin. Esp.
+Efeito persiste ligado ao alvo específico, não ao espaço. Segue por PI Afin. turnos.
+Invertido
+2
+Afin. Esp.
+Inverte a natureza primária do elemento. Pyro invertido = frio-ardente.
+Venenoso
+3
+Afin. Esp.
+Aplica Envenenado 1 em alvos atingidos. Progressão normal de condição.
+Imune
+2
+Dom. Mestre
+Aliados designados (PI Dom.) são imunes ao efeito mesmo em área.
+Sobrenatural
+2
+Afin. Mestre
+Efeito visível apenas para portadores de Estigma.
+Inversão Alvo
+3
+Dom. Mestre
+Redireciona o efeito para alvo alternativo se o original desviar (Sab. DT 6).
+Propriedades de 3–5 PE — Táticas e Complexas
+Propriedade
+PE
+Requisito
+Efeito
+Indestrutível
+3
+—
+A estrutura não pode ser destruída por meios físicos mundanos. Ainda vulnerável a Inanis.
+Autocura
+3
+—
+Barreiras e estruturas recuperam 5 PV por turno enquanto sustentadas.
+Levitação
+3
+—
+A Manifestação ou alvo afetado flutua. Ignora terreno. Velocidade vertical 2u/turno.
+Explosivo
+3
+Afin. Treinado
+Ao impactar: explosão em raio 2u. Alvos na área recebem 50% do dano original.
+Paralisante
+3
+Dom. Esp.
+Alvos atingidos: Vontade DT 5 ou Atordoados por 1 turno. Crítico: Paralisado.
+Invisível
+3
+Dom. Esp.
+A Manifestação é completamente imperceptível. Estigmas Especialista+ detectam (DT 6).
+Cortante Duplo
+3
+Dom. Esp.
+Dois planos de corte simultâneos. Crítico: Sangramento 2 automático.
+Teletransporte
+4
+Afin. Esp.
+Move alvo ou objeto até 8u instantaneamente (sem dano). Requer linha de visão.
+Barreira Mística
+4
+Dom. Mestre
+Barreira bloqueia Manifestações de Tier igual ou menor ao Domínio do criador. Dura 3 turnos.
+Corruptor
+4
+Dom. Mestre
+Alvo infectado perde 1 PE por turno enquanto condição persiste. Remoção: Lux ou Vita.
+Gelo Eterno
+4
+Dom. Mestre
+Congelamento 3 imediato. Não pode ser removido por calor normal — exige fogo mágico (3+ PE).
+Dreno de PE
+5
+Afin. Mestre
+Cada acerto drena 1d6 PE do alvo para o lançador (máx. = PE máx. do lançador).
+Propriedades de 6–7 PE — Supremas
+Propriedade
+PE
+Efeito
+Chama Perene
+6
+Fogo que não pode ser apagado por meios mundanos. Queimadura 2 garantida em qualquer acerto.
+Peso Plúmeo
+6
+Objeto ou ser atingido passa a ignorar gravidade completamente por 3 turnos.
+Velocidade Sobre-humana
+6
+O lançador pode agir duas vezes no turno com esta Manifestação ativa (sustentada).
+Glacial Total
+6
+Congelamento imediato de área raio 4u. Todos os alvos: Congelamento 3.
+Fogo Celestial
+7
+Dano radiante-ígneo máximo. Ignora toda RD. Entidades de Névoa sofrem dano em dobro.
+Dissolução Etária
+7
+Objetos: destruídos. Seres: −1 Pilar/rodada (Vontade DT 8 nega).
+Conflitos: Propriedades Incompatíveis
+
+
+
+--- PAGE 11 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 11
+Combinação Inválida
+Motivo
+Alternativa
+Silencioso + Expansivo
+Expansão cria movimento inevitavelmente detectável.
+Silencioso usado se área já estabelecida.
+Rápido + Atrasado
+Velocidade e atraso são excludentes.
+Carregado para preparar, Rápido para disparar.
+Instável + Amplificado
+Amplificar algo instável = probabilidade alta de falha crítica.
+Permitido com Nível 7+ e DT de controle +2.
+Reflexivo + Preciso
+Ricochete invalida a exclusão de alvos específicos.
+Reflexivo primeiro, Preciso apenas no tiro original.
+Selado + Expansivo
+Conter e expandir são logicamente contraditórios.
+Selado define o limite máximo de Expansivo.
+Duplo + Encadeado
+Ambos multiplicam alvos — custo/benefício incontrolável.
+Permitido com Afinidade Maestria. KW dobrado.
+Inversão Alvo + Reflexivo
+Dois mecanismos de redirecionar conflitam.
+Mestre decide qual tem prioridade na colisão.
+Sinergias: Combinações que Reduzem Custo (−1 PE total)
+Combinação
+Condição
+Efeito Narrativo
+Persistente + Âncora
+Afinidade Esp.
+Duração do efeito ancorado ainda mais longa.
+Contínuo + Amplificado
+Vontade Esp.
+Fluxo sustentado naturalmente amplifica.
+Campo + Catalisador
+Elemento compatível presente
+Campo catalisa material ambiental de graça.
+Silencioso + Carregado
+Domínio Esp.
+Preparação silenciosa é naturalmente oculta.
+Preciso + Imune
+Domínio Mestre
+Imune e Preciso compartilham lógica de seleção.
+Vinculado + Persistente
+Afinidade Mestre
+Efeito vinculado já é naturalmente persistente.
+Núcleo + Amplificado
+Dom. Mestre + Nível 6+
+Núcleo já concentra — amplificar é natural.
+
+
+
+--- PAGE 12 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 12
+ — IV —
+ Empilhamento de Keywords
+Empilhamento de Keywords é a prática de combinar múltiplas Formas, Propriedades e Elementos em uma única Manifestação.
+Quanto mais Keywords, maior a complexidade — e maiores os requisitos e riscos de controle.
+Limite de Keywords por Tier de Afinidade
+Tier Afinidade
+Max. KW
+Elementos
+Formas
+Propriedades
+Obs.
+Leigo
+3
+1
+1
+1
+KW ≤ 4. Manifestações básicas.
+Treinado
+5
+1–2
+1
+2–3
+Pode combinar 2 elementos básicos.
+Especialista
+7
+2
+2
+3–4
+Formas medianas. Propriedades avançadas.
+Mestre
+10
+3
+2–3
+5–6
+Formas mestras. Propriedades mestras.
+Maestria
+Sem limite
+Todos
+Todos
+Todos
+Limite prático = sustentabilidade narrativa.
+Regras Gerais de Empilhamento
+■ Limite prático: Mesmo sem limite de Tier, cada KW adicional além de 6 exige DT de Domínio +1 para controlar.
+■ Ordem de resolução: Elemento → Forma → Propriedades (na ordem que logicamente faz sentido narrativo).
+■ Propriedades de área vs. alvo: Propriedades de alvo único (Rápido, Vinculado) não se aplicam a Formas de área.
+■ KW e instabilidade: KW total acima de 10 sem Maestria em Afinidade exige teste de Domínio DT 6 para não haver deriva.
+■ Cancelamento de Keywords: O usuário pode cancelar Keywords declaradas durante uma Extrema antes de lançar. PE
+economizado.
+■ Máxima eficiência: Manifestações Definidas representam Keywords já otimizados — desconto de 1 PE.
+■ Aprovação narrativa: Keywords que criem efeitos de escala catastrófica ou irreversível requerem aprovação do Mestre.
+Manifestações Definidas — Vantagens
+Manifestações Definidas são combinações de Keywords registradas na ficha do personagem. Representam práticas
+estabelecidas — o personagem já 'encontrou a sintaxe' daquela combinação.
+■ Desconto de 1 PE por ser uma Manifestação Definida (otimização por prática).
+■ Não precisa declarar cada Keyword individualmente — declara o nome da Manifestação.
+■ Tempo de canalização reduzido em 1 turno para Extremas.
+■ Máximo de Manifestações Definidas = PI de Afinidade + 2.
+Exemplo de Construção Completa
+Etapa
+Decisão
+Custo PE
+1. Elemento
+Electro (eletricidade, magnetismo)
+2 PE
+2. Forma
+Nuvem (área difusa 2u raio)
+1 PE
+3. Propriedade 1
+Elétrico (encadeia em armaduras metálicas)
+2 PE
+4. Propriedade 2
+Expansivo (cresce 1u/turno)
+1 PE
+KW Total
+Electro + Nuvem + Elétrico + Expansivo
+6 PE
+Amplificação
++3 PE (Surto — efeito considerável)
+3 PE
+PE TOTAL
+Manifestação Avançada (Ação Movimento)
+9 PE
+Efeito: Especialista + 3 PE → 4d8 elétrico em área crescente. Armaduras metálicas +1d6.
+
+
+
+--- PAGE 13 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 13
+ — V —
+ Elementos — Usos Avançados
+Esta seção expande os usos criativos de cada elemento para usuários avançados. Os limites são lógicos, não arbitrários — o
+Mestre julga a coerência do vetor proposto. Regra de ouro: desde que tenha uma lógica, tudo é possível.
+Elementos de 1 PE — Primários
+PYRO 1 PE Fogo, calor, ignição, cauterização
+Básico: Dano de fogo 1d4+; cauterizar feridas; iluminar áreas; aquecer superfícies; derreter gelo/cera.
+Avançado (Dom./Afin. Especialista): Criar nicho térmico (micro-estufa); controle de combustão em forjas; sinalização térmica; Pyro+Impregnar =
+roupa que aquece.
+Mestre: Gradiente térmico preciso (de −10°C a +300°C); combustão controlada sem oxigênio externo; campo de supressão de chama; forja
+espiritual de metais com Hitze.
+HYDRO 1 PE Água, líquidos, pressão hidráulica
+Básico: Criar água pura; dano hidráulico por impacto; apagar fogo; mover objetos por pressão; resfriar superfícies.
+Avançado (Dom./Afin. Especialista): Criar ambiente úmido para Plantae; purificar líquidos contaminados; propulsão hidráulica (deslocamento
++2u).
+Mestre: Manipular fluidos corporais de animais via indireto (plasma externo); pressurização de recipientes até ruptura; canal hidráulico
+permanente sem tubo.
+GEO 1 PE Terra, areia grossa, barreiras
+Básico: Criar paredes de terra; dano contundente; ancoragem no solo; cobrir buracos; plataformas de terra.
+Avançado (Dom./Afin. Especialista): Análise de composição do solo (PI Intelecto); criar trincheira ou fosso em 1 turno; compactação que cria
+superfície de pedra.
+Mestre: Escultura precisa de terreno em escala arquitetônica; fundação instantânea para construção; Geo+Saxum = pedra moldada permanente.
+AERO 1 PE Vento, ar, pressão, dispersão
+Básico: Empurrar objetos (até PI Poder m); dispersar gases e fumaça; correntes de ar controladas; impulsionar projéteis (+1u de alcance/PI).
+Avançado (Dom./Afin. Especialista): Criar vórtice de baixa pressão (sucção); voar brevemente via Vetor Indireto; separar gases por densidade.
+Mestre: Campo de compressão de ar (dano sônico de impacto); corredor de vento de alta velocidade entre dois pontos; protocolo de dispersão
+química em área.
+LUX 1 PE Luz, revelação, pureza
+Básico: Dano radiante 1d6+; revelar o oculto e entidades de Névoa; purificar venenos em objetos; campos de luz; revelar Névoa.
+Avançado (Dom./Afin. Especialista): Comunicação via código de luz; Lux+Impregnar = sinalizador permanente; revelar runas e Estigmas em
+objetos.
+Mestre: Purificação de zona inteira de influência paranormal; Lux Mestre detecta Estigmas ativos em 20u.
+UMBRA 1 PE Sombra, ocultamento, entropia
+Básico: Zonas de escuridão controlada; dano de escuridão 1d6; ocultar objetos; dificultar visão (−1 DT para ser visto).
+Avançado (Dom./Afin. Especialista): Criar zona de camuflagem total (Umbra+Véu); ilusões de sombra básicas (DT 4 para dissipar).
+Mestre: Umbra+Inanis = zona de isolamento total (luz+som suprimidos); entropia de materiais (degradação lenta); Umbra Mestre torna sombras
+tangíveis (1d4 dano).
+Elementos de 2 PE — Derivados
+CRYO 2 PE Frio intenso, gelo, cristalização
+Básico: Congelar superfícies; retardar movimento (Congelamento 1); criar estruturas de gelo; cristalizar líquidos.
+Avançado (Dom./Afin. Especialista): Micro-ambiente de preservação; Cryo+Saxum = pedra congelada irromível; gelo transparente para
+armadilhas.
+Mestre: Cryo+Kalt = aproximação do zero absoluto em pequeno volume; supercondutividade espiritual com Electro; Campo de Congelamento 3
+em área.
+
+
+
+--- PAGE 14 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 14
+ELECTRO 2 PE Eletricidade, magnetismo, arco
+Básico: Dano elétrico 1d8+; magnetizar metais; cadeia de arco (2u adjacentes); desativar equipamentos básicos.
+Avançado (Dom./Afin. Especialista): Fulgaris em cadeia por múltiplos condutores; disrução de sistemas eletrônicos simples; Electro+Kalt =
+supercondutividade.
+Mestre: Tempestade localizada (com Aero); campo eletromagnético de supressão; EMP espiritual: desativa AMK LOW em 1u raio.
+PLANTAE 2 PE Crescimento orgânico, venenos naturais
+Básico: Imobilizar com raízes (DT 4 Força); antídotos naturais; regenerar orgânicos; envenenar via espinhos.
+Avançado (Dom./Afin. Especialista): Criar micro-ambiente para cultivo; Plantae+Vita = regeneração acelerada; veneno de precisão (afeta
+espécie específica).
+Mestre: Controle de planta adulta (Domínio Mestre); campo de regeneração passiva (1 HP/turno); Plantae+Saxum = pedra orgânica flexível.
+SAXUM 2 PE Pedra, cristal, mineral
+Básico: Estruturas rígidas; lâminas de pedra; ancoragem pesada.
+Avançado (Dom./Afin. Especialista): Saxum+Geo = pedra moldada permanente; Ferrum+Saxum = liga mineral-metálica; lentes espirituais.
+Mestre: Liga tripla (com Ferrum+Hitze = Aço Espiritual); base para Relíquias de alta resistência.
+HARENAE 2 PE Areia fina, pó, erosão
+Básico: Cegar alvos; nuvens de areia; erosão de superfícies.
+Avançado (Dom./Afin. Especialista): Harenae+Fumum = névoa abrasiva; areia dirigida como projétil de erosão.
+Mestre: Campo de erosão contínua em área; nuvem abrasiva que danifica equipamentos por turno.
+FUMUM 2 PE Fumaça, gases, névoa opaca
+Básico: Obscurecer visão; cortinas de fumaça; toxinas básicas.
+Avançado (Dom./Afin. Especialista): Fumum+Venenis = ácido fraco; gás de efeitos específicos (irritante, lacrimogêneo).
+Mestre: Fumum+Cryo = cristais em suspensão abrasiva; campo de gases que degrada equipamentos.
+Elementos de 3 PE — Complexos
+VITA 3 PE Energia vital, regeneração, cura
+Básico: Acelerar cura natural (indireto); campos de recuperação via Totem; remover infecções leves.
+Avançado (Dom./Afin. Especialista): Regenerar tecidos orgânicos via indireto (totem); Vita+Lux = restauração rápida (+1d6 cura).
+Mestre: Vita+Inanis = campo que separa toxinas de tecido orgânico; cura de Traumas físicos em tempo reduzido; Vita Mestre: pode curar
+diretamente em objetos e inconscientes.
+INANIS 3 PE Vazio, ausência, negação
+Básico: Zonas onde energia paranormal não persiste; anular Manifestações (KW ≤ ao seu); separar subprodutos alquímicos.
+Avançado (Dom./Afin. Especialista): Criar zona neutra de Essência (sala segura); Inanis+Véu = campo supressor permanente; anular AMK LOW
+em uma rodada.
+Mestre: Inanis+Geo = fundação que bloqueia Manifestações de passagem; Prisão de Inanis solidificado; anulação em cadeia de Manifestações
+sustentadas.
+NEBULA 3 PE Névoa etérea, ressonância espiritual
+Básico: Revelar traços de Estigma; criar ambientes de Névoa leve; sensibilidade espiritual em área.
+Avançado (Dom./Afin. Especialista): Forense espiritual: rastrear Estigmas em objetos; Nebula+Chronos Eco = impressões mais antigas.
+Mestre: Nebula+Anima = diálogo com ecos residuais; canal de comunicação espiritual (com Nexo); Nebula Mestre revela intenções de entidades
+próximas.
+SONUS 3 PE Som, vibração, ressonância
+Básico: Dano sônico (quebrar materiais frágeis); criar distração auditiva realista; desorientar via vibração.
+Avançado (Dom./Afin. Especialista): Sonus+Fio = microfone espiritual — escutar à distância; Sonus+Geo = tremor localizado (DT 4 Travessia).
+Mestre: Frequência de cura via Totem (com Vita); campo de destruição sônica (degrada estruturas por turno); Sonus como comunicação
+codificada em Névoa.
+
+
+
+--- PAGE 15 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 15
+SOLUS 3 PE Energia solar pura, radiação
+Básico: Dano radiante intenso; desintegrar materiais frágeis; revelar tudo em área.
+Avançado (Dom./Afin. Especialista): Solus+Lux = revelação absoluta (sem ilusões ou sombras); campo de radiação passiva.
+Mestre: Solus+Krystallis = Cristal Solar (armazena energia); dano crescente em alvos expostos por múltiplos turnos.
+Elementos de 4 PE — Alta Potência ■ Fulgaris, Noctis, Venenis adicionados
+em v3.0
+FERRUM 4 PE Metal, magnetismo em escala
+Básico: Manipular objetos metálicos (até PI Poder kg); fortalecer armaduras (+1 RD); criar barreiras metálicas.
+Avançado (Dom./Afin. Especialista): Manipulação cirúrgica de metais a distância; Ferrum+Hitze = metal líquido como projétil; eletroímã de alta
+intensidade.
+Mestre: Ferrum+Saxum = liga mineral-metálica para relíquias; neutralizar armas metálicas de oponentes; armadura de metal espiritual (RD +10).
+HITZE 4 PE Calor extremo, plasma incipiente
+Básico: Fundir metais em combate; dano de calor intenso; ambientes de temperatura letal.
+Avançado (Dom./Afin. Especialista): Hitze+Geo = magma preciso em ponto específico; plasma incipiente: gás ionizado visível.
+Mestre: Hitze+Ferrum = forja espiritual em campo de batalha; plasma de alta temperatura ignora RD física; Criar micro-sol (dano em área
+crescente).
+KALT 4 PE Frio profundo, próximo ao zero absoluto
+Básico: Congelar materiais resistentes a Cryo; preservação extrema de biológico; Congelamento 3 imediato.
+Avançado (Dom./Afin. Especialista): Kalt+Saxum = estrutura de pedra congelada irromível; preservação de corpo orgânico sem deterioração.
+Mestre: Kalt+Cryo = aproximação do zero absoluto em volume pequeno; supercondutividade espiritual com Electro.
+FULGARIS 4 PE Relâmpago dirigido, descarga massiva
+Básico: Dano elétrico massivo em linha; detonar ou incapacitar eletrônicos; cadeia em múltiplos condutores.
+Avançado (Dom./Afin. Especialista): Fulgaris+Ferrum = eletroímã massivo; Fulgaris em cadeia por condutores sequenciais.
+Mestre: Campo de descarga em área (múltiplos alvos simultâneos); Fulgaris+Aero = tempestade localizada; penetra armaduras metálicas.
+NOCTIS 4 PE Noite profunda, escuridão perceptual
+Básico: Zonas de escuridão total; ilusões de sombra básicas (DT 4 para dissipar).
+Avançado (Dom./Afin. Especialista): Noctis+Nebula = dissonância cognitiva (−3 em todas as ações); campo de confusão sensorial.
+Mestre: Escuridão perceptual que afeta não apenas visão mas todos os sentidos; Noctis como isolamento de consciência.
+VENENIS 4 PE Toxinas, corrosivos, envenenamento
+Básico: Envenenar superfícies; degradar orgânicos; veneno de contato imediato.
+Avançado (Dom./Afin. Especialista): Venenis invertido = antídoto universal; Venenis+Plantae = veneno de alto grau.
+Mestre: Fumum+Venenis = ácido fraco corrosivo; campo tóxico em área persistente com progressão automática.
+PLASMORIS 4 PE Plasma corrosivo, matéria instável
+Básico: Dano de dissolução; corroer estruturas físicas.
+Avançado (Dom./Afin. Especialista): Plasmoris+Fumum = névoa corrosiva em área; dissolução progressiva de materiais.
+Mestre: Dissolução de relíquias e objetos encantados; plasma instável que cria reações em cadeia com outros elementos.
+IGNIS LUX 4 PE Fogo purificador — Pyro + Lux fundidos
+Básico: Dano radiante-ígneo; purificar ambientes de influência paranormal; destruir entidades de Névoa.
+Avançado (Dom./Afin. Especialista): Purificação de entidades de Névoa em objetos; exorcismo assistido (com Hab: Exorcista); dano em dobro a
+entidades em crítico.
+Mestre: Ignis Lux+Anima = comunicação com entidades via purificação; Ignis Lux+Krystallis = Cristal de Pureza.
+
+
+
+--- PAGE 16 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 16
+CHRONOS ECO 4 PE Eco temporal — impressões do passado
+Básico: Rever eventos recentes em local (24h); detectar rastros de Estigma antigos; impressões de eventos traumáticos.
+Avançado (Dom./Afin. Especialista): Forense espiritual completa (quem + o quê + quando); Chronos Eco+Nebula = impressões ainda mais
+antigas.
+Mestre: Chronos Eco+Anima = diálogo com eco residual (não é o ser — é impressão); reconstituir sequência de eventos com precisão.
+■ Nota: Chronos Eco NÃO altera o passado, NÃO afeta seres com Vontade. Opera exclusivamente em objetos e impressões
+inanimadas.
+Elementos de 6–7 PE — Extremos e Transcendentes
+Elemento
+PE
+Natureza
+Usos Principais
+Krystallis
+6
+Cristalização perfeita
+Criar estruturas permanentes. Petrificar materiais. Base para Relíquias. Golem de cristal com Invocação.
+Aposis
+6
+Dissolução entrópica
+Degradar estruturas fisicamente. Aposis+Venenis = corrosão acelerada. Aposis+Oblivion = apaga físico E espiritual.
+Oblivion
+6
+Apagamento de impressões
+Eliminar traços de Névoa de local. Apagar marcas físicas. Oblivion+Véu = área onde Manifestações não deixam rastro.
+Pestes
+6
+Praga, contágio, proliferação
+Contaminar ambientes orgânicos. Progressão por contato. APROVAÇÃO DO MESTRE OBRIGATÓRIA.
+Fulminis
+7
+Relâmpago divino
+Dano massivo em linha ou área. Penetra armaduras. Descarga em cadeia de até 5 alvos.
+Anima
+7
+Toque de alma, ressonância
+Comunicar com entidades ligadas a objetos/locais. NUNCA afeta diretamente um ser com Vontade.
+Tempus
+7
+Manipulação temporal limitada
+Atrasar/acelerar único objeto em até 6s. NÃO afeta seres com Vontade. Narrativo, não combativo.
+■ Nota sobre Tempus: NÃO altera o passado, NÃO afeta seres com Vontade. Opera exclusivamente em objetos inanimados.
+Tentativas de uso diferente requerem aprovação do Mestre e têm custo narrativo permanente.
+■ Nota sobre Anima: Anima comunica — nunca coage. A entidade tem livre-arbítrio para não responder, mentir ou encerrar
+o contato.
+■ Nota sobre Pestes: Aprovação do Mestre obrigatória antes de qualquer uso, mesmo planejado. Contágio real tem
+consequências narrativas em escala de arco inteiro.
+
+
+
+--- PAGE 17 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 17
+ — VI —
+ Combinações Avançadas e Reações em Cadeia
+Combinações de 2 Elementos — Tabela Expandida
+A + B
+Reação
+PE
+Req.
+Efeito
+Vita + Hydro
+Soro Vital
+2
+Afin. Esp.
+Líquido que acelera cura natural. Ingerido ou aplicado.
+Lux + Sonus
+Onda Reveladora
+3
+Afin. Esp.
+Pulso revela tudo invisível em raio 6u. Entidades: 1d6 SP.
+Inanis + Geo
+Vazio de Pedra
+4
+Mestre Afin.
+Parede impenetrável à Essência. Bloqueia Manifestações de passagem.
+Nebula + Lux
+Revelação de Estigma
+3
+Afin. Esp.
+Torna visíveis todos os Estigmas e Manifestações ativas em área 5u.
+Cryo + Saxum
+Armadura Gelo-Pedra
+4
+Mestre Afin.
+RD +4 para objeto/estrutura por PI Afin. turnos.
+Aero + Sonus
+Transmissão Direcional
+2
+Afin. Treinado
+Tubo de ar conduz som com clareza absoluta até 20u.
+Pyro + Venenis
+Gás Sufocante
+4
+Esp. Afin.
+Gás tóxico e inflamável: 1d6 SP/turno de inalação.
+Vita + Sonus
+Frequência de Cura
+3
+Esp. Afin.
+Totem sonoro: campo de regeneração. 1d4 HP/turno para orgânicos.
+Umbra + Cryo
+Gelo das Sombras
+4
+Mestre Afin.
+Congelamento invisível — aparenta ser escuridão.
+Electro + Saxum
+Condutor Mineral
+3
+Esp. Afin.
+Mineral condutivo permanente. Base para relíquias de condução.
+Plantae + Saxum
+Pedra Orgânica
+4
+Mestre+Analista
+Resistência mineral com flexibilidade biológica.
+Hitze + Aero
+Vento de Forno
+4
+Esp. Afin.
+Corrente de ar a temperatura extrema. Dano térmico+cinético.
+Noctis + Nebula
+Névoa Negra
+5
+Mestre Afin.
+Zona de confusão absoluta: −3 em todas as ações. SP −1/turno.
+Chronos Eco + Anima
+Eco de Alma
+6
+Maestria Afin.
+Memória espiritual + diálogo com impressões residuais.
+Fulgaris + Ferrum
+Eletroímã Massivo
+6
+Mestre Afin.
+Campo magnético de alta intensidade. Imobiliza e atrai metais em raio 4u.
+Combinações de 3+ Elementos — Fenômenos Raros
+Regra de custo: 3 elementos = soma + 2 PE · 4 elementos = soma + 4 PE · 5+ = soma + 6 PE. Requisitos: 3 elem. = Esp. Afin. · 4
+elem. = Mestre Afin. · 5+ = Maestria Domínio.
+Combinação
+Fenômeno
+PE
+Req.
+Efeito
+Pyro + Geo + Hydro
+Vapor de Magma
+7
+Esp.
+Área de magma superaquecido + vapor tóxico. 2d4/turno.
+Aero + Electro + Hydro
+Tempestade Localizada
+8
+Mestre
+Fenômeno climático em 8u raio. Relâmpagos aleatórios (1d6/turno).
+Lux + Inanis + Umbra
+Limiar Absoluto
+9
+Mestre
+Zona onde luz, sombra e Essência se cancelam mutuamente.
+Vita + Lux + Sonus
+Frequência Restauradora
+8
+Mestre
+Totem triplo: regenera 2d4 HP/turno. Remove condições de Sangramento.
+Cryo + Aero + Saxum
+Tormenta de Cristal
+9
+Mestre
+Cristais de gelo em alta velocidade. 2d6 cortante+gelo/turno em 5u.
+Ferrum + Hitze + Saxum
+Metal Absurdo
+10
+Mestre+Analista
+Liga tripla metal-mineral-calor. Base para Projetos Lendários.
+Nebula + Chronos Eco + Anima
+Santuário da Memória
+12
+Maestria+Nív.8+
+Zona onde Estigmas e entidades passadas se tornam perceptíveis.
+Fulgaris + Ferrum + Aero
+Tormenta Magnética
+11
+Maestria Dom.
+EMP massivo + objetos metálicos como projéteis + vento força 5. Área 10u.
+Inanis + Geo + Lux
+Cripta Selada
+11
+Maestria
+Estrutura de terra bloqueia Essência + emite luz purificadora.
+Reações em Cadeia — Quando Dois Efeitos se Encontram
+Condição
+Nome
+Efeito
+Pyro ativo + Cryo ativo
+Colisão Térmica
+Explosão: 2d8 em raio 3u. Ambos cancelados. Dano a estruturas ao redor.
+Hydro ativo + Electro ativo
+Propagação Elétrica
+Condutores na área recebem 1d8 extra. Propaga por 2 turnos por condutores adjacentes.
+Umbra Campo + Lux Campo
+Cancelamento Ritual
+Ambos anulados em 1 turno. Burst de energia neutra: 1d6 SP para todos em 4u.
+
+
+
+--- PAGE 18 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 18
+Condição
+Nome
+Efeito
+Pyro + Fumum
+Ignição de Gás
+Burst 1d10 em raio = volume do Fumum. Criador de Pyro rola Domínio DT 5 para não ser afetado.
+Cryo + Vita (orgânico)
+Criogênese
+Orgânico congelado: estado de preservação. Não é dano — é neutralização temporal.
+Inanis + qualquer Manif.
+Supressão
+KW ≤ Inanis: cancelada imediatamente. KW maior: DT de Domínio comparado para resistir.
+Aposis + qualquer material
+Decadência Acelerada
+Material já danificado: degradação +50% de velocidade. Estruturas colapsam em 1d4 turnos.
+
+
+
+--- PAGE 19 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 19
+ — VII —
+ Alquimia e Subprodutos
+Alquimia é a prática de criar materiais físicos ou espirituais persistentes via Manifestação. Todo subproduto alquímico obedece à
+lógica física — não há transmutação mágica arbitrária. O resultado é determinado pelo que os elementos fazem ao interagir no
+mundo real.
+Combinação
+Material
+Req.
+Duração
+Propriedades
+Pyro + Plantae
+Carbono Bruto
+Treinado
+Instável
+Material estrutural. Grafite ou carbono bruto. Base para Diamante Espiritual.
+Carbono + Kalt
+Diamante Espiritual
+Esp.+Mestre
+Permanente
+Dureza extrema. Base para lâminas de corte e relíquias de alta resistência.
+Hydro + Geo
+Lama / Barro
+Leigo
+1d4 rodadas
+Moldável. Endurece em 10 min. Base para cerâmica ou armadilhas.
+Geo + Hitze
+Cerâmica / Tijolo
+Treinado
+Permanente
+Material de construção sólido. Resistente ao fogo.
+Plantae + Vita
+Resina Orgânica
+Treinado
+1d6 dias
+Adesiva e flexível. Base para venenos, antídotos e lacres espirituais.
+Fumum + Venenis
+Ácido Fraco
+Esp.
+1d4 turnos
+Corrói metal leve e orgânico. Não penetra metal temperado.
+Cryo + Hydro
+Gelo Puro
+Esp.
+1d4h sem calor
+Gelo estrutural de alta pureza. Transparente. Armadilha oculta.
+Geo + Saxum
+Pedra Moldada
+Treinado
+Perm. c/ 6+PE
+Pedra pré-formada. Estrutural. Base para construção permanente.
+Ferrum + Hitze
+Metal Forjado
+Esp.+Analista
+Permanente
+Base para relíquias metálicas. Conduz Essência.
+Ferrum + Saxum
+Liga Mineral-Metálica
+Mestre+Analista
+Permanente
+Alta resistência. Levemente mais leve que metal puro. RD +2 vs. corte.
+Ferrum + Plantae
+Metal Orgânico
+Mestre
+1d6 dias ou incorp.
+Metal que responde ao toque de Estigma. Base para relíquias vivas.
+Ignis Lux + Krystallis
+Cristal de Pureza
+Mestre
+Permanente
+Base para Runas Mestras. Conduz Lux puro. Destrói entidades de Névoa ao contato.
+Krystallis + Saxum
+Cristal Mineral
+Mestre
+Permanente
+Resistência extrema. Transparente. Usado em lentes espirituais e relíquias.
+Vita + Lux + Plantae
+Tecido Luminoso
+Mestre
+Perm. c/ ritual
+Tecido orgânico que conduz Lux. Base para armaduras de cura.
+Pyro + Aero + Geo
+Pó Explosivo
+Esp.
+Instável — 1 dia
+Pó que explode ao contato com chama. 2d6 burst em 2u raio.
+Venenis + Plantae
+Veneno de Alta Pureza
+Esp.
+1d6 dias
+Veneno de contato potente. −1d6 HP/turno. Neutralizável com Vita+Lux.
+Hitze + Ferrum + Saxum
+Aço Espiritual
+Mestre+Analista+Nív.6
+Permanente
+Dureza de Diamante espiritual. Conduz Essência. Base para Projetos Lendários.
+Inanis + Geo
+Pedra Neutra
+Mestre
+Permanente
+Material que não conduz Essência. Ideal para contenção de entidades.
+Nebula + Vita
+Neblina Vital
+Mestre
+3 turnos
+Gás tênue que regenera 1 HP/turno a seres que respiram na área.
+Níveis de Alquimia — Processo
+Nível
+Requisito
+Tempo
+Exemplos
+Resultado Possível
+Primitivo
+Leigo Afinidade
+Minutos
+Lama, Cinza, Vapor
+Materiais transitórios e frágeis. Utilitários imediatos.
+Funcional
+Treinado Afinidade
+Horas
+Cerâmica, Gelo puro, Resina
+Materiais úteis e moderadamente duradouros.
+Avançado
+Esp. + Analista
+Dias
+Metal forjado, Ácido, Veneno puro
+Materiais de qualidade artesanal. Podem ser vendidos.
+Mestre
+Mestre + Analista, Nív. 5+
+Semanas
+Aço espiritual, Cristal de Pureza
+Base para relíquias e construtos permanentes.
+Transcendente
+Maestria + Nív. 9+ + equipe
+Meses
+Metal Orgânico, Pedra Neutra
+Materiais únicos no mundo. Não replicáveis por método padrão.
+
+
+
+--- PAGE 20 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 20
+ — VIII —
+ Encadeamento de Turnos — Manifestações Extremas
+Manifestações Extremas (15+ PE no total) requerem encadeamento de turnos — o usuário canaliza Essência por múltiplos
+turnos antes de liberar. Esta é a técnica de maior potência do sistema, com riscos proporcionais. Toda Extrema interrompida por
+dano exige teste de Vontade.
+Estrutura do Encadeamento
+Fase
+Ação Consumida
+PE Gasto
+O que ocorre
+1 — Iniciação
+Ação Maior + Ação Menor
+KW base
+Marca começa a brilhar. Declaração de elementos/forma.
+2 — Canalização
+Ação Maior por turno
+Metade do KW base/turno
+Efeito cresce. Detectabilidade aumenta. PE acumula.
+3 — Liberação
+Ação Maior
+0 (já pago)
+Libera tudo acumulado. Escala máxima. Não pode ser cancelado.
+X — Interrupção
+Qualquer (dano sofrido)
+PE parcialmente perdido
+Vontade DT (5 + turnos canalizados). Falha = efeito parcial aleatório.
+Escala de Dano por Turnos Canalizados
+Turnos
+PE Acum.
+Dado Base (Mestre+)
+Dado Base (Maestria)
+Efeito Extra
+Req.
+1
+KW base
+2d8
+3d6
+Nenhum
+Qualquer
+2
+KW + 50%
+3d6
+3d8
++1 Propriedade grátis
+Afinidade Esp.
+3
+KW × 2
+3d8
+4d6
++Amplificado grátis
+Mestre Afinidade
+4
+KW × 3
+4d6
+4d8
++Penetrante + Amplificado
+Mestre Afinidade
+5
+KW × 4
+4d8
+5d6+
+Escala Cataclismo
+Maestria + Nív.9+
+Interrupções e Falhas
+Tipo de Interrupção
+DT Vontade
+Resultado (Falha)
+Resultado (Sucesso)
+Dano sofrido (qualquer)
+5 + turnos canalizados
+Efeito liberado aleatoriamente. Mestre define alvo.
+Canalização continua.
+Imobilizado / Derrubado
+6 + turnos canalizados
+Efeito parcial no próprio criador (50% dano).
+Liberação imediata como Ação Livre.
+Silenciado (sem PE)
+Automático — falha
+Essência se dispersa. PE gasto perdido.
+Impossível ter sucesso nesta condição.
+Atordoado
+7 — raramente possível
+Dispersão total. 1 Exaustão imediata.
+Requer Vontade Maestria.
+Dissipação ativa
+Domínio vs. Domínio criador
+KW do dissipar vs. criador decide resultado.
+Manifestação continua com resistência.
+Detectabilidade Durante Canalização
+Turno
+Assinatura Visual
+Detectável por
+Raio
+Turno 1
+Brilho sutil na Marca
+Portadores de Estigma próximos
+2u
+Turno 2
+Luz visível no corpo
+Olho nu (DT Percepção 5)
+6u
+Turno 3
+Distorção do ar ao redor
+Automático para qualquer um
+12u
+Turno 4+
+Brilho intenso, tremor, calor/frio
+Impossível não notar
+20u+
+
+
+
+--- PAGE 21 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 21
+ — IX —
+ Projetos Complexos
+Projetos são ações estendidas que produzem resultados permanentes ou de grande escala: relíquias, construtos, arcologia,
+materiais alquímicos, modificação corporal. Não são instantâneos — requerem planejamento, recursos, tempo e falhas têm
+consequências narrativas permanentes.
+Graus de Projeto — Tabela Completa
+Grau
+Etapas
+DT/Et.
+Tempo/Et.
+Req. Mínimo
+Resultado Possível
+Simples
+1
+4–5
+1–2h
+Treinado relevante
+Reparar, craftar objeto simples, 1ª runa.
+Moderado
+2–3
+5–6
+4–8h
+Esp. + Habilidade
+Relíquia Menor, poção complexa, golem simples.
+Complexo
+4–6
+6–7
+1–3 dias
+Mestre+Analista+Nív.5+
+Relíquia Maior, Golem Avançado, implante simples.
+Avançado
+6–10
+7–8
+3–7 dias
+Mestre 2+ subs+Nív.7+
+Construto PRIME, arcologia, modificação corporal.
+Lendário
+10+
+8–9
+Semanas+
+Maestria+Equipe+Nív.9+
+Construtos APEX, portais permanentes, reescrita.
+Anatomia de um Projeto — Passo a Passo
+1. Concepção Definir resultado desejado. Listar elementos/formas necessários. Estimar KW e PE total. Mecânica: Intelecto DT
+4–6 para viabilidade.
+2. Aquisição Obter materiais físicos necessários. Alguns requerem preparação alquímica prévia. Mecânica: Investigação,
+Sobrevivência, ou contatos narrativos.
+3. Preparação Preparar o ambiente de trabalho. Local adequado. AMK pode ser necessário. Local de Névoa Nível 2+ para
+projetos Complexos+.
+4. Execução Cada etapa é uma Manifestação estendida ou Ação de Projeto. Subatributo relevante vs. DT.
+5. Refinamento Opcional: etapa adicional para elevar qualidade. DT anterior +1. Custo de tempo dobrado.
+6. Concluir Fixar o efeito permanentemente. Pode exigir Runa ou ritual de selamento. Afinidade vs. DT do projeto. Falha =
+instável.
+Qualidade de Projetos
+Qualidade
+Condição
+Benefício
+Penalidade / Risco
+Subpadrão
+Falha parcial em 2+ etapas
+Funciona, mas com limitações.
+−1 durabilidade. Chance de falha em uso crítico.
+Padrão
+Sucesso em todas as etapas
+Funciona conforme especificado.
+Nenhuma.
+Superior
+Crítico em 1+ etapas
++1 dado de dano (armas). +20% PE cap.
+Mais reconhecível por usuários de Estigma.
+Obra-Prima
+Crítico em 3+ etapas ou Maestria
+Propriedade extra. Menor custo de ativação.
+Atrai interesse de entidades e colecionadores.
+Lendário
+Crítico em maioria + Nív. 9+
+Relíquia com Vontade. Única no mundo.
+Pode ter agenda própria. Impossível duplicar.
+
+
+
+--- PAGE 22 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 22
+ — X —
+ Relíquias e Artefatos — Sistema Completo
+Relíquias são objetos imbuídos com efeitos permanentes. Diferente de runas (que armazenam PE), relíquias incorporam o efeito
+como propriedade do objeto. Quanto maior o PE acumulado, mais o objeto se torna algo além de uma ferramenta.
+Tiers de Relíquia — Tabela Completa
+Tier
+PE Total
+Req. Criador
+Propriedades
+Vontade?
+Efeito Especial
+Sigilo / Runa Simples
+2–8 PE
+Treinado Afin.
+1 KW fixo
+Não
+1d4 usos. Ativa por contato.
+Relíquia Menor
+5–15 PE
+Esp.+Nív.3
+1–2 fixas
+Não
+Funciona sem usuário com Estigma.
+Relíquia Média
+16–29 PE
+Mestre+Nív.5
+2–3 + gatilho
+Não
+Propriedade ativa e passiva. Regenera sozinha.
+Relíquia Maior
+30–50 PE
+Maestria ou equipe+N.7
+3–5 + Mandala
+Possível
+Vontade surge se PE ≥ 30. Lealdade ao portador.
+Relíquia Transcendente
+50+ PE
+Maestria+N.9++projeto
+Ilimitadas
+Sim
+Agenda própria. Pode recusar uso. Pode buscar portador.
+Relíquia com Vontade — Regras Completas
+Lealdade: Estado padrão. Não é obediência cega — é alinhamento voluntário com seu portador. Pode ser perdida por ações
+que conflitem com a natureza da relíquia.
+Recusa: Relíquia pode recusar-se a ser usada se a ação conflitar com sua natureza. Ex: espada de Lux recusa atacar
+inocentes.
+Resistência à Modificação: Relíquia com Vontade não pode ser encantada, corrompida ou alterada sem seu consentimento.
+Oblivion falha automaticamente contra ela.
+Comunicação: Formas variam: sensações, impulsos, visões breves, ou — para as mais poderosas — você ouve algo que não
+é barulho.
+Desenvolvimento: Relíquia Transcendente pode adquirir novas propriedades com o tempo, baseadas em experiências do
+portador.
+Separação: Separar portador de Relíquia com Vontade por tempo longo: DT Vontade crescente para ambos. A Relíquia pode
+buscar o portador ativamente.
+Relíquias Notáveis — Exemplos de Construção
+A Faca do Silêncio — Relíquia Média
+Faca + Umbra + Silencioso + Impregnar | Req: Esp. Afinidade + Analista
+Faca que não faz barulho ao mover. Ataque com ela é Silencioso automaticamente. Umbra passivo suprime assinatura
+elemental no Estigma (DT 7 para detectar).
+Lanterna de Lux — Relíquia Menor
+Lux + Campo + Âncora + Persistente | Req: Esp. Afinidade
+Revela Névoa, Estigmas e entidades invisíveis em 5u. Ativa ao toque. Regenera sozinha em 1h sem uso.
+Armadura de Kalt — Relíquia Maior
+Armadura + Kalt + Aura + Barreira | Req: Maestria Afinidade + Analista + Nível 7+
+Armadura que emite aura de frio. Atacantes CaC sofrem 1d4 de Kalt. RD +2. Pode ter Vontade se PE ≥ 30.
+Anel do Nexo — Relíquia Maior
+Anel + Nexo + Âncora + Krystallis | Req: Maestria + Nível 7+
+Par de anéis: ativar um envia Manifestação simples através do outro. Alcance ilimitado. Deve ter o par — um sem o outro é
+inerte.
+
+
+
+--- PAGE 23 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 23
+Grimório Vivo — Relíquia Transcendente
+Livro + Anima + Vita + Nebula | Req: Projeto Lendário
+Livro com Vontade que registra e organiza conhecimento espiritual sozinho. Pode recusar ser lido. Pode esconder informações
+de leitores que não confia.
+
+
+
+--- PAGE 24 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 24
+ — XI —
+ Catálogo Verloren — Condições Completas
+Condições são estados alterados que afetam capacidades do personagem. Muitas possuem múltiplos estágios progressivos.
+Acúmulo: penalidades de condições se acumulam com penalidades de armadura, exaustão e outros efeitos. Quando dois
+efeitos similares coexistem, aplique apenas o de maior impacto.
+QUEIMADURA
+Estágio
+Efeito Principal
+Penalidades
+Recuperação
+Queimadura 1
+Feridas dolorosas. Cura reduzida em 50%.
+−1 em testes físicos.
+Tratamento básico em poucos dias.
+Queimadura 2
+Feridas severas. Cura reduzida em 75%. Dor persistente.
+−2 em testes físicos; possível limitação de movimento do membro.
+Tratamento avançado. Pode deixar sequelas.
+Carbonizado
+Membro inutilizado. Cura reduzida em 90%.
+−4 ou mais; funcionalidade permanentemente perdida.
+Irreversível sem magia avançada.
+ENVENENADO / TOXINA
+Estágio
+Efeito Principal
+Penalidades
+Recuperação
+Envenenado 1
+Dano contínuo de 1–3 pontos por turno.
+—
+Antídoto / Lux / Descanso longo.
+Envenenado 2
+Dano contínuo de 4–6 pontos por turno.
+−1 em testes físicos.
+Antídoto específico ou Vita.
+Envenenado 3
+Dano contínuo de 7–10 pontos por turno.
+−2 em testes físicos e mentais.
+Antídoto específico urgente.
+Toxina
+Dano escalável: 2–5% da vida máx. por turno.
+−3 ou mais em TUDO.
+Antídoto raro ou Vita+Lux. Sequelas possíveis.
+MEDO — ASSUSTADO / APAVORADO
+Estágio
+Efeito Principal
+Penalidades
+Recuperação
+Assustado
+Reação de medo. Eficiência reduzida.
+−2 em ataque, resistência, iniciativa −1u/turno.
+Poucos turnos. Ou teste de Vontade.
+Apavorado
+Pânico extremo. Impossibilidade de agir exceto fugir.
+−4 em TODOS os testes. Paralisia se sem rota de fuga.
+Ambiente seguro + testes de Vontade por turno.
+CONGELAMENTO
+Estágio
+Efeito Principal
+Penalidades
+Recuperação
+Congelamento 1
+Movimento e ações parcialmente restritos por rigidez muscular.
+−1 a −2 em deslocamento e testes físicos. −1 em ataque e esquiva.
+Calor ou aguarda 2 turnos.
+Congelamento 2 (Frostbite)
+Danos por congelamento profundo. Dano contínuo.
+1–3 dano/turno; −2 em testes físicos. Sequelas possíveis.
+Calor mágico (2+ PE) ou tratamento médico urgente.
+Congelamento 3 (Total)
+Imobilização completa por rigidez total dos tecidos.
+Totalmente imobilizado. Choque térmico máximo.
+Fogo mágico 3+ PE. Sem ação possível.
+Gelo Eterno: Congelamento 3 causado por Propriedade Gelo Eterno só pode ser removido por fogo mágico (3+ PE).
+SANGRAMENTO / HEMORRAGIA
+Estágio
+Efeito Principal
+Penalidades
+Recuperação
+Sangramento 1
+Ferimentos superficiais. Perda leve de sangue.
+1 dano/turno. −1 em resistência e concentração.
+Cessa em 3 turnos. Ou primeiros socorros simples.
+Sangramento 2
+Ferimentos moderados. Sangramento contínuo.
+2–4 dano/turno. −2 em físicos, esquiva e concentração.
+Não cessa naturalmente. Exige tratamento ou imobilização.
+Sangramento 3 (Hemorragia)
+Perda massiva. Risco de inconsciente e morte.
+5–10% da vida máx./turno. −3 em físicos. Inconsciente se HP < 25%.
+Morte em 3–4 turnos sem tratamento.
+RESTRIÇÃO DE MOVIMENTO
+Estágio
+Efeito Principal
+Penalidades
+Recuperação
+Imobilizado
+Não pode se mover livremente. Pode usar ações sem movimentação.
+−2 em testes. Sem deslocamento.
+Força vs. DT 6. Ou remoção da fonte.
+
+
+
+--- PAGE 25 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 25
+Estágio
+Efeito Principal
+Penalidades
+Recuperação
+Paralisado
+Incapaz de mover o corpo ou membros. Ações físicas impossíveis.
+Ações físicas impossíveis. Altamente vulnerável.
+Testes de resistência mental. Duração pelo efeito.
+Atordoado
+Perda temporária de consciência. Inabilitado por 1+ turno.
+Penalidade máxima em qualquer teste mental ou físico.
+Automático: 1 turno. Ou teste específico.
+FRAGILIZADO / VULNERÁVEL / CRÍTICO
+Estágio
+Efeito Principal
+Penalidades
+Recuperação
+Fragilizado 1
+Vulnerabilidade ao dano contundente.
+Dano recebido +25%. −2 em resistência.
+Descanso longo ou tratamento simples.
+Fragilizado 2
+Acúmulo de vulnerabilidade.
+Dano recebido +50%. −3 em resistência.
+Tratamento específico. Descanso prolongado.
+Fragilizado 3
+Tecido e estrutura comprometidos.
+Dano recebido +75%. −4 em testes físicos/mentais.
+Tratamento urgente. Risco de incapacitação.
+Vulnerável
+Suscetível a dano aumentado.
+Dano recebido +50%. −1 em defesa e esquiva.
+Remoção da fonte. Descanso ou cura.
+Estado Crítico
+Proximidade da morte.
+−4 ou mais em defesa. Dano pode ser letal.
+Estabilização urgente. Risco de choque a cada turno.
+ASSOMBRO — CONDIÇÃO PARANORMAL
+Estágio
+Efeito Principal
+Penalidades
+Recuperação
+Assombro 1
+Calafrios e presença opressiva. Dreno vital passivo.
+Desvantagem em Vontade vs. medo e efeitos mentais. Atacante recupera 10% do dano como HP.
+Lux / Exorcismo / Distância da fonte.
+Assombro 2
+Energia vital drenada ativamente.
+Desvantagem em TODOS os testes de Vontade. 1d4 dano de sombra no início do turno. Atacante recupera 20%.
+Lux / Exorcismo / Área segura.
+Assombro 3
+Parcialmente ancorado ao plano sombrio.
+Testes de Vontade falham automaticamente. 2d6 sombra/turno. Sem cura mágica. Atacante recupera 30%.
+Exorcismo especializado. Intervenção de entidade aliada.
+CEGUEIRA / SURDEZ
+Condição
+Estágio
+Penalidades
+Recuperação
+Cegueira 1
+Visão parcial comprometida.
+−1 a −2 em precisão e percepção. Ataques à distância −25%.
+Cura natural em poucos turnos.
+Cegueira 2
+Perda severa da visão.
+−3 em ataques à distância. −2 em defesa. Movimentação −30–50%.
+Cura mágica moderada.
+Cegueira 3 (Total)
+Perda completa e permanente.
+−5 ou falha automática em tudo que exige visão.
+Métodos extraordinários ou substitutos mágicos/tecnológicos.
+Surdo 1
+Perda parcial da audição.
+−1 a −2 em percepção auditiva. −1 em social.
+Natural após turnos. Tratamento simples.
+Surdo 2
+Perda severa. Sons sutis inaudíveis.
+−3 em iniciativa e alerta. Falha automática em percepção auditiva.
+Tratamento especializado. Condição prolongada.
+Surdo 3 (Total)
+Perda completa e permanente.
+−5 ou falha automática em tudo baseado em som.
+Métodos mágicos avançados ou tecnológicos raros.
+DESORIENTAÇÃO / INSANIDADE
+Estágio
+Efeito Principal
+Penalidades
+Recuperação
+Desorientado
+Confusão leve. Perda temporária da noção espacial.
+−1 a −2 em percepção, iniciativa e ataques.
+Poucos turnos. Ou teste de recuperação.
+Enlouquecido
+Perturbação do juízo. Delírios. Comportamento errático.
+−3 em resistência mental, ataque e defesas. Pode atacar aliados.
+Testes mentais regulares. Tratamento mágico ou repouso.
+Insano
+Perda grave e prolongada da sanidade. Alucinações. Psicose.
+Falha automática em resistência mental. Perde controle das ações.
+Tratamento especializado. Irreversível sem intervenção significativa.
+ENFRAQUECIDO / FADIGA / EXAUSTÃO
+Estágio
+Efeito Principal
+Penalidades
+Recuperação
+Enfraquecido 1
+Redução temporária da força.
+−1 em força e ataques físicos. Dano −10%.
+Descanso simples ou tratamento básico.
+Enfraquecido 2
+Fraqueza significativa.
+−3 em força, resistência e ataques. Dano −20–30%.
+Tratamento. Repouso prolongado.
+Enfraquecido 3
+Fraqueza extrema, quase paralisante.
+−5 em TODOS os testes físicos. Dano −50%+.
+Tratamento urgente. Risco de incapacitação permanente.
+Fatigado
+Cansaço físico e mental leve.
+−1 a −2 em testes físicos e mentais.
+Descanso curto ou alimentação.
+
+
+
+--- PAGE 26 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 26
+Estágio
+Efeito Principal
+Penalidades
+Recuperação
+Exausto
+Cansaço severo.
+−3 em TODOS os testes. Movimentação reduzida.
+Repouso prolongado ou tratamento.
+Esgotado
+Estado crítico de exaustão.
+−5 em testes físicos e mentais. Movimento muito reduzido.
+Tratamento urgente. Risco de colapso e sequelas.
+CONTROLE MENTAL / SILENCIADO / AMALDIÇOADO
+Condição
+Estágio
+Efeito Principal
+Recuperação
+Enfeitiçado
+Controle Mental 1
+Prestativo à fonte. Não pode atacá-la. Fonte +10 em social.
+Atitude hostil de aliados contra a fonte quebra o efeito.
+Dominado
+Controle Mental 2
+Controle parcial. Age conforme ordens da fonte.
+Ruptura do domínio mágico. Intervenção externa.
+Charm
+Controle Mental 3
+Controle total temporário. Age como servo direto.
+Rituais complexos. Destruição da fonte.
+Silenciado 1
+Silêncio temporário
+Sem voz audível. Impede magias verbais.
+Tempo (segundos a minutos). Magia contrária.
+Silenciado 2
+Dano físico ou mágico
+Sem fala. Sons não-verbais possíveis. −2 em social.
+Tratamento médico ou mágico.
+Mudo
+Perda definitiva
+Sem fala de qualquer forma.
+Magias muito avançadas ou intervenções raras.
+Amaldiçoado 1
+Aflição leve
+Má sorte e pequenos infortúnios. −1 em testes variados.
+Magia básica. Rituais simples. Ou tempo.
+Amaldiçoado 2
+Maldição profunda
+Efeitos negativos contínuos. −2 ou mais. Desvantagens sociais.
+Magia moderada. Rituais complexos.
+Amaldiçoado 3
+Condição grave
+−3 a −5 em praticamente todos os testes.
+Rituais raros e poderosos. Muito difícil de reverter.
+Resumo — Condições por Categoria de Remoção
+Condição
+Remove com...
+Emergência?
+Queimadura 1–2
+Tratamento básico/avançado. Vita.
+Não.
+Carbonizado
+Magia avançada ou adaptação permanente.
+Sim — permanente.
+Envenenado 1–3
+Antídoto, Lux, Vita, Descanso longo.
+Não.
+Toxina
+Antídoto específico + Vita+Lux.
+Sim — mortal.
+Assustado/Apavorado
+Teste Vontade por turno. Ambiente seguro.
+Não.
+Imobilizado
+Força vs. DT 6.
+Não.
+Paralisado
+Duração do efeito. Testes mentais.
+Variável.
+Atordoado
+Automático: 1 turno.
+Não.
+Congelamento 1–2
+Calor. Aguardar.
+Não.
+Congelamento 3
+Fogo mágico 3+ PE.
+Sim.
+Sangramento 1
+Primeiros Socorros (Ação Menor). 3 turnos.
+Não.
+Sangramento 2–3 / Hemorragia
+Medicina, magia avançada, cirurgia.
+Sim — mortal em 3–4 turnos.
+Assombro 1–3
+Lux, Exorcismo, área segura.
+Sim (Assombro 3).
+Cegueira 1–2
+Cura mágica. Tratamento.
+Não.
+Cegueira 3
+Métodos extraordinários.
+Permanente sem intervenção.
+Enlouquecido/Insano
+Terapia, magia, Marcos narrativos.
+Sim (Insano).
+Amaldiçoado 3
+Ritual raro ou intervenção divinal.
+Sim — permanente.
+Controle Mental
+Ruptura da fonte. Ritual. Ataque aos aliados.
+Variável.
+Infectado 3
+Magia avançada. Itens raros.
+Sim — mortal.
+
+
+
+--- PAGE 27 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 27
+ — XII —
+ Referência Rápida
+■ Escala de Dano atualizada para a versão canônica v3.0
+Formas — Custo e Requisito
+Forma
+PE
+Tier Mín.
+Forma
+PE
+Tier Mín.
+Toque
+0
+Alma 1+
+Âncora
+2
+Afin. Esp.
+Projétil
+1
+Dom. Treinado
+Rede/Teia
+3
+Dom.+Afin. Esp.
+Pulso
+1
+Poder Treinado
+Fio/Filamento
+2
+Dom. Esp.
+Bola
+1
+Alma 1+
+Aura
+2
+Afin. Esp.
+Parede
+1
+Alma 1+
+Contínuo
+2
+Vontade Treinado
+Fio
+1
+Alma 1+
+Invocação
+3
+Alma 2+, Afin. Esp., Nív.4+
+Lâmina
+1
+Alma 1+
+Núcleo
+3
+Dom. Mestre, Alma 3+
+Nuvem
+1
+Alma 1+
+Mandala
+4
+Afin. Mestre, Alma 3+, Nív.6+
+Cone
+2
+Dom. Treinado
+Nexo (Mestre)
+4
+Afin. Mestre, Nív.7+
+Onda
+2
+Afin. Treinado
+Armadura Parcial
+4
+Dom. Esp., Alma 2+
+Barreira
+2
+Afin. Treinado
+Armadura Completa
+5
+Dom. Mestre, Alma 3+
+Espiral
+2
+Dom.+Afin. Esp.
+Rifle Elemental
+5
+Dom. Mestre, Alma 3+
+Véu
+3
+Afin. Esp., Nív.4+
+Golem Pequeno
+5
+Dom. Mestre, Nív.5+
+Campo
+3
+Afin. Esp., Alma 2+
+Runas/Símbolos/Totem
+4
+Afin. Mestre, Alma 3+
+Impregnar
+2
+Afin. Treinado
+Portal
+5
+Afin. Mestre, Alma 3+
+Escala de Dano de Manifestações — v3.0 (Canônico) ■ Atualizado
+Tier
++0 Amplif.
++1–2 PE
++3–5 PE
++6–9 PE
++10–14 PE
++15+ PE
+Leigo
+1d6
+1d8
+2d6
+2d8
+3d8
+4d8
+Treinado
+1d8
+2d6
+2d8
+3d8
+4d8
+5d8
+Especialista
+2d6
+2d8
+3d8
+4d8
+5d8
+6d8
+Mestre
+2d8
+3d8
+4d8
+5d8
+6d8
+8d8
+Maestria
+3d8
+4d8
+5d8
+6d8
+8d8
+10d8+
+Progresso Interno/Efetivo (+0 a +3) soma ao resultado final dos dados em toda rolagem. Referência média: 1d6≈3.5 · 2d8≈9 · 4d8≈18
+· 6d8≈27 · 8d8≈36 · 10d8≈45. HP Nív.1=24 · HP Nív.8+=96. Uma Maestria com +15 PE faz 10d8+3 ≈ 48 pts — ~50% do HP de Nív.8.
+Escala de Cura — v3.0
+Tier
++0
++1–2 PE
++3–5 PE
++6+ PE
+Leigo
+1d6+2
+1d8+2
+2d6+3
+2d8+4
+Treinado
+1d8+3
+2d6+3
+2d8+4
+3d6+5
+Especialista
+2d6+4
+2d8+5
+3d6+6
+3d8+7
+Mestre
+2d8+5
+3d6+6
+3d8+8
+4d6+10
+Maestria
+3d6+6
+3d8+8
+4d6+10
+Restauração significativa
+Cura direta de HP em seres com Vontade exige Vetor Indireto. Cura direta funciona normalmente em objetos e personagens
+inconscientes.
+
+
+
+--- PAGE 28 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 28
+Tipos de Manifestação por PE Total
+Tipo
+PE Total
+Ação
+Observação
+Simples
+1–3 PE
+m (Ação Menor)
+Rápida e direta.
+Avançada
+4–7 PE
+Mv (Movimento)
+Libera M para outra coisa.
+Completa
+8–14 PE
+M (Ação Maior)
+Pode alterar o campo de batalha.
+Extrema
+15+ PE
+C (Ação Completa)
+Interrupção (dano/falha Vontade DT 5) perde tudo.
+Limite de Keywords por Tier
+Tier Afinidade
+Max. KW
+Elementos
+Formas
+Propriedades
+Leigo
+3
+1
+1
+1
+Treinado
+5
+1–2
+1
+2–3
+Especialista
+7
+2
+2
+3–4
+Mestre
+10
+3
+2–3
+5–6
+Maestria
+Sem limite
+Todos
+Todos
+Todos
+Condições — Mapa Rápido de Progressão
+Estágio 1
+Estágio 2
+Estágio 3 / Crítico
+Queimadura 1
+→ Queimadura 2
+→ Carbonizado
+Envenenado 1
+→ Envenenado 2/3
+→ Toxina
+Assustado
+→ Apavorado
+—
+Congelamento 1
+→ Congelamento 2
+→ Congelamento 3
+Sangramento 1
+→ Sangramento 2
+→ Hemorragia (3)
+Fragilizado 1
+→ Fragilizado 2
+→ Fragilizado 3
+Desorientado
+→ Enlouquecido
+→ Insano
+Fatigado
+→ Exausto
+→ Esgotado
+Enfraquecido 1
+→ Enfraquecido 2
+→ Enfraquecido 3
+Silenciado 1
+→ Silenciado 2
+→ Mudo
+Amaldiçoado 1
+→ Amaldiçoado 2
+→ Amaldiçoado 3
+Enfeitiçado
+→ Dominado
+→ Charm
+Desidratado 1
+→ Desidratado 2
+→ Desidratado 3
+Entorpecido
+→ Drogado 1
+→ Drogado 2
+Infectado 1
+→ Infectado 2
+→ Infectado 3
+Assombro 1
+→ Assombro 2
+→ Assombro 3
+Cegueira 1
+→ Cegueira 2
+→ Cegueira Total (3)
+Surdo 1
+→ Surdo 2
+→ Surdez Total (3)
+ "Desde que tenha uma lógica, tudo é possível."
+ "O sistema apoia a lógica — não a limita. Encontre o vetor correto, não force um atalho."
+
+
+
+--- PAGE 29 ---
+UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+p. 29
+ UnheaveN: ERA · Palimpsest v3.0 · Guia Avançado — Manifestações, Condições & Extensões
+ Sistema criado por Seth the Freak · Todos os direitos reservados · Uso interno de campanha
